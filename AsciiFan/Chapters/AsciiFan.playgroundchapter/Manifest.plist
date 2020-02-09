@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>ASCII Fan</string>
+	<key>Pages</key>
+	<array>
+		<string>01-Welcome.cutscenepage</string>
+		<string>02-HowImagesComposed.playgroundpage</string>
+		<string>03-PreprocessingImages.playgroundpage</string>
+		<string>04-HistogramAndEqualization.playgroundpage</string>
+		<string>05-Asciification.playgroundpage</string>
+		<string>06-MoreToPlay.playgroundpage</string>
+	</array>
+</dict>
+</plist>

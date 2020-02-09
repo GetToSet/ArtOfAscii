@@ -144,7 +144,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5E086DC12051C5A7004D8D25 /* PlaygroundBook */ = {
+		5E086DC12051C5A7004D8D25 /* AsciiFan */ = {
 			isa = PBXGroup;
 			children = (
 				5E086DCF2051DF0F004D8D25 /* Manifest.plist */,
@@ -153,7 +153,7 @@
 				5EF2F9B62054E6F900191409 /* Chapters */,
 				5EF2F9A42054BB9500191409 /* Supporting Content */,
 			);
-			path = PlaygroundBook;
+			path = AsciiFan;
 			sourceTree = "<group>";
 		};
 		5E0E3751206597E7008FA4BE /* Base */ = {
@@ -184,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				5E0E37542065A065008FA4BE /* README.md */,
-				5E086DC12051C5A7004D8D25 /* PlaygroundBook */,
+				5E086DC12051C5A7004D8D25 /* AsciiFan */,
 				5EA2E3BE2056F35A00416A35 /* LiveViewTestApp */,
 				5E2A7AE3204F628B00F4E17A /* Config Files */,
 				5E1004BD208E7F6E00BCFE70 /* LICENSE */,
@@ -269,9 +269,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5E086DBF2051C5A7004D8D25 /* PlaygroundBook */ = {
+		5E086DBF2051C5A7004D8D25 /* AsciiFan */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5E086DC52051C5A7004D8D25 /* Build configuration list for PBXNativeTarget "PlaygroundBook" */;
+			buildConfigurationList = 5E086DC52051C5A7004D8D25 /* Build configuration list for PBXNativeTarget "AsciiFan" */;
 			buildPhases = (
 				5E086DD22051E35D004D8D25 /* Copy Book Contents */,
 				5E086DC62051DB17004D8D25 /* Resources */,
@@ -282,7 +282,7 @@
 			dependencies = (
 				5EF2F9B52054BDD100191409 /* PBXTargetDependency */,
 			);
-			name = PlaygroundBook;
+			name = AsciiFan;
 			productName = PlaygroundBook;
 			productReference = 5E086DC02051C5A7004D8D25 /* AsciiFan.playgroundbook */;
 			productType = "com.apple.product-type.bundle";
@@ -346,7 +346,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5E2A7AE0204F611300F4E17A /* Build configuration list for PBXProject "PlaygroundBook" */;
+			buildConfigurationList = 5E2A7AE0204F611300F4E17A /* Build configuration list for PBXProject "AsciiFan" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -359,7 +359,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5E086DBF2051C5A7004D8D25 /* PlaygroundBook */,
+				5E086DBF2051C5A7004D8D25 /* AsciiFan */,
 				5EF2F9AA2054BBF300191409 /* Book_Sources */,
 				5EA2E3BC2056F35A00416A35 /* LiveViewTestApp */,
 			);
@@ -401,7 +401,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PLAYGROUND_BOOK_PATH=\"${BUILT_PRODUCTS_DIR}/${PLAYGROUND_BOOK_FILE_NAME}.playgroundbook\"\nPRIVATERESOURCES_FOLDER_PATH=\"${PLAYGROUND_BOOK_PATH}/Contents/PrivateResources\"\nPUBLICRESOURCES_FOLDER_PATH=\"${PLAYGROUND_BOOK_PATH}/Contents/PublicResources\"\n\nDESTINATION_FOLDER_PATH=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\"\n\nif [[ -d \"${PRIVATERESOURCES_FOLDER_PATH}\" ]]; then\n    ditto \"${PRIVATERESOURCES_FOLDER_PATH}\" \"${DESTINATION_FOLDER_PATH}\"\nfi\n\nif [[ -d \"${PUBLICRESOURCES_FOLDER_PATH}\" ]]; then\n    ditto \"${PUBLICRESOURCES_FOLDER_PATH}\" \"${DESTINATION_FOLDER_PATH}\"\nfi\n\nmkdir -p \"${DERIVED_FILE_DIR}\"\ntouch \"${DERIVED_FILE_DIR}/embed-resources-marker\"";
+			shellScript = "PLAYGROUND_BOOK_PATH=\"${BUILT_PRODUCTS_DIR}/${PLAYGROUND_BOOK_FILE_NAME}.playgroundbook\"\nPRIVATERESOURCES_FOLDER_PATH=\"${PLAYGROUND_BOOK_PATH}/Contents/PrivateResources\"\nPUBLICRESOURCES_FOLDER_PATH=\"${PLAYGROUND_BOOK_PATH}/Contents/PublicResources\"\n\nDESTINATION_FOLDER_PATH=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\"\n\nif [[ -d \"${PRIVATERESOURCES_FOLDER_PATH}\" ]]; then\n    ditto \"${PRIVATERESOURCES_FOLDER_PATH}\" \"${DESTINATION_FOLDER_PATH}\"\nfi\n\nif [[ -d \"${PUBLICRESOURCES_FOLDER_PATH}\" ]]; then\n    ditto \"${PUBLICRESOURCES_FOLDER_PATH}\" \"${DESTINATION_FOLDER_PATH}\"\nfi\n\nmkdir -p \"${DERIVED_FILE_DIR}\"\ntouch \"${DERIVED_FILE_DIR}/embed-resources-marker\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -428,7 +428,7 @@
 /* Begin PBXTargetDependency section */
 		5EA2E3D02056F36100416A35 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5E086DBF2051C5A7004D8D25 /* PlaygroundBook */;
+			target = 5E086DBF2051C5A7004D8D25 /* AsciiFan */;
 			targetProxy = 5EA2E3CF2056F36100416A35 /* PBXContainerItemProxy */;
 		};
 		5EA2E3D22056F36300416A35 /* PBXTargetDependency */ = {
@@ -688,7 +688,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5E086DC52051C5A7004D8D25 /* Build configuration list for PBXNativeTarget "PlaygroundBook" */ = {
+		5E086DC52051C5A7004D8D25 /* Build configuration list for PBXNativeTarget "AsciiFan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5E086DC32051C5A7004D8D25 /* Debug */,
@@ -697,7 +697,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5E2A7AE0204F611300F4E17A /* Build configuration list for PBXProject "PlaygroundBook" */ = {
+		5E2A7AE0204F611300F4E17A /* Build configuration list for PBXProject "AsciiFan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5E2A7AE1204F611300F4E17A /* Debug */,
