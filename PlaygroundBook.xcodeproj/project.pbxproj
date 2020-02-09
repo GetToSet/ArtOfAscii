@@ -92,7 +92,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5E086DC02051C5A7004D8D25 /* PlaygroundBook.playgroundbook */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaygroundBook.playgroundbook; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E086DC02051C5A7004D8D25 /* AsciiFan.playgroundbook */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsciiFan.playgroundbook; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E086DC72051DD03004D8D25 /* BookOverridingBuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookOverridingBuildSettings.xcconfig; sourceTree = "<group>"; };
 		5E086DCD2051DDB8004D8D25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LiveView.storyboard; sourceTree = "<group>"; };
 		5E086DCF2051DF0F004D8D25 /* Manifest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Manifest.plist; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 		5E086DA4204F706E004D8D25 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5E086DC02051C5A7004D8D25 /* PlaygroundBook.playgroundbook */,
+				5E086DC02051C5A7004D8D25 /* AsciiFan.playgroundbook */,
 				5EF2F9AB2054BBF300191409 /* libBook_Sources.a */,
 				5EA2E3BD2056F35A00416A35 /* LiveViewTestApp.app */,
 			);
@@ -284,7 +284,7 @@
 			);
 			name = PlaygroundBook;
 			productName = PlaygroundBook;
-			productReference = 5E086DC02051C5A7004D8D25 /* PlaygroundBook.playgroundbook */;
+			productReference = 5E086DC02051C5A7004D8D25 /* AsciiFan.playgroundbook */;
 			productType = "com.apple.product-type.bundle";
 		};
 		5EA2E3BC2056F35A00416A35 /* LiveViewTestApp */ = {
@@ -618,7 +618,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2Z7DE68A4G;
 				GCC_DYNAMIC_NO_PIC = NO;
 				INFOPLIST_FILE = LiveViewTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -626,7 +626,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.LiveViewTestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.gettoset.AsciiFanLiveViewTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
@@ -642,14 +642,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2Z7DE68A4G;
 				INFOPLIST_FILE = LiveViewTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.LiveViewTestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.gettoset.AsciiFanLiveViewTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
 					"\"$(OTHER_FRAMEWORKS_DIR)\"",

@@ -1,0 +1,15 @@
+# Xcode
+
+## User settings
+xcuserdata/
+
+# Swift
+
+## App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
