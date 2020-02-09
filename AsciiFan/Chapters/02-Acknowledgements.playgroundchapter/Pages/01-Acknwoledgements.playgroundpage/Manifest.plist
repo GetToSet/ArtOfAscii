@@ -3,10 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>Name</key>
-	<string>More to Play</string>
-	<key>LiveViewEdgeToEdge</key>
-	<true/>
+	<string>🎉 LICENSE &amp; Acknowledgements</string>
 	<key>LiveViewMode</key>
-	<string>VisibleByDefault</string>
+	<string>HiddenByDefault</string>
 </dict>
 </plist>

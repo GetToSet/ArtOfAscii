@@ -3,9 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Name</key>
-	<string>Acknoledgements</string>
-	<key>Pages</key>
-	<array>
-	</array>
+	<string>🏞 How Images Composed</string>
+	<key>LiveViewEdgeToEdge</key>
+	<true/>
+	<key>LiveViewMode</key>
+	<string>VisibleByDefault</string>
 </dict>
 </plist>

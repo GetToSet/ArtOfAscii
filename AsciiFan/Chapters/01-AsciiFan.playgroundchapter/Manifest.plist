@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Name</key>
-	<string>ASCII Fan</string>
+	<string>ChapterOneName</string>
 	<key>Pages</key>
 	<array>
 		<string>01-Welcome.cutscenepage</string>

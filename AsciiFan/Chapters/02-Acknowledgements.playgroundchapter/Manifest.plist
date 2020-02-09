@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Name</key>
-	<string>Preprocessing Your Images</string>
-	<key>LiveViewEdgeToEdge</key>
-	<true/>
-	<key>LiveViewMode</key>
-	<string>VisibleByDefault</string>
+	<string>ChapterTwoName</string>
+	<key>Pages</key>
+	<array>
+		<string>01-Acknwoledgements.playgroundpage</string>
+	</array>
 </dict>
 </plist>

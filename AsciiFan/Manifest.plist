@@ -15,11 +15,11 @@
 	<key>SwiftVersion</key>
 	<string>$(SWIFT_VERSION)</string>
 	<key>Name</key>
-	<string>ASCII Fan</string>
+	<string>PlaygroundBookName</string>
 	<key>Chapters</key>
 	<array>
-		<string>AsciiFan.playgroundchapter</string>
-		<string>Acknowledgements.playgroundchapter</string>
+		<string>01-AsciiFan.playgroundchapter</string>
+		<string>02-Acknowledgements.playgroundchapter</string>
 	</array>
 </dict>
 </plist>

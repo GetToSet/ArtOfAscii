@@ -3,8 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Name</key>
-	<string>Welcome!</string>
-	<key>CutsceneReference</key>
-	<string>Welcome.html</string>
+	<string>⭐️ The &quot;ASCIIfication&quot; Magic</string>
+	<key>LiveViewEdgeToEdge</key>
+	<true/>
+	<key>LiveViewMode</key>
+	<string>VisibleByDefault</string>
 </dict>
 </plist>
