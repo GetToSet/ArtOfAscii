@@ -5,11 +5,7 @@ Abstract:
 Contains English localizations of values in Manifest.plist files in the playground book.
 */
 
-/* The localized name of the playground book. */
 "PlaygroundBookName" = "Fan of ASCII";
 
-/* The localized name of the first chapter in the playground book. */
 "ChapterOneName" = "Fan of ASCII";
-
-/* The localized name of the first page in the first chapter in the playground book. */
-"ChapterOnePageOneName" = "Playground Page";
+"ChapterTwoName" = "Acknowledgements";

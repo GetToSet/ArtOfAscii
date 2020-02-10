@@ -8,4 +8,4 @@
 import UIKit
 import PlaygroundSupport
 
-PlaygroundPage.current.liveView = instantiateLiveView()
+PlaygroundPage.current.liveView = instantiateLiveView(identifier: .howImagesComposed)

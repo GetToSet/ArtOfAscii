@@ -20,6 +20,12 @@
 		5EF2F9AE2054BBF300191409 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F9AD2054BBF300191409 /* LiveViewController.swift */; };
 		5EF2F9B72054E6FB00191409 /* Chapters in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5EF2F9B62054E6F900191409 /* Chapters */; };
 		5EF2F9B82054E6FE00191409 /* Sources in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5EF2F9A52054BBB200191409 /* Sources */; };
+		B99F60C9EAB0D09A7B8EB0CC /* HistogramAndEqualizationLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6C6389EB17DF9F954711 /* HistogramAndEqualizationLiveViewController.swift */; };
+		B99F61D5DF56B9B158F4BFA6 /* HowImagesComposedLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6E315E7424BEA2E2B15F /* HowImagesComposedLiveViewController.swift */; };
+		B99F64A67DF102545F4E1841 /* MoreToPlayLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F61FAC3DE1254ACABCA7B /* MoreToPlayLiveViewController.swift */; };
+		B99F6AF194F0EBFA5F2859D0 /* AsciificationLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F68A9E1276209C2C7A1DF /* AsciificationLiveViewController.swift */; };
+		B99F6E0A4F0385BBF257ACEE /* PreprocessingImagesLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F699A1C41DD1661362F37 /* PreprocessingImagesLiveViewController.swift */; };
+		B99F6F0F7EE1C781DD4EE03F /* IntroductionLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F649B4ABA6549FADE9BC3 /* IntroductionLiveViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -98,9 +104,8 @@
 		5E086DCF2051DF0F004D8D25 /* Manifest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Manifest.plist; sourceTree = "<group>"; };
 		5E0E37522065981C008FA4BE /* BuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BuildSettings.xcconfig; sourceTree = "<group>"; };
 		5E0E37542065A065008FA4BE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		5E1004BE208E7F6E00BCFE70 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		5E2A7AE6204F630600F4E17A /* BaseBuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BaseBuildSettings.xcconfig; sourceTree = "<group>"; };
-		5E3196F22061DEA40077BBD7 /* LiveViewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewSupport.swift; sourceTree = "<group>"; };
+		5E3196F22061DEA40077BBD7 /* LiveViewSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewSupport.swift; sourceTree = "<group>"; };
 		5EA2E3BD2056F35A00416A35 /* LiveViewTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveViewTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA2E3BF2056F35A00416A35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EA2E3C92056F35B00416A35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LiveViewTestAppLaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -111,8 +116,15 @@
 		5EF2F97D2054B6E400191409 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ManifestPlist.strings; sourceTree = "<group>"; };
 		5EF2F9A52054BBB200191409 /* Sources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sources; sourceTree = "<group>"; };
 		5EF2F9AB2054BBF300191409 /* libBook_Sources.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBook_Sources.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		5EF2F9AD2054BBF300191409 /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
+		5EF2F9AD2054BBF300191409 /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		5EF2F9B62054E6F900191409 /* Chapters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Chapters; sourceTree = "<group>"; };
+		71875A4223F1143500F97029 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		B99F61FAC3DE1254ACABCA7B /* MoreToPlayLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreToPlayLiveViewController.swift; sourceTree = "<group>"; };
+		B99F649B4ABA6549FADE9BC3 /* IntroductionLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroductionLiveViewController.swift; sourceTree = "<group>"; };
+		B99F68A9E1276209C2C7A1DF /* AsciificationLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciificationLiveViewController.swift; sourceTree = "<group>"; };
+		B99F699A1C41DD1661362F37 /* PreprocessingImagesLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreprocessingImagesLiveViewController.swift; sourceTree = "<group>"; };
+		B99F6C6389EB17DF9F954711 /* HistogramAndEqualizationLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistogramAndEqualizationLiveViewController.swift; sourceTree = "<group>"; };
+		B99F6E315E7424BEA2E2B15F /* HowImagesComposedLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowImagesComposedLiveViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,22 +184,14 @@
 			path = Overrides;
 			sourceTree = "<group>";
 		};
-		5E1004BD208E7F6E00BCFE70 /* LICENSE */ = {
-			isa = PBXGroup;
-			children = (
-				5E1004BE208E7F6E00BCFE70 /* LICENSE.txt */,
-			);
-			path = LICENSE;
-			sourceTree = "<group>";
-		};
 		5E2A7ADC204F611300F4E17A = {
 			isa = PBXGroup;
 			children = (
 				5E0E37542065A065008FA4BE /* README.md */,
+				71875A4223F1143500F97029 /* LICENSE.txt */,
 				5E086DC12051C5A7004D8D25 /* AsciiFan */,
 				5EA2E3BE2056F35A00416A35 /* LiveViewTestApp */,
 				5E2A7AE3204F628B00F4E17A /* Config Files */,
-				5E1004BD208E7F6E00BCFE70 /* LICENSE */,
 				5EA2E3D52056F83400416A35 /* Supporting Content */,
 				5E086DA4204F706E004D8D25 /* Products */,
 			);
@@ -254,6 +258,7 @@
 			children = (
 				5EF2F9AD2054BBF300191409 /* LiveViewController.swift */,
 				5E3196F22061DEA40077BBD7 /* LiveViewSupport.swift */,
+				71ED918123F12CA400471AC8 /* 01-AsciiFan */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -264,6 +269,67 @@
 				5EF2F9A52054BBB200191409 /* Sources */,
 			);
 			name = "Supporting Content";
+			sourceTree = "<group>";
+		};
+		71ED918123F12CA400471AC8 /* 01-AsciiFan */ = {
+			isa = PBXGroup;
+			children = (
+				71ED918523F12CA400471AC8 /* 01-Introduction */,
+				71ED918623F12CA400471AC8 /* 02-HowImagesComposed */,
+				71ED918223F12CA400471AC8 /* 03-PreprocessingImages */,
+				71ED918423F12CA400471AC8 /* 04-HistogramAndEqualization */,
+				71ED918323F12CA400471AC8 /* 05-Asciification */,
+				71ED918723F12CA400471AC8 /* 06-MoreToPlay */,
+			);
+			path = "01-AsciiFan";
+			sourceTree = "<group>";
+		};
+		71ED918223F12CA400471AC8 /* 03-PreprocessingImages */ = {
+			isa = PBXGroup;
+			children = (
+				B99F699A1C41DD1661362F37 /* PreprocessingImagesLiveViewController.swift */,
+			);
+			path = "03-PreprocessingImages";
+			sourceTree = "<group>";
+		};
+		71ED918323F12CA400471AC8 /* 05-Asciification */ = {
+			isa = PBXGroup;
+			children = (
+				B99F68A9E1276209C2C7A1DF /* AsciificationLiveViewController.swift */,
+			);
+			path = "05-Asciification";
+			sourceTree = "<group>";
+		};
+		71ED918423F12CA400471AC8 /* 04-HistogramAndEqualization */ = {
+			isa = PBXGroup;
+			children = (
+				B99F6C6389EB17DF9F954711 /* HistogramAndEqualizationLiveViewController.swift */,
+			);
+			path = "04-HistogramAndEqualization";
+			sourceTree = "<group>";
+		};
+		71ED918523F12CA400471AC8 /* 01-Introduction */ = {
+			isa = PBXGroup;
+			children = (
+				B99F649B4ABA6549FADE9BC3 /* IntroductionLiveViewController.swift */,
+			);
+			path = "01-Introduction";
+			sourceTree = "<group>";
+		};
+		71ED918623F12CA400471AC8 /* 02-HowImagesComposed */ = {
+			isa = PBXGroup;
+			children = (
+				B99F6E315E7424BEA2E2B15F /* HowImagesComposedLiveViewController.swift */,
+			);
+			path = "02-HowImagesComposed";
+			sourceTree = "<group>";
+		};
+		71ED918723F12CA400471AC8 /* 06-MoreToPlay */ = {
+			isa = PBXGroup;
+			children = (
+				B99F61FAC3DE1254ACABCA7B /* MoreToPlayLiveViewController.swift */,
+			);
+			path = "06-MoreToPlay";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,6 +486,12 @@
 			files = (
 				5E3196F32061DEA40077BBD7 /* LiveViewSupport.swift in Sources */,
 				5EF2F9AE2054BBF300191409 /* LiveViewController.swift in Sources */,
+				B99F6F0F7EE1C781DD4EE03F /* IntroductionLiveViewController.swift in Sources */,
+				B99F61D5DF56B9B158F4BFA6 /* HowImagesComposedLiveViewController.swift in Sources */,
+				B99F6E0A4F0385BBF257ACEE /* PreprocessingImagesLiveViewController.swift in Sources */,
+				B99F60C9EAB0D09A7B8EB0CC /* HistogramAndEqualizationLiveViewController.swift in Sources */,
+				B99F6AF194F0EBFA5F2859D0 /* AsciificationLiveViewController.swift in Sources */,
+				B99F64A67DF102545F4E1841 /* MoreToPlayLiveViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

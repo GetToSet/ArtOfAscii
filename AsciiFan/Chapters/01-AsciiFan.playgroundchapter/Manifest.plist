@@ -6,7 +6,8 @@
 	<string>ChapterOneName</string>
 	<key>Pages</key>
 	<array>
-		<string>01-Welcome.cutscenepage</string>
+		<string>00-Welcome.cutscenepage</string>
+		<string>01-Introduction.playgroundpage</string>
 		<string>02-HowImagesComposed.playgroundpage</string>
 		<string>03-PreprocessingImages.playgroundpage</string>
 		<string>04-HistogramAndEqualization.playgroundpage</string>
