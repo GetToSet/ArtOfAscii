@@ -30,6 +30,8 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         contentContainerView.layer.cornerRadius = 4.0
 
         contentContainerView.layer.borderWidth = 3.0
+        
+        updateAppearance()
     }
 
     func setImage(named imageName: String) {
