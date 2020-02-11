@@ -16,9 +16,10 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var thumbnailButton: UIButton!
 
     weak var delegate: ImagePickerCollectionViewCellDelegate?
+    
     var state: ImagePickerCellState = .normal {
         didSet {
-            updateAppearance(state: state)
+            updateAppearance()
         }
     }
 
@@ -35,7 +36,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         thumbnailButton.setImage(UIImage(named: imageName), for: .normal)
     }
 
-    func updateAppearance(state: ImagePickerCellState) {
+    private func updateAppearance() {
         switch state {
         case .normal:
             contentContainerView.layer.borderColor = UIColor.white.cgColor

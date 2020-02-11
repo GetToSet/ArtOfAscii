@@ -5,11 +5,13 @@
 import UIKit
 
 class ShowcaseImageView: UIImageView {
+    
     override var image: UIImage? {
         didSet {
             roundCornersForAspectFit()
         }
     }
+    
     var cornerRadius: CGFloat = 0.0 {
         didSet {
             roundCornersForAspectFit()
