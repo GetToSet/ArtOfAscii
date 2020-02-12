@@ -37,33 +37,6 @@
             <point key="canvasLocation" x="-218" y="112"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="xDD-nV-UOm">
-            <objects>
-                <viewController storyboardIdentifier="histogramAndEqualization" id="f2f-7a-wYs" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="DxI-cZ-1ua">
-                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Histogram &amp; Equalization" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xp4-Qh-Uat">
-                                <rect key="frame" x="308.5" y="529.5" width="193" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Xp4-Qh-Uat" firstAttribute="centerY" secondItem="DxI-cZ-1ua" secondAttribute="centerY" id="L3k-Pn-4Ck"/>
-                            <constraint firstItem="Xp4-Qh-Uat" firstAttribute="centerX" secondItem="DxI-cZ-1ua" secondAttribute="centerX" id="tCB-JX-z1j"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="aCA-Zp-M1T"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6mJ-59-l5Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-218" y="787"/>
-        </scene>
-        <!--View Controller-->
         <scene sceneID="0Ar-Yl-Kuh">
             <objects>
                 <viewController storyboardIdentifier="asciification" id="TRE-jB-fgn" sceneMemberID="viewController">
@@ -88,7 +61,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MSN-rQ-yzx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="457" y="787"/>
+            <point key="canvasLocation" x="-219" y="787"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Qnk-Qq-r88">
@@ -115,7 +88,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mN9-db-Rho" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1132" y="787"/>
+            <point key="canvasLocation" x="456" y="787"/>
         </scene>
         <!--How Images Composed View Controller-->
         <scene sceneID="2es-Iu-CaW">
@@ -415,10 +388,10 @@
             </objects>
             <point key="canvasLocation" x="456.29629629629625" y="110"/>
         </scene>
-        <!--Preprocessing Images View Controller-->
+        <!--Grayscale Histogram Equalization-->
         <scene sceneID="rf0-JQ-tzt">
             <objects>
-                <viewController storyboardIdentifier="preprocessingImages" id="MJN-5g-PzL" customClass="PreprocessingImagesViewController" customModule="Book_Sources" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="grayscaleHistogramEqualization" id="MJN-5g-PzL" customClass="GrayscaleHistogramEqualization" customModule="Book_Sources" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MJs-MW-yQd">
                         <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

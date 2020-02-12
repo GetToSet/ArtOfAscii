@@ -8,4 +8,4 @@
 import UIKit
 import PlaygroundSupport
 
-PlaygroundPage.current.liveView = instantiateLiveView(identifier: .preprocessingImages)
+PlaygroundPage.current.liveView = instantiateLiveView(identifier: .grayscaleHistogramEqualization)

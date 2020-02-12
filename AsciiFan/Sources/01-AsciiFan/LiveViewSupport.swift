@@ -5,8 +5,7 @@ import PlaygroundSupport
 public enum LiveViewIdentifier: String {
     case introduction
     case howImagesComposed
-    case preprocessingImages
-    case histogramAndEqualization
+    case grayscaleHistogramEqualization
     case asciification
     case moreToPlay
 }

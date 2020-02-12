@@ -4,5 +4,5 @@
 
 import Foundation
 
-class HistogramAndEqualizationLiveViewController {
+class GrayscaleHistogramEqualization: BaseViewController {
 }
