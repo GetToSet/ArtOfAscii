@@ -288,14 +288,39 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dWc-gN-6xB" customClass="ShowcaseImageView" customModule="Book_Sources">
                                         <rect key="frame" x="24" y="24" width="762" height="948"/>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gIr-Sj-FWJ" customClass="MagnifierContainerView" customModule="Book_Sources">
+                                        <rect key="frame" x="24" y="24" width="762" height="948"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6U-qf-HWq" customClass="MagnifierView" customModule="Book_Sources">
+                                                <rect key="frame" x="291" y="384" width="180" height="180"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="180" id="OMY-6E-P4y"/>
+                                                    <constraint firstAttribute="height" constant="180" id="VF3-2S-w8f"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="G6U-qf-HWq" firstAttribute="centerX" secondItem="gIr-Sj-FWJ" secondAttribute="centerX" id="Cz2-yF-02B"/>
+                                            <constraint firstItem="G6U-qf-HWq" firstAttribute="centerY" secondItem="gIr-Sj-FWJ" secondAttribute="centerY" id="wfk-6X-j4u"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="magnifierView" destination="G6U-qf-HWq" id="bZq-Hs-qQg"/>
+                                        </connections>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="dWc-gN-6xB" firstAttribute="leading" secondItem="Rst-0X-Rca" secondAttribute="leadingMargin" id="0Vl-s6-WWr"/>
                                     <constraint firstItem="g8c-jl-3PS" firstAttribute="top" secondItem="dWc-gN-6xB" secondAttribute="bottom" constant="24" id="68X-Bb-fCp"/>
+                                    <constraint firstItem="g8c-jl-3PS" firstAttribute="top" secondItem="gIr-Sj-FWJ" secondAttribute="bottom" constant="24" id="6jW-wd-ic1"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="g8c-jl-3PS" secondAttribute="trailing" id="8rY-kn-8m7"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="dWc-gN-6xB" secondAttribute="trailing" id="99O-l4-HWa"/>
                                     <constraint firstItem="g8c-jl-3PS" firstAttribute="leading" secondItem="Rst-0X-Rca" secondAttribute="leadingMargin" id="UO5-9h-MTH"/>
+                                    <constraint firstItem="gIr-Sj-FWJ" firstAttribute="leading" secondItem="Rst-0X-Rca" secondAttribute="leadingMargin" id="VWy-lf-tOo"/>
                                     <constraint firstItem="dWc-gN-6xB" firstAttribute="top" secondItem="Rst-0X-Rca" secondAttribute="topMargin" id="dPv-Fw-LEI"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="gIr-Sj-FWJ" secondAttribute="trailing" id="y1t-vm-u8x"/>
+                                    <constraint firstItem="gIr-Sj-FWJ" firstAttribute="top" secondItem="Rst-0X-Rca" secondAttribute="topMargin" id="yd9-p3-vpv"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="g8c-jl-3PS" secondAttribute="bottom" id="ync-ID-kod"/>
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="24" left="24" bottom="12" right="24"/>
@@ -317,6 +342,8 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="j8A-U7-yb0" id="WtI-gI-fID"/>
                         <outlet property="imageView" destination="dWc-gN-6xB" id="bae-x6-3xD"/>
+                        <outlet property="magnifierContainerView" destination="gIr-Sj-FWJ" id="nbQ-Rr-I09"/>
+                        <outlet property="magnifierToolBarButton" destination="i0u-YE-UKe" id="yJP-1N-7Ce"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ax5-QY-UtN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

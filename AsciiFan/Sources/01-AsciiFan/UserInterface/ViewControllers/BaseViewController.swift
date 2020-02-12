@@ -5,7 +5,10 @@
 import UIKit
 import PlaygroundSupport
 
-public class BaseViewController: UIViewController, PlaygroundLiveViewSafeAreaContainer, ImagePickerViewControllerDelegate {
+public class BaseViewController: UIViewController,
+    PlaygroundLiveViewSafeAreaContainer,
+    ImagePickerViewControllerDelegate,
+    ToolBarButtonViewDelegate {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
 
@@ -30,5 +33,5 @@ public class BaseViewController: UIViewController, PlaygroundLiveViewSafeAreaCon
             fatalError("Unrecognized storyboard identifier")
         }
     }
-    
+
 }

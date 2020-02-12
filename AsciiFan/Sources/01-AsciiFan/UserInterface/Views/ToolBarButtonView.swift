@@ -14,7 +14,7 @@ class ToolBarButtonView: UIView {
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var tickImageView: UIImageView!
 
-    weak var delegate: ToolBarButtonDelegate?
+    weak var delegate: ToolBarButtonViewDelegate?
 
     var state: ToolBarButtonState = .normal {
         didSet {
@@ -59,7 +59,7 @@ class ToolBarButtonView: UIView {
 
 }
 
-@objc protocol ToolBarButtonDelegate: AnyObject {
+@objc protocol ToolBarButtonViewDelegate: AnyObject {
 
     @objc optional func toolBarButtonTapped(buttonView: ToolBarButtonView)
 
