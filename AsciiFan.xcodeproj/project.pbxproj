@@ -48,6 +48,7 @@
 		B99F64A67DF102545F4E1841 /* MoreToPlayLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F61FAC3DE1254ACABCA7B /* MoreToPlayLiveViewController.swift */; };
 		B99F65F6FEC073F90455E4A9 /* ImagePickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F613FABA78624AAA4B93B /* ImagePickerDataSource.swift */; };
 		B99F6725D32A6893297E338C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6A1B3643A5CE1E05A4B1 /* BaseViewController.swift */; };
+		B99F68942D9411B4B65A9E58 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6A1FC68C13B6B8479FE2 /* ImagePickerViewController.swift */; };
 		B99F68A6D87CF9F130FFBAF2 /* StateColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6E6E9A49D09B7ED292BB /* StateColors.swift */; };
 		B99F6AF194F0EBFA5F2859D0 /* AsciificationLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F68A9E1276209C2C7A1DF /* AsciificationLiveViewController.swift */; };
 		B99F6F0F7EE1C781DD4EE03F /* IntroductionLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F649B4ABA6549FADE9BC3 /* IntroductionLiveViewController.swift */; };
@@ -171,6 +172,7 @@
 		B99F67A7D419AA9E75D736B1 /* ShowcaseImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowcaseImageView.swift; sourceTree = "<group>"; };
 		B99F68A9E1276209C2C7A1DF /* AsciificationLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciificationLiveViewController.swift; sourceTree = "<group>"; };
 		B99F6A1B3643A5CE1E05A4B1 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		B99F6A1FC68C13B6B8479FE2 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		B99F6A9BFBE7AF37265A3E19 /* ImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		B99F6C6389EB17DF9F954711 /* GrayscaleHistogramEqualization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayscaleHistogramEqualization.swift; sourceTree = "<group>"; };
 		B99F6E315E7424BEA2E2B15F /* HowImagesComposedLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowImagesComposedLiveViewController.swift; sourceTree = "<group>"; };
@@ -355,6 +357,8 @@
 		71ED918123F12CA400471AC8 /* 01-AsciiFan */ = {
 			isa = PBXGroup;
 			children = (
+				B99F6A4851313B3F280485C6 /* ViewControllers */,
+				B99F6EAF9149ECBC65061A2B /* Views */,
 				B99F6A1B3643A5CE1E05A4B1 /* BaseViewController.swift */,
 				B99F66C8ACF8059146F94389 /* ToolBarButtonView.swift */,
 				B99F613FABA78624AAA4B93B /* ImagePickerDataSource.swift */,
@@ -421,6 +425,21 @@
 				71F704B523F30B6E00D92D90 /* tool-button-grayscale.png */,
 			);
 			path = PrivateResources;
+			sourceTree = "<group>";
+		};
+		B99F6A4851313B3F280485C6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B99F6A1FC68C13B6B8479FE2 /* ImagePickerViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B99F6EAF9149ECBC65061A2B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -608,6 +627,7 @@
 				B99F6396CE6A59C766BDF198 /* ShowcaseImageView.swift in Sources */,
 				B99F6313CB457A98431C0648 /* ToolBarButtonView.swift in Sources */,
 				B99F6725D32A6893297E338C /* BaseViewController.swift in Sources */,
+				B99F68942D9411B4B65A9E58 /* ImagePickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

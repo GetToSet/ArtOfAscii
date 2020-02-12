@@ -5,7 +5,7 @@
 import UIKit
 import PlaygroundSupport
 
-public class BaseViewController: UIViewController, PlaygroundLiveViewSafeAreaContainer {
+public class BaseViewController: UIViewController, PlaygroundLiveViewSafeAreaContainer, ImagePickerViewControllerDelegate {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
 
@@ -16,4 +16,19 @@ public class BaseViewController: UIViewController, PlaygroundLiveViewSafeAreaCon
         backgroundImageView.image = UIImage(named: "background.jpg")
     }
 
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else {
+            assertionFailure("Segue had no identifier")
+            return
+        }
+
+        switch identifier {
+        case "embedImagePicker":
+            let pickerController = segue.destination as! ImagePickerViewController
+            pickerController.delegate = self
+        default:
+            fatalError("Unrecognized storyboard identifier")
+        }
+    }
+    
 }

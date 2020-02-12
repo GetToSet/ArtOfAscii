@@ -16,7 +16,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var thumbnailButton: UIButton!
 
     weak var delegate: ImagePickerCollectionViewCellDelegate?
-    
+
     var state: ImagePickerCellState = .normal {
         didSet {
             updateAppearance()
@@ -30,7 +30,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         contentContainerView.layer.cornerRadius = 4.0
 
         contentContainerView.layer.borderWidth = 3.0
-        
+
         updateAppearance()
     }
 
@@ -48,13 +48,13 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
     }
 
     @IBAction func thumbnailButtonTapped(_ sender: UIButton) {
-        delegate?.thumbnailButtonTapped(cell: self)
+        delegate?.thumbnailButtonTapped?(cell: self)
     }
 
 }
 
-protocol ImagePickerCollectionViewCellDelegate: NSObject {
+@objc protocol ImagePickerCollectionViewCellDelegate: AnyObject {
 
-    func thumbnailButtonTapped(cell: ImagePickerCollectionViewCell)
+    @objc optional func thumbnailButtonTapped(cell: ImagePickerCollectionViewCell)
 
 }

@@ -29,7 +29,7 @@ class ToolBarButtonView: UIView {
         self.clipsToBounds = false
 
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        
+
         button.layer.cornerRadius = self.bounds.size.width / 2.0;
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 3.0
@@ -54,14 +54,14 @@ class ToolBarButtonView: UIView {
         case .normal:
             state = .selected
         }
-        delegate?.toolBarButtonTapped(buttonView: self)
+        delegate?.toolBarButtonTapped?(buttonView: self)
     }
 
 }
 
-protocol ToolBarButtonDelegate: NSObject {
+@objc protocol ToolBarButtonDelegate: AnyObject {
 
-    func toolBarButtonTapped(buttonView: ToolBarButtonView)
+    @objc optional func toolBarButtonTapped(buttonView: ToolBarButtonView)
 
 }
 
