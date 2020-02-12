@@ -5,9 +5,8 @@
 import UIKit
 import PlaygroundSupport
 
-public class HowImagesComposedViewController: UIViewController, PlaygroundLiveViewSafeAreaContainer {
+public class HowImagesComposedViewController: BaseViewController {
 
-    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var imageView: ShowcaseImageView!
 
     @IBOutlet weak var imagePickerCollectionView: UICollectionView!
@@ -130,6 +129,7 @@ extension HowImagesComposedViewController: UIImagePickerControllerDelegate, UINa
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageView.image = selectedImage
+            selectedCellIndexPath = nil
         }
         picker.dismiss(animated: true)
     }

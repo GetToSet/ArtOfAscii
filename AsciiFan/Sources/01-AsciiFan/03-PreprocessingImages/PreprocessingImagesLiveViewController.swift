@@ -4,5 +4,8 @@
 
 import Foundation
 
-class PreprocessingImagesViewController {
+public class PreprocessingImagesViewController: BaseViewController {
+
+
+
 }
