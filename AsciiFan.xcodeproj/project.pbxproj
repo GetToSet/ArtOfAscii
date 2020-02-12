@@ -20,6 +20,7 @@
 		5EF2F9AE2054BBF300191409 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F9AD2054BBF300191409 /* LiveViewController.swift */; };
 		5EF2F9B72054E6FB00191409 /* Chapters in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5EF2F9B62054E6F900191409 /* Chapters */; };
 		5EF2F9B82054E6FE00191409 /* Sources in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5EF2F9A52054BBB200191409 /* Sources */; };
+		716CA64A23F3CBE4007586A0 /* tool-button-equalization.png in Resources */ = {isa = PBXBuildFile; fileRef = 716CA64923F3CBE4007586A0 /* tool-button-equalization.png */; };
 		71747AC023F2CC9000F75DD4 /* tool-button-magnifier.png in Resources */ = {isa = PBXBuildFile; fileRef = 71747ABC23F2CC8E00F75DD4 /* tool-button-magnifier.png */; };
 		71747AC123F2CC9000F75DD4 /* tool-button-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 71747ABD23F2CC8F00F75DD4 /* tool-button-blue.png */; };
 		71747AC223F2CC9000F75DD4 /* tool-button-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 71747ABE23F2CC8F00F75DD4 /* tool-button-red.png */; };
@@ -144,6 +145,7 @@
 		5EF2F9AB2054BBF300191409 /* libBook_Sources.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBook_Sources.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF2F9AD2054BBF300191409 /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		5EF2F9B62054E6F900191409 /* Chapters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Chapters; sourceTree = "<group>"; };
+		716CA64923F3CBE4007586A0 /* tool-button-equalization.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tool-button-equalization.png"; sourceTree = "<group>"; };
 		71747ABC23F2CC8E00F75DD4 /* tool-button-magnifier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tool-button-magnifier.png"; sourceTree = "<group>"; };
 		71747ABD23F2CC8F00F75DD4 /* tool-button-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tool-button-blue.png"; sourceTree = "<group>"; };
 		71747ABE23F2CC8F00F75DD4 /* tool-button-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tool-button-red.png"; sourceTree = "<group>"; };
@@ -322,6 +324,24 @@
 			name = "Supporting Content";
 			sourceTree = "<group>";
 		};
+		7160DF3623F3CAE3003E8402 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				B99F6A4851313B3F280485C6 /* ViewControllers */,
+				B99F6EAF9149ECBC65061A2B /* Views */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		7160DF3723F3CAF8003E8402 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B99F613FABA78624AAA4B93B /* ImagePickerDataSource.swift */,
+				B99F6E6E9A49D09B7ED292BB /* StateColors.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		71B1BC7023F15EF800F87CC1 /* PrivateResources */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,15 +377,10 @@
 		71ED918123F12CA400471AC8 /* 01-AsciiFan */ = {
 			isa = PBXGroup;
 			children = (
-				B99F6A4851313B3F280485C6 /* ViewControllers */,
-				B99F6EAF9149ECBC65061A2B /* Views */,
-				B99F6A1B3643A5CE1E05A4B1 /* BaseViewController.swift */,
-				B99F66C8ACF8059146F94389 /* ToolBarButtonView.swift */,
-				B99F613FABA78624AAA4B93B /* ImagePickerDataSource.swift */,
 				5EF2F9AD2054BBF300191409 /* LiveViewController.swift */,
 				5E3196F22061DEA40077BBD7 /* LiveViewSupport.swift */,
-				B99F67A7D419AA9E75D736B1 /* ShowcaseImageView.swift */,
-				B99F6E6E9A49D09B7ED292BB /* StateColors.swift */,
+				7160DF3723F3CAF8003E8402 /* Utils */,
+				7160DF3623F3CAE3003E8402 /* UserInterface */,
 				71ED918523F12CA400471AC8 /* 01-Introduction */,
 				71ED918623F12CA400471AC8 /* 02-HowImagesComposed */,
 				71ED918423F12CA400471AC8 /* 03-GrayscaleHistogramEqualization */,
@@ -422,6 +437,7 @@
 		71F704AA23F3090D00D92D90 /* PrivateResources */ = {
 			isa = PBXGroup;
 			children = (
+				716CA64923F3CBE4007586A0 /* tool-button-equalization.png */,
 				71F704B523F30B6E00D92D90 /* tool-button-grayscale.png */,
 			);
 			path = PrivateResources;
@@ -430,6 +446,7 @@
 		B99F6A4851313B3F280485C6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B99F6A1B3643A5CE1E05A4B1 /* BaseViewController.swift */,
 				B99F6A1FC68C13B6B8479FE2 /* ImagePickerViewController.swift */,
 			);
 			path = ViewControllers;
@@ -438,6 +455,8 @@
 		B99F6EAF9149ECBC65061A2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B99F66C8ACF8059146F94389 /* ToolBarButtonView.swift */,
+				B99F67A7D419AA9E75D736B1 /* ShowcaseImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -564,6 +583,7 @@
 				71EDDEA523F2635A005EBB8A /* lantern-thumb.jpg in Resources */,
 				5E086DCA2051DDAE004D8D25 /* LiveView.storyboard in Resources */,
 				71EDDE9723F252B8005EBB8A /* imagePickerList.plist in Resources */,
+				716CA64A23F3CBE4007586A0 /* tool-button-equalization.png in Resources */,
 				71F704A923F2EAFB00D92D90 /* picker-camera.png in Resources */,
 				71EDDEA823F2635A005EBB8A /* woman-thumb.jpg in Resources */,
 				71EDDEA423F2635A005EBB8A /* strawberries-thumb.jpg in Resources */,

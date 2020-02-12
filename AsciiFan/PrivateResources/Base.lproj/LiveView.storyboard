@@ -290,14 +290,15 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="dWc-gN-6xB" firstAttribute="leading" secondItem="Rst-0X-Rca" secondAttribute="leading" constant="24" id="0Vl-s6-WWr"/>
+                                    <constraint firstItem="dWc-gN-6xB" firstAttribute="leading" secondItem="Rst-0X-Rca" secondAttribute="leadingMargin" id="0Vl-s6-WWr"/>
                                     <constraint firstItem="g8c-jl-3PS" firstAttribute="top" secondItem="dWc-gN-6xB" secondAttribute="bottom" constant="24" id="68X-Bb-fCp"/>
-                                    <constraint firstAttribute="trailing" secondItem="g8c-jl-3PS" secondAttribute="trailing" constant="24" id="8rY-kn-8m7"/>
-                                    <constraint firstAttribute="trailing" secondItem="dWc-gN-6xB" secondAttribute="trailing" constant="24" id="99O-l4-HWa"/>
-                                    <constraint firstItem="g8c-jl-3PS" firstAttribute="leading" secondItem="Rst-0X-Rca" secondAttribute="leading" constant="24" id="UO5-9h-MTH"/>
-                                    <constraint firstItem="dWc-gN-6xB" firstAttribute="top" secondItem="Rst-0X-Rca" secondAttribute="top" constant="24" id="dPv-Fw-LEI"/>
-                                    <constraint firstAttribute="bottom" secondItem="g8c-jl-3PS" secondAttribute="bottom" constant="12" id="ync-ID-kod"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="g8c-jl-3PS" secondAttribute="trailing" id="8rY-kn-8m7"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="dWc-gN-6xB" secondAttribute="trailing" id="99O-l4-HWa"/>
+                                    <constraint firstItem="g8c-jl-3PS" firstAttribute="leading" secondItem="Rst-0X-Rca" secondAttribute="leadingMargin" id="UO5-9h-MTH"/>
+                                    <constraint firstItem="dWc-gN-6xB" firstAttribute="top" secondItem="Rst-0X-Rca" secondAttribute="topMargin" id="dPv-Fw-LEI"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="g8c-jl-3PS" secondAttribute="bottom" id="ync-ID-kod"/>
                                 </constraints>
+                                <edgeInsets key="layoutMargins" top="24" left="24" bottom="12" right="24"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -344,7 +345,7 @@
                                         <rect key="frame" x="24" y="996" width="762" height="72"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="G3C-hJ-f9L">
-                                                <rect key="frame" x="714" y="0.0" width="48" height="72"/>
+                                                <rect key="frame" x="650" y="0.0" width="112" height="72"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5v-Yf-PwY" customClass="ToolBarButtonView" customModule="Book_Sources">
                                                         <rect key="frame" x="0.0" y="12" width="48" height="48"/>
@@ -385,10 +386,49 @@
                                                             <outlet property="tickImageView" destination="fPT-9k-iIX" id="4R8-Tr-rGq"/>
                                                         </connections>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdH-F9-Hxo" customClass="ToolBarButtonView" customModule="Book_Sources">
+                                                        <rect key="frame" x="64" y="12" width="48" height="48"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaM-Sa-vKU">
+                                                                <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                                <state key="normal" image="tool-button-equalization.png"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="14"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="buttonTapped:" destination="C74-rF-v6n" eventType="touchUpInside" id="LBg-cQ-I8W"/>
+                                                                </connections>
+                                                            </button>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick.png" translatesAutoresizingMaskIntoConstraints="NO" id="1cQ-Hw-AiY">
+                                                                <rect key="frame" x="32" y="32" width="16" height="16"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="16" id="Ti5-SS-a5N"/>
+                                                                    <constraint firstAttribute="width" constant="16" id="f7Y-00-Rhb"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="48" id="3nT-eV-sM0"/>
+                                                            <constraint firstItem="ZaM-Sa-vKU" firstAttribute="top" secondItem="UdH-F9-Hxo" secondAttribute="top" id="A7j-mk-06J"/>
+                                                            <constraint firstAttribute="bottom" secondItem="1cQ-Hw-AiY" secondAttribute="bottom" id="AxE-M1-0AZ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="ZaM-Sa-vKU" secondAttribute="trailing" id="c8b-VQ-Tly"/>
+                                                            <constraint firstAttribute="trailing" secondItem="1cQ-Hw-AiY" secondAttribute="trailing" id="jSz-Is-Xwp"/>
+                                                            <constraint firstAttribute="bottom" secondItem="ZaM-Sa-vKU" secondAttribute="bottom" id="wgw-fK-EtB"/>
+                                                            <constraint firstItem="ZaM-Sa-vKU" firstAttribute="leading" secondItem="UdH-F9-Hxo" secondAttribute="leading" id="x2g-Tc-tVz"/>
+                                                            <constraint firstAttribute="height" constant="48" id="yHq-tN-f24"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outlet property="button" destination="ZaM-Sa-vKU" id="33k-u5-uCf"/>
+                                                            <outlet property="tickImageView" destination="1cQ-Hw-AiY" id="gog-Xa-0Q0"/>
+                                                        </connections>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fFy-Re-u23">
-                                                <rect key="frame" x="0.0" y="0.0" width="690" height="72"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="626" height="72"/>
                                                 <connections>
                                                     <segue destination="Bch-Rt-qs4" kind="embed" identifier="embedImagePicker" id="QR8-aw-c0l"/>
                                                 </connections>
@@ -407,14 +447,15 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="IF4-EC-5LF" firstAttribute="leading" secondItem="9aL-oz-w72" secondAttribute="leading" constant="24" id="0IX-S5-skZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="IF4-EC-5LF" secondAttribute="bottom" constant="12" id="2rm-5b-GuQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="Kae-Q4-0jR" secondAttribute="trailing" constant="24" id="7Yy-Vi-w7P"/>
-                                    <constraint firstAttribute="trailing" secondItem="IF4-EC-5LF" secondAttribute="trailing" constant="24" id="MPm-Q8-jjs"/>
+                                    <constraint firstItem="IF4-EC-5LF" firstAttribute="leading" secondItem="9aL-oz-w72" secondAttribute="leadingMargin" id="0IX-S5-skZ"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="IF4-EC-5LF" secondAttribute="bottom" id="2rm-5b-GuQ"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Kae-Q4-0jR" secondAttribute="trailing" id="7Yy-Vi-w7P"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="IF4-EC-5LF" secondAttribute="trailing" id="MPm-Q8-jjs"/>
                                     <constraint firstItem="IF4-EC-5LF" firstAttribute="top" secondItem="Kae-Q4-0jR" secondAttribute="bottom" constant="24" id="Y4d-lp-HIO"/>
-                                    <constraint firstItem="Kae-Q4-0jR" firstAttribute="leading" secondItem="9aL-oz-w72" secondAttribute="leading" constant="24" id="am6-FG-Pog"/>
-                                    <constraint firstItem="Kae-Q4-0jR" firstAttribute="top" secondItem="9aL-oz-w72" secondAttribute="top" constant="24" id="fd2-e0-voC"/>
+                                    <constraint firstItem="Kae-Q4-0jR" firstAttribute="leading" secondItem="9aL-oz-w72" secondAttribute="leadingMargin" id="am6-FG-Pog"/>
+                                    <constraint firstItem="Kae-Q4-0jR" firstAttribute="top" secondItem="9aL-oz-w72" secondAttribute="topMargin" id="fd2-e0-voC"/>
                                 </constraints>
+                                <edgeInsets key="layoutMargins" top="24" left="24" bottom="12" right="24"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -449,7 +490,6 @@
         <!--Image Picker View Controller-->
         <scene sceneID="oGT-ja-z1F">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qNX-4H-9SN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="imagePickerViewController" id="gAv-f1-RgD" customClass="ImagePickerViewController" customModule="Book_Sources" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1dy-cu-uIR">
                         <rect key="frame" x="0.0" y="0.0" width="810" height="72"/>
@@ -530,12 +570,14 @@
                             <constraint firstItem="wpI-JB-yqt" firstAttribute="leading" secondItem="1dy-cu-uIR" secondAttribute="leading" id="6gS-9P-LaC"/>
                             <constraint firstItem="wpI-JB-yqt" firstAttribute="top" secondItem="1dy-cu-uIR" secondAttribute="top" id="dWZ-rc-kdA"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="hHE-dq-YZA"/>
                     </view>
                     <size key="freeformSize" width="810" height="72"/>
                     <connections>
                         <outlet property="imagePickerCollectionView" destination="wpI-JB-yqt" id="5l0-au-klt"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qNX-4H-9SN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1295" y="507"/>
         </scene>
@@ -543,6 +585,7 @@
     <resources>
         <image name="tick.png" width="48" height="48"/>
         <image name="tool-button-blue.png" width="96" height="96"/>
+        <image name="tool-button-equalization.png" width="96" height="96"/>
         <image name="tool-button-grayscale.png" width="96" height="96"/>
         <image name="tool-button-green.png" width="96" height="96"/>
         <image name="tool-button-magnifier.png" width="96" height="96"/>
