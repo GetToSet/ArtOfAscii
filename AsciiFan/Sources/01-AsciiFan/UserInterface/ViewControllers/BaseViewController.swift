@@ -7,6 +7,7 @@ import PlaygroundSupport
 
 public class BaseViewController: UIViewController,
     PlaygroundLiveViewSafeAreaContainer,
+    PlaygroundLiveViewMessageHandler,
     ImagePickerViewControllerDelegate,
     ToolBarButtonViewDelegate {
 

@@ -1,4 +1,3 @@
-
 import UIKit
 import PlaygroundSupport
 
@@ -14,4 +13,8 @@ public func instantiateLiveView(identifier: LiveViewIdentifier) -> PlaygroundLiv
     let storyboard = UIStoryboard(name: "LiveView", bundle: nil)
     let liveViewController = storyboard.instantiateViewController(withIdentifier: identifier.rawValue)
     return liveViewController
+}
+
+public func getRemoteViewAsProxy() -> PlaygroundRemoteLiveViewProxy? {
+    return PlaygroundPage.current.liveView as? PlaygroundRemoteLiveViewProxy
 }

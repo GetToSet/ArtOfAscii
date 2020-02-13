@@ -11,7 +11,10 @@ public class HowImagesComposedViewController: BaseViewController {
 
     @IBOutlet weak var magnifierContainerView: MagnifierContainerView!
 
-    @IBOutlet weak var magnifierToolBarButton: ToolBarButtonView!
+    @IBOutlet weak var redFilterButton: ToolBarButtonView!
+    @IBOutlet weak var greenFilterButton: ToolBarButtonView!
+    @IBOutlet weak var blueFilterButton: ToolBarButtonView!
+    @IBOutlet weak var magnifierButton: ToolBarButtonView!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -19,15 +22,32 @@ public class HowImagesComposedViewController: BaseViewController {
         imageView.cornerRadius = 8.0
         magnifierContainerView.delegate = self
 
-        magnifierToolBarButton.delegate = self
+        redFilterButton.delegate = self
+        greenFilterButton.delegate = self
+        blueFilterButton.delegate = self
+        magnifierButton.delegate = self
 
-        magnifierContainerView.isHidden = magnifierToolBarButton.state == .normal
+        updateMagnifierVisibility()
     }
 
     func repositionMagnifier(centerInImageView: CGPoint) {
         if let centerInImage = self.imageView.pointInImageFor(point: centerInImageView) {
             magnifierContainerView.magnificationCenter = centerInImage
         }
+    }
+
+    func updateMagnifierVisibility() {
+        magnifierContainerView.isHidden = magnifierButton.state == .normal
+    }
+
+    func updateShowcaseImage() {
+        let payload = EventMessage.rgbFilterRequest(
+            redEnabled: redFilterButton.state == .selected,
+            greenEnabled: redFilterButton.state == .selected,
+            blueEnabled: redFilterButton.state == .selected
+        )
+
+        send(payload.playgroundValue)
     }
 
     func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
@@ -39,8 +59,10 @@ public class HowImagesComposedViewController: BaseViewController {
     }
 
     func toolBarButtonTapped(buttonView: ToolBarButtonView) {
-        if buttonView == magnifierToolBarButton {
-            magnifierContainerView.isHidden = buttonView.state == .normal
+        if buttonView == magnifierButton {
+            updateMagnifierVisibility()
+        } else {
+            updateShowcaseImage()
         }
     }
 

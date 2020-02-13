@@ -341,9 +341,12 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="j8A-U7-yb0" id="WtI-gI-fID"/>
+                        <outlet property="blueFilterButton" destination="Ftd-Ue-sBg" id="nPH-e5-83o"/>
+                        <outlet property="greenFilterButton" destination="efJ-lF-95r" id="f6h-ar-v4f"/>
                         <outlet property="imageView" destination="dWc-gN-6xB" id="bae-x6-3xD"/>
+                        <outlet property="magnifierButton" destination="i0u-YE-UKe" id="yJP-1N-7Ce"/>
                         <outlet property="magnifierContainerView" destination="gIr-Sj-FWJ" id="nbQ-Rr-I09"/>
-                        <outlet property="magnifierToolBarButton" destination="i0u-YE-UKe" id="yJP-1N-7Ce"/>
+                        <outlet property="redFilterButton" destination="GtB-HQ-cDa" id="7gl-8o-3Os"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ax5-QY-UtN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
