@@ -14,7 +14,7 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 
 ## Pixels
 
-Images are made up of *pixels*. Think of them as tiny square blocks with a single, solid color.
+Images are made up of **pixels**. Think of them as tiny square blocks with a single, solid color.
 
 ### 🔬Pixel Discovery
 
@@ -24,10 +24,11 @@ Images are made up of *pixels*. Think of them as tiny square blocks with a singl
 
 ## Red, Green & Blue
 
-Each pixel has a color. To store a color, we have to use a *color model* to measure them first. The *RGB Color model*
+Each pixel has a color. To store a color, we have to use a **color model** to measure them first. The **RGB Color model**
 is mostly used to represent colors in digital world.
 
-In *RGB color model*, all colors are mixed from lights three main colors: *red, green and blue*.
+In **RGB color model**, all colors are mixed from lights three main colors: **red, green and blue** as well as an
+**alpha** attribute to describe how *opaque* the color is.
 
 ![RGB Color Model](rgb-model.png)
 
@@ -38,7 +39,7 @@ even see lighting units in these three colors with a close-up look.
 
 ## Filters
 
-*Filters* are used as the general technique for image processing. Mysterious it seems to be, a filter is more like a
+**Filters** are used as the general technique for image processing. Mysterious it seems to be, a filter is more like a
 mathematical function, receiving colors per pixel, recalculates them, producing a new image as output.
 
 ### 🔨Build Your First Image Filter
@@ -46,24 +47,38 @@ mathematical function, receiving colors per pixel, recalculates them, producing 
 * Experiment:
     * In this experiment, we'll build a simple filter which takes red, green or blue component out of the source
     image.
-    * Try to read and complete the following code snippet. When you finish it, run your code and tap the *R, G
-    and B* button below the image to see whether it works.
+    * Try to read and complete the following code snippet. When you finish it, run your code and tap the **R, G
+    and B** button below the image to see whether it works.
 */
 
+//#-code-completion(everything, hide)
+//#-code-completion(literal, show, float, integer)
+//#-code-completion(identifier, show, coefficientRed, coefficientGreen, coefficientBlue)
 func applyRGBFilter(redEnabled: Bool,
                     greenEnabled: Bool,
                     blueEnabled: Bool,
                     sourceBuffer: inout vImage_Buffer,
                     destBuffer: inout vImage_Buffer) {
+    let coefficientRed, coefficientGreen, coefficientBlue: Float
+        coefficientRed = (redEnabled ? 1 : 0)
+        coefficientGreen = (greenEnabled ? 1 : 0)
+        coefficientBlue = (blueEnabled ? 1 : 0)
     var filterMatrix: [Float] = [
-        (redEnabled ? 1 : 0), 0, 0, 0,
-        0, (greenEnabled ? 1 : 0), 0, 0,
-        0, 0,(blueEnabled ? 1 : 0), 0,
-        0, 0, 0, 1
+        /*#-editable-code*/<#T##Red##Float#>/*#-end-editable-code*/, 0, 0, 0,
+        0, /*#-editable-code*/<#T##Green##Float#>/*#-end-editable-code*/, 0, 0,
+        0, 0, /*#-editable-code*/<#T##Blue##Float#>/*#-end-editable-code*/, 0,
+        0, 0, 0, /*#-editable-code*/<#T##Alpha##Float#>/*#-end-editable-code*/
     ]
     imageMatrixMultiply(sourceBuffer: &sourceBuffer, matrix: filterMatrix, destinationBuffer: &destBuffer)
 }
 
+/*:
+* Note:
+    In this code snippet, we transform the image by multiplying it with a custom filter matrix. If you're not familiar
+    with limier algebra, the following figure will explain how this transform matrix works.
+*/
+
+//#-hidden-code
 func imageMatrixMultiply(sourceBuffer: inout vImage_Buffer, matrix: [Float], destinationBuffer: inout vImage_Buffer) {
     let divisor: Int32 = 0x1000
     let fDivisor = Float(divisor)
@@ -104,3 +119,4 @@ let eventListener = EventListener(proxy: remoteView) { message in
         break
     }
 }
+//#-end-hidden-code
