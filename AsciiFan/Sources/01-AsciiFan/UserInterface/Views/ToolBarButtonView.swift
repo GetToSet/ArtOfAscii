@@ -9,6 +9,7 @@ class ToolBarButtonView: UIView {
     enum ToolBarButtonState {
         case selected
         case normal
+        case disabled
     }
 
     @IBOutlet weak var button: UIButton!
@@ -41,8 +42,13 @@ class ToolBarButtonView: UIView {
     private func updateAppearance() {
         switch state {
         case .selected:
+            button.isEnabled = true
             tickImageView.isHidden = false
         case .normal:
+            button.isEnabled = true
+            tickImageView.isHidden = true
+        case .disabled:
+            button.isEnabled = false
             tickImageView.isHidden = true
         }
     }
@@ -53,6 +59,8 @@ class ToolBarButtonView: UIView {
             state = .normal
         case .normal:
             state = .selected
+        case .disabled:
+            break
         }
         delegate?.toolBarButtonTapped?(buttonView: self)
     }

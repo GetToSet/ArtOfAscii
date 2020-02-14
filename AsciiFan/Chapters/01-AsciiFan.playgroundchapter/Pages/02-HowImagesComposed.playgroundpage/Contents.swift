@@ -60,9 +60,9 @@ func applyRGBFilter(redEnabled: Bool,
                     sourceBuffer: inout vImage_Buffer,
                     destBuffer: inout vImage_Buffer) {
     let coefficientRed, coefficientGreen, coefficientBlue: Float
-        coefficientRed = (redEnabled ? 1 : 0)
-        coefficientGreen = (greenEnabled ? 1 : 0)
-        coefficientBlue = (blueEnabled ? 1 : 0)
+    coefficientRed = (redEnabled ? 1 : 0)
+    coefficientGreen = (greenEnabled ? 1 : 0)
+    coefficientBlue = (blueEnabled ? 1 : 0)
     var filterMatrix: [Float] = [
         /*#-editable-code*/<#T##Red##Float#>/*#-end-editable-code*/, 0, 0, 0,
         0, /*#-editable-code*/<#T##Green##Float#>/*#-end-editable-code*/, 0, 0,
@@ -101,18 +101,37 @@ let eventListener = EventListener(proxy: remoteView) { message in
         guard let image = image,
               let cgImage = image.cgImage,
               let sourceFormat = vImage_CGImageFormat(cgImage: cgImage),
-              var sourceBuffer = try? vImage_Buffer(cgImage: cgImage, format: sourceFormat),
-              var destinationBuffer =
-              try? vImage_Buffer(width: Int(sourceBuffer.width), height: Int(sourceBuffer.height), bitsPerPixel: sourceFormat.bitsPerPixel)
-            else {
+              let destinationFormat = vImage_CGImageFormat(
+                  bitsPerComponent: 8,
+                  bitsPerPixel: 32,
+                  colorSpace: CGColorSpaceCreateDeviceRGB(),
+                  bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+              ) else {
+            break
+        }
+        guard var sourceBuffer = try? vImage_Buffer(cgImage: cgImage, format: sourceFormat),
+              var destinationBuffer = try? vImage_Buffer(
+                  width: Int(sourceBuffer.width),
+                  height: Int(sourceBuffer.height),
+                  bitsPerPixel: sourceFormat.bitsPerPixel
+              ) else {
             break
         }
         defer {
             sourceBuffer.free()
             destinationBuffer.free()
         }
+        do {
+            let toARGBConverter = try vImageConverter.make(
+                sourceFormat: sourceFormat,
+                destinationFormat: destinationFormat
+            );
+            try toARGBConverter.convert(source: sourceBuffer, destination: &destinationBuffer)
+        } catch {
+            break
+        }
         applyRGBFilter(redEnabled: redEnabled, greenEnabled: greenEnabled, blueEnabled: blueEnabled, sourceBuffer: &sourceBuffer, destBuffer: &destinationBuffer);
-        if let destImage = try? UIImage(cgImage: destinationBuffer.createCGImage(format: sourceFormat)) {
+        if let destImage = try? UIImage(cgImage: destinationBuffer.createCGImage(format: destinationFormat)) {
             remoteView?.send(EventMessage.imageProcessingResponse(image: destImage).playgroundValue)
         }
     default:

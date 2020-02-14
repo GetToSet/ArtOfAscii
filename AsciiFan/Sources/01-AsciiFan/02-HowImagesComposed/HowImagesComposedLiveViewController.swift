@@ -24,9 +24,16 @@ public class HowImagesComposedViewController: BaseViewController {
         imageView.cornerRadius = 8.0
         magnifierContainerView.delegate = self
 
+        redFilterButton.state = .disabled
         redFilterButton.delegate = self
+
+        greenFilterButton.state = .disabled
         greenFilterButton.delegate = self
+
+        blueFilterButton.state = .disabled
         blueFilterButton.delegate = self
+
+        magnifierButton.state = .normal
         magnifierButton.delegate = self
 
         updateMagnifierVisibility()
@@ -42,7 +49,10 @@ public class HowImagesComposedViewController: BaseViewController {
         magnifierContainerView.isHidden = magnifierButton.state == .normal
     }
 
-    func updateShowcaseImage(image: UIImage) {
+    func updateShowcaseImage(image: UIImage?) {
+        guard let image = image else {
+            return
+        }
         imageView.image = image
         magnifierContainerView.image = image
         if magnifierContainerView.magnificationCenter == nil {
@@ -98,6 +108,19 @@ extension HowImagesComposedViewController: PlaygroundLiveViewMessageHandler {
         default:
             break
         }
+    }
+
+    public func liveViewMessageConnectionOpened() {
+        redFilterButton.state = .selected
+        greenFilterButton.state = .selected
+        blueFilterButton.state = .selected
+    }
+
+    public func liveViewMessageConnectionClosed() {
+        redFilterButton.state = .disabled
+        greenFilterButton.state = .disabled
+        blueFilterButton.state = .disabled
+        requestImageFiltering()
     }
 
 }
