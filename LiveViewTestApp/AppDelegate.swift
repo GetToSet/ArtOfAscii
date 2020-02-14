@@ -14,7 +14,7 @@ import Book_Sources
 class AppDelegate: LiveViewHost.AppDelegate {
 
     override func setUpLiveView() -> PlaygroundLiveViewable {
-        return Book_Sources.instantiateLiveView(identifier: .howImagesComposed)
+        return Book_Sources.instantiateLiveView(identifier: .grayscaleHistogramEqualization)
     }
 
     override var liveViewConfiguration: LiveViewConfiguration {

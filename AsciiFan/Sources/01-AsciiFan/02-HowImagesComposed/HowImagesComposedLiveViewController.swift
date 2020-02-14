@@ -7,8 +7,6 @@ import PlaygroundSupport
 
 public class HowImagesComposedViewController: BaseViewController {
 
-    @IBOutlet weak var imageView: ShowcaseImageView!
-
     @IBOutlet weak var magnifierContainerView: MagnifierContainerView!
 
     @IBOutlet weak var redFilterButton: ToolBarButtonView!
@@ -16,12 +14,9 @@ public class HowImagesComposedViewController: BaseViewController {
     @IBOutlet weak var blueFilterButton: ToolBarButtonView!
     @IBOutlet weak var magnifierButton: ToolBarButtonView!
 
-    private var sourceImage: UIImage?
-
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        imageView.cornerRadius = 8.0
         magnifierContainerView.delegate = self
 
         redFilterButton.state = .disabled
@@ -40,7 +35,7 @@ public class HowImagesComposedViewController: BaseViewController {
     }
 
     func repositionMagnifier(centerInImageView: CGPoint) {
-        if let centerInImage = self.imageView.pointInImageFor(point: centerInImageView) {
+        if let centerInImage = self.showcaseImageView.pointInImageFor(point: centerInImageView) {
             magnifierContainerView.magnificationCenter = centerInImage
         }
     }
@@ -49,14 +44,12 @@ public class HowImagesComposedViewController: BaseViewController {
         magnifierContainerView.isHidden = magnifierButton.state == .normal
     }
 
-    func updateShowcaseImage(image: UIImage?) {
-        guard let image = image else {
-            return
-        }
-        imageView.image = image
+    override func updateShowcaseImage(image: UIImage) {
+        super.updateShowcaseImage(image: image)
+
         magnifierContainerView.image = image
         if magnifierContainerView.magnificationCenter == nil {
-            repositionMagnifier(centerInImageView: imageView.center)
+            repositionMagnifier(centerInImageView: showcaseImageView.center)
         }
     }
 
@@ -68,11 +61,6 @@ public class HowImagesComposedViewController: BaseViewController {
             image: sourceImage
         )
         send(payload.playgroundValue)
-    }
-
-    func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
-        sourceImage = image
-        updateShowcaseImage(image: image)
     }
 
     func toolBarButtonTapped(buttonView: ToolBarButtonView) {
@@ -88,7 +76,7 @@ public class HowImagesComposedViewController: BaseViewController {
 extension HowImagesComposedViewController: MagnifierContainerViewDelegate {
 
     func magnificationCenterChanged(point: CGPoint, containerView: MagnifierContainerView) {
-        let centerInImageView = self.imageView.convert(point, from: containerView)
+        let centerInImageView = self.showcaseImageView.convert(point, from: containerView)
         repositionMagnifier(centerInImageView: centerInImageView)
     }
 
