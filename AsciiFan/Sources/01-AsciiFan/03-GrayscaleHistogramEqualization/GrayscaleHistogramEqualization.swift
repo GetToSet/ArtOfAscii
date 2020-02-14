@@ -12,6 +12,11 @@ public class GrayscaleHistogramEqualization: BaseViewController {
     @IBOutlet weak var grayscaleButton: ToolBarButtonView!
     @IBOutlet weak var equalizationButton: ToolBarButtonView!
 
+    override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
+        super.didSelectImage(image: image, pickerController: pickerController)
+        histogramView.image = image
+    }
+
     func toolBarButtonTapped(buttonView: ToolBarButtonView) {
 
     }
