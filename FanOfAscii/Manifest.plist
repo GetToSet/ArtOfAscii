@@ -18,7 +18,8 @@
 	<string>PlaygroundBookName</string>
 	<key>Chapters</key>
 	<array>
-		<string>Chapter1.playgroundchapter</string>
+		<string>01-FanOfAscii.playgroundchapter</string>
+		<string>02-Acknowledgements.playgroundchapter</string>
 	</array>
 	<key>UserAutoImportedAuxiliaryModules</key>
 	<array>

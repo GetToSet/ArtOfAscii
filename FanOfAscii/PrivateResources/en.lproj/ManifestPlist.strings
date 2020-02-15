@@ -1,0 +1,11 @@
+/*
+See LICENSE folder for this template’s licensing information.
+
+Abstract:
+Contains English localizations of values in Manifest.plist files in the playground book.
+*/
+
+"PlaygroundBookName" = "Fan of ASCII";
+
+"ChapterOneName" = "Fan of ASCII";
+"ChapterTwoName" = "Acknowledgements";
