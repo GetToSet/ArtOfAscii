@@ -508,7 +508,7 @@
 		71DEC1A623F79F820091A700 /* Chapters */ = {
 			isa = PBXGroup;
 			children = (
-				71DEC1AD23F7A1710091A700 /* 01-AsciiFan */,
+				71DEC1AD23F7A1710091A700 /* 01-FanOfAscii */,
 			);
 			path = Chapters;
 			sourceTree = "<group>";
@@ -523,7 +523,7 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		71DEC1AD23F7A1710091A700 /* 01-AsciiFan */ = {
+		71DEC1AD23F7A1710091A700 /* 01-FanOfAscii */ = {
 			isa = PBXGroup;
 			children = (
 				71DEC1AE23F7A21E0091A700 /* 01-Introduction */,
@@ -532,7 +532,7 @@
 				71DEC1BB23F7A2650091A700 /* 04-Asciification */,
 				71DEC1B923F7A2650091A700 /* 05-MoreToPlay */,
 			);
-			path = "01-AsciiFan";
+			path = "01-FanOfAscii";
 			sourceTree = "<group>";
 		};
 		71DEC1AE23F7A21E0091A700 /* 01-Introduction */ = {
