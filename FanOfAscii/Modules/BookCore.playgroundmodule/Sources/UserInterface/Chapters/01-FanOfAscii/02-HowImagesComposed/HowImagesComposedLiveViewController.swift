@@ -103,13 +103,13 @@ extension HowImagesComposedViewController: PlaygroundLiveViewMessageHandler {
         redFilterButton.state = .selected
         greenFilterButton.state = .selected
         blueFilterButton.state = .selected
+        requestImageFiltering()
     }
 
     public func liveViewMessageConnectionClosed() {
         redFilterButton.state = .disabled
         greenFilterButton.state = .disabled
         blueFilterButton.state = .disabled
-        requestImageFiltering()
     }
 
 }

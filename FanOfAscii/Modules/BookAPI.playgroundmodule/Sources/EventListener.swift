@@ -6,6 +6,8 @@
 import Foundation
 import PlaygroundSupport
 
+import BookCore
+
 public class EventListener: PlaygroundRemoteLiveViewProxyDelegate {
 
     public typealias EventHandler = (EventMessage) -> Void
