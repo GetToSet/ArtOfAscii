@@ -1,0 +1,29 @@
+//
+// Created by Bunny Wong on 2020/2/13.
+//
+
+import Foundation
+import PlaygroundSupport
+
+public class EventListener: PlaygroundRemoteLiveViewProxyDelegate {
+
+    public typealias EventHandler = (EventMessage) -> Void
+
+    private let eventHandler: EventHandler
+
+    public init(proxy: PlaygroundRemoteLiveViewProxy?, eventHandler: @escaping EventHandler) {
+        self.eventHandler = eventHandler
+        proxy?.delegate = self
+    }
+
+    public func remoteLiveViewProxy(_ remoteLiveViewProxy: PlaygroundRemoteLiveViewProxy, received message: PlaygroundValue) {
+        if let message = EventMessage.from(playgroundValue: message) {
+            eventHandler(message)
+        }
+    }
+
+    public func remoteLiveViewProxyConnectionClosed(_ remoteLiveViewProxy: PlaygroundRemoteLiveViewProxy) {
+
+    }
+
+}

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5E086DCA2051DDAE004D8D25 /* LiveView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E086DCC2051DDAE004D8D25 /* LiveView.storyboard */; };
 		5E086DD32051E3A3004D8D25 /* Manifest.plist in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5E086DCF2051DF0F004D8D25 /* Manifest.plist */; };
-		5E3196F32061DEA40077BBD7 /* LiveViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3196F22061DEA40077BBD7 /* LiveViewSupport.swift */; };
 		5E551EC52371FC3F00784365 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E551EC42371FC3F00784365 /* Assets.xcassets */; };
 		5E6F7E592367B529008CC191 /* UserModules in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5E6F7E582367B51E008CC191 /* UserModules */; };
 		5E6F7E6C2368FC01008CC191 /* BookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6F7E5C2367B64A008CC191 /* BookAPI.swift */; };
@@ -22,8 +21,17 @@
 		5EA2E3DB2056F8D100416A35 /* PlaygroundSupport.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA2E3D72056F88700416A35 /* PlaygroundSupport.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EBEC2F0205B399300975D3F /* LiveViewHost.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBEC2EF205B396500975D3F /* LiveViewHost.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EF2F97C2054B6E400191409 /* ManifestPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EF2F97E2054B6E400191409 /* ManifestPlist.strings */; };
-		5EF2F9AE2054BBF300191409 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F9AD2054BBF300191409 /* LiveViewController.swift */; };
 		5EF2F9B72054E6FB00191409 /* Chapters in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5EF2F9B62054E6F900191409 /* Chapters */; };
+		71DD3E6323F7991F001510FB /* LiveViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6223F7991F001510FB /* LiveViewSupport.swift */; };
+		71DD3E6523F79B2E001510FB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6423F79B2E001510FB /* BaseViewController.swift */; };
+		71DD3E6723F79B42001510FB /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6623F79B42001510FB /* ImagePickerViewController.swift */; };
+		71DD3E6B23F79B61001510FB /* ImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6A23F79B61001510FB /* ImagePickerCollectionViewCell.swift */; };
+		71DD3E6F23F79B99001510FB /* ToolBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6E23F79B99001510FB /* ToolBarButtonView.swift */; };
+		71DD3E7223F79BA7001510FB /* ShowcaseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E7123F79BA6001510FB /* ShowcaseImageView.swift */; };
+		71DD3E7523F79BCC001510FB /* UIColor+StateColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E7423F79BCC001510FB /* UIColor+StateColors.swift */; };
+		71DD3E7823F79C12001510FB /* ImagePickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E7723F79C12001510FB /* ImagePickerDataSource.swift */; };
+		71DEC1AB23F79FB20091A700 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1A823F79FB10091A700 /* EventListener.swift */; };
+		71DEC1AC23F79FB20091A700 /* EventMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1AA23F79FB20091A700 /* EventMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -138,9 +146,7 @@
 		5E086DCF2051DF0F004D8D25 /* Manifest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Manifest.plist; sourceTree = "<group>"; };
 		5E0E37522065981C008FA4BE /* BuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BuildSettings.xcconfig; sourceTree = "<group>"; };
 		5E0E37542065A065008FA4BE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		5E1004BE208E7F6E00BCFE70 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		5E2A7AE6204F630600F4E17A /* BaseBuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BaseBuildSettings.xcconfig; sourceTree = "<group>"; };
-		5E3196F22061DEA40077BBD7 /* LiveViewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewSupport.swift; sourceTree = "<group>"; };
 		5E551EC42371FC3F00784365 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E6F7E582367B51E008CC191 /* UserModules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UserModules; sourceTree = "<group>"; };
 		5E6F7E5C2367B64A008CC191 /* BookAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAPI.swift; sourceTree = "<group>"; };
@@ -159,8 +165,17 @@
 		5EBEC2EF205B396500975D3F /* LiveViewHost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LiveViewHost.framework; sourceTree = OTHER_FRAMEWORKS_DIR; };
 		5EF2F97D2054B6E400191409 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ManifestPlist.strings; sourceTree = "<group>"; };
 		5EF2F9AB2054BBF300191409 /* libBookCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBookCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		5EF2F9AD2054BBF300191409 /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		5EF2F9B62054E6F900191409 /* Chapters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Chapters; sourceTree = "<group>"; };
+		71DD3E6223F7991F001510FB /* LiveViewSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewSupport.swift; sourceTree = "<group>"; };
+		71DD3E6423F79B2E001510FB /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		71DD3E6623F79B42001510FB /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
+		71DD3E6A23F79B61001510FB /* ImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		71DD3E6E23F79B99001510FB /* ToolBarButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarButtonView.swift; sourceTree = "<group>"; };
+		71DD3E7123F79BA6001510FB /* ShowcaseImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowcaseImageView.swift; sourceTree = "<group>"; };
+		71DD3E7423F79BCC001510FB /* UIColor+StateColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+StateColors.swift"; sourceTree = "<group>"; };
+		71DD3E7723F79C12001510FB /* ImagePickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerDataSource.swift; sourceTree = "<group>"; };
+		71DEC1A823F79FB10091A700 /* EventListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
+		71DEC1AA23F79FB20091A700 /* EventMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,14 +253,6 @@
 			path = Overrides;
 			sourceTree = "<group>";
 		};
-		5E1004BD208E7F6E00BCFE70 /* LICENSE */ = {
-			isa = PBXGroup;
-			children = (
-				5E1004BE208E7F6E00BCFE70 /* LICENSE.txt */,
-			);
-			path = LICENSE;
-			sourceTree = "<group>";
-		};
 		5E2A7ADC204F611300F4E17A = {
 			isa = PBXGroup;
 			children = (
@@ -253,7 +260,6 @@
 				5E086DC12051C5A7004D8D25 /* FanOfAscii */,
 				5EA2E3BE2056F35A00416A35 /* LiveViewTestApp */,
 				5E2A7AE3204F628B00F4E17A /* Config Files */,
-				5E1004BD208E7F6E00BCFE70 /* LICENSE */,
 				5EA2E3D52056F83400416A35 /* Supporting Content */,
 				5E086DA4204F706E004D8D25 /* Products */,
 			);
@@ -306,8 +312,11 @@
 		5E70679D23678DA00094BDEF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				5EF2F9AD2054BBF300191409 /* LiveViewController.swift */,
-				5E3196F22061DEA40077BBD7 /* LiveViewSupport.swift */,
+				71DEC1A723F79FA70091A700 /* Core */,
+				71DD3E7323F79BC5001510FB /* Utils */,
+				71DD3E7623F79BFC001510FB /* DataSource */,
+				71DD3E6C23F79B70001510FB /* UserInterface */,
+				71DEC1A623F79F820091A700 /* Chapters */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -390,6 +399,75 @@
 				5E6F7E582367B51E008CC191 /* UserModules */,
 			);
 			name = "Supporting Content";
+			sourceTree = "<group>";
+		};
+		71DD3E6923F79B55001510FB /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				71DD3E6623F79B42001510FB /* ImagePickerViewController.swift */,
+				71DD3E6A23F79B61001510FB /* ImagePickerCollectionViewCell.swift */,
+			);
+			path = ImagePicker;
+			sourceTree = "<group>";
+		};
+		71DD3E6C23F79B70001510FB /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				71DD3E6423F79B2E001510FB /* BaseViewController.swift */,
+				71DD3E6923F79B55001510FB /* ImagePicker */,
+				71DD3E6D23F79B7F001510FB /* ToolBar */,
+				71DD3E7023F79B9E001510FB /* ShowcaseImageView */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		71DD3E6D23F79B7F001510FB /* ToolBar */ = {
+			isa = PBXGroup;
+			children = (
+				71DD3E6E23F79B99001510FB /* ToolBarButtonView.swift */,
+			);
+			path = ToolBar;
+			sourceTree = "<group>";
+		};
+		71DD3E7023F79B9E001510FB /* ShowcaseImageView */ = {
+			isa = PBXGroup;
+			children = (
+				71DD3E7123F79BA6001510FB /* ShowcaseImageView.swift */,
+			);
+			path = ShowcaseImageView;
+			sourceTree = "<group>";
+		};
+		71DD3E7323F79BC5001510FB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				71DD3E7423F79BCC001510FB /* UIColor+StateColors.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		71DD3E7623F79BFC001510FB /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				71DD3E7723F79C12001510FB /* ImagePickerDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		71DEC1A623F79F820091A700 /* Chapters */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chapters;
+			sourceTree = "<group>";
+		};
+		71DEC1A723F79FA70091A700 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				71DD3E6223F7991F001510FB /* LiveViewSupport.swift */,
+				71DEC1A823F79FB10091A700 /* EventListener.swift */,
+				71DEC1AA23F79FB20091A700 /* EventMessage.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -606,8 +684,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E3196F32061DEA40077BBD7 /* LiveViewSupport.swift in Sources */,
-				5EF2F9AE2054BBF300191409 /* LiveViewController.swift in Sources */,
+				71DD3E6F23F79B99001510FB /* ToolBarButtonView.swift in Sources */,
+				71DD3E7223F79BA7001510FB /* ShowcaseImageView.swift in Sources */,
+				71DD3E7823F79C12001510FB /* ImagePickerDataSource.swift in Sources */,
+				71DD3E6723F79B42001510FB /* ImagePickerViewController.swift in Sources */,
+				71DEC1AC23F79FB20091A700 /* EventMessage.swift in Sources */,
+				71DEC1AB23F79FB20091A700 /* EventListener.swift in Sources */,
+				71DD3E7523F79BCC001510FB /* UIColor+StateColors.swift in Sources */,
+				71DD3E6323F7991F001510FB /* LiveViewSupport.swift in Sources */,
+				71DD3E6B23F79B61001510FB /* ImagePickerCollectionViewCell.swift in Sources */,
+				71DD3E6523F79B2E001510FB /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
