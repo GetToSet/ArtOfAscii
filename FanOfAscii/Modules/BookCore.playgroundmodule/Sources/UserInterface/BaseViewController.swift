@@ -6,7 +6,8 @@
 import UIKit
 import PlaygroundSupport
 
-public class BaseViewController: UIViewController, PlaygroundLiveViewSafeAreaContainer {
+public class BaseViewController: UIViewController, PlaygroundLiveViewSafeAreaContainer,
+    ImagePickerViewControllerDelegate, ToolBarButtonViewDelegate {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
 
@@ -42,18 +43,10 @@ public class BaseViewController: UIViewController, PlaygroundLiveViewSafeAreaCon
         showcaseImageView.image = image
     }
 
-}
-
-extension BaseViewController: ImagePickerViewControllerDelegate {
-
     func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
         sourceImage = image
         updateShowcaseImage(image: image)
     }
-
-}
-
-extension BaseViewController: ToolBarButtonViewDelegate {
 
     func toolBarButtonTapped(buttonView: ToolBarButtonView) {
 
