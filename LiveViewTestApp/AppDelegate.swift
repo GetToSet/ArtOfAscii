@@ -8,13 +8,13 @@
 import UIKit
 import PlaygroundSupport
 import LiveViewHost
-import Book_Sources
+import BookCore
 
 @UIApplicationMain
 class AppDelegate: LiveViewHost.AppDelegate {
 
     override func setUpLiveView() -> PlaygroundLiveViewable {
-        return Book_Sources.instantiateLiveView(identifier: .grayscaleHistogramEqualization)
+        return BookCore.instantiateLiveView(identifier: .grayscaleHistogramEqualization)
     }
 
     override var liveViewConfiguration: LiveViewConfiguration {

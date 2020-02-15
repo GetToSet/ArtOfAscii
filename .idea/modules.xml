@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AsciiFan.iml" filepath="$PROJECT_DIR$/.idea/AsciiFan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/FanOfAscii.iml" filepath="$PROJECT_DIR$/.idea/FanOfAscii.iml" />
     </modules>
   </component>
 </project>

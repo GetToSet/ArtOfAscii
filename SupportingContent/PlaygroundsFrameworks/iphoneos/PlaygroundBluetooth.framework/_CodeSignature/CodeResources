@@ -6,7 +6,7 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		WpUrUyKNCnlwxVq/YrEs34Me0GQ=
+		NmBVQAiIotG17kF+6LxRxau6SEo=
 		</data>
 		<key>Headers/PlaygroundBluetooth.h</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		LgUfdDMrwFg3NJXVL5uT5CsYjXU=
+		7eTkXzyvjfdUKbVFIkUYY6BoPiw=
 		</data>
 		<key>Modules/PlaygroundBluetooth.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/PlaygroundBluetooth.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		VckgVmWoQq1Lo+KUj5wn4tmnRBs=
+		0oHIaZBMVVnFf++X8QLsct0Sv1k=
 		</data>
 		<key>Modules/PlaygroundBluetooth.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/PlaygroundBluetooth.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		VckgVmWoQq1Lo+KUj5wn4tmnRBs=
+		0oHIaZBMVVnFf++X8QLsct0Sv1k=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -47,7 +47,7 @@
 		</dict>
 		<key>version.plist</key>
 		<data>
-		jNFodP+jJcLaKjUfzASV85DIw6Q=
+		LCFqh5ZsGWAn4S+Ki/A0y+yYhAE=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -56,11 +56,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			WpUrUyKNCnlwxVq/YrEs34Me0GQ=
+			NmBVQAiIotG17kF+6LxRxau6SEo=
 			</data>
 			<key>hash2</key>
 			<data>
-			aXxxZL/3Don1LkpBDRN7ReZE4RGV8vyN266iXCc89IY=
+			aXdXgGx6fgVILdTV5Q+EjSJFduk77ApC11Btx25RUog=
 			</data>
 		</dict>
 		<key>Headers/PlaygroundBluetooth.h</key>
@@ -89,11 +89,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			VckgVmWoQq1Lo+KUj5wn4tmnRBs=
+			0oHIaZBMVVnFf++X8QLsct0Sv1k=
 			</data>
 			<key>hash2</key>
 			<data>
-			rp/I469QjiImKvRFbZmWCm7v6ksR/apAkPB6LU8/lSE=
+			jY5TPbOdfgnW+u1uAIYFPB/ylx89qoPrZzdwZOTeJUU=
 			</data>
 		</dict>
 		<key>Modules/PlaygroundBluetooth.swiftmodule/arm64.swiftdoc</key>
@@ -111,11 +111,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			VckgVmWoQq1Lo+KUj5wn4tmnRBs=
+			0oHIaZBMVVnFf++X8QLsct0Sv1k=
 			</data>
 			<key>hash2</key>
 			<data>
-			rp/I469QjiImKvRFbZmWCm7v6ksR/apAkPB6LU8/lSE=
+			jY5TPbOdfgnW+u1uAIYFPB/ylx89qoPrZzdwZOTeJUU=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -146,11 +146,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			jNFodP+jJcLaKjUfzASV85DIw6Q=
+			LCFqh5ZsGWAn4S+Ki/A0y+yYhAE=
 			</data>
 			<key>hash2</key>
 			<data>
-			YYY63GgyUHQicuPZQBEKLW8Jb55aW03ftiDQOTC7UEs=
+			IYyUNla55jjpVubYOPvOLidKjdw+u6FKdFsfrHmzrpI=
 			</data>
 		</dict>
 	</dict>
