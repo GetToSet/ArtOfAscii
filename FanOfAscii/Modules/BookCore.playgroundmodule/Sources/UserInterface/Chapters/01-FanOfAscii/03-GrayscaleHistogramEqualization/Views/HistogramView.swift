@@ -9,6 +9,8 @@ import Accelerate
 class HistogramView: UIView {
 
     struct Histogram {
+        static let length = 256
+
         let red: [UInt]
         let green: [UInt]
         let blue: [UInt]
@@ -42,45 +44,51 @@ class HistogramView: UIView {
             return
         }
 
-        let sampleCount = 256
+        let sampleCount = Histogram.length
 
-        var lumLevels = [CGFloat](repeating: 0.0, count: sampleCount)
+        var lumLevels = [Float](repeating: 0.0, count: sampleCount)
         for i in 0..<sampleCount {
-            lumLevels[i] = 0.2126 * CGFloat(histogram.red[i]) + 0.7152 * CGFloat(histogram.green[i]) + 0.0722 * CGFloat(histogram.blue[i])
+            lumLevels[i] = 0.2126 * Float(histogram.red[i]) + 0.7152 * Float(histogram.green[i]) + 0.0722 * Float(histogram.blue[i])
         }
-        let redLevels: [CGFloat] = histogram.red.map({ CGFloat($0) })
-        let greenLevels: [CGFloat] = histogram.green.map({ CGFloat($0) })
-        let blueLevels: [CGFloat] = histogram.blue.map({ CGFloat($0) })
 
-        drawHistogram(histogramVal: redLevels, color: .red, context: context)
-        drawHistogram(histogramVal: greenLevels, color: .green, context: context)
-        drawHistogram(histogramVal: blueLevels, color: .blue, context: context)
+        drawHistogram(histogramVal: histogram.red.map({ Float($0) }), color: .red, context: context)
+        drawHistogram(histogramVal: histogram.green.map({ Float($0) }), color: .green, context: context)
+        drawHistogram(histogramVal: histogram.blue.map({ Float($0) }), color: .blue, context: context)
         drawHistogram(histogramVal: lumLevels, color: .white, context: context)
     }
 
-    func drawHistogram(histogramVal: [CGFloat], color: UIColor, context: CGContext) {
-        let size = self.bounds.size
+    func drawHistogram(histogramVal: [Float], color: UIColor, context: CGContext) {
+        guard histogramVal.count == Histogram.length else {
+            return
+        }
 
         let sampleCount = histogramVal.count
+
+        let size = self.bounds.size
+        let padding = self.layer.borderWidth + 2.0
+
         let pixelPerSample = size.width / CGFloat(sampleCount - 1)
 
-        let levelMax = histogramVal.reduce(0.0) {
-            max($0, $1)
-        }
+        let levelMax = histogramVal.reduce(0.0, ({ max($0, $1) }))
         let yVals: [CGFloat] = histogramVal.map {
-            1.0 * size.height * (1.0 - CGFloat($0 / levelMax))
+            padding + (size.height - 2 * padding) * (1.0 - CGFloat($0 / levelMax))
         }
 
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: 0))
+        path.move(to: CGPoint(x: 0, y: size.height))
         for i in 0..<sampleCount {
             let plotPoint = CGPoint(x: CGFloat(i) * pixelPerSample, y: yVals[i])
-            print(yVals[i])
             path.addLine(to: plotPoint)
         }
         color.setStroke()
         context.setLineWidth(3.0)
         path.stroke()
+
+        path.addLine(to: CGPoint(x: size.width, y: size.height))
+        path.close()
+
+        color.withAlphaComponent(0.2).setFill()
+        path.fill()
     }
 
 }
@@ -106,10 +114,10 @@ extension HistogramView {
 
         let pixelCount: UInt = sourceHeight * sourceWidth
 
-        var alpha = [UInt](repeating: 0, count: 256)
-        var red = [UInt](repeating: 0, count: 256)
-        var green = [UInt](repeating: 0, count: 256)
-        var blue = [UInt](repeating: 0, count: 256)
+        var alpha = [UInt](repeating: 0, count: Histogram.length)
+        var red = [UInt](repeating: 0, count: Histogram.length)
+        var green = [UInt](repeating: 0, count: Histogram.length)
+        var blue = [UInt](repeating: 0, count: Histogram.length)
 
         let alphaPtr = UnsafeMutablePointer<vImagePixelCount>(&alpha) as UnsafeMutablePointer<vImagePixelCount>?
         let redPtr = UnsafeMutablePointer<vImagePixelCount>(&red) as UnsafeMutablePointer<vImagePixelCount>?
