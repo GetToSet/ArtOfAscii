@@ -71,6 +71,11 @@ public class HowImagesComposedViewController: BaseViewController {
             requestImageFiltering()
         }
     }
+    
+    override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
+        super.didSelectImage(image: image, pickerController: pickerController)
+        requestImageFiltering()
+    }
 
 }
 

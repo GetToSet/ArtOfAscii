@@ -9,7 +9,7 @@ import PlaygroundSupport
 private enum EventPayloadType: String {
 
     case rgbFilterRequest
-    case grayScaleRequest
+    case grayscaleFilterRequest
     case imageProcessingResponse
 
 }
@@ -35,7 +35,7 @@ private struct RGBFilterRequest: EventPayload, Codable {
 private struct GrayScaleFilterRequest: EventPayload, Codable {
 
     var payloadType: EventPayloadType {
-        return .grayScaleRequest
+        return .grayscaleFilterRequest
     }
 
     let enabled: Bool
@@ -53,7 +53,7 @@ private struct ImageProcessingResponse: EventPayload, Codable {
 public enum EventMessage {
 
     case rgbFilterRequest(redEnabled: Bool, greenEnabled: Bool, blueEnabled: Bool, image: UIImage?)
-    case grayScaleRequest(enabled: Bool, image: UIImage?)
+    case grayscaleFilterRequest(enabled: Bool, image: UIImage?)
     case imageProcessingResponse(image: UIImage?)
 
     public static func from(playgroundValue: PlaygroundValue) -> EventMessage? {
@@ -81,7 +81,7 @@ public enum EventMessage {
             payloadToEncode = RGBFilterRequest(redEnabled: red, greenEnabled: green, blueEnabled: blue)
             jsonData = try? encoder.encode(payloadToEncode as! RGBFilterRequest)
             imageData = image?.jpegData(compressionQuality: 1.0)
-        case .grayScaleRequest(let enabled, let image):
+        case .grayscaleFilterRequest(let enabled, let image):
             payloadToEncode = GrayScaleFilterRequest(enabled: enabled)
             jsonData = try? encoder.encode(payloadToEncode as! GrayScaleFilterRequest)
             imageData = image?.jpegData(compressionQuality: 1.0)
@@ -126,12 +126,12 @@ public enum EventMessage {
                 blueEnabled: rgbFilterRequest.blueEnabled,
                 image: image
             )
-        case .grayScaleRequest:
+        case .grayscaleFilterRequest:
             guard case .data(let data) = dictionary["data"],
                   let grayscaleFilterRequest = try? decoder.decode(GrayScaleFilterRequest.self, from: data) else {
                 return nil
             }
-            return Self.grayScaleRequest(
+            return Self.grayscaleFilterRequest(
                 enabled: grayscaleFilterRequest.enabled,
                 image: image
             )

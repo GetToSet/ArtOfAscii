@@ -11,7 +11,7 @@
 		5E551EC52371FC3F00784365 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E551EC42371FC3F00784365 /* Assets.xcassets */; };
 		5E6F7E592367B529008CC191 /* UserModules in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5E6F7E582367B51E008CC191 /* UserModules */; };
 		5E6F7E6C2368FC01008CC191 /* BookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6F7E5C2367B64A008CC191 /* BookAPI.swift */; };
-		5E6F7E7D2368FF29008CC191 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7067A323678E220094BDEF /* Image.swift */; };
+		5E6F7E7D2368FF29008CC191 /* RawImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7067A323678E220094BDEF /* RawImage.swift */; };
 		5E70679F23678DC30094BDEF /* Modules in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5E70679E23678DC00094BDEF /* Modules */; };
 		5EA2E3CA2056F35B00416A35 /* LiveViewTestAppLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA2E3C82056F35B00416A35 /* LiveViewTestAppLaunchScreen.storyboard */; };
 		5EA2E3D42056F36800416A35 /* libBookCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF2F9AB2054BBF300191409 /* libBookCore.a */; };
@@ -35,6 +35,7 @@
 		7174D3BB23F7D0D100A09FFB /* lantern.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7174D3AF23F7D0D100A09FFB /* lantern.jpg */; };
 		7174D3BC23F7D0D100A09FFB /* woman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7174D3B023F7D0D100A09FFB /* woman.jpg */; };
 		7174D3BD23F7D0D100A09FFB /* imagePickerList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7174D3B123F7D0D100A09FFB /* imagePickerList.plist */; };
+		71BBEDB923F8F22600771781 /* EventMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1AA23F79FB20091A700 /* EventMessage.swift */; };
 		71DD3E6323F7991F001510FB /* LiveViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6223F7991F001510FB /* LiveViewSupport.swift */; };
 		71DD3E6523F79B2E001510FB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6423F79B2E001510FB /* BaseViewController.swift */; };
 		71DD3E6723F79B42001510FB /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6623F79B42001510FB /* ImagePickerViewController.swift */; };
@@ -43,7 +44,6 @@
 		71DD3E7223F79BA7001510FB /* ShowcaseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E7123F79BA6001510FB /* ShowcaseImageView.swift */; };
 		71DD3E7523F79BCC001510FB /* UIColor+StateColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E7423F79BCC001510FB /* UIColor+StateColors.swift */; };
 		71DD3E7823F79C12001510FB /* ImagePickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E7723F79C12001510FB /* ImagePickerDataSource.swift */; };
-		71DEC1AC23F79FB20091A700 /* EventMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1AA23F79FB20091A700 /* EventMessage.swift */; };
 		71DEC1B023F7A21E0091A700 /* IntroductionLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1AF23F7A21E0091A700 /* IntroductionLiveViewController.swift */; };
 		71DEC1CB23F7A2650091A700 /* GrayscaleHistogramEqualization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1B523F7A2650091A700 /* GrayscaleHistogramEqualization.swift */; };
 		71DEC1CC23F7A2650091A700 /* HistogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1B823F7A2650091A700 /* HistogramView.swift */; };
@@ -52,6 +52,7 @@
 		71DEC1CF23F7A2650091A700 /* HowImagesComposedLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1C623F7A2650091A700 /* HowImagesComposedLiveViewController.swift */; };
 		71DEC1D023F7A2650091A700 /* MagnifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1C923F7A2650091A700 /* MagnifierView.swift */; };
 		71DEC1D123F7A2650091A700 /* MagnivierContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1CA23F7A2650091A700 /* MagnivierContainerView.swift */; };
+		B99F6F92FC79077F0AF4C414 /* HistogramToolBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F60BCF4AD4401FD95EBC5 /* HistogramToolBarButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -173,7 +174,7 @@
 		5E6F7E6D2368FC9A008CC191 /* ModuleOverridingBuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ModuleOverridingBuildSettings.xcconfig; sourceTree = "<group>"; };
 		5E6F7E742368FF15008CC191 /* libUserModule.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUserModule.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E70679E23678DC00094BDEF /* Modules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Modules; sourceTree = "<group>"; };
-		5E7067A323678E220094BDEF /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		5E7067A323678E220094BDEF /* RawImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawImage.swift; sourceTree = "<group>"; };
 		5E80DF292342971E00595EB4 /* LiveViewTestApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiveViewTestApp.entitlements; sourceTree = "<group>"; };
 		5EA2E3BD2056F35A00416A35 /* LiveViewTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveViewTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA2E3C92056F35B00416A35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LiveViewTestAppLaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -216,6 +217,7 @@
 		71DEC1C623F7A2650091A700 /* HowImagesComposedLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowImagesComposedLiveViewController.swift; sourceTree = "<group>"; };
 		71DEC1C923F7A2650091A700 /* MagnifierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnifierView.swift; sourceTree = "<group>"; };
 		71DEC1CA23F7A2650091A700 /* MagnivierContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnivierContainerView.swift; sourceTree = "<group>"; };
+		B99F60BCF4AD4401FD95EBC5 /* HistogramToolBarButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistogramToolBarButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,7 +382,7 @@
 		5E7067A223678E0D0094BDEF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				5E7067A323678E220094BDEF /* Image.swift */,
+				5E7067A323678E220094BDEF /* RawImage.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -517,8 +519,8 @@
 		71DEC1A723F79FA70091A700 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				71DD3E6223F7991F001510FB /* LiveViewSupport.swift */,
 				71DEC1AA23F79FB20091A700 /* EventMessage.swift */,
+				71DD3E6223F7991F001510FB /* LiveViewSupport.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -556,6 +558,7 @@
 			isa = PBXGroup;
 			children = (
 				71DEC1B823F7A2650091A700 /* HistogramView.swift */,
+				B99F60BCF4AD4401FD95EBC5 /* HistogramToolBarButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -805,7 +808,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E6F7E7D2368FF29008CC191 /* Image.swift in Sources */,
+				5E6F7E7D2368FF29008CC191 /* RawImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,9 +831,9 @@
 				71DD3E7223F79BA7001510FB /* ShowcaseImageView.swift in Sources */,
 				71DEC1D123F7A2650091A700 /* MagnivierContainerView.swift in Sources */,
 				71DEC1CE23F7A2650091A700 /* AsciificationLiveViewController.swift in Sources */,
+				71BBEDB923F8F22600771781 /* EventMessage.swift in Sources */,
 				71DD3E7823F79C12001510FB /* ImagePickerDataSource.swift in Sources */,
 				71DD3E6723F79B42001510FB /* ImagePickerViewController.swift in Sources */,
-				71DEC1AC23F79FB20091A700 /* EventMessage.swift in Sources */,
 				71DEC1D023F7A2650091A700 /* MagnifierView.swift in Sources */,
 				71DEC1CB23F7A2650091A700 /* GrayscaleHistogramEqualization.swift in Sources */,
 				71DD3E7523F79BCC001510FB /* UIColor+StateColors.swift in Sources */,
@@ -838,6 +841,7 @@
 				71DD3E6B23F79B61001510FB /* ImagePickerCollectionViewCell.swift in Sources */,
 				71DD3E6523F79B2E001510FB /* BaseViewController.swift in Sources */,
 				71DEC1B023F7A21E0091A700 /* IntroductionLiveViewController.swift in Sources */,
+				B99F6F92FC79077F0AF4C414 /* HistogramToolBarButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

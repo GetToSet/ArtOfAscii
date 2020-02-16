@@ -40,7 +40,7 @@ class ToolBarButtonView: UIView {
         updateAppearance()
     }
 
-    private func updateAppearance() {
+    func updateAppearance() {
         switch state {
         case .selected:
             button.isEnabled = true

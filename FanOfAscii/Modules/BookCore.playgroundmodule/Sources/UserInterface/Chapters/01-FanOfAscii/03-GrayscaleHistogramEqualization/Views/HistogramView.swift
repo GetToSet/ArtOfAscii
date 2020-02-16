@@ -8,6 +8,10 @@ import Accelerate
 
 class HistogramView: UIView {
 
+    enum RenderMode {
+        case luminance, rgb
+    }
+
     struct Histogram {
         static let length = 256
 
@@ -27,6 +31,12 @@ class HistogramView: UIView {
 
     private var histogram: Histogram?
 
+    var renderingMode: RenderMode = .luminance {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -38,9 +48,8 @@ class HistogramView: UIView {
     }
 
     override func draw(_ rect: CGRect) {
-        guard
-            let histogram = self.histogram,
-            let context = UIGraphicsGetCurrentContext() else {
+        guard let histogram = self.histogram,
+              let context = UIGraphicsGetCurrentContext() else {
             return
         }
 
@@ -51,10 +60,14 @@ class HistogramView: UIView {
             lumLevels[i] = 0.2126 * Float(histogram.red[i]) + 0.7152 * Float(histogram.green[i]) + 0.0722 * Float(histogram.blue[i])
         }
 
-        drawHistogram(histogramVal: histogram.red.map({ Float($0) }), color: .red, context: context)
-        drawHistogram(histogramVal: histogram.green.map({ Float($0) }), color: .green, context: context)
-        drawHistogram(histogramVal: histogram.blue.map({ Float($0) }), color: .blue, context: context)
-        drawHistogram(histogramVal: lumLevels, color: .white, context: context)
+        switch renderingMode {
+        case .luminance:
+            drawHistogram(histogramVal: lumLevels, color: .white, context: context)
+        case .rgb:
+            drawHistogram(histogramVal: histogram.red.map({ Float($0) }), color: .red, context: context)
+            drawHistogram(histogramVal: histogram.green.map({ Float($0) }), color: .green, context: context)
+            drawHistogram(histogramVal: histogram.blue.map({ Float($0) }), color: .blue, context: context)
+        }
     }
 
     func drawHistogram(histogramVal: [Float], color: UIColor, context: CGContext) {
@@ -108,9 +121,9 @@ extension HistogramView {
         let sourceByteForRow = cgImage.bytesPerRow
 
         var sourceBuffer = vImage_Buffer(data: sourceBitmapPointer,
-                                         height: sourceHeight,
-                                         width: sourceWidth,
-                                         rowBytes: sourceByteForRow)
+                height: sourceHeight,
+                width: sourceWidth,
+                rowBytes: sourceByteForRow)
 
         let pixelCount: UInt = sourceHeight * sourceWidth
 

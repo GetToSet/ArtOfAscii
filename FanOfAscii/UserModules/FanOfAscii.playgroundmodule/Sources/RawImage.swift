@@ -3,7 +3,7 @@
   Created on 2019/12/18.
 
   Abstract:
-  * This file defines a class `Image` for holding raw image data and performs
+  * This file defines a class `RawImage` for holding raw image data and performs
   general processing operations, since `vImage` is not available prior to iOS13.
   This class is used throughout this book to abstract away conversion logic and
   help you focus on main concepts.
@@ -31,7 +31,7 @@ public class ImageFormat {
 
 }
 
-public class Image {
+public class RawImage {
 
     private let format: ImageFormat
     private let data: CFData
@@ -51,8 +51,8 @@ public class Image {
         return context.makeImage()
     }
 
-    public init?(uiImage: UIImage) {
-        guard let cgImage = uiImage.cgImage,
+    public init?(uiImage: UIImage?) {
+        guard let cgImage = uiImage?.cgImage,
               let bitmapData = cgImage.dataProvider?.data else {
             return nil
         }

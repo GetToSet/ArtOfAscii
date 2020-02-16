@@ -46,34 +46,36 @@ even see lighting units in these three colors with a close-up look.
 **Filters** are used as the general technique for image processing. Mysterious it seems to be, a filter is more like a
 mathematical function, receiving colors per pixel, recalculates them, producing a new image as output.
 
-### 🔨Build Your First Image Filter
+### 🔨Your First Image Filter
 
 * Experiment:
     * In this experiment, we'll build a simple filter which takes red, green or blue component out of the source
     image.
-    * Try to read and complete the following code snippet. When you finish it, run your code and tap the **R, G
-    and B** button below the image to see whether it works.
+    * Try to read and complete the following code snippet. When you finish, run your code and tap the *R, G
+    and B* button below the image to see whether it works.
 */
 
 //#-code-completion(everything, hide)
 //#-code-completion(literal, show, float, integer)
-//#-code-completion(identifier, show, coefficientRed, coefficientGreen, coefficientBlue)
+//#-code-completion(identifier, show, factorRed, factorGreen, factorBlue)
+//#-editable-code
 func applyRGBFilter(redEnabled: Bool,
                     greenEnabled: Bool,
                     blueEnabled: Bool,
-                    image: Image) {
-    let coefficientRed, coefficientGreen, coefficientBlue: Float
-    coefficientRed = (redEnabled ? 1 : 0)
-    coefficientGreen = (greenEnabled ? 1 : 0)
-    coefficientBlue = (blueEnabled ? 1 : 0)
+                    rawImage: RawImage) {
+    let factorRed, factorGreen, factorBlue: Float
+    factorRed = (redEnabled ? 1 : 0)
+    factorGreen = (greenEnabled ? 1 : 0)
+    factorBlue = (blueEnabled ? 1 : 0)
     var filterMatrix: [Float] = [
-        /*#-editable-code*/<#T##Red##Float#>/*#-end-editable-code*/, 0, 0, 0,
-        0, /*#-editable-code*/<#T##Green##Float#>/*#-end-editable-code*/, 0, 0,
-        0, 0, /*#-editable-code*/<#T##Blue##Float#>/*#-end-editable-code*/, 0,
-        0, 0, 0, /*#-editable-code*/<#T##Alpha##Float#>/*#-end-editable-code*/
+        <#T##Red##Float#>, 0, 0, 0,
+        0, <#T##Green##Float#>, 0, 0,
+        0, 0, <#T##Blue##Float#>, 0,
+        0, 0, 0, <#T##Alpha##Float#>
     ]
-    image.multiplyByMatrix(matrix4x4: filterMatrix)
+    rawImage.multiplyByMatrix(matrix4x4: filterMatrix)
 }
+//#-end-editable-code
 
 /*:
 * Note:
@@ -88,18 +90,16 @@ let eventListener = EventListener(proxy: remoteView) { message in
     case .rgbFilterRequest(let redEnabled,
                            let greenEnabled,
                            let blueEnabled,
-                           let uiImage):
-        guard let uiImage = uiImage,
-              let image = Image(uiImage: uiImage) else {
+                           let image):
+        guard let rawImage = RawImage(uiImage: image) else {
             return
         }
         applyRGBFilter(redEnabled: redEnabled,
                        greenEnabled: greenEnabled,
                        blueEnabled: blueEnabled,
-                       image: image);
-
+                       rawImage: rawImage);
         let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-        if let destCGImage = image.cgImage(bitmapInfo: destinationBitmapInfo),
+        if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo),
            let destImage = try? UIImage(cgImage: destCGImage) {
             remoteView?.send(EventMessage.imageProcessingResponse(image: destImage).playgroundValue)
         }
