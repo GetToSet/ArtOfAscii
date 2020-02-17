@@ -567,7 +567,6 @@
                         <outlet property="grayscaleButton" destination="V5v-Yf-PwY" id="igI-VR-hw1"/>
                         <outlet property="histogramButton" destination="F6f-wv-8ON" id="ldG-tJ-p7C"/>
                         <outlet property="histogramView" destination="XeK-Wi-F5p" id="Oas-1l-odG"/>
-                        <outlet property="imageBottomToSuperview" destination="zzV-NH-7z0" id="S9n-ra-AMf"/>
                         <outlet property="showcaseImageView" destination="Kae-Q4-0jR" id="Wwz-vw-tII"/>
                     </connections>
                 </viewController>

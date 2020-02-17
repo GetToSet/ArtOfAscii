@@ -33,11 +33,11 @@ consideration.
     * Try to read and complete the following code snippet. When you finish, run your code and tap the *Switch to
     Grayscale* button below the image to see whether it works.
 */
-
 //#-code-completion(everything, hide)
 //#-code-completion(literal, show, float, integer)
 //#-code-completion(identifier, show, coefficientRed, coefficientGreen, coefficientBlue)
 //#-editable-code
+
 func applyGrayscaleFilter(rawImage: RawImage) {
     let coefficientRed: Float = 0.2126
     let coefficientGreen: Float = 0.7152
@@ -68,48 +68,35 @@ following figure shows the same images as previous figure, along with histograms
     * Choose an image and then tap the *Show Histogram* icon below the image to show the histogram. Tap it again to
     see a histogram with separated red, green, and blue value.
     * Try to understand these graphs by associating them with tone and color distributions of images.
-*/
-//#-editable-code
-func applyGrayscaleFilterx(rawImage: RawImage) {
-    let coefficientRed: Float = 0.2126
-    let coefficientGreen: Float = 0.7152
-    let coefficientBlue: Float = 0.0722
-    var filterMatrix: [Float] = [
-        <#T##Red##Float#>, <#T##Red##Float#>, <#T##Red##Float#>, 0,
-        <#T##Green##Float#>, <#T##Green##Float#>, <#T##Green##Float#>, 0,
-        <#T##Blue##Float#>, <#T##Blue##Float#>, <#T##Blue##Float#>, 0,
-        0, 0, 0, 1
-    ]
-    rawImage.multiplyByMatrix(matrix4x4: filterMatrix)
-}
 
-//#-end-editable-code
-/*:
-## Tone Equalization
+## Histogram Equalization
 
-In this section we'll use a technique called **Tone Equalization** to solve the previous problem. This technique
-equalizes an image by *expanding light part to lightest and dark part to darkest*. For histogram's perspective, it
-*widens* a histogram to its maximum width.
+In this section we'll use a technique called **Histogram Equalization** to solve the previous problem. This technique
+enhance the contrast level of images by *expanding light part to lightest and dark part to darkest*. For histogram's
+perspective, it *widens* a histogram to its maximum width by redistributing colors from white to black.
 
 ### 🔨Equalize the Images
 
 * Experiment:
-    * In this experiment, we'll build a filter for **tone equalization**.
+    * In this experiment, we'll build a filter for **Histogram Equalization**.
     * Try to read and complete the following code snippet. When you finish it, run your code and tap the **Equalization**
     button below the image to see whether it works.
 */
 //#-editable-code
-func applyGrayscaleFilterxx(rawImage: RawImage) {
-    let coefficientRed: Float = 0.2126
-    let coefficientGreen: Float = 0.7152
-    let coefficientBlue: Float = 0.0722
-    var filterMatrix: [Float] = [
-        <#T##Red##Float#>, <#T##Red##Float#>, <#T##Red##Float#>, 0,
-        <#T##Green##Float#>, <#T##Green##Float#>, <#T##Green##Float#>, 0,
-        <#T##Blue##Float#>, <#T##Blue##Float#>, <#T##Blue##Float#>, 0,
-        0, 0, 0, 1
-    ]
-    rawImage.multiplyByMatrix(matrix4x4: filterMatrix)
+
+func applyHistogramEqualization(rawImage: RawImage) {
+    guard let histogram = rawImage.calculateLuminanceHistogram() else {
+        return
+    }
+    var equalizationMap = [UInt8](repeating: 0, count: 256)
+    let pixelCount = rawImage.format.pixelCount
+    var pixelCumulative: UInt = 0
+    for i in 0..<256 {
+        pixelCumulative += histogram[i]
+        let equalizedLuminance: Float = Float(pixelCumulative) / Float(pixelCount) * 255.0
+        equalizationMap[i] = UInt8(equalizedLuminance.rounded())
+    }
+    rawImage.applyLuminanceMap(equalizationMap)
 }
 
 //#-end-editable-code
@@ -131,9 +118,19 @@ let eventListener = EventListener(proxy: remoteView) { message in
             applyGrayscaleFilter(rawImage: rawImage);
         }
         let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-        if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo),
-           let destImage = try? UIImage(cgImage: destCGImage) {
-            remoteView?.send(EventMessage.imageProcessingResponse(image: destImage).playgroundValue)
+        if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
+            remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)
+        }
+    case .equalizationRequest(let enabled, let image):
+        guard let rawImage = RawImage(uiImage: image) else {
+            return
+        }
+        if enabled == true {
+            applyHistogramEqualization(rawImage: rawImage);
+        }
+        let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
+            remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)
         }
     default:
         break

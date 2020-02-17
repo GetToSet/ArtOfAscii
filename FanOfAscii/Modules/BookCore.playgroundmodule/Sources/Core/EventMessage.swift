@@ -10,6 +10,7 @@ private enum EventPayloadType: String {
 
     case rgbFilterRequest
     case grayscaleFilterRequest
+    case equalizationRequest
     case imageProcessingResponse
 
 }
@@ -42,6 +43,16 @@ private struct GrayScaleFilterRequest: EventPayload, Codable {
 
 }
 
+private struct EqualizationRequest: EventPayload, Codable {
+
+    var payloadType: EventPayloadType {
+        return .equalizationRequest
+    }
+
+    let enabled: Bool
+
+}
+
 private struct ImageProcessingResponse: EventPayload, Codable {
 
     var payloadType: EventPayloadType {
@@ -54,6 +65,7 @@ public enum EventMessage {
 
     case rgbFilterRequest(redEnabled: Bool, greenEnabled: Bool, blueEnabled: Bool, image: UIImage?)
     case grayscaleFilterRequest(enabled: Bool, image: UIImage?)
+    case equalizationRequest(enabled: Bool, image: UIImage?)
     case imageProcessingResponse(image: UIImage?)
 
     public static func from(playgroundValue: PlaygroundValue) -> EventMessage? {
@@ -84,6 +96,10 @@ public enum EventMessage {
         case .grayscaleFilterRequest(let enabled, let image):
             payloadToEncode = GrayScaleFilterRequest(enabled: enabled)
             jsonData = try? encoder.encode(payloadToEncode as! GrayScaleFilterRequest)
+            imageData = image?.jpegData(compressionQuality: 1.0)
+        case .equalizationRequest(let enabled, let image):
+            payloadToEncode = EqualizationRequest(enabled: enabled)
+            jsonData = try? encoder.encode(payloadToEncode as! EqualizationRequest)
             imageData = image?.jpegData(compressionQuality: 1.0)
         case .imageProcessingResponse(let image):
             payloadToEncode = ImageProcessingResponse()
@@ -121,10 +137,10 @@ public enum EventMessage {
                 return nil
             }
             return Self.rgbFilterRequest(
-                redEnabled: rgbFilterRequest.redEnabled,
-                greenEnabled: rgbFilterRequest.greenEnabled,
-                blueEnabled: rgbFilterRequest.blueEnabled,
-                image: image
+                    redEnabled: rgbFilterRequest.redEnabled,
+                    greenEnabled: rgbFilterRequest.greenEnabled,
+                    blueEnabled: rgbFilterRequest.blueEnabled,
+                    image: image
             )
         case .grayscaleFilterRequest:
             guard case .data(let data) = dictionary["data"],
@@ -132,8 +148,17 @@ public enum EventMessage {
                 return nil
             }
             return Self.grayscaleFilterRequest(
-                enabled: grayscaleFilterRequest.enabled,
-                image: image
+                    enabled: grayscaleFilterRequest.enabled,
+                    image: image
+            )
+        case .equalizationRequest:
+            guard case .data(let data) = dictionary["data"],
+                  let equalizationRequest = try? decoder.decode(EqualizationRequest.self, from: data) else {
+                return nil
+            }
+            return Self.equalizationRequest(
+                    enabled: equalizationRequest.enabled,
+                    image: image
             )
         case .imageProcessingResponse:
             return Self.imageProcessingResponse(image: image)

@@ -12,24 +12,15 @@ class HistogramView: UIView {
         case luminance, rgb
     }
 
-    struct Histogram {
-        static let length = 256
-
-        let red: [UInt]
-        let green: [UInt]
-        let blue: [UInt]
-        let alpha: [UInt]
-        let pixelCount: UInt
-    }
-
     var image: UIImage? {
         didSet {
-            histogram = self.calculateHistogram()
+            calculateHistogram()
             setNeedsDisplay()
         }
     }
 
-    private var histogram: Histogram?
+    private var rgbaHistogram: RgbaHistogram?
+    private var luminanceHistogram: [UInt]?
 
     var renderingMode: RenderMode = .luminance {
         didSet {
@@ -48,33 +39,32 @@ class HistogramView: UIView {
     }
 
     override func draw(_ rect: CGRect) {
-        guard let histogram = self.histogram,
-              let context = UIGraphicsGetCurrentContext() else {
+        guard let context = UIGraphicsGetCurrentContext() else {
             return
         }
-
-        let sampleCount = Histogram.length
-
-        var lumLevels = [Float](repeating: 0.0, count: sampleCount)
-        for i in 0..<sampleCount {
-            lumLevels[i] = 0.2126 * Float(histogram.red[i]) + 0.7152 * Float(histogram.green[i]) + 0.0722 * Float(histogram.blue[i])
-        }
-
         switch renderingMode {
         case .luminance:
-            drawHistogram(histogramVal: lumLevels, color: .white, context: context)
+            guard let luminanceHistogram = self.luminanceHistogram else {
+                break
+            }
+            drawHistogram(histogramVal: luminanceHistogram, color: .white, context: context)
         case .rgb:
-            drawHistogram(histogramVal: histogram.red.map({ Float($0) }), color: .red, context: context)
-            drawHistogram(histogramVal: histogram.green.map({ Float($0) }), color: .green, context: context)
-            drawHistogram(histogramVal: histogram.blue.map({ Float($0) }), color: .blue, context: context)
+            guard let histogram = self.rgbaHistogram else {
+                break
+            }
+            drawHistogram(histogramVal: histogram.red, color: .red, context: context)
+            drawHistogram(histogramVal: histogram.green, color: .green, context: context)
+            drawHistogram(histogramVal: histogram.blue, color: .blue, context: context)
         }
     }
 
-    func drawHistogram(histogramVal: [Float], color: UIColor, context: CGContext) {
-        guard histogramVal.count == Histogram.length else {
-            return
-        }
+    private func calculateHistogram() {
+        let rawImage = RawImage(uiImage: image)
+        rgbaHistogram = rawImage?.calculateRgbHistogram()
+        luminanceHistogram = rawImage?.calculateLuminanceHistogram()
+    }
 
+    private func drawHistogram(histogramVal: [UInt], color: UIColor, context: CGContext) {
         let sampleCount = histogramVal.count
 
         let size = self.bounds.size
@@ -82,9 +72,9 @@ class HistogramView: UIView {
 
         let pixelPerSample = size.width / CGFloat(sampleCount - 1)
 
-        let levelMax = histogramVal.reduce(0.0, ({ max($0, $1) }))
+        let levelMax = CGFloat(histogramVal.reduce(0, ({ max($0, $1) })))
         let yVals: [CGFloat] = histogramVal.map {
-            padding + (size.height - 2 * padding) * (1.0 - CGFloat($0 / levelMax))
+            padding + (size.height - 2 * padding) * (1.0 - CGFloat($0) / levelMax)
         }
 
         let path = UIBezierPath()
@@ -102,50 +92,6 @@ class HistogramView: UIView {
 
         color.withAlphaComponent(0.2).setFill()
         path.fill()
-    }
-
-}
-
-extension HistogramView {
-
-    func calculateHistogram() -> Histogram? {
-        guard let image = image,
-              let cgImage = image.cgImage,
-              let sourceBitmapData = cgImage.dataProvider?.data,
-              let sourceBitmapPointer = UnsafeMutablePointer<UInt8>(mutating: CFDataGetBytePtr(sourceBitmapData)) else {
-            return nil
-        }
-
-        let sourceHeight = UInt(cgImage.height)
-        let sourceWidth = UInt(cgImage.width)
-        let sourceByteForRow = cgImage.bytesPerRow
-
-        var sourceBuffer = vImage_Buffer(data: sourceBitmapPointer,
-                height: sourceHeight,
-                width: sourceWidth,
-                rowBytes: sourceByteForRow)
-
-        let pixelCount: UInt = sourceHeight * sourceWidth
-
-        var alpha = [UInt](repeating: 0, count: Histogram.length)
-        var red = [UInt](repeating: 0, count: Histogram.length)
-        var green = [UInt](repeating: 0, count: Histogram.length)
-        var blue = [UInt](repeating: 0, count: Histogram.length)
-
-        let alphaPtr = UnsafeMutablePointer<vImagePixelCount>(&alpha) as UnsafeMutablePointer<vImagePixelCount>?
-        let redPtr = UnsafeMutablePointer<vImagePixelCount>(&red) as UnsafeMutablePointer<vImagePixelCount>?
-        let greenPtr = UnsafeMutablePointer<vImagePixelCount>(&green) as UnsafeMutablePointer<vImagePixelCount>?
-        let bluePtr = UnsafeMutablePointer<vImagePixelCount>(&blue) as UnsafeMutablePointer<vImagePixelCount>?
-
-        var rgba = [redPtr, greenPtr, bluePtr, alphaPtr]
-
-        let histogram = UnsafeMutablePointer<UnsafeMutablePointer<vImagePixelCount>?>(&rgba)
-
-        let error = vImageHistogramCalculation_ARGB8888(&sourceBuffer, histogram, UInt32(kvImageNoFlags))
-        if error != kvImageNoError {
-            return nil
-        }
-        return Histogram(red: red, green: green, blue: blue, alpha: alpha, pixelCount: pixelCount)
     }
 
 }

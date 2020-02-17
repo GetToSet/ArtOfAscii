@@ -99,9 +99,8 @@ let eventListener = EventListener(proxy: remoteView) { message in
                        blueEnabled: blueEnabled,
                        rawImage: rawImage);
         let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-        if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo),
-           let destImage = try? UIImage(cgImage: destCGImage) {
-            remoteView?.send(EventMessage.imageProcessingResponse(image: destImage).playgroundValue)
+        if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
+            remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)
         }
     default:
         break
