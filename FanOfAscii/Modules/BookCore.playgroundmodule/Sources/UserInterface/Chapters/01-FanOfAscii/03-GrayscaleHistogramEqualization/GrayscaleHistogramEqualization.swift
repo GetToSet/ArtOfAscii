@@ -45,18 +45,22 @@ public class GrayscaleHistogramEqualization: BaseViewController {
     }
 
     func setHistogramViewHidden(_ hidden: Bool, animated: Bool) {
-        if animated {
-            UIView.animate(withDuration: 0.4) {
-                let animationTransform = hidden ? CGAffineTransform(translationX: 0, y: self.histogramView.bounds.size.height) : CGAffineTransform.identity
-                self.histogramView.transform = animationTransform
-                self.histogramView.alpha = hidden ? 0.0 : 1.0
-            }
+        UIView.animate(withDuration: animated ? 0.35 : 0) {
+            let animationTransform = hidden ? CGAffineTransform(translationX: 0, y: self.histogramView.bounds.size.height) : CGAffineTransform.identity
+            self.histogramView.transform = animationTransform
+            self.histogramView.alpha = hidden ? 0.0 : 1.0
         }
     }
 
     override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
         super.didSelectImage(image: image, pickerController: pickerController)
-        requestGrayscaleFiltering()
+        if grayscaleButton.state == .selected {
+            if equalizationButton.state == .selected {
+                requestEqualizationFiltering()
+            } else {
+                requestGrayscaleFiltering()
+            }
+        }
     }
 
     override func toolBarButtonTapped(buttonView: ToolBarButtonView) {
@@ -64,12 +68,22 @@ public class GrayscaleHistogramEqualization: BaseViewController {
         case histogramButton:
             setHistogramViewHidden(!(histogramButton.state == .selected), animated: true)
             if histogramButton.state == .selected {
-                histogramView.renderingMode = histogramButton.isRgbMode ? .rgb : .luminance
+                histogramView.renderingMode = histogramButton.isRgbMode ? .rgb : .brightness
             }
         case grayscaleButton:
-            requestGrayscaleFiltering()
+            if grayscaleButton.state == .selected {
+                equalizationButton.state = .normal
+                requestGrayscaleFiltering()
+            } else {
+                equalizationButton.state = .disabled
+                requestGrayscaleFiltering()
+            }
         case equalizationButton:
-            requestEqualizationFiltering()
+            if equalizationButton.state == .selected {
+                requestEqualizationFiltering()
+            } else {
+                requestGrayscaleFiltering()
+            }
         default:
             break
         }
@@ -86,7 +100,7 @@ extension GrayscaleHistogramEqualization: PlaygroundLiveViewMessageHandler {
 
     public func liveViewMessageConnectionOpened() {
         grayscaleButton.state = .normal
-        equalizationButton.state = .normal
+        equalizationButton.state = .disabled
         if let image = self.sourceImage {
             self.updateShowcaseImage(image: image)
         }

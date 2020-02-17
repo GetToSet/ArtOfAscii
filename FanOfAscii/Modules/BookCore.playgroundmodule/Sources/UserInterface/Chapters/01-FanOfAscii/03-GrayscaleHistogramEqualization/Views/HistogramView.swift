@@ -9,7 +9,7 @@ import Accelerate
 class HistogramView: UIView {
 
     enum RenderMode {
-        case luminance, rgb
+        case brightness, rgb
     }
 
     var image: UIImage? {
@@ -20,9 +20,9 @@ class HistogramView: UIView {
     }
 
     private var rgbaHistogram: RgbaHistogram?
-    private var luminanceHistogram: [UInt]?
+    private var brightnessHistogram: [UInt]?
 
-    var renderingMode: RenderMode = .luminance {
+    var renderingMode: RenderMode = .brightness {
         didSet {
             setNeedsDisplay()
         }
@@ -43,34 +43,50 @@ class HistogramView: UIView {
             return
         }
         switch renderingMode {
-        case .luminance:
-            guard let luminanceHistogram = self.luminanceHistogram else {
+        case .brightness:
+            guard let brightnessHistogram = self.brightnessHistogram else {
                 break
             }
-            drawHistogram(histogramVal: luminanceHistogram, color: .white, context: context)
+            drawHistogram(histogramVal: brightnessHistogram,
+                    color: .white,
+                    fractionStart: 0.0,
+                    fractionEnd: 1.0,
+                    context: context)
         case .rgb:
             guard let histogram = self.rgbaHistogram else {
                 break
             }
-            drawHistogram(histogramVal: histogram.red, color: .red, context: context)
-            drawHistogram(histogramVal: histogram.green, color: .green, context: context)
-            drawHistogram(histogramVal: histogram.blue, color: .blue, context: context)
+            drawHistogram(histogramVal: histogram.red,
+                    color: .red,
+                    fractionStart: 0.0,
+                    fractionEnd: 1.0 / 3.0,
+                    context: context)
+            drawHistogram(histogramVal: histogram.green,
+                    color: .green,
+                    fractionStart: 1.0 / 3.0,
+                    fractionEnd: 2.0 / 3.0,
+                    context: context)
+            drawHistogram(histogramVal: histogram.blue,
+                    color: .blue,
+                    fractionStart: 2.0 / 3.0,
+                    fractionEnd: 1.0,
+                    context: context)
         }
     }
 
     private func calculateHistogram() {
-        let rawImage = RawImage(uiImage: image)
-        rgbaHistogram = rawImage?.calculateRgbHistogram()
-        luminanceHistogram = rawImage?.calculateLuminanceHistogram()
+        guard let rawImage = RawImage(uiImage: image) else {
+            return
+        }
+        rgbaHistogram = rawImage.calculateRgbHistogram()
+        brightnessHistogram = rawImage.calculateBrightnessHistogram()
     }
 
-    private func drawHistogram(histogramVal: [UInt], color: UIColor, context: CGContext) {
+    private func drawHistogram(histogramVal: [UInt], color: UIColor, fractionStart: CGFloat, fractionEnd: CGFloat, context: CGContext) {
         let sampleCount = histogramVal.count
 
         let size = self.bounds.size
         let padding = self.layer.borderWidth + 2.0
-
-        let pixelPerSample = size.width / CGFloat(sampleCount - 1)
 
         let levelMax = CGFloat(histogramVal.reduce(0, ({ max($0, $1) })))
         let yVals: [CGFloat] = histogramVal.map {
@@ -78,16 +94,22 @@ class HistogramView: UIView {
         }
 
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: size.height))
+
+        let availableWidth = size.width - 2 * padding
+        let xStart = padding + availableWidth * fractionStart
+        let xEnd = padding + availableWidth * fractionEnd
+
+        path.move(to: CGPoint(x: xStart, y: size.height))
         for i in 0..<sampleCount {
-            let plotPoint = CGPoint(x: CGFloat(i) * pixelPerSample, y: yVals[i])
+            let xVal = xStart + (xEnd - xStart) / CGFloat(sampleCount - 1) * CGFloat(i)
+            let plotPoint = CGPoint(x: xVal, y: yVals[i])
             path.addLine(to: plotPoint)
         }
         color.setStroke()
         context.setLineWidth(3.0)
         path.stroke()
 
-        path.addLine(to: CGPoint(x: size.width, y: size.height))
+        path.addLine(to: CGPoint(x: xEnd, y: size.height))
         path.close()
 
         color.withAlphaComponent(0.2).setFill()

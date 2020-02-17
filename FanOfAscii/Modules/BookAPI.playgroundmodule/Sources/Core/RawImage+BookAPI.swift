@@ -9,17 +9,17 @@ import BookCore
 
 public extension RawImage {
 
-    func applyLuminanceMap(_ mapping: [UInt8]) {
+    func applyBrightnessMap(_ mapping: [UInt8]) {
         let dataPointer = getMutableDataPointer()
         for i in stride(from: 0, to: format.pixelCount * 4, by: 4) {
             let red = dataPointer[i]
             let green = dataPointer[i + 1]
             let blue = dataPointer[i + 2]
-            let luminance = Int((0.2126 * Float(red) + 0.7152 * Float(blue) + 0.0722 * Float(green)).rounded())
-            let mappedLuminance = mapping[luminance]
-            dataPointer[i] = mappedLuminance
-            dataPointer[i + 1] = mappedLuminance
-            dataPointer[i + 2] = mappedLuminance
+            let brightness = Int((0.2126 * Float(red) + 0.7152 * Float(blue) + 0.0722 * Float(green)).rounded())
+            let mappedBrightness = mapping[brightness]
+            dataPointer[i] = mappedBrightness
+            dataPointer[i + 1] = mappedBrightness
+            dataPointer[i + 2] = mappedBrightness
         }
     }
 

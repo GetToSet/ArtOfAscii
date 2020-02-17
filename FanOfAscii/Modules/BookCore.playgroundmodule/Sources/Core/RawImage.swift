@@ -76,17 +76,15 @@ public class RawImage {
     }
 
     public func getGrayscaledBuffer(dataPointer: UnsafeMutableRawPointer) -> vImage_Buffer? {
-        let redCoefficient: Float = 0.2126
-        let greenCoefficient: Float = 0.7152
-        let blueCoefficient: Float = 0.0722
+        let coefficient: Float = 1.0 / 3.0
 
         let divisor: Int32 = 0x1000
         let fDivisor = Float(divisor)
 
         var coefficientsMatrix = [
-            Int16(redCoefficient * fDivisor),
-            Int16(greenCoefficient * fDivisor),
-            Int16(blueCoefficient * fDivisor),
+            Int16(coefficient * fDivisor),
+            Int16(coefficient * fDivisor),
+            Int16(coefficient * fDivisor),
             1
         ]
         var destBuffer = vImage_Buffer(
@@ -103,7 +101,7 @@ public class RawImage {
         return destBuffer
     }
 
-    public func calculateLuminanceHistogram() -> [UInt]? {
+    public func calculateBrightnessHistogram() -> [UInt]? {
         guard let destDataPointer = malloc(format.bytesForRow * format.height),
               var destBuffer = getGrayscaledBuffer(dataPointer: destDataPointer) else {
             return nil
@@ -111,12 +109,12 @@ public class RawImage {
         defer {
             free(destDataPointer)
         }
-        var luminance = [UInt](repeating: 0, count: 256)
-        let luminancePointer = UnsafeMutablePointer<vImagePixelCount>(&luminance)
-        if vImageHistogramCalculation_Planar8(&destBuffer, luminancePointer, vImage_Flags(kvImageNoFlags)) != kvImageNoError {
+        var brightness = [UInt](repeating: 0, count: 256)
+        let brightnessPointer = UnsafeMutablePointer<vImagePixelCount>(&brightness)
+        if vImageHistogramCalculation_Planar8(&destBuffer, brightnessPointer, vImage_Flags(kvImageNoFlags)) != kvImageNoError {
             return nil
         }
-        return luminance
+        return brightness
     }
 
     public func calculateRgbHistogram() -> RgbaHistogram? {

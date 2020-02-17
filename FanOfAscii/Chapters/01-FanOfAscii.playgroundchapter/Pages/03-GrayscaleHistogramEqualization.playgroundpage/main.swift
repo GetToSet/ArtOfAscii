@@ -85,7 +85,7 @@ perspective, it *widens* a histogram to its maximum width by redistributing colo
 //#-editable-code
 
 func applyHistogramEqualization(rawImage: RawImage) {
-    guard let histogram = rawImage.calculateLuminanceHistogram() else {
+    guard let histogram = rawImage.calculateBrightnessHistogram() else {
         return
     }
     var equalizationMap = [UInt8](repeating: 0, count: 256)
@@ -93,10 +93,10 @@ func applyHistogramEqualization(rawImage: RawImage) {
     var pixelCumulative: UInt = 0
     for i in 0..<256 {
         pixelCumulative += histogram[i]
-        let equalizedLuminance: Float = Float(pixelCumulative) / Float(pixelCount) * 255.0
-        equalizationMap[i] = UInt8(equalizedLuminance.rounded())
+        let equalizedBrightness: Float = Float(pixelCumulative) / Float(pixelCount) * 255.0
+        equalizationMap[i] = UInt8(equalizedBrightness.rounded())
     }
-    rawImage.applyLuminanceMap(equalizationMap)
+    rawImage.applyBrightnessMap(equalizationMap)
 }
 
 //#-end-editable-code
