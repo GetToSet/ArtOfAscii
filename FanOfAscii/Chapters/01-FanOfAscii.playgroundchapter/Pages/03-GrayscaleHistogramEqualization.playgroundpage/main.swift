@@ -6,7 +6,6 @@
 
 import UIKit
 import PlaygroundSupport
-import Accelerate
 
 import BookCore
 
@@ -18,20 +17,18 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 
 ## Grayscale
 
-To achieve the final result, the first thing we need to do is converting the image into a *grayscaled* version.
-We can achieve this by setting it's red, green and blue scalar to the same value, which is the average. With prior
-knowledge,this task should be simple now. Just construct a grayscale matrix and… it's done.
+Converting the image into a *grayscaled* version is the first step to final ASCII art. This process involves
+transforming each pixel's red, green and blue value to their average, which can be done by multiplying a grayscale
+matrix.
 
-However, according to scientific researches, our eyes are more sensitive to green color than red and blue (actually,
-green takes up almost 70%). To achieve better result, we can modify our coefficients a little bit, taking this into
-consideration.
+According to researches, human eyes are way more sensitive to green than red and blue. To take this into consideration,
+a dedicated set of coefficients can be applied.
 
-### 🔨Yet Another Image Filter
+### 🔨Grayscale Filtering
 
 * Experiment:
-    * In this experiment, we'll build another filter to turn a image into grayscaled version, with consideration.
-    * Try to read and complete the following code snippet. When you finish, run your code and tap the *Switch to
-    Grayscale* button below the image to see whether it works.
+    * You'll build a filter to turn an image into grayscaled version.
+    *Try completing following code snippet. Run your code and tap the *Grayscale* button to verify whether it works.
 */
 //#-code-completion(everything, hide)
 //#-code-completion(literal, show, float, integer)
@@ -39,13 +36,13 @@ consideration.
 //#-editable-code
 
 func applyGrayscaleFilter(rawImage: RawImage) {
-    let coefficientRed: Float = 0.2126
-    let coefficientGreen: Float = 0.7152
-    let coefficientBlue: Float = 0.0722
-    var filterMatrix: [Float] = [
-        <#T##Red##Float#>, <#T##Red##Float#>, <#T##Red##Float#>, 0,
-        <#T##Green##Float#>, <#T##Green##Float#>, <#T##Green##Float#>, 0,
-        <#T##Blue##Float#>, <#T##Blue##Float#>, <#T##Blue##Float#>, 0,
+    let coefficientRed = 0.2126
+    let coefficientGreen = 0.7152
+    let coefficientBlue = 0.0722
+    var filterMatrix: [Double] = [
+        <#T##Red##Double#>, <#T##Red##Double#>, <#T##Red##Double#>, 0,
+        <#T##Green##Double#>, <#T##Green##Double#>, <#T##Green##Double#>, 0,
+        <#T##Blue##Double#>, <#T##Blue##Double#>, <#T##Blue##Double#>, 0,
         0, 0, 0, 1
     ]
     rawImage.multiplyByMatrix(matrix4x4: filterMatrix)
@@ -55,32 +52,34 @@ func applyGrayscaleFilter(rawImage: RawImage) {
 /*:
 ## Histograms
 
-Now we've turned our image into grayscale and here comes another problem we have to solve: for some images, which are
-too bright or too dark, the resulting ASCII arts may be hard to recognize, as the following figure shows.
+Images with low contrast may produce ASCII arts that are hard to recognize, as the following figure shows.
 
-**Histogram** is an effective tool for image processing. It visualizes the distribution of tones in an image. The X axis
-represents the brightness, while the Y axis represents the relative number of pixels at that brightness value. The
-following figure shows the same images as previous figure, along with histograms representing them.
+（图）
+
+**Histogram** is an effective tool for visualizing the distribution of tones in an image. The X axis represents the
+brightness and the Y axis represents the  number of pixels at that brightness value.
+
+（图）
 
 ### 🔬Demystification of Histograms
 
 * Experiment:
-    * Choose an image and then tap the *Show Histogram* icon below the image to show the histogram. Tap it again to
-    see a histogram with separated red, green, and blue value.
-    * Try to understand these graphs by associating them with tone and color distributions of images.
+    * Choose an image and then tap 📊 to bring up the histogram. Tapping it again will show a histogram with separated
+    graph of red, green, and blue.
+    * Try associating histograms with the distribution of tones and colors.
 
 ## Histogram Equalization
 
-In this section we'll use a technique called **Histogram Equalization** to solve the previous problem. This technique
-enhance the contrast level of images by *expanding light part to lightest and dark part to darkest*. For histogram's
-perspective, it *widens* a histogram to its maximum width by redistributing colors from white to black.
+**Histogram Equalization** is a widely used technique to enhance the contrast of images by *redistributing tones to full
+brightness range*, spreading out pixels with intense frequency.
 
-### 🔨Equalize the Images
+（图）
+
+### 🔨Equalizing an Image
 
 * Experiment:
-    * In this experiment, we'll build a filter for **Histogram Equalization**.
-    * Try to read and complete the following code snippet. When you finish it, run your code and tap the **Equalization**
-    button below the image to see whether it works.
+    * You'll build a filter to apply **Histogram Equalization** to images
+    *Try completing following code snippet. Run your code and tap the *Equalization* button to verify whether it works.
 */
 //#-editable-code
 
@@ -89,23 +88,27 @@ func applyHistogramEqualization(rawImage: RawImage) {
         return
     }
     var equalizationMap = [UInt8](repeating: 0, count: 256)
-    let pixelCount = rawImage.format.pixelCount
+
+    let pixelTotal = rawImage.format.pixelCount
     var pixelCumulative: UInt = 0
+
+    // For most images, we can assume that it has 8-bit color depth, result 256 brightness levels
     for i in 0..<256 {
+        // Histogram value represents the pixel count at current brightness level
+        // Add current pixel count to the cumulative pixel count
         pixelCumulative += histogram[i]
-        let equalizedBrightness: Float = Float(pixelCumulative) / Float(pixelCount) * 255.0
+        // Calculates the cumulative pixel frequency (CPF) as cumulative pixel count divided by total pixel count
+        let cumulativePixelFrequency = <#T##cumulativeFrequency##Double#>
+
+        // Map current brightness to full range according current CPF value
+        let equalizedBrightness = cumulativePixelFrequency * 255.0
         equalizationMap[i] = UInt8(equalizedBrightness.rounded())
     }
+
     rawImage.applyBrightnessMap(equalizationMap)
 }
 
 //#-end-editable-code
-/*:
-* Note:
-    In this code snippet, we transform the image by multiplying it with a custom filter matrix. If you're not familiar
-    with limier algebra, the following figure will explain how this transform matrix works.
-*/
-
 //#-hidden-code
 let remoteView = remoteViewAsLiveViewProxy()
 let eventListener = EventListener(proxy: remoteView) { message in

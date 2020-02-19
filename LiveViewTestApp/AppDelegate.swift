@@ -14,7 +14,7 @@ import BookCore
 class AppDelegate: LiveViewHost.AppDelegate {
 
     override func setUpLiveView() -> PlaygroundLiveViewable {
-        return BookCore.instantiateLiveView(identifier: .grayscaleHistogramEqualization)
+        return BookCore.instantiateLiveView(identifier: .asciification)
     }
 
     override var liveViewConfiguration: LiveViewConfiguration {

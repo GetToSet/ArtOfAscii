@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Name</key>
-	<string>📊 Grayscale, Histogram &amp;amp; Equalization</string>
+	<string>📊 Grayscale, Histogram &amp; Equalization</string>
 	<key>LiveViewEdgeToEdge</key>
 	<true/>
 	<key>LiveViewMode</key>

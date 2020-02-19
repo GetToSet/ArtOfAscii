@@ -33,26 +33,6 @@ private struct RGBFilterRequest: EventPayload, Codable {
 
 }
 
-private struct GrayScaleFilterRequest: EventPayload, Codable {
-
-    var payloadType: EventPayloadType {
-        return .grayscaleFilterRequest
-    }
-
-    let enabled: Bool
-
-}
-
-private struct EqualizationRequest: EventPayload, Codable {
-
-    var payloadType: EventPayloadType {
-        return .equalizationRequest
-    }
-
-    let enabled: Bool
-
-}
-
 private struct ImageProcessingResponse: EventPayload, Codable {
 
     var payloadType: EventPayloadType {
@@ -64,8 +44,8 @@ private struct ImageProcessingResponse: EventPayload, Codable {
 public enum EventMessage {
 
     case rgbFilterRequest(redEnabled: Bool, greenEnabled: Bool, blueEnabled: Bool, image: UIImage?)
-    case grayscaleFilterRequest(enabled: Bool, image: UIImage?)
-    case equalizationRequest(enabled: Bool, image: UIImage?)
+    case grayscaleFilterRequest(image: UIImage?)
+    case equalizationRequest(image: UIImage?)
     case imageProcessingResponse(image: UIImage?)
 
     public static func from(playgroundValue: PlaygroundValue) -> EventMessage? {
@@ -86,27 +66,27 @@ public enum EventMessage {
 
         var jsonData: Data?
         var imageData: Data?
-        let payloadToEncode: EventPayload
+        var payloadToEncode: EventPayload? = nil
+        var payloadType: EventPayloadType? = nil
 
         switch self {
         case .rgbFilterRequest(let red, let green, let blue, let image):
             payloadToEncode = RGBFilterRequest(redEnabled: red, greenEnabled: green, blueEnabled: blue)
             jsonData = try? encoder.encode(payloadToEncode as! RGBFilterRequest)
             imageData = image?.jpegData(compressionQuality: 1.0)
-        case .grayscaleFilterRequest(let enabled, let image):
-            payloadToEncode = GrayScaleFilterRequest(enabled: enabled)
-            jsonData = try? encoder.encode(payloadToEncode as! GrayScaleFilterRequest)
+        case .grayscaleFilterRequest(let image):
+            payloadType = .grayscaleFilterRequest
             imageData = image?.jpegData(compressionQuality: 1.0)
-        case .equalizationRequest(let enabled, let image):
-            payloadToEncode = EqualizationRequest(enabled: enabled)
-            jsonData = try? encoder.encode(payloadToEncode as! EqualizationRequest)
+        case .equalizationRequest(let image):
+            payloadType = .equalizationRequest
             imageData = image?.jpegData(compressionQuality: 1.0)
         case .imageProcessingResponse(let image):
-            payloadToEncode = ImageProcessingResponse()
+            payloadType = .imageProcessingResponse
             imageData = image?.jpegData(compressionQuality: 1.0)
         }
+        payloadType = payloadType ?? payloadToEncode!.payloadType
         var dict = [
-            "type": PlaygroundValue.string(payloadToEncode.payloadType.rawValue),
+            "type": PlaygroundValue.string(payloadType!.rawValue),
         ]
         if let jsonData = jsonData {
             dict["data"] = PlaygroundValue.data(jsonData)
@@ -143,23 +123,17 @@ public enum EventMessage {
                     image: image
             )
         case .grayscaleFilterRequest:
-            guard case .data(let data) = dictionary["data"],
-                  let grayscaleFilterRequest = try? decoder.decode(GrayScaleFilterRequest.self, from: data) else {
-                return nil
-            }
-            return Self.grayscaleFilterRequest(
-                    enabled: grayscaleFilterRequest.enabled,
-                    image: image
-            )
+//            guard case .data(let data) = dictionary["data"],
+//                  let grayscaleFilterRequest = try? decoder.decode(GrayScaleFilterRequest.self, from: data) else {
+//                return nil
+//            }
+            return Self.grayscaleFilterRequest(image: image)
         case .equalizationRequest:
-            guard case .data(let data) = dictionary["data"],
-                  let equalizationRequest = try? decoder.decode(EqualizationRequest.self, from: data) else {
-                return nil
-            }
-            return Self.equalizationRequest(
-                    enabled: equalizationRequest.enabled,
-                    image: image
-            )
+//            guard case .data(let data) = dictionary["data"],
+//                  let equalizationRequest = try? decoder.decode(EqualizationRequest.self, from: data) else {
+//                return nil
+//            }
+            return Self.equalizationRequest(image: image)
         case .imageProcessingResponse:
             return Self.imageProcessingResponse(image: image)
         }

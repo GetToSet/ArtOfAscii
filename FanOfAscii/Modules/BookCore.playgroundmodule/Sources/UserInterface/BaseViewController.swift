@@ -29,7 +29,6 @@ public class BaseViewController: UIViewController, PlaygroundLiveViewSafeAreaCon
             assertionFailure("Segue had no identifier")
             return
         }
-
         switch identifier {
         case "embedImagePicker":
             let pickerController = segue.destination as! ImagePickerViewController

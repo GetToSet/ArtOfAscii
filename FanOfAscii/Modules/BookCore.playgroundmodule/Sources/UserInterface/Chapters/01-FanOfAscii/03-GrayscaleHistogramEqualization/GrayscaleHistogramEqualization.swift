@@ -29,18 +29,12 @@ public class GrayscaleHistogramEqualization: BaseViewController {
     }
 
     func requestGrayscaleFiltering() {
-        let payload = EventMessage.grayscaleFilterRequest(
-                enabled: grayscaleButton.state == .selected,
-                image: self.sourceImage
-        )
+        let payload = EventMessage.grayscaleFilterRequest(image: self.sourceImage)
         send(payload.playgroundValue)
     }
 
     func requestEqualizationFiltering() {
-        let payload = EventMessage.equalizationRequest(
-                enabled: equalizationButton.state == .selected,
-                image: self.sourceImage
-        )
+        let payload = EventMessage.equalizationRequest(image: self.sourceImage)
         send(payload.playgroundValue)
     }
 

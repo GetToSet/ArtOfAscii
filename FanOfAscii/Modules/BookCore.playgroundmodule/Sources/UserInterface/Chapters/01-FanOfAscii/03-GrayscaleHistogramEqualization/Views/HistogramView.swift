@@ -86,7 +86,7 @@ class HistogramView: UIView {
         let sampleCount = histogramVal.count
 
         let size = self.bounds.size
-        let padding = self.layer.borderWidth + 2.0
+        let padding = self.layer.borderWidth + 1.0
 
         let levelMax = CGFloat(histogramVal.reduce(0, ({ max($0, $1) })))
         let yVals: [CGFloat] = histogramVal.map {

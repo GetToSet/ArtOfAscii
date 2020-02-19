@@ -23,11 +23,11 @@ public extension RawImage {
         }
     }
 
-    func multiplyByMatrix(matrix4x4: [Float]) {
+    func multiplyByMatrix(matrix4x4: [Double]) {
         let divisor: Int32 = 0x1000
-        let fDivisor = Float(divisor)
+        let dDivisor = Double(divisor)
         var matrixInt16 = matrix4x4.map {
-            Int16($0 * fDivisor)
+            Int16($0 * dDivisor)
         }
         var buffer = getBuffer()
         vImageMatrixMultiply_ARGB8888(&buffer, &buffer, &matrixInt16, divisor, nil, nil, vImage_Flags(kvImageNoFlags))
