@@ -5,6 +5,7 @@
 
 import UIKit
 import Accelerate
+
 import BookCore
 
 public extension RawImage {
@@ -31,6 +32,27 @@ public extension RawImage {
         }
         var buffer = getBuffer()
         vImageMatrixMultiply_ARGB8888(&buffer, &buffer, &matrixInt16, divisor, nil, nil, vImage_Flags(kvImageNoFlags))
+    }
+
+    func scaled(width: Int, height: Int) -> RawImage? {
+        let bytesPerRow = width * 4
+        guard let dataPointer = malloc(width * bytesPerRow) else {
+            return nil
+        }
+        defer {
+            free(dataPointer)
+        }
+        var destBuffer = vImage_Buffer(
+                data: dataPointer,
+                height: UInt(height),
+                width: UInt(width),
+                rowBytes: bytesPerRow)
+
+        var buffer = getBuffer()
+        if vImageScale_ARGB8888(&buffer, &destBuffer, nil, vImage_Flags(kvImageHighQualityResampling)) != kvImageNoError {
+            return nil
+        }
+        return RawImage(buffer: destBuffer, bitmapInfo: format.bitmapInfo)
     }
 
 }

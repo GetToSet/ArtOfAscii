@@ -139,7 +139,7 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98D-lZ-h5L">
                                                                 <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
-                                                                <state key="normal" image="toolbar/button-magnifier"/>
+                                                                <state key="normal" image="toolbar/button-asciification"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                         <integer key="value" value="14"/>
@@ -250,8 +250,12 @@
                         <viewLayoutGuide key="safeArea" id="lGk-yz-UA3"/>
                     </view>
                     <connections>
+                        <outlet property="asciificationButton" destination="FeL-Ka-Clb" id="Fpo-vh-JqG"/>
                         <outlet property="backgroundImageView" destination="UH2-l5-vCP" id="xDE-G1-zJJ"/>
+                        <outlet property="preprocessButton" destination="yTe-sq-Kgh" id="8x2-lo-QEC"/>
+                        <outlet property="saveButton" destination="p9c-UH-CuW" id="6An-Kg-i41"/>
                         <outlet property="showcaseImageView" destination="Wp9-0k-ukX" id="kfN-OO-QCo"/>
+                        <outlet property="shrinkButton" destination="0dD-ke-fcd" id="XzG-As-Q2V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MSN-rQ-yzx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -881,6 +885,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="toolbar/button-asciification" width="96" height="96"/>
         <image name="toolbar/button-blue" width="48" height="48"/>
         <image name="toolbar/button-contrast" width="48" height="48"/>
         <image name="toolbar/button-grayscale" width="48" height="48"/>

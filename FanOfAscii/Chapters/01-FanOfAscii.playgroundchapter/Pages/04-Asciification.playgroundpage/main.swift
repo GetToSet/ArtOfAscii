@@ -23,7 +23,7 @@ characters.
 
 Here is a **character map** built with font “Fira Code”, by arranging characters to fit a gradient from white to black.
 
-
+（图）
 
 ## Downsampling
 
@@ -44,17 +44,8 @@ down an image, inorder to produce a smooth result.
 //#-code-completion(identifier, show, coefficientRed, coefficientGreen, coefficientBlue)
 //#-editable-code
 
-func applyGrayscaleFilter(rawImage: RawImage) {
-    let coefficientRed: Float = 0.2126
-    let coefficientGreen: Float = 0.7152
-    let coefficientBlue: Float = 0.0722
-    var filterMatrix: [Float] = [
-        <#T##Red##Double#>, <#T##Red##Double#>, <#T##Red##Double#>, 0,
-        <#T##Green##Double#>, <#T##Green##Double#>, <#T##Green##Double#>, 0,
-        <#T##Blue##Double#>, <#T##Blue##Double#>, <#T##Blue##Double#>, 0,
-        0, 0, 0, 1
-    ]
-    rawImage.multiplyByMatrix(matrix4x4: filterMatrix)
+func getShrunkenImage(rawImage: RawImage) -> RawImage? {
+    return rawImage.scaled(width: 100, height: 100)
 }
 
 //#-end-editable-code
@@ -70,7 +61,7 @@ func applyGrayscaleFilter(rawImage: RawImage) {
 */
 //#-editable-code
 
-func applyHistogramEqualization(rawImage: RawImage) {
+func applyAsciification(rawImage: RawImage) {
     guard let histogram = rawImage.calculateBrightnessHistogram() else {
         return
     }
@@ -91,7 +82,7 @@ func applyHistogramEqualization(rawImage: RawImage) {
     In this code snippet, we transform the image by multiplying it with a custom filter matrix. If you're not familiar
     with limier algebra, the following figure will explain how this transform matrix works.
 */
-//#-hidden-code
+////#-hidden-code
 let remoteView = remoteViewAsLiveViewProxy()
 let eventListener = EventListener(proxy: remoteView) { message in
     switch message {
@@ -99,16 +90,16 @@ let eventListener = EventListener(proxy: remoteView) { message in
         guard let rawImage = RawImage(uiImage: image) else {
             return
         }
-        applyHistogramEqualization(rawImage: rawImage);
         let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-        if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
+        if let destRawImage = getShrunkenImage(rawImage: rawImage),
+           let destCGImage = destRawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
             remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)
         }
     case .asciificationRequest(let image):
         guard let rawImage = RawImage(uiImage: image) else {
             return
         }
-        applyHistogramEqualization(rawImage: rawImage);
+        applyAsciification(rawImage: rawImage);
         let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
         if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
             remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)
@@ -117,4 +108,4 @@ let eventListener = EventListener(proxy: remoteView) { message in
         break
     }
 }
-//#-end-hidden-code
+////#-end-hidden-code

@@ -35,14 +35,29 @@ public class HowImagesComposedViewController: BaseViewController {
         updateMagnifierVisibility()
     }
 
-    func repositionMagnifier(centerInImageView: CGPoint) {
+    private func requestImageFiltering() {
+        let payload = EventMessage.rgbFilterRequest(
+                redEnabled: redFilterButton.state == .selected,
+                greenEnabled: greenFilterButton.state == .selected,
+                blueEnabled: blueFilterButton.state == .selected,
+                image: sourceImage
+        )
+        send(payload.playgroundValue)
+    }
+
+    private func repositionMagnifier(centerInImageView: CGPoint) {
         if let centerInImage = self.showcaseImageView.pointInImageFor(point: centerInImageView) {
             magnifierContainerView.magnificationCenter = centerInImage
         }
     }
 
-    func updateMagnifierVisibility() {
+    private func updateMagnifierVisibility() {
         magnifierContainerView.isHidden = magnifierButton.state == .normal
+    }
+
+    override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
+        super.didSelectImage(image: image, pickerController: pickerController)
+        requestImageFiltering()
     }
 
     override func updateShowcaseImage(image: UIImage) {
@@ -54,27 +69,13 @@ public class HowImagesComposedViewController: BaseViewController {
         }
     }
 
-    func requestImageFiltering() {
-        let payload = EventMessage.rgbFilterRequest(
-            redEnabled: redFilterButton.state == .selected,
-            greenEnabled: greenFilterButton.state == .selected,
-            blueEnabled: blueFilterButton.state == .selected,
-            image: sourceImage
-        )
-        send(payload.playgroundValue)
-    }
-
     override func toolBarButtonTapped(buttonView: ToolBarButtonView) {
-        if buttonView == magnifierButton {
+        switch buttonView {
+        case magnifierButton:
             updateMagnifierVisibility()
-        } else {
+        default:
             requestImageFiltering()
         }
-    }
-    
-    override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
-        super.didSelectImage(image: image, pickerController: pickerController)
-        requestImageFiltering()
     }
 
 }
