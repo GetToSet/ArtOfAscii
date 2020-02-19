@@ -13,10 +13,13 @@ class AsciificationLiveViewController: BaseViewController {
     @IBOutlet weak var asciificationButton: ToolBarButtonView!
     @IBOutlet weak var saveButton: ToolBarButtonView!
 
+    @IBOutlet weak var imageScaleButton: ScaleModeButton!
+
+    private var preprocessedImage: UIImage?
+
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        preprocessButton.state = .disabled
         preprocessButton.delegate = self
 
         shrinkButton.state = .disabled
@@ -27,9 +30,12 @@ class AsciificationLiveViewController: BaseViewController {
 
         saveButton.state = .disabled
         saveButton.delegate = self
+
+        imageScaleButton.buttonState = .expand
+        imageScaleButton.delegate = self
     }
 
-    private func applyPreprocessing() {
+    private func updatePreprocessedImage() {
         guard let rawImage = RawImage(uiImage: sourceImage) else {
             return
         }
@@ -38,21 +44,26 @@ class AsciificationLiveViewController: BaseViewController {
         guard let cgImage = rawImage.cgImage(bitmapInfo: bitmapInfo) else {
             return
         }
-        updateShowcaseImage(image: UIImage(cgImage: cgImage))
+        preprocessedImage = UIImage(cgImage: cgImage)
     }
 
-    private func requestFilteringIfNeeded() {
+    private func updateImageForButtonStates() {
         if asciificationButton.state == .selected {
-            let payload = EventMessage.asciificationRequest(image: showcaseImageView.image)
+            let payload = EventMessage.asciificationRequest(image: sourceImage)
             send(payload.playgroundValue)
         } else if shrinkButton.state == .selected {
-            let payload = EventMessage.shrinkingRequest(image: showcaseImageView.image)
+            let imageToShrink = preprocessButton.state == .selected ? preprocessedImage : sourceImage
+            let payload = EventMessage.shrinkingRequest(image: imageToShrink)
             send(payload.playgroundValue)
         } else if preprocessButton.state == .selected {
-            applyPreprocessing()
+            if let preprocessedImage = preprocessedImage {
+                updateShowcaseImage(image: preprocessedImage)
+            }
         } else if let image = sourceImage {
             updateShowcaseImage(image: image)
         }
+
+        imageScaleButton.isHidden = !(shrinkButton.state == .selected)
     }
 
     private func saveCurrentImage() {
@@ -61,28 +72,40 @@ class AsciificationLiveViewController: BaseViewController {
 
     override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
         super.didSelectImage(image: image, pickerController: pickerController)
-        requestFilteringIfNeeded()
+        updatePreprocessedImage()
+        updateImageForButtonStates()
     }
 
     override func toolBarButtonTapped(buttonView: ToolBarButtonView) {
         switch buttonView {
-        case preprocessButton:
-            shrinkButton.state = preprocessButton.state == .selected ? .normal : .disabled
-            asciificationButton.state = .disabled
-            saveButton.state = .disabled
-            requestFilteringIfNeeded()
-        case shrinkButton:
-            asciificationButton.state = shrinkButton.state == .selected ? .normal : .disabled
-            saveButton.state = .disabled
-            requestFilteringIfNeeded()
-        case asciificationButton:
-            saveButton.state = asciificationButton.state == .selected ? .normal : .disabled
-            requestFilteringIfNeeded()
         case saveButton:
             saveButton.state = .normal
             saveCurrentImage()
+            return
+        case asciificationButton:
+            saveButton.state = asciificationButton.state == .selected ? .normal : .disabled
+        case shrinkButton:
+            imageScaleButton.buttonState = .expand
         default:
             break
+        }
+        if buttonView == shrinkButton || buttonView == preprocessButton {
+            asciificationButton.state = preprocessButton.state == .selected && shrinkButton.state == .selected ? .normal : .disabled
+            saveButton.state = .disabled
+        }
+        updateImageForButtonStates()
+    }
+
+}
+
+extension AsciificationLiveViewController: ScaleModeButtonDelegate {
+
+    func didChangeButtonState(button: ScaleModeButton) {
+        switch button.buttonState {
+        case .shrink:
+            showcaseImageView.contentMode = .center
+        case .expand:
+            showcaseImageView.contentMode = .scaleAspectFit
         }
     }
 
@@ -106,19 +129,18 @@ extension AsciificationLiveViewController: PlaygroundLiveViewMessageHandler {
 
     public func liveViewMessageConnectionOpened() {
         preprocessButton.state = .normal
-        shrinkButton.state = .disabled
+        shrinkButton.state = .normal
         asciificationButton.state = .disabled
         saveButton.state = .disabled
-        if let image = sourceImage {
-            updateShowcaseImage(image: image)
-        }
+        updateImageForButtonStates()
     }
 
     public func liveViewMessageConnectionClosed() {
-        preprocessButton.state = .disabled
         shrinkButton.state = .disabled
         asciificationButton.state = .disabled
-        saveButton.state = .disabled
+        if saveButton.state != .normal {
+            saveButton.state = .disabled
+        }
     }
 
 }

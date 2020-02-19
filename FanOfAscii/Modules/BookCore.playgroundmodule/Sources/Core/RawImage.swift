@@ -57,7 +57,7 @@ public class RawImage {
     public init(buffer: vImage_Buffer, bitmapInfo: CGBitmapInfo) {
         self.format = ImageFormat(
                 width: Int(buffer.width),
-                height: Int(buffer.width),
+                height: Int(buffer.height),
                 bytesForRow: Int(buffer.rowBytes),
                 bitmapInfo: bitmapInfo)
         self.data = Data(bytes: buffer.data, count: format.bytesForRow * format.height) as CFData

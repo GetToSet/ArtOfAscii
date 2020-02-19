@@ -36,7 +36,7 @@ public extension RawImage {
 
     func scaled(width: Int, height: Int) -> RawImage? {
         let bytesPerRow = width * 4
-        guard let dataPointer = malloc(width * bytesPerRow) else {
+        guard let dataPointer = malloc(height * bytesPerRow) else {
             return nil
         }
         defer {

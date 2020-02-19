@@ -220,18 +220,39 @@
                                             <constraint firstAttribute="bottom" secondItem="gNW-Ur-722" secondAttribute="bottom" id="omZ-qT-WXX"/>
                                         </constraints>
                                     </view>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wp9-0k-ukX" customClass="ShowcaseImageView" customModule="BookCore">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKW-pB-l7K">
                                         <rect key="frame" x="24" y="24" width="762" height="948"/>
-                                    </imageView>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wp9-0k-ukX" customClass="ShowcaseImageView" customModule="BookCore">
+                                                <rect key="frame" x="0.0" y="0.0" width="762" height="948"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qve-J1-Zl0" customClass="ScaleModeButton" customModule="BookCore">
+                                                <rect key="frame" x="714" y="900" width="48" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="Icx-MX-cdA"/>
+                                                    <constraint firstAttribute="height" constant="48" id="hfW-gr-EML"/>
+                                                </constraints>
+                                                <state key="normal" image="float-button/expand"/>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Wp9-0k-ukX" secondAttribute="bottom" id="CBK-6j-i9q"/>
+                                            <constraint firstAttribute="bottom" secondItem="Qve-J1-Zl0" secondAttribute="bottom" id="SCx-lo-hRg"/>
+                                            <constraint firstItem="Wp9-0k-ukX" firstAttribute="top" secondItem="GKW-pB-l7K" secondAttribute="top" id="b3O-Mi-p6G"/>
+                                            <constraint firstItem="Wp9-0k-ukX" firstAttribute="leading" secondItem="GKW-pB-l7K" secondAttribute="leading" id="bRb-KF-hi3"/>
+                                            <constraint firstAttribute="trailing" secondItem="Qve-J1-Zl0" secondAttribute="trailing" id="lXZ-vi-bgl"/>
+                                            <constraint firstAttribute="trailing" secondItem="Wp9-0k-ukX" secondAttribute="trailing" id="xMl-Oq-SQM"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="EDp-r3-f55" firstAttribute="top" secondItem="Wp9-0k-ukX" secondAttribute="bottom" constant="24" id="1gg-Q8-amD"/>
                                     <constraint firstItem="EDp-r3-f55" firstAttribute="trailing" secondItem="yGm-wA-iqe" secondAttribute="trailingMargin" id="5Li-8T-EF3"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Wp9-0k-ukX" secondAttribute="trailing" id="Bl8-j7-xCL"/>
+                                    <constraint firstItem="GKW-pB-l7K" firstAttribute="top" secondItem="yGm-wA-iqe" secondAttribute="topMargin" id="FjS-7p-Wto"/>
                                     <constraint firstItem="EDp-r3-f55" firstAttribute="leading" secondItem="yGm-wA-iqe" secondAttribute="leadingMargin" id="JN6-uN-a5w"/>
-                                    <constraint firstItem="Wp9-0k-ukX" firstAttribute="leading" secondItem="yGm-wA-iqe" secondAttribute="leadingMargin" id="aN0-k5-ccl"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="GKW-pB-l7K" secondAttribute="trailing" id="f1s-G6-9CA"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="EDp-r3-f55" secondAttribute="bottom" id="fij-hC-ZAp"/>
-                                    <constraint firstItem="Wp9-0k-ukX" firstAttribute="top" secondItem="yGm-wA-iqe" secondAttribute="topMargin" id="gYm-xC-Lhc"/>
+                                    <constraint firstItem="GKW-pB-l7K" firstAttribute="leading" secondItem="yGm-wA-iqe" secondAttribute="leadingMargin" id="s21-4h-evE"/>
+                                    <constraint firstItem="EDp-r3-f55" firstAttribute="top" secondItem="GKW-pB-l7K" secondAttribute="bottom" constant="24" id="vw6-1o-bOQ"/>
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="24" left="24" bottom="12" right="24"/>
                             </view>
@@ -252,6 +273,7 @@
                     <connections>
                         <outlet property="asciificationButton" destination="FeL-Ka-Clb" id="Fpo-vh-JqG"/>
                         <outlet property="backgroundImageView" destination="UH2-l5-vCP" id="xDE-G1-zJJ"/>
+                        <outlet property="imageScaleButton" destination="Qve-J1-Zl0" id="dCo-cr-bSd"/>
                         <outlet property="preprocessButton" destination="yTe-sq-Kgh" id="8x2-lo-QEC"/>
                         <outlet property="saveButton" destination="p9c-UH-CuW" id="6An-Kg-i41"/>
                         <outlet property="showcaseImageView" destination="Wp9-0k-ukX" id="kfN-OO-QCo"/>
@@ -260,7 +282,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MSN-rQ-yzx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-219" y="787"/>
+            <point key="canvasLocation" x="-219.25925925925924" y="786.66666666666663"/>
         </scene>
         <!--imagePickerViewController-->
         <scene sceneID="GmK-cm-SKM">
@@ -885,6 +907,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="float-button/expand" width="48" height="48"/>
         <image name="toolbar/button-asciification" width="96" height="96"/>
         <image name="toolbar/button-blue" width="48" height="48"/>
         <image name="toolbar/button-contrast" width="48" height="48"/>
