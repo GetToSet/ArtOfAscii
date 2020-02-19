@@ -601,47 +601,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="G3C-hJ-f9L">
                                                 <rect key="frame" x="586" y="0.0" width="176" height="72"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F6f-wv-8ON" userLabel="Histogram Button" customClass="HistogramToolBarButtonView" customModule="BookCore">
-                                                        <rect key="frame" x="0.0" y="12" width="48" height="48"/>
-                                                        <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7u-XO-oPQ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
-                                                                <state key="normal" image="toolbar/button-histogram-luma"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="14"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="buttonTapped:" destination="C74-rF-v6n" eventType="touchUpInside" id="27f-rf-ATA"/>
-                                                                </connections>
-                                                            </button>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toolbar/icon-tick" translatesAutoresizingMaskIntoConstraints="NO" id="jvt-ez-jWV">
-                                                                <rect key="frame" x="32" y="32" width="16" height="16"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="16" id="FNW-Ub-zXf"/>
-                                                                    <constraint firstAttribute="height" constant="16" id="KEY-9D-CqG"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                        </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="jvt-ez-jWV" secondAttribute="trailing" id="3Tx-5u-PBN"/>
-                                                            <constraint firstAttribute="width" constant="48" id="AMU-L2-5Yw"/>
-                                                            <constraint firstItem="Y7u-XO-oPQ" firstAttribute="top" secondItem="F6f-wv-8ON" secondAttribute="top" id="YDF-PE-cR0"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Y7u-XO-oPQ" secondAttribute="trailing" id="auq-iC-59x"/>
-                                                            <constraint firstItem="Y7u-XO-oPQ" firstAttribute="leading" secondItem="F6f-wv-8ON" secondAttribute="leading" id="cW5-db-bZy"/>
-                                                            <constraint firstAttribute="bottom" secondItem="jvt-ez-jWV" secondAttribute="bottom" id="fJe-cg-fhZ"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Y7u-XO-oPQ" secondAttribute="bottom" id="n7f-wh-sHH"/>
-                                                            <constraint firstAttribute="height" constant="48" id="qX5-x8-MA5"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <outlet property="button" destination="Y7u-XO-oPQ" id="7Dq-d8-pOf"/>
-                                                            <outlet property="tickImageView" destination="jvt-ez-jWV" id="RGg-ab-e6t"/>
-                                                        </connections>
-                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5v-Yf-PwY" customClass="ToolBarButtonView" customModule="BookCore">
-                                                        <rect key="frame" x="64" y="12" width="48" height="48"/>
+                                                        <rect key="frame" x="0.0" y="12" width="48" height="48"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NaJ-pk-qld">
                                                                 <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
@@ -677,6 +638,45 @@
                                                         <connections>
                                                             <outlet property="button" destination="NaJ-pk-qld" id="Guj-dO-V6G"/>
                                                             <outlet property="tickImageView" destination="fPT-9k-iIX" id="4R8-Tr-rGq"/>
+                                                        </connections>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F6f-wv-8ON" userLabel="Histogram Button" customClass="HistogramToolBarButtonView" customModule="BookCore">
+                                                        <rect key="frame" x="64" y="12" width="48" height="48"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7u-XO-oPQ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                                <state key="normal" image="toolbar/button-histogram-luma"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="14"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="buttonTapped:" destination="C74-rF-v6n" eventType="touchUpInside" id="27f-rf-ATA"/>
+                                                                </connections>
+                                                            </button>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toolbar/icon-tick" translatesAutoresizingMaskIntoConstraints="NO" id="jvt-ez-jWV">
+                                                                <rect key="frame" x="32" y="32" width="16" height="16"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="16" id="FNW-Ub-zXf"/>
+                                                                    <constraint firstAttribute="height" constant="16" id="KEY-9D-CqG"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="jvt-ez-jWV" secondAttribute="trailing" id="3Tx-5u-PBN"/>
+                                                            <constraint firstAttribute="width" constant="48" id="AMU-L2-5Yw"/>
+                                                            <constraint firstItem="Y7u-XO-oPQ" firstAttribute="top" secondItem="F6f-wv-8ON" secondAttribute="top" id="YDF-PE-cR0"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Y7u-XO-oPQ" secondAttribute="trailing" id="auq-iC-59x"/>
+                                                            <constraint firstItem="Y7u-XO-oPQ" firstAttribute="leading" secondItem="F6f-wv-8ON" secondAttribute="leading" id="cW5-db-bZy"/>
+                                                            <constraint firstAttribute="bottom" secondItem="jvt-ez-jWV" secondAttribute="bottom" id="fJe-cg-fhZ"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Y7u-XO-oPQ" secondAttribute="bottom" id="n7f-wh-sHH"/>
+                                                            <constraint firstAttribute="height" constant="48" id="qX5-x8-MA5"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outlet property="button" destination="Y7u-XO-oPQ" id="7Dq-d8-pOf"/>
+                                                            <outlet property="tickImageView" destination="jvt-ez-jWV" id="RGg-ab-e6t"/>
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdH-F9-Hxo" customClass="ToolBarButtonView" customModule="BookCore">

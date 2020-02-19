@@ -40,7 +40,7 @@ down an image, inorder to produce a smooth result.
     Grayscale* button below the image to see whether it works.
 */
 //#-code-completion(everything, hide)
-//#-code-completion(literal, show, float, integer)
+//#-code-completion(literal, show, float, double, integer)
 //#-code-completion(identifier, show, coefficientRed, coefficientGreen, coefficientBlue)
 //#-editable-code
 
@@ -91,40 +91,24 @@ func applyHistogramEqualization(rawImage: RawImage) {
     In this code snippet, we transform the image by multiplying it with a custom filter matrix. If you're not familiar
     with limier algebra, the following figure will explain how this transform matrix works.
 */
-
 //#-hidden-code
 let remoteView = remoteViewAsLiveViewProxy()
 let eventListener = EventListener(proxy: remoteView) { message in
     switch message {
-    case .preprocessingRequest(let enabled, let image):
+    case .shrinkingRequest(let image):
         guard let rawImage = RawImage(uiImage: image) else {
             return
         }
-        if enabled == true {
-            applyGrayscaleFilter(rawImage: rawImage);
-        }
+        applyHistogramEqualization(rawImage: rawImage);
         let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
         if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
             remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)
         }
-    case .shrinkingRequest(let enabled, let image):
+    case .asciificationRequest(let image):
         guard let rawImage = RawImage(uiImage: image) else {
             return
         }
-        if enabled == true {
-            applyHistogramEqualization(rawImage: rawImage);
-        }
-        let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-        if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
-            remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)
-        }
-    case .asciificationRequest(let enabled, let image):
-        guard let rawImage = RawImage(uiImage: image) else {
-            return
-        }
-        if enabled == true {
-            applyHistogramEqualization(rawImage: rawImage);
-        }
+        applyHistogramEqualization(rawImage: rawImage);
         let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
         if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
             remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)

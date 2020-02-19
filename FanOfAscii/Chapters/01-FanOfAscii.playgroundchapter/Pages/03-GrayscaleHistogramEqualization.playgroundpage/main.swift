@@ -13,13 +13,13 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 
 //#-end-hidden-code
 /*:
-# Grayscale, Histogram & Equalization
+# Preprocessing: Grayscale, Histogram & Equalization
 
 ## Grayscale
 
-Converting the image into a *grayscaled* version is the first step to final ASCII art. This process involves
-transforming each pixel's red, green and blue value to their average, which can be done by multiplying a grayscale
-matrix.
+Converting the image into a *grayscaled* version is the first step to the final ASCII art. This process involves
+transforming each pixel's red, green and blue value to their average, which can be done by *multiplying a grayscale
+matrix*.
 
 According to researches, human eyes are way more sensitive to green than red and blue. To take this into consideration,
 a dedicated set of coefficients can be applied.
@@ -28,10 +28,10 @@ a dedicated set of coefficients can be applied.
 
 * Experiment:
     * You'll build a filter to turn an image into grayscaled version.
-    *Try completing following code snippet. Run your code and tap the *Grayscale* button to verify whether it works.
+    * Try completing following code snippet. Run your code and tap the *Grayscale* button to verify whether it works.
 */
 //#-code-completion(everything, hide)
-//#-code-completion(literal, show, float, integer)
+//#-code-completion(literal, show, float, double, integer)
 //#-code-completion(identifier, show, coefficientRed, coefficientGreen, coefficientBlue)
 //#-editable-code
 
@@ -56,22 +56,22 @@ Images with low contrast may produce ASCII arts that are hard to recognize, as t
 
 （图）
 
-**Histogram** is an effective tool for visualizing the distribution of tones in an image. The X axis represents the
-brightness and the Y axis represents the  number of pixels at that brightness value.
+**Histogram** is an effective tool for visualizing the distribution of tones in an image. The *X axis* represents *the
+brightness* while the *Y axis* represents *the number of pixels at a specific brightness value*.
 
 （图）
 
 ### 🔬Demystification of Histograms
 
 * Experiment:
-    * Choose an image and then tap 📊 to bring up the histogram. Tapping it again will show a histogram with separated
-    graph of red, green, and blue.
+    * Choose an image and then tap 📊 to bring up the histogram. Tapping it again to show histograms for seperated red,
+    green, and blue channel.
     * Try associating histograms with the distribution of tones and colors.
 
 ## Histogram Equalization
 
-**Histogram Equalization** is a widely used technique to enhance the contrast of images by *redistributing tones to full
-brightness range*, spreading out pixels with intense frequency.
+**Histogram Equalization** is a widely used technique to enhance the contrast of images by *redistributing tones to the
+whole brightness range*, spreading out pixels that has intense frequency.
 
 （图）
 
@@ -79,8 +79,11 @@ brightness range*, spreading out pixels with intense frequency.
 
 * Experiment:
     * You'll build a filter to apply **Histogram Equalization** to images
-    *Try completing following code snippet. Run your code and tap the *Equalization* button to verify whether it works.
+    * Try completing following code snippet. Run your code and tap the *contrast* button to verify whether it works.
 */
+//#-code-completion(everything, hide)
+//#-code-completion(literal, show, float, double, integer)
+//#-code-completion(identifier, show, pixelCumulative, pixelTotal, Double())
 //#-editable-code
 
 func applyHistogramEqualization(rawImage: RawImage) {
@@ -92,19 +95,18 @@ func applyHistogramEqualization(rawImage: RawImage) {
     let pixelTotal = rawImage.format.pixelCount
     var pixelCumulative: UInt = 0
 
-    // For most images, we can assume that it has 8-bit color depth, result 256 brightness levels
+    // For most images, we can assume that it has 8-bit color depth, resulting 256 brightness levels
     for i in 0..<256 {
-        // Histogram value represents the pixel count at current brightness level
-        // Add current pixel count to the cumulative pixel count
+        // Histogram value represents the pixel count at current brightness level.
+        // Add current pixel count to the cumulative pixel count.
         pixelCumulative += histogram[i]
-        // Calculates the cumulative pixel frequency (CPF) as cumulative pixel count divided by total pixel count
+        // Calculates the cumulative pixel frequency (CPF) as cumulative pixel count divided by total pixel count.
         let cumulativePixelFrequency = <#T##cumulativeFrequency##Double#>
 
-        // Map current brightness to full range according current CPF value
+        // Map current brightness to full range according current CPF value.
         let equalizedBrightness = cumulativePixelFrequency * 255.0
         equalizationMap[i] = UInt8(equalizedBrightness.rounded())
     }
-
     rawImage.applyBrightnessMap(equalizationMap)
 }
 
@@ -113,24 +115,20 @@ func applyHistogramEqualization(rawImage: RawImage) {
 let remoteView = remoteViewAsLiveViewProxy()
 let eventListener = EventListener(proxy: remoteView) { message in
     switch message {
-    case .grayscaleFilterRequest(let enabled, let image):
+    case .grayscaleFilterRequest(let image):
         guard let rawImage = RawImage(uiImage: image) else {
             return
         }
-        if enabled == true {
-            applyGrayscaleFilter(rawImage: rawImage);
-        }
+        applyGrayscaleFilter(rawImage: rawImage);
         let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
         if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
             remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)
         }
-    case .equalizationRequest(let enabled, let image):
+    case .equalizationRequest(let image):
         guard let rawImage = RawImage(uiImage: image) else {
             return
         }
-        if enabled == true {
-            applyHistogramEqualization(rawImage: rawImage);
-        }
+        applyHistogramEqualization(rawImage: rawImage);
         let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
         if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
             remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)
