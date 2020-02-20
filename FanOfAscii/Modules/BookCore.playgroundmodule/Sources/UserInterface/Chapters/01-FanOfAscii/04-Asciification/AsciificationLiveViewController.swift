@@ -62,16 +62,21 @@ class AsciificationLiveViewController: BaseViewController {
         } else if let image = sourceImage {
             updateShowcaseImage(image: image)
         }
-
-        imageScaleButton.isHidden = !(shrinkButton.state == .selected)
+        imageScaleButton.isHidden = !(shrinkButton.state == .selected && asciificationButton.state == .normal)
     }
 
     private func saveCurrentImage() {
-
+        if let imageToSave = showcaseImageView.image {
+            UIImageWriteToSavedPhotosAlbum(imageToSave, self, #selector(didSaveImage(image:didFinishSavingWithError:contextInfo:)), nil)
+        }
     }
 
     override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
         super.didSelectImage(image: image, pickerController: pickerController)
+        if asciificationButton.state == .selected {
+            asciificationButton.state = .normal
+            saveButton.state = .disabled
+        }
         updatePreprocessedImage()
         updateImageForButtonStates()
     }
@@ -94,6 +99,12 @@ class AsciificationLiveViewController: BaseViewController {
             saveButton.state = .disabled
         }
         updateImageForButtonStates()
+    }
+
+    @objc func didSaveImage(image: UIImage, didFinishSavingWithError error: Error, contextInfo: UnsafeMutableRawPointer?) {
+        let alert = UIAlertController(title: "Congratulations!", message: "Your ASCII art has been save to photo album.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        self.present(alert, animated: true, completion: nil)
     }
 
 }

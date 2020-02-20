@@ -103,7 +103,7 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehc-7p-QnD">
                                                                 <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
-                                                                <state key="normal" image="toolbar/button-histogram-shrink"/>
+                                                                <state key="normal" image="toolbar/button-shrink"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                         <integer key="value" value="14"/>
@@ -175,7 +175,7 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3B-qz-drT">
                                                                 <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
-                                                                <state key="normal" image="toolbar/button-histogram-export"/>
+                                                                <state key="normal" image="toolbar/button-save"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                         <integer key="value" value="14"/>
@@ -886,11 +886,11 @@
         <image name="toolbar/button-contrast" width="48" height="48"/>
         <image name="toolbar/button-grayscale" width="48" height="48"/>
         <image name="toolbar/button-green" width="48" height="48"/>
-        <image name="toolbar/button-histogram-export" width="48" height="48"/>
         <image name="toolbar/button-histogram-luma" width="48" height="48"/>
-        <image name="toolbar/button-histogram-shrink" width="48" height="48"/>
         <image name="toolbar/button-magnifier" width="48" height="48"/>
         <image name="toolbar/button-red" width="48" height="48"/>
+        <image name="toolbar/button-save" width="48" height="48"/>
+        <image name="toolbar/button-shrink" width="48" height="48"/>
         <image name="toolbar/icon-tick" width="24" height="24"/>
     </resources>
 </document>

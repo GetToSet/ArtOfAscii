@@ -17,14 +17,12 @@ class MagnifierView: UIView {
 
     var image: UIImage = UIImage() {
         didSet {
-            if let provider = image.cgImage?.dataProvider {
-                imageRawData = provider.data
-            }
+            rawImage = RawImage(uiImage: image)
             self.setNeedsDisplay()
         }
     }
 
-    private var imageRawData: CFData?
+    private var rawImage: RawImage?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,8 +37,8 @@ class MagnifierView: UIView {
 
     override func draw(_ rect: CGRect) {
         guard
-            let center = magnificationCenter,
-            let rawData = imageRawData else {
+                let center = magnificationCenter,
+                let rawImage = rawImage else {
             return
         }
 
@@ -56,7 +54,9 @@ class MagnifierView: UIView {
             for x in 0..<samplePixels {
                 let ix = x + Int(croppingRect.minX)
                 let iy = y + Int(croppingRect.minY)
-                let pixelColor: UIColor = pixelColorAt(x: ix, y: iy, rawData: rawData, size: image.size) ?? .black
+
+                var pixel = rawImage.pixelAt(x: ix, y: iy)
+                let pixelColor: UIColor = pixel?.uiColor ?? .black
 
                 context.setFillColor(pixelColor.cgColor)
                 context.fill(CGRect(x: x * pixelSize, y: y * pixelSize, width: pixelSize, height: pixelSize))
@@ -73,24 +73,6 @@ class MagnifierView: UIView {
         context.setStrokeColor(UIColor.white.cgColor)
         context.stroke(CGRect(x: mid * pixelSize, y: 0, width: pixelSize, height: pixelSize * samplePixels))
         context.stroke(CGRect(x: 0, y: mid * pixelSize, width: pixelSize * samplePixels, height: pixelSize))
-    }
-
-    func pixelColorAt(x: Int, y: Int, rawData: CFData, size: CGSize) -> UIColor? {
-        if x < 0 || x > Int(size.width) || y < 0 || y > Int(size.height) {
-            return nil
-        }
-
-        let data = CFDataGetBytePtr(rawData)
-
-        let numberOfComponents = 4
-        let pixelData = ((Int(size.width) * y) + x) * numberOfComponents
-
-        let r = CGFloat(data![pixelData]) / 255.0
-        let g = CGFloat(data![pixelData + 1]) / 255.0
-        let b = CGFloat(data![pixelData + 2]) / 255.0
-        let a = CGFloat(data![pixelData + 3]) / 255.0
-
-        return UIColor(red: r, green: g, blue: b, alpha: a)
     }
 
 }
