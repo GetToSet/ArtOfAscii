@@ -17,7 +17,6 @@
 		5EBEC2F0205B399300975D3F /* LiveViewHost.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBEC2EF205B396500975D3F /* LiveViewHost.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EF2F97C2054B6E400191409 /* ManifestPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EF2F97E2054B6E400191409 /* ManifestPlist.strings */; };
 		5EF2F9B72054E6FB00191409 /* Chapters in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5EF2F9B62054E6F900191409 /* Chapters */; };
-		715BBA5E23FD5CE500B7F2EA /* ScaleModeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F663496CD65358ABF6DD3 /* ScaleModeButton.swift */; };
 		7174D39523F7CB5500A09FFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174D39423F7CB5500A09FFB /* AppDelegate.swift */; };
 		7174D39723F7CBCF00A09FFB /* LiveView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7174D39623F7CBCF00A09FFB /* LiveView.storyboard */; };
 		7174D3B223F7D0D100A09FFB /* cat-thumb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7174D3A623F7D0D000A09FFB /* cat-thumb.jpg */; };
@@ -33,26 +32,27 @@
 		7174D3BC23F7D0D100A09FFB /* woman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7174D3B023F7D0D100A09FFB /* woman.jpg */; };
 		7174D3BD23F7D0D100A09FFB /* imagePickerList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7174D3B123F7D0D100A09FFB /* imagePickerList.plist */; };
 		71BA4ED823FE31BA00788A11 /* FiraCode-VF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71BA4ED723FE31BA00788A11 /* FiraCode-VF.ttf */; };
-		71DD3E6523F79B2E001510FB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6423F79B2E001510FB /* BaseViewController.swift */; };
-		71DD3E6723F79B42001510FB /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6623F79B42001510FB /* ImagePickerViewController.swift */; };
-		71DD3E6B23F79B61001510FB /* ImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6A23F79B61001510FB /* ImagePickerCollectionViewCell.swift */; };
-		71DD3E6F23F79B99001510FB /* ToolBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6E23F79B99001510FB /* ToolBarButtonView.swift */; };
-		71DD3E7223F79BA7001510FB /* ShowcaseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E7123F79BA6001510FB /* ShowcaseImageView.swift */; };
-		71DD3E7523F79BCC001510FB /* UIColor+StateColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E7423F79BCC001510FB /* UIColor+StateColors.swift */; };
-		71DD3E7823F79C12001510FB /* ImagePickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E7723F79C12001510FB /* ImagePickerDataSource.swift */; };
-		71DEC1B023F7A21E0091A700 /* IntroductionLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1AF23F7A21E0091A700 /* IntroductionLiveViewController.swift */; };
-		71DEC1CB23F7A2650091A700 /* GrayscaleHistogramEqualization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1B523F7A2650091A700 /* GrayscaleHistogramEqualization.swift */; };
-		71DEC1CC23F7A2650091A700 /* HistogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1B823F7A2650091A700 /* HistogramView.swift */; };
-		71DEC1CD23F7A2650091A700 /* MoreToPlayLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1BA23F7A2650091A700 /* MoreToPlayLiveViewController.swift */; };
-		71DEC1CE23F7A2650091A700 /* AsciificationLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1BC23F7A2650091A700 /* AsciificationLiveViewController.swift */; };
-		71DEC1CF23F7A2650091A700 /* HowImagesComposedLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1C623F7A2650091A700 /* HowImagesComposedLiveViewController.swift */; };
-		71DEC1D023F7A2650091A700 /* MagnifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1C923F7A2650091A700 /* MagnifierView.swift */; };
-		71DEC1D123F7A2650091A700 /* MagnivierContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEC1CA23F7A2650091A700 /* MagnivierContainerView.swift */; };
-		B99F65AFB26EB594CB93907A /* LiveViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6FD81E6E75DB6431E464 /* LiveViewSupport.swift */; };
-		B99F67C4D724AFB466764588 /* EventMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F690329A69DB98C409E4F /* EventMessage.swift */; };
-		B99F68596E1179A84DCBD4EA /* RawImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6B71C3A282EFD57BC829 /* RawImage.swift */; };
-		B99F698C51828CE1EDB67F31 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F62E8DB3B358AE077D14A /* EventListener.swift */; };
-		B99F6F92FC79077F0AF4C414 /* HistogramToolBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F60BCF4AD4401FD95EBC5 /* HistogramToolBarButtonView.swift */; };
+		B99F60BD727AA847C9846C2B /* IntroductionLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6C47683919CCE440B901 /* IntroductionLiveViewController.swift */; };
+		B99F618160CD0C4E04B0A759 /* LiveViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6D807B507CFEA417C45F /* LiveViewSupport.swift */; };
+		B99F618E497E728524D63AF8 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F62ACBBE87D8546FAB866 /* EventListener.swift */; };
+		B99F61C26CBC8AF1349C8C12 /* MagnivierContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6180FC417C8E454D3884 /* MagnivierContainerView.swift */; };
+		B99F62A628D4A47F72E23E1D /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F61225990694C8BFFFE09 /* ImagePickerViewController.swift */; };
+		B99F62B87841F45684E06F7A /* EventMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6CAEBCFD81D53A0F32C3 /* EventMessage.swift */; };
+		B99F62C10DF5FE5C2DFEB8ED /* HistogramToolBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F60791EAC8292C8B51B84 /* HistogramToolBarButtonView.swift */; };
+		B99F639B7680E4364A3F18F0 /* ToolBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F68271AC771FBF80CA432 /* ToolBarButtonView.swift */; };
+		B99F6400E1E57AF2E5AB4976 /* ImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6C77380C3A46808255C9 /* ImagePickerCollectionViewCell.swift */; };
+		B99F649C83DCDA708FA85400 /* ScaleModeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F61BE43A6CBB41B9BFCD8 /* ScaleModeButton.swift */; };
+		B99F65EBA0B2B605EAF4B0D9 /* UIColor+StateColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6CB6047723F571693553 /* UIColor+StateColors.swift */; };
+		B99F6661C523F8C8DE0DDEEA /* ImagePickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F631926D4B8AD201E3DD2 /* ImagePickerDataSource.swift */; };
+		B99F667D9B395E5B8D7D009C /* HowImagesComposedLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6FBCBB7C87C44037A51B /* HowImagesComposedLiveViewController.swift */; };
+		B99F68354B7C7C5D52AD682E /* MagnifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F64CAABEA6101CC151AF8 /* MagnifierView.swift */; };
+		B99F6905CE4227EDEC115B4C /* FontResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6F739FC0DC4F69F5CB92 /* FontResourceProvider.swift */; };
+		B99F69BA9A50EADC8DDB92CD /* GrayscaleHistogramEqualization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6CC1193D0E69300D0D2F /* GrayscaleHistogramEqualization.swift */; };
+		B99F6A15C952EC6F71AB4F5A /* HistogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6E12676EC7E0300F4493 /* HistogramView.swift */; };
+		B99F6B218BB1EDDCF5A1BEDA /* RawImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6B123B049D4EA47A5C4E /* RawImage.swift */; };
+		B99F6E509D271A941D4E9790 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F67522B8AAEFB8CBEA97E /* BaseViewController.swift */; };
+		B99F6ED14C4977D2A3E4D777 /* AsciificationLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6F2E46F37F90D14137A6 /* AsciificationLiveViewController.swift */; };
+		B99F6FC1FADCC9AC46C012FA /* ShowcaseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6B6D40ADAA92C7D6AEE1 /* ShowcaseImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -181,29 +181,29 @@
 		7174D3B023F7D0D100A09FFB /* woman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = woman.jpg; sourceTree = "<group>"; };
 		7174D3B123F7D0D100A09FFB /* imagePickerList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = imagePickerList.plist; sourceTree = "<group>"; };
 		71BA4ED723FE31BA00788A11 /* FiraCode-VF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraCode-VF.ttf"; sourceTree = "<group>"; };
-		71DD3E6423F79B2E001510FB /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		71DD3E6623F79B42001510FB /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
-		71DD3E6A23F79B61001510FB /* ImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
-		71DD3E6E23F79B99001510FB /* ToolBarButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarButtonView.swift; sourceTree = "<group>"; };
-		71DD3E7123F79BA6001510FB /* ShowcaseImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowcaseImageView.swift; sourceTree = "<group>"; };
-		71DD3E7423F79BCC001510FB /* UIColor+StateColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+StateColors.swift"; sourceTree = "<group>"; };
-		71DD3E7723F79C12001510FB /* ImagePickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerDataSource.swift; sourceTree = "<group>"; };
-		71DEC1AF23F7A21E0091A700 /* IntroductionLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroductionLiveViewController.swift; sourceTree = "<group>"; };
-		71DEC1B523F7A2650091A700 /* GrayscaleHistogramEqualization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayscaleHistogramEqualization.swift; sourceTree = "<group>"; };
-		71DEC1B823F7A2650091A700 /* HistogramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistogramView.swift; sourceTree = "<group>"; };
-		71DEC1BA23F7A2650091A700 /* MoreToPlayLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreToPlayLiveViewController.swift; sourceTree = "<group>"; };
-		71DEC1BC23F7A2650091A700 /* AsciificationLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciificationLiveViewController.swift; sourceTree = "<group>"; };
-		71DEC1C623F7A2650091A700 /* HowImagesComposedLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowImagesComposedLiveViewController.swift; sourceTree = "<group>"; };
-		71DEC1C923F7A2650091A700 /* MagnifierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnifierView.swift; sourceTree = "<group>"; };
-		71DEC1CA23F7A2650091A700 /* MagnivierContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnivierContainerView.swift; sourceTree = "<group>"; };
-		B99F609D7C49788B520D9C59 /* RawImage+BookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawImage+BookAPI.swift"; sourceTree = "<group>"; };
-		B99F60BCF4AD4401FD95EBC5 /* HistogramToolBarButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistogramToolBarButtonView.swift; sourceTree = "<group>"; };
-		B99F62E8DB3B358AE077D14A /* EventListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
-		B99F637C5458278C25E4287E /* FireCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireCode.swift; sourceTree = "<group>"; };
-		B99F663496CD65358ABF6DD3 /* ScaleModeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleModeButton.swift; sourceTree = "<group>"; };
-		B99F690329A69DB98C409E4F /* EventMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMessage.swift; sourceTree = "<group>"; };
-		B99F6B71C3A282EFD57BC829 /* RawImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawImage.swift; sourceTree = "<group>"; };
-		B99F6FD81E6E75DB6431E464 /* LiveViewSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewSupport.swift; sourceTree = "<group>"; };
+		B99F60791EAC8292C8B51B84 /* HistogramToolBarButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistogramToolBarButtonView.swift; sourceTree = "<group>"; };
+		B99F61225990694C8BFFFE09 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
+		B99F6180FC417C8E454D3884 /* MagnivierContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnivierContainerView.swift; sourceTree = "<group>"; };
+		B99F61BE43A6CBB41B9BFCD8 /* ScaleModeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleModeButton.swift; sourceTree = "<group>"; };
+		B99F62ACBBE87D8546FAB866 /* EventListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
+		B99F631926D4B8AD201E3DD2 /* ImagePickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerDataSource.swift; sourceTree = "<group>"; };
+		B99F6337FA0E5673FC85EE91 /* AsciiArtRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciiArtRenderer.swift; sourceTree = "<group>"; };
+		B99F64CAABEA6101CC151AF8 /* MagnifierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnifierView.swift; sourceTree = "<group>"; };
+		B99F6648091CC93CB6693447 /* RawImage+BookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawImage+BookAPI.swift"; sourceTree = "<group>"; };
+		B99F67522B8AAEFB8CBEA97E /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		B99F68271AC771FBF80CA432 /* ToolBarButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarButtonView.swift; sourceTree = "<group>"; };
+		B99F6B123B049D4EA47A5C4E /* RawImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawImage.swift; sourceTree = "<group>"; };
+		B99F6B6D40ADAA92C7D6AEE1 /* ShowcaseImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowcaseImageView.swift; sourceTree = "<group>"; };
+		B99F6C47683919CCE440B901 /* IntroductionLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroductionLiveViewController.swift; sourceTree = "<group>"; };
+		B99F6C77380C3A46808255C9 /* ImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		B99F6CAEBCFD81D53A0F32C3 /* EventMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMessage.swift; sourceTree = "<group>"; };
+		B99F6CB6047723F571693553 /* UIColor+StateColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+StateColors.swift"; sourceTree = "<group>"; };
+		B99F6CC1193D0E69300D0D2F /* GrayscaleHistogramEqualization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayscaleHistogramEqualization.swift; sourceTree = "<group>"; };
+		B99F6D807B507CFEA417C45F /* LiveViewSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewSupport.swift; sourceTree = "<group>"; };
+		B99F6E12676EC7E0300F4493 /* HistogramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistogramView.swift; sourceTree = "<group>"; };
+		B99F6F2E46F37F90D14137A6 /* AsciificationLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciificationLiveViewController.swift; sourceTree = "<group>"; };
+		B99F6F739FC0DC4F69F5CB92 /* FontResourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontResourceProvider.swift; sourceTree = "<group>"; };
+		B99F6FBCBB7C87C44037A51B /* HowImagesComposedLiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowImagesComposedLiveViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,48 +297,13 @@
 			path = ConfigFiles;
 			sourceTree = "<group>";
 		};
-		5E6F7E5A2367B621008CC191 /* BookAPI.playgroundmodule */ = {
-			isa = PBXGroup;
-			children = (
-				5E6F7E5B2367B632008CC191 /* Sources */,
-			);
-			path = BookAPI.playgroundmodule;
-			sourceTree = "<group>";
-		};
-		5E6F7E5B2367B632008CC191 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				B99F6007C2876F92EC387C15 /* Core */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
 		5E70679B23678D810094BDEF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				5E70679C23678D8A0094BDEF /* BookCore.playgroundmodule */,
-				5E6F7E5A2367B621008CC191 /* BookAPI.playgroundmodule */,
+				B99F626D578DA522EBE53E95 /* BookCore.playgroundmodule */,
+				B99F6C96D9CA4CFE1377BF2C /* BookAPI.playgroundmodule */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		5E70679C23678D8A0094BDEF /* BookCore.playgroundmodule */ = {
-			isa = PBXGroup;
-			children = (
-				5E70679D23678DA00094BDEF /* Sources */,
-			);
-			path = BookCore.playgroundmodule;
-			sourceTree = "<group>";
-		};
-		5E70679D23678DA00094BDEF /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				B99F60A12984286D1D1792F5 /* Core */,
-				71DD3E7323F79BC5001510FB /* Utils */,
-				71DD3E7623F79BFC001510FB /* DataSource */,
-				71DD3E6C23F79B70001510FB /* UserInterface */,
-			);
-			path = Sources;
 			sourceTree = "<group>";
 		};
 		5EA2E3BE2056F35A00416A35 /* LiveViewTestApp */ = {
@@ -423,166 +388,193 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		71DD3E6923F79B55001510FB /* ImagePicker */ = {
+		B99F601267ED4E96A889A334 /* Chapters */ = {
 			isa = PBXGroup;
 			children = (
-				71DD3E6623F79B42001510FB /* ImagePickerViewController.swift */,
-				71DD3E6A23F79B61001510FB /* ImagePickerCollectionViewCell.swift */,
-			);
-			path = ImagePicker;
-			sourceTree = "<group>";
-		};
-		71DD3E6C23F79B70001510FB /* UserInterface */ = {
-			isa = PBXGroup;
-			children = (
-				71DD3E6423F79B2E001510FB /* BaseViewController.swift */,
-				71DD3E6923F79B55001510FB /* ImagePicker */,
-				71DD3E6D23F79B7F001510FB /* ToolBar */,
-				71DD3E7023F79B9E001510FB /* ShowcaseImageView */,
-				71DEC1A623F79F820091A700 /* Chapters */,
-			);
-			path = UserInterface;
-			sourceTree = "<group>";
-		};
-		71DD3E6D23F79B7F001510FB /* ToolBar */ = {
-			isa = PBXGroup;
-			children = (
-				71DD3E6E23F79B99001510FB /* ToolBarButtonView.swift */,
-			);
-			path = ToolBar;
-			sourceTree = "<group>";
-		};
-		71DD3E7023F79B9E001510FB /* ShowcaseImageView */ = {
-			isa = PBXGroup;
-			children = (
-				71DD3E7123F79BA6001510FB /* ShowcaseImageView.swift */,
-			);
-			path = ShowcaseImageView;
-			sourceTree = "<group>";
-		};
-		71DD3E7323F79BC5001510FB /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				71DD3E7423F79BCC001510FB /* UIColor+StateColors.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		71DD3E7623F79BFC001510FB /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				71DD3E7723F79C12001510FB /* ImagePickerDataSource.swift */,
-			);
-			path = DataSource;
-			sourceTree = "<group>";
-		};
-		71DEC1A623F79F820091A700 /* Chapters */ = {
-			isa = PBXGroup;
-			children = (
-				71DEC1AD23F7A1710091A700 /* 01-FanOfAscii */,
+				B99F6F398ED7C56EACBBE1BC /* 01-FanOfAscii */,
 			);
 			path = Chapters;
 			sourceTree = "<group>";
 		};
-		71DEC1AD23F7A1710091A700 /* 01-FanOfAscii */ = {
+		B99F62326A2485B558450DE2 /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				71DEC1AE23F7A21E0091A700 /* 01-Introduction */,
-				71DEC1BD23F7A2650091A700 /* 02-HowImagesComposed */,
-				71DEC1B123F7A2650091A700 /* 03-GrayscaleHistogramEqualization */,
-				71DEC1BB23F7A2650091A700 /* 04-Asciification */,
-				71DEC1B923F7A2650091A700 /* 05-MoreToPlay */,
+				B99F61225990694C8BFFFE09 /* ImagePickerViewController.swift */,
+				B99F6C77380C3A46808255C9 /* ImagePickerCollectionViewCell.swift */,
 			);
-			path = "01-FanOfAscii";
+			path = ImagePicker;
 			sourceTree = "<group>";
 		};
-		71DEC1AE23F7A21E0091A700 /* 01-Introduction */ = {
+		B99F626D578DA522EBE53E95 /* BookCore.playgroundmodule */ = {
 			isa = PBXGroup;
 			children = (
-				71DEC1AF23F7A21E0091A700 /* IntroductionLiveViewController.swift */,
+				B99F6565BBD6409ECA1863B0 /* Sources */,
 			);
-			path = "01-Introduction";
+			path = BookCore.playgroundmodule;
 			sourceTree = "<group>";
 		};
-		71DEC1B123F7A2650091A700 /* 03-GrayscaleHistogramEqualization */ = {
+		B99F62F696DFB8FFD9946214 /* 02-HowImagesComposed */ = {
 			isa = PBXGroup;
 			children = (
-				71DEC1B523F7A2650091A700 /* GrayscaleHistogramEqualization.swift */,
-				71DEC1B723F7A2650091A700 /* Views */,
-			);
-			path = "03-GrayscaleHistogramEqualization";
-			sourceTree = "<group>";
-		};
-		71DEC1B723F7A2650091A700 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				71DEC1B823F7A2650091A700 /* HistogramView.swift */,
-				B99F60BCF4AD4401FD95EBC5 /* HistogramToolBarButtonView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		71DEC1B923F7A2650091A700 /* 05-MoreToPlay */ = {
-			isa = PBXGroup;
-			children = (
-				71DEC1BA23F7A2650091A700 /* MoreToPlayLiveViewController.swift */,
-			);
-			path = "05-MoreToPlay";
-			sourceTree = "<group>";
-		};
-		71DEC1BB23F7A2650091A700 /* 04-Asciification */ = {
-			isa = PBXGroup;
-			children = (
-				71DEC1BC23F7A2650091A700 /* AsciificationLiveViewController.swift */,
-				B99F6A86807C4BCF310999E4 /* Views */,
-			);
-			path = "04-Asciification";
-			sourceTree = "<group>";
-		};
-		71DEC1BD23F7A2650091A700 /* 02-HowImagesComposed */ = {
-			isa = PBXGroup;
-			children = (
-				71DEC1C623F7A2650091A700 /* HowImagesComposedLiveViewController.swift */,
-				71DEC1C723F7A2650091A700 /* Views */,
+				B99F6FBCBB7C87C44037A51B /* HowImagesComposedLiveViewController.swift */,
+				B99F6C1C863B1F76C5D9139D /* Views */,
 			);
 			path = "02-HowImagesComposed";
 			sourceTree = "<group>";
 		};
-		71DEC1C723F7A2650091A700 /* Views */ = {
+		B99F64119B36315AE8FAFAE3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				71DEC1C923F7A2650091A700 /* MagnifierView.swift */,
-				71DEC1CA23F7A2650091A700 /* MagnivierContainerView.swift */,
+				B99F68A75310EEBB0FB9E53E /* Core */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		B99F6565BBD6409ECA1863B0 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B99F68A240FBE29591D96212 /* Core */,
+				B99F69A4BA261552C3989CF5 /* Utils */,
+				B99F6D23FE8B41BA5E133703 /* DataSource */,
+				B99F6882F96F0425E58B3030 /* UserInterface */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		B99F663B7C83FE7063131425 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B99F61BE43A6CBB41B9BFCD8 /* ScaleModeButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		B99F6007C2876F92EC387C15 /* Core */ = {
+		B99F66452C9CD1271500D201 /* 03-GrayscaleHistogramEqualization */ = {
 			isa = PBXGroup;
 			children = (
-				B99F62E8DB3B358AE077D14A /* EventListener.swift */,
-				B99F609D7C49788B520D9C59 /* RawImage+BookAPI.swift */,
-				B99F637C5458278C25E4287E /* FireCode.swift */,
+				B99F6CC1193D0E69300D0D2F /* GrayscaleHistogramEqualization.swift */,
+				B99F6E11B80683FD314143D4 /* Views */,
+			);
+			path = "03-GrayscaleHistogramEqualization";
+			sourceTree = "<group>";
+		};
+		B99F6882F96F0425E58B3030 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				B99F67522B8AAEFB8CBEA97E /* BaseViewController.swift */,
+				B99F62326A2485B558450DE2 /* ImagePicker */,
+				B99F6935314A17659D6F4387 /* ToolBar */,
+				B99F6931A885E93A1A2490B6 /* ShowcaseImageView */,
+				B99F601267ED4E96A889A334 /* Chapters */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		B99F68A240FBE29591D96212 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B99F6CAEBCFD81D53A0F32C3 /* EventMessage.swift */,
+				B99F6D807B507CFEA417C45F /* LiveViewSupport.swift */,
+				B99F6B123B049D4EA47A5C4E /* RawImage.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		B99F60A12984286D1D1792F5 /* Core */ = {
+		B99F68A75310EEBB0FB9E53E /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B99F690329A69DB98C409E4F /* EventMessage.swift */,
-				B99F6FD81E6E75DB6431E464 /* LiveViewSupport.swift */,
-				B99F6B71C3A282EFD57BC829 /* RawImage.swift */,
+				B99F62ACBBE87D8546FAB866 /* EventListener.swift */,
+				B99F6648091CC93CB6693447 /* RawImage+BookAPI.swift */,
+				B99F6F739FC0DC4F69F5CB92 /* FontResourceProvider.swift */,
+				B99F6337FA0E5673FC85EE91 /* AsciiArtRenderer.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		B99F6A86807C4BCF310999E4 /* Views */ = {
+		B99F6931A885E93A1A2490B6 /* ShowcaseImageView */ = {
 			isa = PBXGroup;
 			children = (
-				B99F663496CD65358ABF6DD3 /* ScaleModeButton.swift */,
+				B99F6B6D40ADAA92C7D6AEE1 /* ShowcaseImageView.swift */,
+			);
+			path = ShowcaseImageView;
+			sourceTree = "<group>";
+		};
+		B99F6935314A17659D6F4387 /* ToolBar */ = {
+			isa = PBXGroup;
+			children = (
+				B99F68271AC771FBF80CA432 /* ToolBarButtonView.swift */,
+			);
+			path = ToolBar;
+			sourceTree = "<group>";
+		};
+		B99F69A4BA261552C3989CF5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B99F6CB6047723F571693553 /* UIColor+StateColors.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		B99F69B8CAA869201B55A663 /* 04-Asciification */ = {
+			isa = PBXGroup;
+			children = (
+				B99F6F2E46F37F90D14137A6 /* AsciificationLiveViewController.swift */,
+				B99F663B7C83FE7063131425 /* Views */,
+			);
+			path = "04-Asciification";
+			sourceTree = "<group>";
+		};
+		B99F6C1C863B1F76C5D9139D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B99F64CAABEA6101CC151AF8 /* MagnifierView.swift */,
+				B99F6180FC417C8E454D3884 /* MagnivierContainerView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B99F6C96D9CA4CFE1377BF2C /* BookAPI.playgroundmodule */ = {
+			isa = PBXGroup;
+			children = (
+				B99F64119B36315AE8FAFAE3 /* Sources */,
+			);
+			path = BookAPI.playgroundmodule;
+			sourceTree = "<group>";
+		};
+		B99F6D23FE8B41BA5E133703 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				B99F631926D4B8AD201E3DD2 /* ImagePickerDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		B99F6E11B80683FD314143D4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B99F6E12676EC7E0300F4493 /* HistogramView.swift */,
+				B99F60791EAC8292C8B51B84 /* HistogramToolBarButtonView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B99F6E5A49A44759DF7AE847 /* 01-Introduction */ = {
+			isa = PBXGroup;
+			children = (
+				B99F6C47683919CCE440B901 /* IntroductionLiveViewController.swift */,
+			);
+			path = "01-Introduction";
+			sourceTree = "<group>";
+		};
+		B99F6F398ED7C56EACBBE1BC /* 01-FanOfAscii */ = {
+			isa = PBXGroup;
+			children = (
+				B99F6E5A49A44759DF7AE847 /* 01-Introduction */,
+				B99F62F696DFB8FFD9946214 /* 02-HowImagesComposed */,
+				B99F66452C9CD1271500D201 /* 03-GrayscaleHistogramEqualization */,
+				B99F69B8CAA869201B55A663 /* 04-Asciification */,
+			);
+			path = "01-FanOfAscii";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -766,7 +758,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B99F698C51828CE1EDB67F31 /* EventListener.swift in Sources */,
+				B99F618E497E728524D63AF8 /* EventListener.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -782,26 +774,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71DEC1CC23F7A2650091A700 /* HistogramView.swift in Sources */,
-				71DEC1CF23F7A2650091A700 /* HowImagesComposedLiveViewController.swift in Sources */,
-				71DD3E6F23F79B99001510FB /* ToolBarButtonView.swift in Sources */,
-				71DEC1CD23F7A2650091A700 /* MoreToPlayLiveViewController.swift in Sources */,
-				71DD3E7223F79BA7001510FB /* ShowcaseImageView.swift in Sources */,
-				715BBA5E23FD5CE500B7F2EA /* ScaleModeButton.swift in Sources */,
-				71DEC1D123F7A2650091A700 /* MagnivierContainerView.swift in Sources */,
-				71DEC1CE23F7A2650091A700 /* AsciificationLiveViewController.swift in Sources */,
-				71DD3E7823F79C12001510FB /* ImagePickerDataSource.swift in Sources */,
-				71DD3E6723F79B42001510FB /* ImagePickerViewController.swift in Sources */,
-				71DEC1D023F7A2650091A700 /* MagnifierView.swift in Sources */,
-				71DEC1CB23F7A2650091A700 /* GrayscaleHistogramEqualization.swift in Sources */,
-				71DD3E7523F79BCC001510FB /* UIColor+StateColors.swift in Sources */,
-				71DD3E6B23F79B61001510FB /* ImagePickerCollectionViewCell.swift in Sources */,
-				71DD3E6523F79B2E001510FB /* BaseViewController.swift in Sources */,
-				71DEC1B023F7A21E0091A700 /* IntroductionLiveViewController.swift in Sources */,
-				B99F6F92FC79077F0AF4C414 /* HistogramToolBarButtonView.swift in Sources */,
-				B99F67C4D724AFB466764588 /* EventMessage.swift in Sources */,
-				B99F65AFB26EB594CB93907A /* LiveViewSupport.swift in Sources */,
-				B99F68596E1179A84DCBD4EA /* RawImage.swift in Sources */,
+				B99F62B87841F45684E06F7A /* EventMessage.swift in Sources */,
+				B99F618160CD0C4E04B0A759 /* LiveViewSupport.swift in Sources */,
+				B99F6B218BB1EDDCF5A1BEDA /* RawImage.swift in Sources */,
+				B99F65EBA0B2B605EAF4B0D9 /* UIColor+StateColors.swift in Sources */,
+				B99F6661C523F8C8DE0DDEEA /* ImagePickerDataSource.swift in Sources */,
+				B99F6E509D271A941D4E9790 /* BaseViewController.swift in Sources */,
+				B99F62A628D4A47F72E23E1D /* ImagePickerViewController.swift in Sources */,
+				B99F6400E1E57AF2E5AB4976 /* ImagePickerCollectionViewCell.swift in Sources */,
+				B99F639B7680E4364A3F18F0 /* ToolBarButtonView.swift in Sources */,
+				B99F6FC1FADCC9AC46C012FA /* ShowcaseImageView.swift in Sources */,
+				B99F60BD727AA847C9846C2B /* IntroductionLiveViewController.swift in Sources */,
+				B99F667D9B395E5B8D7D009C /* HowImagesComposedLiveViewController.swift in Sources */,
+				B99F68354B7C7C5D52AD682E /* MagnifierView.swift in Sources */,
+				B99F61C26CBC8AF1349C8C12 /* MagnivierContainerView.swift in Sources */,
+				B99F69BA9A50EADC8DDB92CD /* GrayscaleHistogramEqualization.swift in Sources */,
+				B99F6A15C952EC6F71AB4F5A /* HistogramView.swift in Sources */,
+				B99F62C10DF5FE5C2DFEB8ED /* HistogramToolBarButtonView.swift in Sources */,
+				B99F6ED14C4977D2A3E4D777 /* AsciificationLiveViewController.swift in Sources */,
+				B99F649C83DCDA708FA85400 /* ScaleModeButton.swift in Sources */,
+				B99F6905CE4227EDEC115B4C /* FontResourceProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

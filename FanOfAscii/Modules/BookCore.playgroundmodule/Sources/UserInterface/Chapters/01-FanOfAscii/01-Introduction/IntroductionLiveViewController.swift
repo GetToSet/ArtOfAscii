@@ -5,6 +5,6 @@
 
 import Foundation
 
-class IntroductionLiveViewController {
+class IntroductionLiveViewController: BaseViewController {
     
 }

@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Base View Controller-->
         <scene sceneID="Jtu-W4-dxd">
             <objects>
-                <viewController storyboardIdentifier="introduction" id="CJm-3e-I7M" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="introduction" id="CJm-3e-I7M" customClass="BaseViewController" customModule="BookCore" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GcL-rA-cmv">
                         <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -291,33 +291,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gY-CT-CKb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="196" y="787"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Qnk-Qq-r88">
-            <objects>
-                <viewController storyboardIdentifier="moreToPlay" id="aAC-EE-NIM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="GuK-2t-njf">
-                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More to play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nhd-e9-pZD">
-                                <rect key="frame" x="357.5" y="529.5" width="95" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Nhd-e9-pZD" firstAttribute="centerX" secondItem="GuK-2t-njf" secondAttribute="centerX" id="4YR-1c-NPl"/>
-                            <constraint firstItem="Nhd-e9-pZD" firstAttribute="centerY" secondItem="GuK-2t-njf" secondAttribute="centerY" id="Jts-vt-iz8"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="gRl-fP-bh6"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mN9-db-Rho" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="587" y="788"/>
         </scene>
         <!--imagePickerViewController-->
         <scene sceneID="NPE-OX-idZ">

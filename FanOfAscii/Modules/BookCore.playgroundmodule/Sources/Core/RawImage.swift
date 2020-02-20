@@ -5,7 +5,6 @@
 
 import UIKit
 import Accelerate
-import CoreText
 
 public struct Pixel {
 
@@ -32,6 +31,10 @@ public class ImageFormat {
 
     public lazy var pixelCount: Int = {
         return width * height
+    }()
+
+    public lazy var aspectRatio: Double = {
+        return Double(width) / Double(height)
     }()
 
     public init(cgImage: CGImage) {
@@ -100,35 +103,6 @@ public class RawImage {
             return nil
         }
         return context.makeImage()
-    }
-
-    public static func renderAsciifiedImage(_ string: String, font: String, size: CGFloat, charactersInRow: Int, rows: Int, characterRatio: Double) -> UIImage {
-        let characterWidth = size / CGFloat(characterRatio)
-        let characterHeight = size
-        let drawingRect = CGRect(
-                origin: CGPoint(x: 0, y: 0),
-                size: CGSize(width: characterWidth * CGFloat(charactersInRow), height: characterHeight * CGFloat(rows)))
-        let renderer = UIGraphicsImageRenderer(size: drawingRect.size)
-        let img = renderer.image { ctx in
-            UIColor.white.setFill()
-            ctx.fill(drawingRect)
-
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .left
-            paragraphStyle.lineSpacing = 0.0
-            paragraphStyle.maximumLineHeight = size
-            paragraphStyle.lineBreakMode = .byClipping
-            let attrs = [
-                NSAttributedString.Key.font: UIFont(name: font, size: size)!,
-                NSAttributedString.Key.paragraphStyle: paragraphStyle
-            ]
-            string.draw(
-                    with: drawingRect,
-                    options: .usesLineFragmentOrigin,
-                    attributes: attrs,
-                    context: nil)
-        }
-        return img
     }
 
     public func pixelAt(x: Int, y: Int) -> Pixel? {

@@ -28,7 +28,7 @@ Here is a **character map** built with font “Fira Code”, by arranging charac
 */
 //#-editable-code
 
-let characterMap = "MWNXK0Okxdolc:;,'...   "
+let characterMapStr = "MWNXK0Okxdolc:;,'...   "
 
 //#-end-editable-code
 /*:
@@ -49,20 +49,20 @@ smooth result.
 //#-editable-code
 
 // The aspect ratio of characters in the font “Fira Code”
-let ratio = 1.70667
+let characterAspectRatio = 0.5860
 
-func calculateCharacterRows(rawImage: RawImage, charactersPerRow: Int) -> Int {
-    let scaledHeight = Double(rawImage.format.height) * Double(charactersPerRow) / Double(rawImage.format.width)
-    return Int((scaledHeight / ratio).rounded())
+var charactersPerRow = 80
+var rowCount: Int!
+
+func calculateRowCount(imageFormat: ImageFormat, charactersPerRow: Int) -> Int {
+    let scaledHeight = Double(charactersPerRow) / imageFormat.aspectRatio
+    return Int((scaledHeight * characterAspectRatio).rounded())
 }
 
-let charactersPerRow = 80
-let characterRows = 0
-
 func scaleImageForAsciification(rawImage: RawImage) -> RawImage? {
-    characterRows = calculateCharacterRows(rawImage: rawImage, charactersPerRow: charactersPerRow)
+    rowCount = calculateRowCount(imageFormat: rawImage.format, charactersPerRow: charactersPerRow)
     // Scale the image to match the dimension of resulting ASCII art.
-    return rawImage.scaled(width: charactersPerRow, height: characterRows)
+    return rawImage.scaled(width: charactersPerRow, height: rowCount)
 }
 
 //#-end-editable-code
@@ -72,41 +72,40 @@ func scaleImageForAsciification(rawImage: RawImage) -> RawImage? {
 ### 🔨Mapping Pixels with Characters
 
 * Experiment:
-    * In this experiment, we'll build another filter to turn an image into grayscaled version, with consideration.
-    * Try to read and complete the following code snippet. When you finish, run your code and tap the *Switch to
-    Grayscale* button below the image to see whether it works.
+    * Following code snippet generates an ASCII art by mapping pixels to characters according to their brightness level.
+    * Run this code and tap the *ASCIIfy* button to see experience the magic, Feel free to tune all these parameters.
 */
 //#-editable-code
 
 func applyAsciification(rawImage: RawImage) -> UIImage? {
-    let brightnessLevels = Double(characterMap.count)
+    let characterMap: [Character] = Array(characterMapStr)
+    let maxMappedBrightness = Double(characterMap.count - 1)
     var asciificationResult: String = ""
-    for y in 0..<characterRows {
+
+    for y in 0..<rowCount {
         for x in 0..<charactersPerRow {
             if var pixel = rawImage.pixelAt(x: x, y: y) {
-                let mappedBrightnessValue = pixel.brightness / 255.0 * (brightnessLevels - 1)
-                asciificationResult.append(Array(characterMap)[Int(mappedBrightnessValue.rounded())])
+                let mappedBrightnessValue = pixel.brightness / 255.0 * maxMappedBrightness
+                asciificationResult.append(characterMap[Int(mappedBrightnessValue.rounded())])
             }
         }
         asciificationResult += "\n"
     }
-    return RawImage.renderAsciifiedImage(
+
+    return AsciiArtRenderer.renderAsciifiedImage(
             asciificationResult,
-            font: FiraCode.bold.rawValue,
-            size: 14,
-            charactersInRow: charactersPerRow,
-            rows: characterRows,
-            characterRatio: ratio)
+            fontName: FontResourceProvider.FiraCode.bold.rawValue,
+            size: 14.0,
+            foreground: UIColor.black,
+            background: UIColor.white,
+            charactersPerRow: charactersPerRow,
+            rows: rowCount,
+            characterAspectRatio: characterAspectRatio)
 }
 
 //#-end-editable-code
-/*:
-* Note:
-    In this code snippet, we transform the image by multiplying it with a custom filter matrix. If you're not familiar
-    with limier algebra, the following figure will explain how this transform matrix works.
-*/
-////#-hidden-code
-FiraCode.registerFont()
+//#-hidden-code
+FontResourceProvider.FiraCode.register()
 
 let remoteView = remoteViewAsLiveViewProxy()
 let eventListener = EventListener(proxy: remoteView) { message in
@@ -131,4 +130,4 @@ let eventListener = EventListener(proxy: remoteView) { message in
         break
     }
 }
-////#-end-hidden-code
+//#-end-hidden-code

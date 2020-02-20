@@ -11,7 +11,6 @@ public enum LiveViewIdentifier: String {
     case howImagesComposed
     case grayscaleHistogramEqualization
     case asciification
-    case moreToPlay
 }
 
 public func instantiateLiveView(identifier: LiveViewIdentifier) -> PlaygroundLiveViewable {
