@@ -5,6 +5,17 @@
 
 import UIKit
 import Accelerate
+import CoreText
+
+public struct Pixel {
+
+    public let red: UInt8, green: UInt8, blue: UInt8, alpha: UInt8
+
+    public lazy var brightness: Double = {
+        return (Double(red) + Double(green) + Double(blue)) / 3.0
+    }()
+
+}
 
 public struct RgbaHistogram {
 
@@ -89,6 +100,53 @@ public class RawImage {
             return nil
         }
         return context.makeImage()
+    }
+
+    public static func renderAsciifiedImage(_ string: String, font: String, size: CGFloat, charactersInRow: Int, rows: Int, characterRatio: Double) -> UIImage {
+        let characterWidth = size / CGFloat(characterRatio)
+        let characterHeight = size
+        let drawingRect = CGRect(
+                origin: CGPoint(x: 0, y: 0),
+                size: CGSize(width: characterWidth * CGFloat(charactersInRow), height: characterHeight * CGFloat(rows)))
+        let renderer = UIGraphicsImageRenderer(size: drawingRect.size)
+        let img = renderer.image { ctx in
+            UIColor.white.setFill()
+            ctx.fill(drawingRect)
+
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .left
+            paragraphStyle.lineSpacing = 0.0
+            paragraphStyle.maximumLineHeight = size
+            paragraphStyle.lineBreakMode = .byClipping
+            let attrs = [
+                NSAttributedString.Key.font: UIFont(name: font, size: size)!,
+                NSAttributedString.Key.paragraphStyle: paragraphStyle
+            ]
+            string.draw(
+                    with: drawingRect,
+                    options: .usesLineFragmentOrigin,
+                    attributes: attrs,
+                    context: nil)
+        }
+        return img
+    }
+
+    public func pixelAt(x: Int, y: Int) -> Pixel? {
+        if x < 0 || x > format.width || y < 0 || y > format.height {
+            return nil
+        }
+
+        let dataPointer = getMutableDataPointer()
+
+        let numberOfComponents = 4
+        let pixelData = ((format.width * y) + x) * numberOfComponents
+
+        let r = dataPointer[pixelData]
+        let g = dataPointer[pixelData + 1]
+        let b = dataPointer[pixelData + 2]
+        let a = dataPointer[pixelData + 3]
+
+        return Pixel(red: r, green: g, blue: b, alpha: a)
     }
 
     public func calculateBrightnessHistogram() -> [UInt]? {

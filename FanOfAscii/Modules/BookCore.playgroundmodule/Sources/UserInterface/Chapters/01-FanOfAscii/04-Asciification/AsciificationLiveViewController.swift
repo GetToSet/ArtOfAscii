@@ -49,7 +49,7 @@ class AsciificationLiveViewController: BaseViewController {
 
     private func updateImageForButtonStates() {
         if asciificationButton.state == .selected {
-            let payload = EventMessage.asciificationRequest(image: sourceImage)
+            let payload = EventMessage.asciificationRequest(image: showcaseImageView.image)
             send(payload.playgroundValue)
         } else if shrinkButton.state == .selected {
             let imageToShrink = preprocessButton.state == .selected ? preprocessedImage : sourceImage

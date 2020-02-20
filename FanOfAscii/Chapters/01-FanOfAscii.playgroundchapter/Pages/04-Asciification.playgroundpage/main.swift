@@ -7,6 +7,7 @@
 import UIKit
 import PlaygroundSupport
 
+import BookAPI
 import BookCore
 
 PlaygroundPage.current.needsIndefiniteExecution = true
@@ -24,6 +25,13 @@ Here is a **character map** built with font “Fira Code”, by arranging charac
 
 （图）
 
+*/
+//#-editable-code
+
+let characterMap = "MWNXK0Okxdolc:;,'...   "
+
+//#-end-editable-code
+/*:
 ## Resampling
 
 Since characters are much wider than pixels, images have to be shrunken the before mapping to ASCII characters.
@@ -35,26 +43,26 @@ smooth result.
 
 * Experiment:
     * Following code snippet shrinks an image according to the aspect ratio of characters.
-    * Run the code and tap the *shrink* button to see the effect. Try tapping the button at the lower right corner,
+    * Run the code and tap the *shrink* button to see the effect. Try tapping the buttonpir at the lower right corner,
     notice how pixels are resampled when scaling a small image up.
 */
-//#-code-completion(everything, hide)
-//#-code-completion(literal, show, float, double, integer)
 //#-editable-code
 
-let charactersPerRow = 80
+// The aspect ratio of characters in the font “Fira Code”
+let ratio = 1.70667
 
-func calculateCharactersRows(charactersPerRow: Int) -> Int {
-    // The aspect ratio of characters in the font “Fira Code”
-    let ratio = 1.70667
-    return Int((Double(charactersPerRow) / ratio).rounded())
+func calculateCharacterRows(rawImage: RawImage, charactersPerRow: Int) -> Int {
+    let scaledHeight = Double(rawImage.format.height) * Double(charactersPerRow) / Double(rawImage.format.width)
+    return Int((scaledHeight / ratio).rounded())
 }
 
+let charactersPerRow = 80
+let characterRows = 0
+
 func scaleImageForAsciification(rawImage: RawImage) -> RawImage? {
+    characterRows = calculateCharacterRows(rawImage: rawImage, charactersPerRow: charactersPerRow)
     // Scale the image to match the dimension of resulting ASCII art.
-    let scaledWidth = charactersPerRow
-    let scaledHeight = calculateCharactersRows(charactersPerRow: charactersPerRow)
-    return rawImage.scaled(width: scaledWidth, height: scaledHeight)
+    return rawImage.scaled(width: charactersPerRow, height: characterRows)
 }
 
 //#-end-editable-code
@@ -70,9 +78,25 @@ func scaleImageForAsciification(rawImage: RawImage) -> RawImage? {
 */
 //#-editable-code
 
-func applyAsciification(rawImage: RawImage) {
-
-
+func applyAsciification(rawImage: RawImage) -> UIImage? {
+    let brightnessLevels = Double(characterMap.count)
+    var asciificationResult: String = ""
+    for y in 0..<characterRows {
+        for x in 0..<charactersPerRow {
+            if var pixel = rawImage.pixelAt(x: x, y: y) {
+                let mappedBrightnessValue = pixel.brightness / 255.0 * (brightnessLevels - 1)
+                asciificationResult.append(Array(characterMap)[Int(mappedBrightnessValue.rounded())])
+            }
+        }
+        asciificationResult += "\n"
+    }
+    return RawImage.renderAsciifiedImage(
+            asciificationResult,
+            font: FiraCode.bold.rawValue,
+            size: 14,
+            charactersInRow: charactersPerRow,
+            rows: characterRows,
+            characterRatio: ratio)
 }
 
 //#-end-editable-code
@@ -81,7 +105,9 @@ func applyAsciification(rawImage: RawImage) {
     In this code snippet, we transform the image by multiplying it with a custom filter matrix. If you're not familiar
     with limier algebra, the following figure will explain how this transform matrix works.
 */
-//#-hidden-code
+////#-hidden-code
+FiraCode.registerFont()
+
 let remoteView = remoteViewAsLiveViewProxy()
 let eventListener = EventListener(proxy: remoteView) { message in
     switch message {
@@ -98,13 +124,11 @@ let eventListener = EventListener(proxy: remoteView) { message in
         guard let rawImage = RawImage(uiImage: image) else {
             return
         }
-        applyAsciification(rawImage: rawImage);
-        let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-        if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
-            remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)
+        if let destImage = applyAsciification(rawImage: rawImage) {
+            remoteView?.send(EventMessage.imageProcessingResponse(image: destImage).playgroundValue)
         }
     default:
         break
     }
 }
-//#-end-hidden-code
+////#-end-hidden-code

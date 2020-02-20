@@ -32,6 +32,7 @@
 		7174D3BB23F7D0D100A09FFB /* lantern.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7174D3AF23F7D0D100A09FFB /* lantern.jpg */; };
 		7174D3BC23F7D0D100A09FFB /* woman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7174D3B023F7D0D100A09FFB /* woman.jpg */; };
 		7174D3BD23F7D0D100A09FFB /* imagePickerList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7174D3B123F7D0D100A09FFB /* imagePickerList.plist */; };
+		71BA4ED823FE31BA00788A11 /* FiraCode-VF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71BA4ED723FE31BA00788A11 /* FiraCode-VF.ttf */; };
 		71DD3E6523F79B2E001510FB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6423F79B2E001510FB /* BaseViewController.swift */; };
 		71DD3E6723F79B42001510FB /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6623F79B42001510FB /* ImagePickerViewController.swift */; };
 		71DD3E6B23F79B61001510FB /* ImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DD3E6A23F79B61001510FB /* ImagePickerCollectionViewCell.swift */; };
@@ -179,6 +180,7 @@
 		7174D3AF23F7D0D100A09FFB /* lantern.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lantern.jpg; sourceTree = "<group>"; };
 		7174D3B023F7D0D100A09FFB /* woman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = woman.jpg; sourceTree = "<group>"; };
 		7174D3B123F7D0D100A09FFB /* imagePickerList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = imagePickerList.plist; sourceTree = "<group>"; };
+		71BA4ED723FE31BA00788A11 /* FiraCode-VF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraCode-VF.ttf"; sourceTree = "<group>"; };
 		71DD3E6423F79B2E001510FB /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		71DD3E6623F79B42001510FB /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		71DD3E6A23F79B61001510FB /* ImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		B99F609D7C49788B520D9C59 /* RawImage+BookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawImage+BookAPI.swift"; sourceTree = "<group>"; };
 		B99F60BCF4AD4401FD95EBC5 /* HistogramToolBarButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistogramToolBarButtonView.swift; sourceTree = "<group>"; };
 		B99F62E8DB3B358AE077D14A /* EventListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
+		B99F637C5458278C25E4287E /* FireCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireCode.swift; sourceTree = "<group>"; };
 		B99F663496CD65358ABF6DD3 /* ScaleModeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleModeButton.swift; sourceTree = "<group>"; };
 		B99F690329A69DB98C409E4F /* EventMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMessage.swift; sourceTree = "<group>"; };
 		B99F6B71C3A282EFD57BC829 /* RawImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawImage.swift; sourceTree = "<group>"; };
@@ -245,6 +248,7 @@
 			children = (
 				5E086DCF2051DF0F004D8D25 /* Manifest.plist */,
 				5E70679B23678D810094BDEF /* Modules */,
+				71BA4ED223FE2E0200788A11 /* PublicResources */,
 				5EF2F9792054B64800191409 /* PrivateResources */,
 				5EF2F9B62054E6F900191409 /* Chapters */,
 				5EF2F9A42054BB9500191409 /* Supporting Content */,
@@ -404,6 +408,14 @@
 			name = "Supporting Content";
 			sourceTree = "<group>";
 		};
+		71BA4ED223FE2E0200788A11 /* PublicResources */ = {
+			isa = PBXGroup;
+			children = (
+				71BA4ED723FE31BA00788A11 /* FiraCode-VF.ttf */,
+			);
+			path = PublicResources;
+			sourceTree = "<group>";
+		};
 		71C6D8DF23F975EA005333B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +562,7 @@
 			children = (
 				B99F62E8DB3B358AE077D14A /* EventListener.swift */,
 				B99F609D7C49788B520D9C59 /* RawImage+BookAPI.swift */,
+				B99F637C5458278C25E4287E /* FireCode.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -701,6 +714,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7174D3B823F7D0D100A09FFB /* cat.jpg in Resources */,
+				71BA4ED823FE31BA00788A11 /* FiraCode-VF.ttf in Resources */,
 				7174D3B723F7D0D100A09FFB /* background.jpg in Resources */,
 				5EF2F97C2054B6E400191409 /* ManifestPlist.strings in Resources */,
 				7174D3B523F7D0D100A09FFB /* woman-thumb.jpg in Resources */,
