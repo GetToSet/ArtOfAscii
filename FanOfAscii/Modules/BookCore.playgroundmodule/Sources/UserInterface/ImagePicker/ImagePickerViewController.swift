@@ -60,6 +60,7 @@ extension ImagePickerViewController: UICollectionViewDelegate, UICollectionViewD
         switch indexPath.section {
         case 0:
             cell.setImage(named: "image-picker/button-camera")
+            cell.state = .selected
         case 1:
             if indexPath == selectedCellIndexPath {
                 cell.state = .selected
