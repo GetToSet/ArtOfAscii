@@ -149,7 +149,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5E086DC02051C5A7004D8D25 /* Fan of ASCII.playgroundbook */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fan of ASCII.playgroundbook"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E086DC02051C5A7004D8D25 /* Art of ASCII.playgroundbook */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Art of ASCII.playgroundbook"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E086DC72051DD03004D8D25 /* BookOverridingBuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookOverridingBuildSettings.xcconfig; sourceTree = "<group>"; };
 		5E086DCF2051DF0F004D8D25 /* Manifest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Manifest.plist; sourceTree = "<group>"; };
 		5E0E37522065981C008FA4BE /* BuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BuildSettings.xcconfig; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 		5E086DA4204F706E004D8D25 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5E086DC02051C5A7004D8D25 /* Fan of ASCII.playgroundbook */,
+				5E086DC02051C5A7004D8D25 /* Art of ASCII.playgroundbook */,
 				5EF2F9AB2054BBF300191409 /* libBookCore.a */,
 				5E6F7E612368FB6A008CC191 /* libBookAPI.a */,
 				5EA2E3BD2056F35A00416A35 /* LiveViewTestApp.app */,
@@ -249,7 +249,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5E086DC12051C5A7004D8D25 /* FanOfAscii */ = {
+		5E086DC12051C5A7004D8D25 /* ArtOfAscii */ = {
 			isa = PBXGroup;
 			children = (
 				5E086DCF2051DF0F004D8D25 /* Manifest.plist */,
@@ -259,7 +259,7 @@
 				5EF2F9B62054E6F900191409 /* Chapters */,
 				5EF2F9A42054BB9500191409 /* Supporting Content */,
 			);
-			path = FanOfAscii;
+			path = ArtOfAscii;
 			sourceTree = "<group>";
 		};
 		5E0E3751206597E7008FA4BE /* Base */ = {
@@ -283,7 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				5E0E37542065A065008FA4BE /* README.md */,
-				5E086DC12051C5A7004D8D25 /* FanOfAscii */,
+				5E086DC12051C5A7004D8D25 /* ArtOfAscii */,
 				5EA2E3BE2056F35A00416A35 /* LiveViewTestApp */,
 				5E2A7AE3204F628B00F4E17A /* Config Files */,
 				5EA2E3D52056F83400416A35 /* Supporting Content */,
@@ -399,7 +399,7 @@
 		B99F601267ED4E96A889A334 /* Chapters */ = {
 			isa = PBXGroup;
 			children = (
-				B99F6F398ED7C56EACBBE1BC /* 01-FanOfAscii */,
+				B99F6F398ED7C56EACBBE1BC /* 01-ArtOfAscii */,
 			);
 			path = Chapters;
 			sourceTree = "<group>";
@@ -575,7 +575,7 @@
 			path = "01-Introduction";
 			sourceTree = "<group>";
 		};
-		B99F6F398ED7C56EACBBE1BC /* 01-FanOfAscii */ = {
+		B99F6F398ED7C56EACBBE1BC /* 01-ArtOfAscii */ = {
 			isa = PBXGroup;
 			children = (
 				B99F6E5A49A44759DF7AE847 /* 01-Introduction */,
@@ -583,15 +583,15 @@
 				B99F66452C9CD1271500D201 /* 03-GrayscaleHistogramEqualization */,
 				B99F69B8CAA869201B55A663 /* 04-Asciification */,
 			);
-			path = "01-FanOfAscii";
+			path = "01-ArtOfAscii";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5E086DBF2051C5A7004D8D25 /* FanOfAscii */ = {
+		5E086DBF2051C5A7004D8D25 /* ArtOfAscii */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5E086DC52051C5A7004D8D25 /* Build configuration list for PBXNativeTarget "FanOfAscii" */;
+			buildConfigurationList = 5E086DC52051C5A7004D8D25 /* Build configuration list for PBXNativeTarget "ArtOfAscii" */;
 			buildPhases = (
 				5E086DD22051E35D004D8D25 /* Copy Book Contents */,
 				5E086DC62051DB17004D8D25 /* Resources */,
@@ -603,9 +603,9 @@
 				5EF2F9B52054BDD100191409 /* PBXTargetDependency */,
 				5E6F7E6F2368FD7C008CC191 /* PBXTargetDependency */,
 			);
-			name = FanOfAscii;
+			name = ArtOfAscii;
 			productName = PlaygroundBook;
-			productReference = 5E086DC02051C5A7004D8D25 /* Fan of ASCII.playgroundbook */;
+			productReference = 5E086DC02051C5A7004D8D25 /* Art of ASCII.playgroundbook */;
 			productType = "com.apple.product-type.bundle";
 		};
 		5E6F7E602368FB6A008CC191 /* BookAPI */ = {
@@ -688,7 +688,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5E2A7AE0204F611300F4E17A /* Build configuration list for PBXProject "FanOfAscii" */;
+			buildConfigurationList = 5E2A7AE0204F611300F4E17A /* Build configuration list for PBXProject "ArtOfAscii" */;
 			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -701,7 +701,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5E086DBF2051C5A7004D8D25 /* FanOfAscii */,
+				5E086DBF2051C5A7004D8D25 /* ArtOfAscii */,
 				5EF2F9AA2054BBF300191409 /* BookCore */,
 				5E6F7E602368FB6A008CC191 /* BookAPI */,
 				5EA2E3BC2056F35A00416A35 /* LiveViewTestApp */,
@@ -829,7 +829,7 @@
 		};
 		5EA2E3D02056F36100416A35 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5E086DBF2051C5A7004D8D25 /* FanOfAscii */;
+			target = 5E086DBF2051C5A7004D8D25 /* ArtOfAscii */;
 			targetProxy = 5EA2E3CF2056F36100416A35 /* PBXContainerItemProxy */;
 		};
 		5EA2E3D22056F36300416A35 /* PBXTargetDependency */ = {
@@ -1038,7 +1038,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER_PREFIX).LiveViewTestApp";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.gettoset.ArtOfAscii.LiveViewTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1067,7 +1067,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER_PREFIX).LiveViewTestApp";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.gettoset.ArtOfAscii.LiveViewTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -1096,7 +1096,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5E086DC52051C5A7004D8D25 /* Build configuration list for PBXNativeTarget "FanOfAscii" */ = {
+		5E086DC52051C5A7004D8D25 /* Build configuration list for PBXNativeTarget "ArtOfAscii" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5E086DC32051C5A7004D8D25 /* Debug */,
@@ -1105,7 +1105,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5E2A7AE0204F611300F4E17A /* Build configuration list for PBXProject "FanOfAscii" */ = {
+		5E2A7AE0204F611300F4E17A /* Build configuration list for PBXProject "ArtOfAscii" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5E2A7AE1204F611300F4E17A /* Debug */,
