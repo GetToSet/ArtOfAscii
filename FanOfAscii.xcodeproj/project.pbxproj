@@ -17,9 +17,9 @@
 		5EBEC2F0205B399300975D3F /* LiveViewHost.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBEC2EF205B396500975D3F /* LiveViewHost.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EF2F97C2054B6E400191409 /* ManifestPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EF2F97E2054B6E400191409 /* ManifestPlist.strings */; };
 		5EF2F9B72054E6FB00191409 /* Chapters in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5EF2F9B62054E6F900191409 /* Chapters */; };
-		712D0B942401462300B41EF9 /* background-v2.png in Resources */ = {isa = PBXBuildFile; fileRef = 712D0B932401462300B41EF9 /* background-v2.png */; };
 		712D0B962401502B00B41EF9 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 712D0B952401502A00B41EF9 /* logo.png */; };
 		712D0B982401599400B41EF9 /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 712D0B972401599400B41EF9 /* cover.png */; };
+		716164FB24017FCF0096D141 /* background-v2.png in Resources */ = {isa = PBXBuildFile; fileRef = 716164FA24017FCF0096D141 /* background-v2.png */; };
 		7174D39523F7CB5500A09FFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174D39423F7CB5500A09FFB /* AppDelegate.swift */; };
 		7174D39723F7CBCF00A09FFB /* LiveView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7174D39623F7CBCF00A09FFB /* LiveView.storyboard */; };
 		7174D3B223F7D0D100A09FFB /* cat-thumb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7174D3A623F7D0D000A09FFB /* cat-thumb.jpg */; };
@@ -169,9 +169,9 @@
 		5EF2F97D2054B6E400191409 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ManifestPlist.strings; sourceTree = "<group>"; };
 		5EF2F9AB2054BBF300191409 /* libBookCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBookCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF2F9B62054E6F900191409 /* Chapters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Chapters; sourceTree = "<group>"; };
-		712D0B932401462300B41EF9 /* background-v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-v2.png"; sourceTree = "<group>"; };
 		712D0B952401502A00B41EF9 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		712D0B972401599400B41EF9 /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
+		716164FA24017FCF0096D141 /* background-v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-v2.png"; sourceTree = "<group>"; };
 		7174D39423F7CB5500A09FFB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7174D39623F7CBCF00A09FFB /* LiveView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LiveView.storyboard; sourceTree = "<group>"; };
 		7174D3A623F7D0D000A09FFB /* cat-thumb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cat-thumb.jpg"; sourceTree = "<group>"; };
@@ -355,9 +355,9 @@
 				5EF2F97E2054B6E400191409 /* ManifestPlist.strings */,
 				7174D39623F7CBCF00A09FFB /* LiveView.storyboard */,
 				5E551EC42371FC3F00784365 /* Assets.xcassets */,
+				716164FA24017FCF0096D141 /* background-v2.png */,
 				712D0B972401599400B41EF9 /* cover.png */,
 				712D0B952401502A00B41EF9 /* logo.png */,
-				712D0B932401462300B41EF9 /* background-v2.png */,
 				7174D3B123F7D0D100A09FFB /* imagePickerList.plist */,
 				7174D3A623F7D0D000A09FFB /* cat-thumb.jpg */,
 				7174D3AC23F7D0D100A09FFB /* cat.jpg */,
@@ -725,9 +725,9 @@
 				7174D3B323F7D0D100A09FFB /* desert.jpg in Resources */,
 				712D0B982401599400B41EF9 /* cover.png in Resources */,
 				5E551EC52371FC3F00784365 /* Assets.xcassets in Resources */,
-				712D0B942401462300B41EF9 /* background-v2.png in Resources */,
 				7174D3BA23F7D0D100A09FFB /* strawberries.jpg in Resources */,
 				7174D3B923F7D0D100A09FFB /* desert-thumb.jpg in Resources */,
+				716164FB24017FCF0096D141 /* background-v2.png in Resources */,
 				7174D39723F7CBCF00A09FFB /* LiveView.storyboard in Resources */,
 				7174D3BB23F7D0D100A09FFB /* lantern.jpg in Resources */,
 				7174D3BC23F7D0D100A09FFB /* woman.jpg in Resources */,
