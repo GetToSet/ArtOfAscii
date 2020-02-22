@@ -27,6 +27,8 @@
 	</array>
 	<key>UserModuleMode</key>
 	<string>Disabled</string>
+	<key>ImageReference</key>
+	<string>cover.png</string>
 	<key>SupportsDarkMode</key>
 	<true/>
 </dict>

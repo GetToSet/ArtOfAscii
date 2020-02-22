@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import PlaygroundSupport
 import AVFoundation
 import Accelerate
 
@@ -24,9 +25,8 @@ class IntroductionLiveViewController: BaseViewController {
     private var setupResult: SessionSetupResult = .success
 
     private let session = AVCaptureSession()
-    private let sessionQueue = DispatchQueue(label: "SessionQueue", attributes: [], autoreleaseFrequency: .workItem)
-
-    private let dataOutputQueue = DispatchQueue(label: "VideoDataQueue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
+    private let sessionQueue = DispatchQueue(label: "SessionQueue", qos: .userInteractive, autoreleaseFrequency: .workItem)
+    private let dataOutputQueue = DispatchQueue(label: "VideoDataQueue", qos: .userInteractive, autoreleaseFrequency: .workItem)
 
     private let backCameras = AVCaptureDevice.DiscoverySession(
             deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera],
@@ -50,7 +50,6 @@ class IntroductionLiveViewController: BaseViewController {
                 YpMin: 16,
                 CbCrMax: 240,
                 CbCrMin: 16)
-
         if vImageConvert_YpCbCrToARGB_GenerateConversion(
                 kvImage_YpCbCrToARGBMatrix_ITU_R_601_4,
                 &pixelRange,
@@ -84,23 +83,38 @@ class IntroductionLiveViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.imagePickerController.enableCameraRollPicking = false
         sessionSetupResultLabel.isHidden = true
-
-        requestAuthorization()
-        sessionQueue.async {
-            self.reconfigureSession()
-        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        sessionQueue.async {
-            if self.setupResult == .success {
-                self.session.stopRunning()
-            }
-        }
-
+        stopSession()
         super.viewWillDisappear(animated)
     }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        sessionQueue.async {
+            if self.session.isRunning {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
+                    self.adjustVideoOrientation()
+                }
+            }
+        }
+    }
+
+    override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
+        
+    }
+
+    override func toolBarButtonTapped(buttonView: ToolBarButtonView) {
+        buttonView.state = .normal
+    }
+
+}
+
+extension IntroductionLiveViewController {
 
     private func requestAuthorization() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -108,12 +122,15 @@ class IntroductionLiveViewController: BaseViewController {
             break
         case .notDetermined:
             sessionQueue.suspend()
+            let semaphore = DispatchSemaphore(value: 0)
             AVCaptureDevice.requestAccess(for: .video) { granted in
                 if !granted {
                     self.setupResult = .notAuthorized
                 }
                 self.sessionQueue.resume()
+                semaphore.signal()
             }
+            semaphore.wait()
         default:
             setupResult = .notAuthorized
         }
@@ -124,72 +141,72 @@ class IntroductionLiveViewController: BaseViewController {
             return
         }
 
-        session.beginConfiguration()
-        defer  {
-            if setupResult != .success {
-                session.commitConfiguration()
+        sessionQueue.async {
+            self.session.beginConfiguration()
+            defer  {
+                if self.setupResult != .success {
+                    self.session.commitConfiguration()
+                }
             }
-        }
 
-        session.inputs.forEach { input in
-            session.removeInput(input)
-        }
+            self.session.inputs.forEach { input in
+                self.session.removeInput(input)
+            }
 
-        session.sessionPreset = AVCaptureSession.Preset.photo
+            self.session.sessionPreset = AVCaptureSession.Preset.photo
 
-        let cameraOptional: AVCaptureDevice?
-        switch cameraOrientation {
-        case .front:
-            cameraOptional = frontCameras.first
-        case .back:
-            cameraOptional = backCameras.first
-        }
-        guard let cameraDevice = cameraOptional else {
-            print("No camera found")
-            setupResult = .configurationFailed
-            return
-        }
-
-        do {
-            let videoInput = try AVCaptureDeviceInput(device: cameraDevice)
-            guard session.canAddInput(videoInput) else {
-                print("Could not add video device input to the session")
-                setupResult = .configurationFailed
+            let cameraOptional: AVCaptureDevice?
+            switch self.cameraOrientation {
+            case .front:
+                cameraOptional = self.frontCameras.first
+            case .back:
+                cameraOptional = self.backCameras.first
+            }
+            guard let cameraDevice = cameraOptional else {
+                print("No camera found")
+                self.setupResult = .configurationFailed
                 return
             }
-            session.addInput(videoInput)
-        } catch {
-            print("Could not create video device input: \(error)")
-            setupResult = .configurationFailed
-            return
-        }
 
-        if session.outputs.isEmpty {
-            let videoDataOutput = AVCaptureVideoDataOutput()
-            if session.canAddOutput(videoDataOutput) {
-                session.addOutput(videoDataOutput)
-                let format_420v = kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
-                if videoDataOutput.availableVideoPixelFormatTypes.contains(format_420v) {
-                    videoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(format_420v)]
-                } else {
-                    print("Pixel format used (420v) is not supported.")
-                    setupResult = .configurationFailed
+            do {
+                let videoInput = try AVCaptureDeviceInput(device: cameraDevice)
+                guard self.session.canAddInput(videoInput) else {
+                    print("Could not add video device input to the session")
+                    self.setupResult = .configurationFailed
                     return
                 }
-                videoDataOutput.setSampleBufferDelegate(self, queue: dataOutputQueue)
-            } else {
-                print("Could not add video data output to the session")
-                setupResult = .configurationFailed
+                self.session.addInput(videoInput)
+            } catch {
+                print("Could not create video device input: \(error)")
+                self.setupResult = .configurationFailed
                 return
             }
-        }
 
-        session.commitConfiguration()
+            if self.session.outputs.isEmpty {
+                let videoDataOutput = AVCaptureVideoDataOutput()
+                if self.session.canAddOutput(videoDataOutput) {
+                    self.session.addOutput(videoDataOutput)
+                    let format_420v = kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
+                    if videoDataOutput.availableVideoPixelFormatTypes.contains(format_420v) {
+                        videoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(format_420v)]
+                    } else {
+                        print("Pixel format used (420v) is not supported.")
+                        self.setupResult = .configurationFailed
+                        return
+                    }
+                    videoDataOutput.setSampleBufferDelegate(self, queue: self.dataOutputQueue)
+                } else {
+                    print("Could not add video data output to the session")
+                    self.setupResult = .configurationFailed
+                    return
+                }
+            }
+
+            self.session.commitConfiguration()
+        }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
+    private func startSessionAndUpdateUI() {
         sessionQueue.async {
             switch self.setupResult {
             case .success:
@@ -202,13 +219,13 @@ class IntroductionLiveViewController: BaseViewController {
                 }
             case .notAuthorized:
                 DispatchQueue.main.async {
-                    let message = "AVCamFilter doesn't have permission to use the camera, please change privacy settings"
+                    let message = "Camera access has been denied, try to rerun and grant the permission."
                     self.sessionSetupResultLabel.isHidden = false
                     self.sessionSetupResultLabel.text = message
                 }
             case .configurationFailed:
                 DispatchQueue.main.async {
-                    let message = "Unable to capture media"
+                    let message = "Failed to setup your camera. :("
                     self.sessionSetupResultLabel.isHidden = false
                     self.sessionSetupResultLabel.text = message
                 }
@@ -216,15 +233,13 @@ class IntroductionLiveViewController: BaseViewController {
         }
     }
 
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
-            self.adjustVideoOrientation()
+    private func stopSession() {
+        sessionQueue.async {
+            self.session.stopRunning()
         }
     }
 
-    func adjustVideoOrientation() {
+    private func adjustVideoOrientation() {
         let interfaceOrientation = self.interfaceOrientation
         sessionQueue.async {
             if let interfaceOrientation = AVCaptureVideoOrientation(interfaceOrientation: interfaceOrientation),
@@ -235,14 +250,6 @@ class IntroductionLiveViewController: BaseViewController {
                 }
             }
         }
-    }
-
-    override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
-
-    }
-
-    override func toolBarButtonTapped(buttonView: ToolBarButtonView) {
-
     }
 
 }
@@ -322,21 +329,20 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
 
 }
 
-extension AVCaptureVideoOrientation {
+extension IntroductionLiveViewController: PlaygroundLiveViewMessageHandler {
 
-    init?(interfaceOrientation: UIInterfaceOrientation) {
-        switch interfaceOrientation {
-        case .portrait:
-            self = .portrait
-        case .portraitUpsideDown:
-            self = .portraitUpsideDown
-        case .landscapeLeft:
-            self = .landscapeLeft
-        case .landscapeRight:
-            self = .landscapeRight
-        default:
-            return nil
-        }
+    public func liveViewMessageConnectionOpened() {
+        requestAuthorization()
+        reconfigureSession()
+        startSessionAndUpdateUI()
+    }
+
+    public func liveViewMessageConnectionClosed() {
+        stopSession()
+    }
+
+    public func receive(_ message: PlaygroundValue) {
+
     }
 
 }

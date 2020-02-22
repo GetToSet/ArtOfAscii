@@ -7,13 +7,23 @@ import UIKit
 
 class ImagePickerViewController: UIViewController {
 
+    private enum SectionType {
+        case cameraRoll, sampleImage
+    }
+
     @IBOutlet weak var imagePickerCollectionView: UICollectionView!
 
-    let dataSource = ImagePickerDataSource.shard
+    let dataSource = ImagePickerDataSource.shared
+
+    var enableCameraRollPicking = true {
+        didSet {
+            imagePickerCollectionView.reloadData()
+        }
+    }
 
     var delegate: ImagePickerViewControllerDelegate?
 
-    private var selectedCellIndexPath: IndexPath?
+    private var rowForSelectedCell: Int?
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +34,29 @@ class ImagePickerViewController: UIViewController {
         imagePickerCollectionView.dataSource = self
     }
 
+    private func sectionFor(type sectionType: SectionType) -> Int? {
+        switch sectionType {
+        case .cameraRoll:
+            return enableCameraRollPicking ? 0 : nil
+        case .sampleImage:
+            return enableCameraRollPicking ? 1 : 0
+        }
+    }
+
+    private func typeFor(section: Int) -> SectionType? {
+        if enableCameraRollPicking && section == 0 {
+            return .cameraRoll
+        }
+        if enableCameraRollPicking && section == 1 ||
+                   !enableCameraRollPicking && section == 0 {
+            return .sampleImage
+        }
+        return nil
+    }
+
     private func updateSelectionStates() {
         UIView.performWithoutAnimation {
-            imagePickerCollectionView.reloadSections(IndexSet([1]))
+            imagePickerCollectionView.reloadSections(IndexSet([sectionFor(type: .sampleImage)!]))
         }
     }
 
@@ -35,42 +65,46 @@ class ImagePickerViewController: UIViewController {
 extension ImagePickerViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return enableCameraRollPicking ? 2 : 1
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return dataSource.imageNames.count
-        default:
+        guard let section = typeFor(section: section) else {
             return 0
+        }
+        switch section {
+        case .cameraRoll:
+            return 1
+        case .sampleImage:
+            return dataSource.imageNames.count
         }
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell =
         collectionView.dequeueReusableCell(withReuseIdentifier: "imagePickerCollectionViewCell", for: indexPath)
-            as? ImagePickerCollectionViewCell else {
+                as? ImagePickerCollectionViewCell else {
             fatalError("Unexpected cell type")
         }
         cell.delegate = self
 
-        switch indexPath.section {
-        case 0:
-            cell.setImage(named: "image-picker/button-camera")
-            cell.state = .selected
-        case 1:
-            if indexPath == selectedCellIndexPath {
+        guard let section = typeFor(section: indexPath.section) else {
+            return cell
+        }
+        switch section {
+        case .cameraRoll:
+            if enableCameraRollPicking && indexPath.section == 0 {
+                cell.setImage(named: "image-picker/button-camera")
+                cell.state = .normal
+            }
+        case .sampleImage:
+            if indexPath.row == rowForSelectedCell {
                 cell.state = .selected
             } else {
                 cell.state = .normal
             }
             let imageThumbnailName = dataSource.imageNames[indexPath.row].thumbnailName
             cell.setImage(named: imageThumbnailName)
-        default:
-            break
         }
         return cell
     }
@@ -80,19 +114,21 @@ extension ImagePickerViewController: UICollectionViewDelegate, UICollectionViewD
 extension ImagePickerViewController: ImagePickerCollectionViewCellDelegate {
 
     func thumbnailButtonTapped(cell: ImagePickerCollectionViewCell) {
-        if let indexPath = imagePickerCollectionView.indexPath(for: cell) {
-            switch indexPath.section {
-            case 0:
+        guard let indexPath = imagePickerCollectionView.indexPath(for: cell),
+              let section = typeFor(section: indexPath.section) else {
+            return
+        }
+        switch section {
+        case .cameraRoll:
+            if enableCameraRollPicking && indexPath.section == 0 {
                 showImagePicker(popoverSourceView: cell)
-            case 1:
-                selectedCellIndexPath = indexPath
-                let imageName = dataSource.imageNames[indexPath.row].fullImageName
-                if let image = UIImage(named: imageName) {
-                    updateSelectionStates()
-                    delegate?.didSelectImage(image: image, pickerController: self)
-                }
-            default:
-                break
+            }
+        case .sampleImage:
+            rowForSelectedCell = indexPath.row
+            let imageName = dataSource.imageNames[indexPath.row].fullImageName
+            if let image = UIImage(named: imageName) {
+                updateSelectionStates()
+                delegate?.didSelectImage(image: image, pickerController: self)
             }
         }
     }
@@ -142,7 +178,7 @@ extension ImagePickerViewController: UIImagePickerControllerDelegate, UINavigati
 
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            selectedCellIndexPath = nil
+            rowForSelectedCell = nil
             updateSelectionStates()
             delegate?.didSelectImage(image: selectedImage, pickerController: self)
         }

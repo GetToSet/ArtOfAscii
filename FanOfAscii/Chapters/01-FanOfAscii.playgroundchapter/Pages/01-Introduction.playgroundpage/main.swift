@@ -1,9 +1,12 @@
 //#-hidden-code
 //
-//  See LICENSE folder for this template’s licensing information.
+// Copyright © 2020 Bunny Wong
+// Created on 2019/12/18.
 //
-//  Abstract:
-//  The Swift file containing the source code edited by the user of this playground book.
-//
+
+import UIKit
+import PlaygroundSupport
+
+PlaygroundPage.current.needsIndefiniteExecution = true
+
 //#-end-hidden-code
-let str = "Hello, playground"

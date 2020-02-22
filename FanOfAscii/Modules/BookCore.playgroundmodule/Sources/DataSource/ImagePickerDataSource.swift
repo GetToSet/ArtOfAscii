@@ -19,7 +19,7 @@ class ImagePickerDataSource {
 
     }
 
-    static var shard = ImagePickerDataSource(imageListPath: Bundle.main.path(forResource: "imagePickerList", ofType: "plist"))
+    static var shared = ImagePickerDataSource(imageListPath: Bundle.main.path(forResource: "imagePickerList", ofType: "plist"))
 
     let imageNames: [PickerImage]
 
