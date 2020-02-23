@@ -36,24 +36,20 @@ class MagnifierView: UIView {
     }
 
     override func draw(_ rect: CGRect) {
-        guard
-                let center = magnificationCenter,
-                let rawImage = rawImage else {
+        guard let center = magnificationCenter,
+              let rawImage = rawImage,
+              let context = UIGraphicsGetCurrentContext() else {
             return
         }
 
-        let croppingRect = CGRect(origin: center, size: CGSize(width: samplePixels, height: samplePixels))
-
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return
-        }
+        let samplingRect = CGRect(origin: center, size: CGSize(width: samplePixels, height: samplePixels))
 
         let pixelSize = Int(min(self.bounds.width / CGFloat(samplePixels), self.bounds.height / CGFloat(samplePixels)))
 
         for y in 0..<samplePixels {
             for x in 0..<samplePixels {
-                let ix = x + Int(croppingRect.minX)
-                let iy = y + Int(croppingRect.minY)
+                let ix = x + Int(samplingRect.minX)
+                let iy = y + Int(samplingRect.minY)
 
                 var pixel = rawImage.pixelAt(x: ix, y: iy)
                 let pixelColor: UIColor = pixel?.uiColor ?? .black

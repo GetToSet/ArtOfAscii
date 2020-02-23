@@ -678,7 +678,6 @@
                                                 </connections>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="gIr-Sj-FWJ" firstAttribute="top" secondItem="s4T-su-e8Q" secondAttribute="topMargin" id="2da-Xn-9Ko"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="gIr-Sj-FWJ" secondAttribute="trailing" id="I9E-57-HzM"/>

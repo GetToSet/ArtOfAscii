@@ -45,7 +45,7 @@ public class HowImagesComposedViewController: BaseViewController {
         send(payload.playgroundValue)
     }
 
-    private func repositionMagnifier(centerInImageView: CGPoint) {
+    private func updateMagnificationCenter(centerInImageView: CGPoint) {
         if let centerInImage = self.showcaseImageView.pointInImageFor(point: centerInImageView) {
             magnifierContainerView.magnificationCenter = centerInImage
         }
@@ -55,18 +55,19 @@ public class HowImagesComposedViewController: BaseViewController {
         magnifierContainerView.isHidden = magnifierButton.state == .normal
     }
 
-    override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
-        super.didSelectImage(image: image, pickerController: pickerController)
-        requestImageFiltering()
-    }
-
     override func updateShowcaseImage(image: UIImage) {
         super.updateShowcaseImage(image: image)
 
         magnifierContainerView.image = image
         if magnifierContainerView.magnificationCenter == nil {
-            repositionMagnifier(centerInImageView: showcaseImageView.center)
+            updateMagnificationCenter(centerInImageView: showcaseImageView.center)
         }
+    }
+
+    override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
+        super.didSelectImage(image: image, pickerController: pickerController)
+        magnifierContainerView.resetMagnifierPosition(animated: true)
+        requestImageFiltering()
     }
 
     override func toolBarButtonTapped(buttonView: ToolBarButtonView) {
@@ -82,9 +83,9 @@ public class HowImagesComposedViewController: BaseViewController {
 
 extension HowImagesComposedViewController: MagnifierContainerViewDelegate {
 
-    func magnificationCenterChanged(point: CGPoint, containerView: MagnifierContainerView) {
+    func magnifierCenterPositionChanged(point: CGPoint, containerView: MagnifierContainerView) {
         let centerInImageView = self.showcaseImageView.convert(point, from: containerView)
-        repositionMagnifier(centerInImageView: centerInImageView)
+        updateMagnificationCenter(centerInImageView: centerInImageView)
     }
 
 }

@@ -42,16 +42,24 @@ class MagnifierContainerView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        magnifierView.transform = .identity
-        delegate?.magnificationCenterChanged(point: self.center, containerView: self)
+        resetMagnifierPosition(animated: true)
+        delegate?.magnifierCenterPositionChanged(point: self.center, containerView: self)
     }
 
-    @objc func panGestureAction(_ sender: UIPanGestureRecognizer) {
+    func resetMagnifierPosition(animated: Bool) {
+        UIView.animate(withDuration: animated ? 0.2 : 0, animations: {
+            self.magnifierView.center = self.center
+        }, completion: { _ in
+            self.delegate?.magnifierCenterPositionChanged(point: self.center, containerView: self)
+        })
+    }
+
+    @objc private func panGestureAction(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: self)
         let newCenter = CGPoint(x: magnifierView.center.x + translation.x, y: magnifierView.center.y + translation.y)
         if self.bounds.contains(newCenter) {
             magnifierView.center = newCenter
-            delegate?.magnificationCenterChanged(point: newCenter, containerView: self)
+            delegate?.magnifierCenterPositionChanged(point: newCenter, containerView: self)
         }
         sender.setTranslation(CGPoint.zero, in: self)
     }
@@ -60,6 +68,6 @@ class MagnifierContainerView: UIView {
 
 protocol MagnifierContainerViewDelegate: AnyObject {
 
-    func magnificationCenterChanged(point: CGPoint, containerView: MagnifierContainerView)
+    func magnifierCenterPositionChanged(point: CGPoint, containerView: MagnifierContainerView)
 
 }

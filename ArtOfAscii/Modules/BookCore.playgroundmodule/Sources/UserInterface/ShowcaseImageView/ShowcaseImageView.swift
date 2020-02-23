@@ -52,7 +52,7 @@ class ShowcaseImageView: UIImageView {
                 }
                 if image.size.height < self.bounds.size.height {
                     drawingRect.size.height = image.size.height
-                   drawingRect.origin.y = (self.bounds.size.height - drawingRect.size.height) / 2
+                    drawingRect.origin.y = (self.bounds.size.height - drawingRect.size.height) / 2
                 }
                 return drawingRect
             default:
@@ -68,13 +68,15 @@ class ShowcaseImageView: UIImageView {
 
     func pointInImageFor(point: CGPoint) -> CGPoint? {
         guard let imageSize = self.image?.size,
-              let drawingRect = self.drawingRect,
-              drawingRect.contains(point) else {
+              let drawingRect = self.drawingRect else {
             return nil
         }
 
-        let pointInScaledImage = CGPoint(x: point.x - drawingRect.minX, y: point.y - drawingRect.minY)
-        let pointInImage = CGPoint(x: pointInScaledImage.x * (imageSize.width / drawingRect.width),
+        let pointInScaledImage = CGPoint(
+                x: point.x - drawingRect.minX,
+                y: point.y - drawingRect.minY)
+        let pointInImage = CGPoint(
+                x: pointInScaledImage.x * (imageSize.width / drawingRect.width),
                 y: pointInScaledImage.y * (imageSize.height / drawingRect.height))
         return pointInImage
     }
