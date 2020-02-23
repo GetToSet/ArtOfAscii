@@ -101,13 +101,13 @@ func applyHistogramEqualization(rawImage: RawImage) {
         // Add current pixel count to the cumulative pixel count.
         pixelCumulative += histogram[i]
         // Calculates the cumulative pixel frequency (CPF) as cumulative pixel count divided by total pixel count.
-        let cumulativePixelFrequency = <#T##cumulativeFrequency##Double#>
+        let cumulativePixelFrequency: Double = <#T##cumulativeFrequency##Double#>
 
         // Map current brightness to full range according current CPF value.
         let equalizedBrightness = cumulativePixelFrequency * 255.0
         equalizationMap[i] = UInt8(equalizedBrightness.rounded())
     }
-    rawImage.applyBrightnessMap(equalizationMap)
+    rawImage.applyBrightnessLookup(equalizationMap)
 }
 
 //#-end-editable-code

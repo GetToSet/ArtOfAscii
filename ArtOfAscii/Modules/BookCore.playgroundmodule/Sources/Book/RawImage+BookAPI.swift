@@ -6,17 +6,15 @@
 import UIKit
 import Accelerate
 
-import BookCore
-
 public extension RawImage {
 
-    func applyBrightnessMap(_ mapping: [UInt8]) {
+    func applyBrightnessLookup(_ mapping: [UInt8]) {
         let dataPointer = getMutableDataPointer()
         for i in stride(from: 0, to: format.pixelCount * 4, by: 4) {
             let red = dataPointer[i]
             let green = dataPointer[i + 1]
             let blue = dataPointer[i + 2]
-            let brightness = Int((0.2126 * Float(red) + 0.7152 * Float(blue) + 0.0722 * Float(green)).rounded())
+            let brightness = Int(((Double(red) + Double(blue) + Double(green)) / 3).rounded())
             let mappedBrightness = mapping[brightness]
             dataPointer[i] = mappedBrightness
             dataPointer[i + 1] = mappedBrightness

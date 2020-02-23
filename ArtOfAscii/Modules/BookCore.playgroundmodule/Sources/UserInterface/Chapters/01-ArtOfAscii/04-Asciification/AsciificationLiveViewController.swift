@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import Photos
 import PlaygroundSupport
 
 class AsciificationLiveViewController: BaseViewController {
@@ -31,7 +32,7 @@ class AsciificationLiveViewController: BaseViewController {
         saveButton.state = .disabled
         saveButton.delegate = self
 
-        imageScaleButton.buttonState = .expand
+        imageScaleButton.isHidden = true
         imageScaleButton.delegate = self
     }
 
@@ -49,26 +50,25 @@ class AsciificationLiveViewController: BaseViewController {
 
     private func updateImageForButtonStates() {
         if asciificationButton.state == .selected {
-            let payload = EventMessage.asciificationRequest(image: showcaseImageView.image)
-            send(payload.playgroundValue)
+            if let image = showcaseImageView.image {
+                let payload = EventMessage.asciificationRequest(image: image)
+                send(payload.playgroundValue, showLoadingView: true)
+            }
         } else if shrinkButton.state == .selected {
-            let imageToShrink = preprocessButton.state == .selected ? preprocessedImage : sourceImage
-            let payload = EventMessage.shrinkingRequest(image: imageToShrink)
-            send(payload.playgroundValue)
+            if let imageToShrink = preprocessButton.state == .selected ? preprocessedImage : sourceImage {
+                let payload = EventMessage.shrinkingRequest(image: imageToShrink)
+                send(payload.playgroundValue)
+            }
         } else if preprocessButton.state == .selected {
             if let preprocessedImage = preprocessedImage {
                 updateShowcaseImage(image: preprocessedImage)
             }
-        } else if let image = sourceImage {
-            updateShowcaseImage(image: image)
+        } else {
+            if let image = sourceImage {
+                updateShowcaseImage(image: image)
+            }
         }
         imageScaleButton.isHidden = !(shrinkButton.state == .selected && asciificationButton.state == .normal)
-    }
-
-    private func saveCurrentImage() {
-        if let imageToSave = showcaseImageView.image {
-            UIImageWriteToSavedPhotosAlbum(imageToSave, self, #selector(didSaveImage(image:didFinishSavingWithError:contextInfo:)), nil)
-        }
     }
 
     override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
@@ -88,6 +88,7 @@ class AsciificationLiveViewController: BaseViewController {
             saveCurrentImage()
             return
         case asciificationButton:
+            imageScaleButton.buttonState = .expand
             saveButton.state = asciificationButton.state == .selected ? .normal : .disabled
         case shrinkButton:
             imageScaleButton.buttonState = .expand
@@ -102,9 +103,54 @@ class AsciificationLiveViewController: BaseViewController {
     }
 
     @objc func didSaveImage(image: UIImage, didFinishSavingWithError error: Error, contextInfo: UnsafeMutableRawPointer?) {
-        let alert = UIAlertController(title: "Congratulations!", message: "Your ASCII art has been save to photo album.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Congratulations!",
+                message: "Your ASCII art has been save to photo album.",
+                preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
         self.present(alert, animated: true, completion: nil)
+    }
+
+    public override func liveViewMessageConnectionOpened() {
+        super.liveViewMessageConnectionOpened()
+
+        preprocessButton.state = .normal
+        shrinkButton.state = .normal
+        asciificationButton.state = .disabled
+        saveButton.state = .disabled
+        updateImageForButtonStates()
+    }
+
+    public override func liveViewMessageConnectionClosed() {
+        super.liveViewMessageConnectionClosed()
+
+        shrinkButton.state = .disabled
+        asciificationButton.state = .disabled
+        if saveButton.state != .normal {
+            saveButton.state = .disabled
+        }
+    }
+
+}
+
+extension AsciificationLiveViewController {
+
+    private func saveCurrentImage() {
+        guard let imageToSave = showcaseImageView.image else {
+            return
+        }
+
+        PHPhotoLibrary.requestAuthorization { status in
+            switch status {
+            case .authorized:
+                UIImageWriteToSavedPhotosAlbum(imageToSave, self, #selector(self.didSaveImage(image:didFinishSavingWithError:contextInfo:)), nil)
+            default:
+                let alert = UIAlertController(title: "Sorry",
+                        message: "Unable to save your ASCII art because the permission is not granted.",
+                        preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
 
 }
@@ -117,40 +163,6 @@ extension AsciificationLiveViewController: ScaleModeButtonDelegate {
             showcaseImageView.contentMode = .center
         case .expand:
             showcaseImageView.contentMode = .scaleAspectFit
-        }
-    }
-
-}
-
-extension AsciificationLiveViewController: PlaygroundLiveViewMessageHandler {
-
-    public func receive(_ message: PlaygroundValue) {
-        guard let message = EventMessage.from(playgroundValue: message) else {
-            return
-        }
-        switch message {
-        case .imageProcessingResponse(let image):
-            if let image = image {
-                updateShowcaseImage(image: image)
-            }
-        default:
-            break
-        }
-    }
-
-    public func liveViewMessageConnectionOpened() {
-        preprocessButton.state = .normal
-        shrinkButton.state = .normal
-        asciificationButton.state = .disabled
-        saveButton.state = .disabled
-        updateImageForButtonStates()
-    }
-
-    public func liveViewMessageConnectionClosed() {
-        shrinkButton.state = .disabled
-        asciificationButton.state = .disabled
-        if saveButton.state != .normal {
-            saveButton.state = .disabled
         }
     }
 

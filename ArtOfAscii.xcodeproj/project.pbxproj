@@ -34,6 +34,8 @@
 		7174D3BC23F7D0D100A09FFB /* woman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7174D3B023F7D0D100A09FFB /* woman.jpg */; };
 		7174D3BD23F7D0D100A09FFB /* imagePickerList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7174D3B123F7D0D100A09FFB /* imagePickerList.plist */; };
 		71BA4ED823FE31BA00788A11 /* FiraCode-VF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71BA4ED723FE31BA00788A11 /* FiraCode-VF.ttf */; };
+		71C37FDA24024D10002C4F81 /* RawImage+BookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6648091CC93CB6693447 /* RawImage+BookAPI.swift */; };
+		71C37FDB24024D13002C4F81 /* AsciiArtRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6337FA0E5673FC85EE91 /* AsciiArtRenderer.swift */; };
 		B99F60BD727AA847C9846C2B /* IntroductionLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6C47683919CCE440B901 /* IntroductionLiveViewController.swift */; };
 		B99F618160CD0C4E04B0A759 /* LiveViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6D807B507CFEA417C45F /* LiveViewSupport.swift */; };
 		B99F618E497E728524D63AF8 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F62ACBBE87D8546FAB866 /* EventListener.swift */; };
@@ -389,6 +391,16 @@
 			path = PublicResources;
 			sourceTree = "<group>";
 		};
+		71C37FD924024B4B002C4F81 /* Book */ = {
+			isa = PBXGroup;
+			children = (
+				B99F6648091CC93CB6693447 /* RawImage+BookAPI.swift */,
+				B99F6F739FC0DC4F69F5CB92 /* FontResourceProvider.swift */,
+				B99F6337FA0E5673FC85EE91 /* AsciiArtRenderer.swift */,
+			);
+			path = Book;
+			sourceTree = "<group>";
+		};
 		71C6D8DF23F975EA005333B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,7 +445,7 @@
 		B99F64119B36315AE8FAFAE3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				B99F68A75310EEBB0FB9E53E /* Core */,
+				B99F62ACBBE87D8546FAB866 /* EventListener.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -441,6 +453,7 @@
 		B99F6565BBD6409ECA1863B0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				71C37FD924024B4B002C4F81 /* Book */,
 				B99F68A240FBE29591D96212 /* Core */,
 				B99F69A4BA261552C3989CF5 /* Utils */,
 				B99F6D23FE8B41BA5E133703 /* DataSource */,
@@ -484,17 +497,6 @@
 				B99F6CAEBCFD81D53A0F32C3 /* EventMessage.swift */,
 				B99F6D807B507CFEA417C45F /* LiveViewSupport.swift */,
 				B99F6B123B049D4EA47A5C4E /* RawImage.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		B99F68A75310EEBB0FB9E53E /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				B99F62ACBBE87D8546FAB866 /* EventListener.swift */,
-				B99F6648091CC93CB6693447 /* RawImage+BookAPI.swift */,
-				B99F6F739FC0DC4F69F5CB92 /* FontResourceProvider.swift */,
-				B99F6337FA0E5673FC85EE91 /* AsciiArtRenderer.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -790,6 +792,7 @@
 				B99F6B218BB1EDDCF5A1BEDA /* RawImage.swift in Sources */,
 				B99F65EBA0B2B605EAF4B0D9 /* UIColor+StateColors.swift in Sources */,
 				B99F6661C523F8C8DE0DDEEA /* ImagePickerDataSource.swift in Sources */,
+				71C37FDB24024D13002C4F81 /* AsciiArtRenderer.swift in Sources */,
 				B99F6E509D271A941D4E9790 /* BaseViewController.swift in Sources */,
 				B99F62A628D4A47F72E23E1D /* ImagePickerViewController.swift in Sources */,
 				B99F6400E1E57AF2E5AB4976 /* ImagePickerCollectionViewCell.swift in Sources */,
@@ -805,6 +808,7 @@
 				B99F6ED14C4977D2A3E4D777 /* AsciificationLiveViewController.swift in Sources */,
 				B99F649C83DCDA708FA85400 /* ScaleModeButton.swift in Sources */,
 				B99F6905CE4227EDEC115B4C /* FontResourceProvider.swift in Sources */,
+				71C37FDA24024D10002C4F81 /* RawImage+BookAPI.swift in Sources */,
 				B99F6A90900307C53CE347D7 /* AVCaptureVideoOrientation+UIInterfaceOrientatiion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -28,6 +28,14 @@ class HistogramView: UIView {
         }
     }
 
+    var shouldDrawCumulativePixelFrequency: Bool = false {
+        didSet {
+            if renderingMode == .brightness {
+                setNeedsDisplay()
+            }
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -46,6 +54,13 @@ class HistogramView: UIView {
         case .brightness:
             guard let brightnessHistogram = self.brightnessHistogram else {
                 break
+            }
+            if shouldDrawCumulativePixelFrequency {
+                drawCumulativePixelFrequency(histogramVal: brightnessHistogram,
+                        color: UIColor.States.highlight,
+                        fractionStart: 0.0,
+                        fractionEnd: 1.0,
+                        context: context)
             }
             drawHistogram(histogramVal: brightnessHistogram,
                     color: .white,
@@ -82,14 +97,27 @@ class HistogramView: UIView {
         brightnessHistogram = rawImage.calculateBrightnessHistogram()
     }
 
+    private func drawCumulativePixelFrequency(histogramVal: [UInt], color: UIColor, fractionStart: CGFloat, fractionEnd: CGFloat, context: CGContext) {
+        var pixelCumulative: UInt = 0
+        let pixelCumulativeVals: [CGFloat] = histogramVal.map {
+            pixelCumulative += $0
+            return CGFloat(pixelCumulative)
+        }
+        plotGraph(values: pixelCumulativeVals, color: color, fractionStart: fractionStart, fractionEnd: fractionEnd, context: context)
+    }
+
     private func drawHistogram(histogramVal: [UInt], color: UIColor, fractionStart: CGFloat, fractionEnd: CGFloat, context: CGContext) {
-        let sampleCount = histogramVal.count
+        plotGraph(values: histogramVal.map({ CGFloat($0) }), color: color, fractionStart: fractionStart, fractionEnd: fractionEnd, context: context)
+    }
+
+    private func plotGraph(values: [CGFloat], color: UIColor, fractionStart: CGFloat, fractionEnd: CGFloat, context: CGContext) {
+        let sampleCount = values.count
 
         let size = self.bounds.size
         let padding = self.layer.borderWidth + 1.0
 
-        let levelMax = CGFloat(histogramVal.reduce(0, ({ max($0, $1) })))
-        let yVals: [CGFloat] = histogramVal.map {
+        let levelMax = CGFloat(values.reduce(0, ({ max($0, $1) })))
+        let yVals: [CGFloat] = values.map {
             padding + (size.height - 2 * padding) * (1.0 - CGFloat($0) / levelMax)
         }
 

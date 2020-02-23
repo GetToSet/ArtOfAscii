@@ -29,16 +29,17 @@ public class GrayscaleHistogramEqualization: BaseViewController {
     }
 
     private func requestFilteringIfNeeded() {
+        guard let sourceImage = self.sourceImage else {
+            return
+        }
         if equalizationButton.state == .selected {
-            let payload = EventMessage.shrinkingRequest(image: self.sourceImage)
-            send(payload.playgroundValue)
+            let payload = EventMessage.equalizationRequest(image: self.sourceImage)
+            send(payload.playgroundValue, showLoadingView: true)
         } else if grayscaleButton.state == .selected {
             let payload = EventMessage.grayscaleFilterRequest(image: self.sourceImage)
-            send(payload.playgroundValue)
+            send(payload.playgroundValue, showLoadingView: true)
         } else {
-            if let image = sourceImage {
-                updateShowcaseImage(image: image)
-            }
+            updateShowcaseImage(image: sourceImage)
         }
     }
 
@@ -68,7 +69,8 @@ public class GrayscaleHistogramEqualization: BaseViewController {
                 histogramView.renderingMode = histogramButton.isRgbMode ? .rgb : .brightness
             }
         case grayscaleButton:
-            equalizationButton.state = grayscaleButton.state == equalizationButton.state ? .normal : .disabled
+            equalizationButton.state = grayscaleButton.state == .selected ? .normal : .disabled
+            histogramView.shouldDrawCumulativePixelFrequency = grayscaleButton.state == .selected ? true : false
             requestFilteringIfNeeded()
         case equalizationButton:
             requestFilteringIfNeeded()
@@ -77,35 +79,22 @@ public class GrayscaleHistogramEqualization: BaseViewController {
         }
     }
 
-}
+    public override func liveViewMessageConnectionOpened() {
+        super.liveViewMessageConnectionOpened()
 
-extension GrayscaleHistogramEqualization: PlaygroundLiveViewMessageHandler {
-
-    public func liveViewMessageConnectionOpened() {
         grayscaleButton.state = .normal
         equalizationButton.state = .disabled
+        histogramView.shouldDrawCumulativePixelFrequency = false
         if let image = sourceImage {
             updateShowcaseImage(image: image)
         }
     }
 
-    public func liveViewMessageConnectionClosed() {
+    public override func liveViewMessageConnectionClosed() {
+        super.liveViewMessageConnectionClosed()
+
         grayscaleButton.state = .disabled
         equalizationButton.state = .disabled
-    }
-
-    public func receive(_ message: PlaygroundValue) {
-        guard let message = EventMessage.from(playgroundValue: message) else {
-            return
-        }
-        switch message {
-        case .imageProcessingResponse(let image):
-            if let image = image {
-                self.updateShowcaseImage(image: image)
-            }
-        default:
-            break
-        }
     }
 
 }

@@ -36,13 +36,16 @@ public class HowImagesComposedViewController: BaseViewController {
     }
 
     private func requestImageFiltering() {
+        guard let sourceImage = self.sourceImage else {
+            return
+        }
         let payload = EventMessage.rgbFilterRequest(
                 redEnabled: redFilterButton.state == .selected,
                 greenEnabled: greenFilterButton.state == .selected,
                 blueEnabled: blueFilterButton.state == .selected,
                 image: sourceImage
         )
-        send(payload.playgroundValue)
+        send(payload.playgroundValue, showLoadingView: true)
     }
 
     private func updateMagnificationCenter(centerInImageView: CGPoint) {
@@ -64,12 +67,6 @@ public class HowImagesComposedViewController: BaseViewController {
         }
     }
 
-    override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
-        super.didSelectImage(image: image, pickerController: pickerController)
-        magnifierContainerView.resetMagnifierPosition(animated: true)
-        requestImageFiltering()
-    }
-
     override func toolBarButtonTapped(buttonView: ToolBarButtonView) {
         switch buttonView {
         case magnifierButton:
@@ -79,6 +76,29 @@ public class HowImagesComposedViewController: BaseViewController {
         }
     }
 
+    override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
+        super.didSelectImage(image: image, pickerController: pickerController)
+        magnifierContainerView.resetMagnifierPosition(animated: true)
+        requestImageFiltering()
+    }
+
+    public override func liveViewMessageConnectionOpened() {
+        super.liveViewMessageConnectionOpened()
+
+        redFilterButton.state = .selected
+        greenFilterButton.state = .selected
+        blueFilterButton.state = .selected
+        requestImageFiltering()
+    }
+
+    public override func liveViewMessageConnectionClosed() {
+        super.liveViewMessageConnectionClosed()
+
+        redFilterButton.state = .disabled
+        greenFilterButton.state = .disabled
+        blueFilterButton.state = .disabled
+    }
+
 }
 
 extension HowImagesComposedViewController: MagnifierContainerViewDelegate {
@@ -86,37 +106,6 @@ extension HowImagesComposedViewController: MagnifierContainerViewDelegate {
     func magnifierCenterPositionChanged(point: CGPoint, containerView: MagnifierContainerView) {
         let centerInImageView = self.showcaseImageView.convert(point, from: containerView)
         updateMagnificationCenter(centerInImageView: centerInImageView)
-    }
-
-}
-
-extension HowImagesComposedViewController: PlaygroundLiveViewMessageHandler {
-
-    public func receive(_ message: PlaygroundValue) {
-        guard let message = EventMessage.from(playgroundValue: message) else {
-            return
-        }
-        switch message {
-        case .imageProcessingResponse(let image):
-            if let image = image {
-                updateShowcaseImage(image: image)
-            }
-        default:
-            break
-        }
-    }
-
-    public func liveViewMessageConnectionOpened() {
-        redFilterButton.state = .selected
-        greenFilterButton.state = .selected
-        blueFilterButton.state = .selected
-        requestImageFiltering()
-    }
-
-    public func liveViewMessageConnectionClosed() {
-        redFilterButton.state = .disabled
-        greenFilterButton.state = .disabled
-        blueFilterButton.state = .disabled
     }
 
 }

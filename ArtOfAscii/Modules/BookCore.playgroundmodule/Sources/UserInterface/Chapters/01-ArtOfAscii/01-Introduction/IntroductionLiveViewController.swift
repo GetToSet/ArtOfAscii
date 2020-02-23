@@ -8,7 +8,7 @@ import PlaygroundSupport
 import AVFoundation
 import Accelerate
 
-class IntroductionLiveViewController: BaseViewController {
+public class IntroductionLiveViewController: BaseViewController {
 
     @IBOutlet private weak var sessionSetupResultLabel: UILabel!
 
@@ -80,19 +80,19 @@ class IntroductionLiveViewController: BaseViewController {
         }
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         self.imagePickerController.enableCameraRollPicking = false
         sessionSetupResultLabel.isHidden = true
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         stopSession()
         super.viewWillDisappear(animated)
     }
 
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
         sessionQueue.async {
@@ -105,11 +105,25 @@ class IntroductionLiveViewController: BaseViewController {
     }
 
     override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
-        
+
     }
 
     override func toolBarButtonTapped(buttonView: ToolBarButtonView) {
         buttonView.state = .normal
+    }
+
+    public override func liveViewMessageConnectionOpened() {
+        requestAuthorization()
+        reconfigureSession()
+        startSessionAndUpdateUI()
+    }
+
+    public override func liveViewMessageConnectionClosed() {
+        stopSession()
+    }
+
+    public override func receive(_ message: PlaygroundValue) {
+
     }
 
 }
@@ -256,7 +270,7 @@ extension IntroductionLiveViewController {
 
 extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
@@ -325,24 +339,6 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
                 self.updateShowcaseImage(image: UIImage(cgImage: cgImage.takeRetainedValue()))
             }
         }
-    }
-
-}
-
-extension IntroductionLiveViewController: PlaygroundLiveViewMessageHandler {
-
-    public func liveViewMessageConnectionOpened() {
-        requestAuthorization()
-        reconfigureSession()
-        startSessionAndUpdateUI()
-    }
-
-    public func liveViewMessageConnectionClosed() {
-        stopSession()
-    }
-
-    public func receive(_ message: PlaygroundValue) {
-
     }
 
 }
