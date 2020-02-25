@@ -7,13 +7,17 @@ import UIKit
 
 class ImagePickerViewController: UIViewController {
 
+    enum ImageListType {
+        case sampleImage, effectsPreview
+    }
+
     private enum SectionType {
         case cameraRoll, sampleImage
     }
 
     @IBOutlet weak var imagePickerCollectionView: UICollectionView!
 
-    let dataSource = ImagePickerDataSource.shared
+    var sampleImageType = ImageListType.sampleImage
 
     var enableCameraRollPicking = true {
         didSet {
@@ -24,6 +28,15 @@ class ImagePickerViewController: UIViewController {
     var delegate: ImagePickerViewControllerDelegate?
 
     private var rowForSelectedCell: Int?
+
+    private var dataSource: ImagePickerDataSource {
+        switch sampleImageType {
+        case .sampleImage:
+            return ImagePickerDataSource.sampleImages
+        case .effectsPreview:
+            return ImagePickerDataSource.effectsPreview
+        }
+    }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +89,7 @@ extension ImagePickerViewController: UICollectionViewDelegate, UICollectionViewD
         case .cameraRoll:
             return 1
         case .sampleImage:
-            return dataSource.imageNames.count
+            return dataSource.items.count
         }
     }
 
@@ -103,7 +116,7 @@ extension ImagePickerViewController: UICollectionViewDelegate, UICollectionViewD
             } else {
                 cell.state = .normal
             }
-            let imageThumbnailName = dataSource.imageNames[indexPath.row].thumbnailName
+            let imageThumbnailName = dataSource.items[indexPath.row].thumbnailName
             cell.setImage(named: imageThumbnailName)
         }
         return cell
@@ -125,10 +138,16 @@ extension ImagePickerViewController: ImagePickerCollectionViewCellDelegate {
             }
         case .sampleImage:
             rowForSelectedCell = indexPath.row
-            let imageName = dataSource.imageNames[indexPath.row].fullImageName
-            if let image = UIImage(named: imageName) {
+
+            let item = dataSource.items[indexPath.row]
+            if let imageName = item.imageName,
+                let image = UIImage(named: imageName) {
                 updateSelectionStates()
-                delegate?.didSelectImage(image: image, pickerController: self)
+                delegate?.didPickImage(image: image, pickerController: self)
+            }
+            if let itemName = item.itemName {
+                updateSelectionStates()
+                delegate?.didPickNamedItem(name: itemName, pickerController: self)
             }
         }
     }
@@ -180,7 +199,7 @@ extension ImagePickerViewController: UIImagePickerControllerDelegate, UINavigati
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             rowForSelectedCell = nil
             updateSelectionStates()
-            delegate?.didSelectImage(image: selectedImage, pickerController: self)
+            delegate?.didPickImage(image: selectedImage, pickerController: self)
         }
         picker.dismiss(animated: true)
     }
@@ -189,6 +208,7 @@ extension ImagePickerViewController: UIImagePickerControllerDelegate, UINavigati
 
 protocol ImagePickerViewControllerDelegate: AnyObject {
 
-    func didSelectImage(image: UIImage, pickerController: ImagePickerViewController)
+    func didPickImage(image: UIImage, pickerController: ImagePickerViewController)
+    func didPickNamedItem(name: String, pickerController: ImagePickerViewController)
 
 }

@@ -76,8 +76,8 @@ public class HowImagesComposedViewController: BaseViewController {
         }
     }
 
-    override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
-        super.didSelectImage(image: image, pickerController: pickerController)
+    override func didPickImage(image: UIImage, pickerController: ImagePickerViewController) {
+        super.didPickImage(image: image, pickerController: pickerController)
         magnifierContainerView.resetMagnifierPosition(animated: true)
         requestImageFiltering()
     }

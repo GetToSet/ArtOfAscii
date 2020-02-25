@@ -148,13 +148,17 @@ public class BaseViewController: UIViewController,
         send(message)
     }
 
-    func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
+    func didPickImage(image: UIImage, pickerController: ImagePickerViewController) {
         sourceImage = image
         updateShowcaseImage(image: image)
     }
+    
+    func didPickNamedItem(name: String, pickerController: ImagePickerViewController) {
+        
+    }
 
     func toolBarButtonTapped(buttonView: ToolBarButtonView) {
-
+        
     }
 
     public func liveViewMessageConnectionOpened() {

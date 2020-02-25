@@ -10,6 +10,7 @@ public protocol Font {
 
     static var resourceName: String { get }
     static var resourceExtension: String { get }
+    static var characterAspectRatio: Double { get }
 
     static func register()
 
@@ -39,8 +40,13 @@ public class FontResourceProvider {
         public static var resourceName: String {
             return "FiraCode-VF"
         }
+
         public static var resourceExtension: String {
             return "ttf"
+        }
+
+        public static var characterAspectRatio: Double {
+            return 0.5860
         }
 
     }

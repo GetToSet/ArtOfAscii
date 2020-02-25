@@ -6,11 +6,14 @@
 import UIKit
 import PlaygroundSupport
 import AVFoundation
+import Photos
 import Accelerate
 
 public class IntroductionLiveViewController: BaseViewController {
 
     @IBOutlet private weak var sessionSetupResultLabel: UILabel!
+    @IBOutlet private weak var captureButton: ToolBarButtonView!
+    @IBOutlet private weak var cameraSwitchButton: ToolBarButtonView!
 
     private enum CameraOrientation {
         case front, back
@@ -23,6 +26,8 @@ public class IntroductionLiveViewController: BaseViewController {
     }
 
     private var setupResult: SessionSetupResult = .success
+
+    private var photoAlbumAccess: Bool = true
 
     private let session = AVCaptureSession()
     private let sessionQueue = DispatchQueue(label: "SessionQueue", qos: .userInteractive, autoreleaseFrequency: .workItem)
@@ -83,8 +88,18 @@ public class IntroductionLiveViewController: BaseViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.imagePickerController.enableCameraRollPicking = false
+        FontResourceProvider.FiraCode.register()
+
+        imagePickerController.enableCameraRollPicking = false
         sessionSetupResultLabel.isHidden = true
+        
+        cameraSwitchButton.state = .disabled
+        cameraSwitchButton.delegate = self
+        
+        captureButton.state = .disabled
+        captureButton.delegate = self
+        
+        imagePickerController.sampleImageType = .effectsPreview
     }
 
     public override func viewWillDisappear(_ animated: Bool) {
@@ -104,8 +119,8 @@ public class IntroductionLiveViewController: BaseViewController {
         }
     }
 
-    override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
-
+    override func didPickNamedItem(name: String, pickerController: ImagePickerViewController) {
+        
     }
 
     override func toolBarButtonTapped(buttonView: ToolBarButtonView) {
@@ -148,6 +163,24 @@ extension IntroductionLiveViewController {
         default:
             setupResult = .notAuthorized
         }
+
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .authorized:
+            break
+        case .notDetermined:
+            let semaphore = DispatchSemaphore(value: 0)
+            PHPhotoLibrary.requestAuthorization() { status in
+                if status == .authorized {
+                    self.photoAlbumAccess = true
+                } else {
+                    self.photoAlbumAccess = false
+                }
+                semaphore.signal()
+            }
+            semaphore.wait()
+        default:
+            self.photoAlbumAccess = false
+        }
     }
 
     private func reconfigureSession() {
@@ -157,7 +190,7 @@ extension IntroductionLiveViewController {
 
         sessionQueue.async {
             self.session.beginConfiguration()
-            defer  {
+            defer {
                 if self.setupResult != .success {
                     self.session.commitConfiguration()
                 }
@@ -224,12 +257,13 @@ extension IntroductionLiveViewController {
         sessionQueue.async {
             switch self.setupResult {
             case .success:
-                self.adjustVideoOrientation()
-
                 self.session.startRunning()
 
                 DispatchQueue.main.async {
+                    self.adjustVideoOrientation()
                     self.sessionSetupResultLabel.isHidden = true
+                    self.cameraSwitchButton.state = .normal
+                    self.captureButton.state = self.photoAlbumAccess ? .normal : .disabled
                 }
             case .notAuthorized:
                 DispatchQueue.main.async {
@@ -251,6 +285,8 @@ extension IntroductionLiveViewController {
         sessionQueue.async {
             self.session.stopRunning()
         }
+        self.cameraSwitchButton.state = .disabled
+        self.captureButton.state = .disabled
     }
 
     private func adjustVideoOrientation() {
@@ -276,17 +312,19 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
         }
 
         CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly)
-        processYpCbCrToRGB(pixelBuffer: pixelBuffer)
+        processPixelBufferToAsciiArt(pixelBuffer: pixelBuffer)
         CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly)
     }
 
-    func processYpCbCrToRGB(pixelBuffer: CVPixelBuffer) {
+    func processPixelBufferToAsciiArt(pixelBuffer: CVPixelBuffer) {
+        let processor: AsciiEffectsProcessor = PlainEffectProcessor()
+
         let lumaBaseAddress = CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 0)
         let lumaWidth = CVPixelBufferGetWidthOfPlane(pixelBuffer, 0)
         let lumaHeight = CVPixelBufferGetHeightOfPlane(pixelBuffer, 0)
         let lumaRowBytes = CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, 0)
 
-        var sourceLumaBuffer = vImage_Buffer(data: lumaBaseAddress,
+        var lumaBuffer = vImage_Buffer(data: lumaBaseAddress,
                 height: vImagePixelCount(lumaHeight),
                 width: vImagePixelCount(lumaWidth),
                 rowBytes: lumaRowBytes)
@@ -296,7 +334,7 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
         let chromaHeight = CVPixelBufferGetHeightOfPlane(pixelBuffer, 1)
         let chromaRowBytes = CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, 1)
 
-        var sourceChromaBuffer = vImage_Buffer(data: chromaBaseAddress,
+        var chromaBuffer = vImage_Buffer(data: chromaBaseAddress,
                 height: vImagePixelCount(chromaHeight),
                 width: vImagePixelCount(chromaWidth * 2),
                 rowBytes: chromaRowBytes)
@@ -306,8 +344,8 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
                 free(destinationBuffer.data)
             }
             guard vImageBuffer_Init(&destinationBuffer,
-                    sourceLumaBuffer.height,
-                    sourceLumaBuffer.width,
+                    lumaBuffer.height,
+                    lumaBuffer.width,
                     cgImageFormat.bitsPerPixel,
                     vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
                 return
@@ -315,8 +353,11 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
             shouldRecreateDestinationBuffer = false
         }
 
-        guard vImageConvert_420Yp8_CbCr8ToARGB8888(&sourceLumaBuffer,
-                &sourceChromaBuffer,
+        // First step processing — Apply filters to YCbCr image
+        processor.processYCbCrBuffer(lumaBuffer: &lumaBuffer, chromaBuffer: &chromaBuffer)
+
+        guard vImageConvert_420Yp8_CbCr8ToARGB8888(&lumaBuffer,
+                &chromaBuffer,
                 &destinationBuffer,
                 &info420vToARGB!,
                 nil,
@@ -325,18 +366,10 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
             return
         }
 
-        var error = kvImageNoError
-
-        let cgImage = vImageCreateCGImageFromBuffer(&destinationBuffer,
-                &cgImageFormat,
-                nil,
-                nil,
-                vImage_Flags(kvImageNoFlags),
-                &error)
-
-        if let cgImage = cgImage, error == kvImageNoError {
+        // Second step processing — Apply filters to ARGB images & Draw ASCII arts from buffer
+        if let image = processor.processArgbBufferToAsciiArt(buffer: &destinationBuffer) {
             DispatchQueue.main.async {
-                self.updateShowcaseImage(image: UIImage(cgImage: cgImage.takeRetainedValue()))
+                self.updateShowcaseImage(image: image)
             }
         }
     }

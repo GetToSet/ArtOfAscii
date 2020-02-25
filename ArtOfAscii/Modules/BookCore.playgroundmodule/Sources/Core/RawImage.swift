@@ -120,8 +120,7 @@ public class RawImage {
 
         let dataPointer = getMutableDataPointer()
 
-        let numberOfComponents = 4
-        let pixelData = ((format.width * y) + x) * numberOfComponents
+        let pixelData = (y * format.bytesForRow) + x * 4
 
         let r = dataPointer[pixelData]
         let g = dataPointer[pixelData + 1]
@@ -175,15 +174,14 @@ public class RawImage {
     }
 
     private func getGrayscaledBuffer(dataPointer: UnsafeMutableRawPointer) -> vImage_Buffer? {
-        let coefficient: Float = 1.0 / 3.0
+        let coefficient = 1.0 / 3.0
 
         let divisor: Int32 = 0x1000
-        let fDivisor = Float(divisor)
-
+        let dDivisor = Double(divisor)
         var coefficientsMatrix = [
-            Int16(coefficient * fDivisor),
-            Int16(coefficient * fDivisor),
-            Int16(coefficient * fDivisor),
+            Int16(coefficient * dDivisor),
+            Int16(coefficient * dDivisor),
+            Int16(coefficient * dDivisor),
             1
         ]
         var destBuffer = vImage_Buffer(
@@ -224,7 +222,6 @@ public class RawImage {
                 vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
             return
         }
-
     }
 
 }

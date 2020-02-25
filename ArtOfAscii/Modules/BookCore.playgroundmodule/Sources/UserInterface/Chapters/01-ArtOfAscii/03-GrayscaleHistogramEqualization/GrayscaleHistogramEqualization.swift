@@ -56,8 +56,8 @@ public class GrayscaleHistogramEqualization: BaseViewController {
         histogramView.image = image
     }
 
-    override func didSelectImage(image: UIImage, pickerController: ImagePickerViewController) {
-        super.didSelectImage(image: image, pickerController: pickerController)
+    override func didPickImage(image: UIImage, pickerController: ImagePickerViewController) {
+        super.didPickImage(image: image, pickerController: pickerController)
         requestFilteringIfNeeded()
     }
 

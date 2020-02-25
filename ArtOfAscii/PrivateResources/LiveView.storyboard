@@ -179,6 +179,8 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="XCJ-Ko-XiT" id="TKB-Us-epO"/>
+                        <outlet property="cameraSwitchButton" destination="bV6-39-Oit" id="zZW-de-CEE"/>
+                        <outlet property="captureButton" destination="ptL-hP-R8s" id="JiA-h8-Xo1"/>
                         <outlet property="sessionSetupResultLabel" destination="Pkc-Kg-DZ3" id="qu0-LV-lya"/>
                         <outlet property="showcaseImageContainerView" destination="xhe-83-KoI" id="E2C-67-OKV"/>
                         <outlet property="showcaseImageView" destination="xlz-Fe-gs5" id="Cob-pl-nM5"/>
@@ -187,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ybA-A8-26Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-218.5185185185185" y="111.66666666666666"/>
+            <point key="canvasLocation" x="-219" y="113"/>
         </scene>
         <!--imagePickerViewController-->
         <scene sceneID="7Sd-zg-1xE">
