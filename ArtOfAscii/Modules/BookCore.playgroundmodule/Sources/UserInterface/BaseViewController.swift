@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import Photos
 import PlaygroundSupport
 
 public class BaseViewController: UIViewController,
@@ -152,13 +153,13 @@ public class BaseViewController: UIViewController,
         sourceImage = image
         updateShowcaseImage(image: image)
     }
-    
+
     func didPickNamedItem(name: String, pickerController: ImagePickerViewController) {
-        
+
     }
 
     func toolBarButtonTapped(buttonView: ToolBarButtonView) {
-        
+
     }
 
     public func liveViewMessageConnectionOpened() {

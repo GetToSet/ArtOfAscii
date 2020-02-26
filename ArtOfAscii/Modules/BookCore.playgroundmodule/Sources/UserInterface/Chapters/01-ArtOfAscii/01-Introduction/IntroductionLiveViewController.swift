@@ -6,10 +6,9 @@
 import UIKit
 import PlaygroundSupport
 import AVFoundation
-import Photos
 import Accelerate
 
-public class IntroductionLiveViewController: BaseViewController {
+public class IntroductionLiveViewController: BaseViewController, PhotoAlbumSavable {
 
     private enum CameraOrientation {
         case front, back
@@ -21,12 +20,14 @@ public class IntroductionLiveViewController: BaseViewController {
         case configurationFailed
     }
 
+    @IBOutlet private weak var cameraFlashView: UIView!
     @IBOutlet private weak var sessionSetupResultLabel: UILabel!
     @IBOutlet private weak var captureButton: ToolBarButtonView!
     @IBOutlet private weak var cameraSwitchButton: ToolBarButtonView!
 
+    var photoAlbumAccess = false
+
     private var setupResult: SessionSetupResult = .success
-    private var photoAlbumAccess: Bool = true
 
     private let session = AVCaptureSession()
     private let sessionQueue = DispatchQueue(label: "SessionQueue", qos: .userInteractive, autoreleaseFrequency: .workItem)
@@ -94,6 +95,8 @@ public class IntroductionLiveViewController: BaseViewController {
         imagePickerController.sampleImageType = .effectsPreview
 
         imagePickerController.selectFirstImage(animated: true)
+
+        cameraFlashView.alpha = 0
     }
 
     public override func viewWillDisappear(_ animated: Bool) {
@@ -127,6 +130,14 @@ public class IntroductionLiveViewController: BaseViewController {
         case cameraSwitchButton:
             cameraOrientation = cameraOrientation == .front ? .back : .front
             reconfigureSession()
+        case captureButton:
+            if let imageToSave = showcaseImageView.image {
+                saveImage(imageToSave)
+                cameraFlashView.alpha = 1.0
+                UIView.animate(withDuration: 0.35, delay: 0.0, options: .curveEaseOut, animations: {
+                    self.cameraFlashView.alpha = 0.0
+                }, completion: nil)
+            }
         default:
             break
         }
@@ -174,24 +185,7 @@ extension IntroductionLiveViewController {
         default:
             setupResult = .notAuthorized
         }
-
-        switch PHPhotoLibrary.authorizationStatus() {
-        case .authorized:
-            break
-        case .notDetermined:
-            let semaphore = DispatchSemaphore(value: 0)
-            PHPhotoLibrary.requestAuthorization() { status in
-                if status == .authorized {
-                    self.photoAlbumAccess = true
-                } else {
-                    self.photoAlbumAccess = false
-                }
-                semaphore.signal()
-            }
-            semaphore.wait()
-        default:
-            self.photoAlbumAccess = false
-        }
+        requestPhotoAlbumAccess()
     }
 
     private func reconfigureSession() {
@@ -298,7 +292,6 @@ extension IntroductionLiveViewController {
             DispatchQueue.main.async {
                 self.cameraSwitchButton.state = .disabled
                 self.captureButton.state = .disabled
-                self.showcaseImageView.image = nil
             }
         }
     }
@@ -389,7 +382,9 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
         }
 
         // First step processing — Apply filters to YCbCr image
-        processor.processYCbCrBuffer(lumaBuffer: &lumaBuffer, chromaBuffer: &chromaBuffer)
+        guard processor.processYCbCrBuffer(lumaBuffer: &lumaBuffer, chromaBuffer: &chromaBuffer) == kvImageNoError else {
+            return
+        }
 
         guard vImageConvert_420Yp8_CbCr8ToARGB8888(&lumaBuffer,
                 &chromaBuffer,
@@ -401,6 +396,11 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
             return
         }
 
+        // Flip the image if it's from the front camera
+        if cameraOrientation == .front {
+            vImageHorizontalReflect_ARGB8888(&destinationBuffer, &destinationBuffer, vImage_Flags(kvImageNoFlags))
+        }
+        
         // Second step processing — Apply filters to ARGB images & Draw ASCII arts from buffer
         if let image = processor.processArgbBufferToAsciiArt(buffer: &destinationBuffer) {
             DispatchQueue.main.async {

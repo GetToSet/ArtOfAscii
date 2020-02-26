@@ -36,6 +36,11 @@
 		7174D3BD23F7D0D100A09FFB /* sampleImageList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7174D3B123F7D0D100A09FFB /* sampleImageList.plist */; };
 		719A79572404BD9800F73770 /* effectsPreviewList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 719A79562404BD9800F73770 /* effectsPreviewList.plist */; };
 		719A79592404D0A700F73770 /* HackerEffectProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719A79582404D0A700F73770 /* HackerEffectProcessor.swift */; };
+		71AA4FCC24069A5500062C2C /* bubbles-thumb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71AA4FC724069A5400062C2C /* bubbles-thumb.jpg */; };
+		71AA4FCD24069A5500062C2C /* plain-thumb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71AA4FC824069A5400062C2C /* plain-thumb.jpg */; };
+		71AA4FCE24069A5500062C2C /* hacker-thumb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71AA4FC924069A5400062C2C /* hacker-thumb.jpg */; };
+		71AA4FCF24069A5500062C2C /* cloudy-thumb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71AA4FCA24069A5500062C2C /* cloudy-thumb.jpg */; };
+		71AA4FD024069A5500062C2C /* glitch-thumb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71AA4FCB24069A5500062C2C /* glitch-thumb.jpg */; };
 		71BA4ED823FE31BA00788A11 /* FiraCode-VF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71BA4ED723FE31BA00788A11 /* FiraCode-VF.ttf */; };
 		71C37FDA24024D10002C4F81 /* RawImage+BookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6648091CC93CB6693447 /* RawImage+BookAPI.swift */; };
 		71C37FDB24024D13002C4F81 /* AsciiArtRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6337FA0E5673FC85EE91 /* AsciiArtRenderer.swift */; };
@@ -58,6 +63,7 @@
 		B99F65A6F8520A258E17F0B0 /* AsciiEffectsProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6E60E7631B2E9BA0B4CB /* AsciiEffectsProcessor.swift */; };
 		B99F65EBA0B2B605EAF4B0D9 /* UIColor+StateColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6CB6047723F571693553 /* UIColor+StateColors.swift */; };
 		B99F667D9B395E5B8D7D009C /* HowImagesComposedLiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6FBCBB7C87C44037A51B /* HowImagesComposedLiveViewController.swift */; };
+		B99F66914F6A7B926EF51DF9 /* PhotoAlbumSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F69F2A752D7D19CB47B8A /* PhotoAlbumSavable.swift */; };
 		B99F68354B7C7C5D52AD682E /* MagnifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F64CAABEA6101CC151AF8 /* MagnifierView.swift */; };
 		B99F6905CE4227EDEC115B4C /* FontResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6F739FC0DC4F69F5CB92 /* FontResourceProvider.swift */; };
 		B99F698222E0FA36B49D9E8C /* AsciiArtRenderer+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F603AAA53CBA0E3895579 /* AsciiArtRenderer+Internal.swift */; };
@@ -201,6 +207,11 @@
 		7174D3B123F7D0D100A09FFB /* sampleImageList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sampleImageList.plist; sourceTree = "<group>"; };
 		719A79562404BD9800F73770 /* effectsPreviewList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = effectsPreviewList.plist; sourceTree = "<group>"; };
 		719A79582404D0A700F73770 /* HackerEffectProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackerEffectProcessor.swift; sourceTree = "<group>"; };
+		71AA4FC724069A5400062C2C /* bubbles-thumb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bubbles-thumb.jpg"; sourceTree = "<group>"; };
+		71AA4FC824069A5400062C2C /* plain-thumb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "plain-thumb.jpg"; sourceTree = "<group>"; };
+		71AA4FC924069A5400062C2C /* hacker-thumb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hacker-thumb.jpg"; sourceTree = "<group>"; };
+		71AA4FCA24069A5500062C2C /* cloudy-thumb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cloudy-thumb.jpg"; sourceTree = "<group>"; };
+		71AA4FCB24069A5500062C2C /* glitch-thumb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "glitch-thumb.jpg"; sourceTree = "<group>"; };
 		71BA4ED723FE31BA00788A11 /* FiraCode-VF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraCode-VF.ttf"; sourceTree = "<group>"; };
 		71DC6AF5240648C900B024CF /* joystix monospace.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "joystix monospace.ttf"; sourceTree = "<group>"; };
 		71DC6AF7240648D000B024CF /* Courier Prime.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Courier Prime.ttf"; sourceTree = "<group>"; };
@@ -219,6 +230,7 @@
 		B99F6648091CC93CB6693447 /* RawImage+BookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawImage+BookAPI.swift"; sourceTree = "<group>"; };
 		B99F67522B8AAEFB8CBEA97E /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B99F68271AC771FBF80CA432 /* ToolBarButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarButtonView.swift; sourceTree = "<group>"; };
+		B99F69F2A752D7D19CB47B8A /* PhotoAlbumSavable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbumSavable.swift; sourceTree = "<group>"; };
 		B99F6B123B049D4EA47A5C4E /* RawImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawImage.swift; sourceTree = "<group>"; };
 		B99F6B6D40ADAA92C7D6AEE1 /* ShowcaseImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowcaseImageView.swift; sourceTree = "<group>"; };
 		B99F6BAB7AD4A66FD8E07B53 /* AVCaptureVideoOrientation+UIInterfaceOrientatiion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVCaptureVideoOrientation+UIInterfaceOrientatiion.swift"; sourceTree = "<group>"; };
@@ -379,6 +391,11 @@
 				5EF2F97E2054B6E400191409 /* ManifestPlist.strings */,
 				7174D39623F7CBCF00A09FFB /* LiveView.storyboard */,
 				5E551EC42371FC3F00784365 /* Assets.xcassets */,
+				71AA4FC724069A5400062C2C /* bubbles-thumb.jpg */,
+				71AA4FCA24069A5500062C2C /* cloudy-thumb.jpg */,
+				71AA4FCB24069A5500062C2C /* glitch-thumb.jpg */,
+				71AA4FC924069A5400062C2C /* hacker-thumb.jpg */,
+				71AA4FC824069A5400062C2C /* plain-thumb.jpg */,
 				716164FA24017FCF0096D141 /* background-v2.png */,
 				712D0B972401599400B41EF9 /* cover.png */,
 				712D0B952401502A00B41EF9 /* logo.png */,
@@ -526,6 +543,7 @@
 				B99F6935314A17659D6F4387 /* ToolBar */,
 				B99F6931A885E93A1A2490B6 /* ShowcaseImageView */,
 				B99F601267ED4E96A889A334 /* Chapters */,
+				B99F69F2A752D7D19CB47B8A /* PhotoAlbumSavable.swift */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -772,6 +790,8 @@
 				7174D3B423F7D0D100A09FFB /* lantern-thumb.jpg in Resources */,
 				712D0B962401502B00B41EF9 /* logo.png in Resources */,
 				7174D3BD23F7D0D100A09FFB /* sampleImageList.plist in Resources */,
+				71AA4FD024069A5500062C2C /* glitch-thumb.jpg in Resources */,
+				71AA4FCD24069A5500062C2C /* plain-thumb.jpg in Resources */,
 				7174D3B223F7D0D100A09FFB /* cat-thumb.jpg in Resources */,
 				7174D3B323F7D0D100A09FFB /* desert.jpg in Resources */,
 				712D0B982401599400B41EF9 /* cover.png in Resources */,
@@ -784,8 +804,11 @@
 				7174D39723F7CBCF00A09FFB /* LiveView.storyboard in Resources */,
 				7174D3BB23F7D0D100A09FFB /* lantern.jpg in Resources */,
 				7174D3BC23F7D0D100A09FFB /* woman.jpg in Resources */,
+				71AA4FCF24069A5500062C2C /* cloudy-thumb.jpg in Resources */,
+				71AA4FCC24069A5500062C2C /* bubbles-thumb.jpg in Resources */,
 				71DC6AF9240648D000B024CF /* Courier Prime.ttf in Resources */,
 				719A79572404BD9800F73770 /* effectsPreviewList.plist in Resources */,
+				71AA4FCE24069A5500062C2C /* hacker-thumb.jpg in Resources */,
 				7174D3B623F7D0D100A09FFB /* strawberries-thumb.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -870,6 +893,7 @@
 				B99F6C04BD06E876EF417959 /* PlainEffectProcessor.swift in Sources */,
 				B99F698222E0FA36B49D9E8C /* AsciiArtRenderer+Internal.swift in Sources */,
 				B99F61A44EA28889402486FC /* ImagePickerDataSource.swift in Sources */,
+				B99F66914F6A7B926EF51DF9 /* PhotoAlbumSavable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

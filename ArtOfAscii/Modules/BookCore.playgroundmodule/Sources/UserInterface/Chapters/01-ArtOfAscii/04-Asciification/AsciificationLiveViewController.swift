@@ -4,10 +4,9 @@
 //
 
 import UIKit
-import Photos
 import PlaygroundSupport
 
-class AsciificationLiveViewController: BaseViewController {
+class AsciificationLiveViewController: BaseViewController, PhotoAlbumSavable {
 
     @IBOutlet weak var preprocessButton: ToolBarButtonView!
     @IBOutlet weak var shrinkButton: ToolBarButtonView!
@@ -15,6 +14,8 @@ class AsciificationLiveViewController: BaseViewController {
     @IBOutlet weak var saveButton: ToolBarButtonView!
 
     @IBOutlet weak var imageScaleButton: ScaleModeButton!
+
+    var photoAlbumAccess = false
 
     private var preprocessedImage: UIImage?
 
@@ -81,6 +82,30 @@ class AsciificationLiveViewController: BaseViewController {
         updateImageForButtonStates()
     }
 
+    private func saveCurrentImage() {
+        guard let imageToSave = showcaseImageView.image else {
+            return
+        }
+        saveImage(imageToSave)
+    }
+
+    func didSavePhotoWith(status: PhotoSavingStatus) {
+        let alert: UIAlertController
+        switch status {
+        case .success:
+            alert = UIAlertController(title: "Congratulations!",
+                    message: "Your ASCII art has been save to photo album.",
+                    preferredStyle: .alert)
+        case .accessDenied:
+            alert = UIAlertController(title: "Sorry",
+                    message: "Unable to save your ASCII art because the permission is not granted.",
+                    preferredStyle: .alert)
+        }
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+
     override func toolBarButtonTapped(buttonView: ToolBarButtonView) {
         switch buttonView {
         case saveButton:
@@ -102,14 +127,6 @@ class AsciificationLiveViewController: BaseViewController {
         updateImageForButtonStates()
     }
 
-    @objc func didSaveImage(image: UIImage, didFinishSavingWithError error: Error, contextInfo: UnsafeMutableRawPointer?) {
-        let alert = UIAlertController(title: "Congratulations!",
-                message: "Your ASCII art has been save to photo album.",
-                preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
-        self.present(alert, animated: true, completion: nil)
-    }
-
     public override func liveViewMessageConnectionOpened() {
         super.liveViewMessageConnectionOpened()
 
@@ -127,33 +144,6 @@ class AsciificationLiveViewController: BaseViewController {
         asciificationButton.state = .disabled
         if saveButton.state != .normal {
             saveButton.state = .disabled
-        }
-    }
-
-}
-
-extension AsciificationLiveViewController {
-
-    private func saveCurrentImage() {
-        guard let imageToSave = showcaseImageView.image else {
-            return
-        }
-        PHPhotoLibrary.requestAuthorization { status in
-            switch status {
-            case .authorized:
-                UIImageWriteToSavedPhotosAlbum(
-                    imageToSave,
-                    self,
-                    #selector(self.didSaveImage(image:didFinishSavingWithError:contextInfo:)),
-                    nil)
-            default:
-                let alert = UIAlertController(
-                    title: "Sorry",
-                    message: "Unable to save your ASCII art because the permission is not granted.",
-                    preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
-                self.present(alert, animated: true, completion: nil)
-            }
         }
     }
 

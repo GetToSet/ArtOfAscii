@@ -41,12 +41,20 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqo-7q-iNx">
+                                                <rect key="frame" x="0.0" y="0.0" width="762" height="948"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="xlz-Fe-gs5" secondAttribute="trailing" id="1C6-8y-P5b"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Pkc-Kg-DZ3" secondAttribute="trailing" constant="24" id="3jo-jK-VXL"/>
                                             <constraint firstItem="Pkc-Kg-DZ3" firstAttribute="centerX" secondItem="xlz-Fe-gs5" secondAttribute="centerX" id="6yA-aj-5SQ"/>
+                                            <constraint firstAttribute="bottom" secondItem="wqo-7q-iNx" secondAttribute="bottom" id="9bt-EH-Fh9"/>
+                                            <constraint firstItem="wqo-7q-iNx" firstAttribute="leading" secondItem="xhe-83-KoI" secondAttribute="leading" id="E8e-Th-SSC"/>
                                             <constraint firstItem="Pkc-Kg-DZ3" firstAttribute="centerY" secondItem="xlz-Fe-gs5" secondAttribute="centerY" id="IFL-lg-Vog"/>
+                                            <constraint firstAttribute="trailing" secondItem="wqo-7q-iNx" secondAttribute="trailing" id="Lt9-td-D4K"/>
+                                            <constraint firstItem="wqo-7q-iNx" firstAttribute="top" secondItem="xhe-83-KoI" secondAttribute="top" id="OAU-6m-o7a"/>
                                             <constraint firstAttribute="bottom" secondItem="xlz-Fe-gs5" secondAttribute="bottom" id="UMe-n7-eVn"/>
                                             <constraint firstItem="xlz-Fe-gs5" firstAttribute="leading" secondItem="xhe-83-KoI" secondAttribute="leading" id="ZSo-KN-fA3"/>
                                             <constraint firstItem="xlz-Fe-gs5" firstAttribute="top" secondItem="xhe-83-KoI" secondAttribute="top" id="eVs-20-fFN"/>
@@ -179,6 +187,7 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="XCJ-Ko-XiT" id="TKB-Us-epO"/>
+                        <outlet property="cameraFlashView" destination="wqo-7q-iNx" id="VFP-j0-oxz"/>
                         <outlet property="cameraSwitchButton" destination="bV6-39-Oit" id="zZW-de-CEE"/>
                         <outlet property="captureButton" destination="ptL-hP-R8s" id="JiA-h8-Xo1"/>
                         <outlet property="sessionSetupResultLabel" destination="Pkc-Kg-DZ3" id="qu0-LV-lya"/>

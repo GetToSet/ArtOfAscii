@@ -6,31 +6,31 @@
 		<key>item</key>
 		<string>plain</string>
 		<key>thumbnail</key>
-		<string>desert-thumb.jpg</string>
+		<string>plain-thumb.jpg</string>
 	</dict>
 	<dict>
 		<key>item</key>
 		<string>hacker</string>
 		<key>thumbnail</key>
-		<string>desert-thumb.jpg</string>
+		<string>hacker-thumb.jpg</string>
 	</dict>
 	<dict>
 		<key>item</key>
 		<string>glitch</string>
 		<key>thumbnail</key>
-		<string>desert-thumb.jpg</string>
+		<string>glitch-thumb.jpg</string>
 	</dict>
 	<dict>
 		<key>item</key>
 		<string>bubbles</string>
 		<key>thumbnail</key>
-		<string>strawberries-thumb.jpg</string>
+		<string>bubbles-thumb.jpg</string>
 	</dict>
 	<dict>
 		<key>item</key>
 		<string>cloudy</string>
 		<key>thumbnail</key>
-		<string>cat-thumb.jpg</string>
+		<string>cloudy-thumb.jpg</string>
 	</dict>
 </array>
 </plist>

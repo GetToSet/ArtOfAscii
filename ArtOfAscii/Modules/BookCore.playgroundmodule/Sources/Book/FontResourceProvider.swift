@@ -47,7 +47,7 @@ public class FontResourceProvider {
         }
 
         public static var characterAspectRatio: Double {
-            return 0.586
+            return 0.6
         }
 
     }
@@ -79,7 +79,7 @@ public class FontResourceProvider {
         }
 
         public static var characterAspectRatio: Double {
-            return 0.4
+            return 0.82
         }
 
     }

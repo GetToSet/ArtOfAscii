@@ -26,7 +26,7 @@ protocol AsciiEffectsProcessor {
 
     var lineHeight: CGFloat { get }
 
-    func processYCbCrBuffer(lumaBuffer: inout vImage_Buffer, chromaBuffer: inout vImage_Buffer)
+    func processYCbCrBuffer(lumaBuffer: inout vImage_Buffer, chromaBuffer: inout vImage_Buffer) -> vImage_Error
 
     func processArgbBufferToAsciiArt(buffer sourceBuffer: inout vImage_Buffer) -> UIImage?
 

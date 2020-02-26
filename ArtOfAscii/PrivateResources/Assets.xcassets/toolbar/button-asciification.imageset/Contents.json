@@ -2,16 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "button-asciification.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "button-asciification.png"
     }
   ],
   "info" : {

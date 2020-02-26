@@ -25,13 +25,11 @@ class CloudyEffectProcessor: AsciiEffectsProcessor {
         return font.capHeight + 1.0
     }
 
-    func processYCbCrBuffer(lumaBuffer: inout vImage_Buffer, chromaBuffer: inout vImage_Buffer) {
-
+    func processYCbCrBuffer(lumaBuffer: inout vImage_Buffer, chromaBuffer: inout vImage_Buffer) -> vImage_Error {
+        return kvImageNoError
     }
 
     func processArgbBufferToAsciiArt(buffer sourceBuffer: inout vImage_Buffer) -> UIImage? {
-        var error = kvImageNoError
-
         // Computes the target size
         let characterRatio = FontResourceProvider.CourierPrime.characterAspectRatio
         let rowCount: Int = calculateRowCount(imageAspectRatio: CGFloat(sourceBuffer.width) / CGFloat(sourceBuffer.height))
@@ -44,30 +42,45 @@ class CloudyEffectProcessor: AsciiEffectsProcessor {
         defer {
             free(scaledBuffer.data)
         }
-        vImageScale_ARGB8888(&sourceBuffer, &scaledBuffer, nil, vImage_Flags(kvImageNoFlags))
+
+        guard vImageScale_ARGB8888(&sourceBuffer, &scaledBuffer, nil, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
+            return nil
+        }
 
         // Blur the image
-        var tmpBuffer = vImage_Buffer()
-        vImageBuffer_Init(&tmpBuffer, sourceBuffer.height, sourceBuffer.width, 32, vImage_Flags(kvImageNoFlags))
-        vImageCopyBuffer(&sourceBuffer, &tmpBuffer, 4, vImage_Flags(kvImageNoFlags))
+        var blurringTempBuffer = vImage_Buffer()
+        guard vImageBuffer_Init(&blurringTempBuffer, sourceBuffer.height, sourceBuffer.width, 32, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
+            return nil
+        }
+        defer {
+            free(blurringTempBuffer.data)
+        }
+        vImageCopyBuffer(&sourceBuffer, &blurringTempBuffer, 4, vImage_Flags(kvImageNoFlags))
+
         let kernelSize: UInt32 = 51
-        vImageTentConvolve_ARGB8888(&tmpBuffer, &sourceBuffer, nil, 0, 0, kernelSize, kernelSize, nil, vImage_Flags(kvImageEdgeExtend))
-        free(tmpBuffer.data)
+        vImageTentConvolve_ARGB8888(&blurringTempBuffer, &sourceBuffer, nil, 0, 0, kernelSize, kernelSize, nil, vImage_Flags(kvImageEdgeExtend))
 
-
+        // Buffer for Gamma processing
         var rgbBuffer = vImage_Buffer()
-
-        vImageBuffer_Init(&rgbBuffer, sourceBuffer.height, sourceBuffer.width, 8 * 3, vImage_Flags(kvImageNoFlags))
+        guard vImageBuffer_Init(&rgbBuffer, sourceBuffer.height, sourceBuffer.width, 8 * 3, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
+            return nil
+        }
+        defer {
+            free(rgbBuffer.data)
+        }
 
         // Removes the alpha channel for easier processing
-        vImageConvert_ARGB8888toRGB888(&sourceBuffer, &rgbBuffer, vImage_Flags(kvImageNoFlags))
+        guard vImageConvert_ARGB8888toRGB888(&sourceBuffer, &rgbBuffer, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
+            return nil
+        }
 
         // Put three channel onto one line for gamma adjustment
         var planarDestination = vImage_Buffer(data: rgbBuffer.data, height: rgbBuffer.height, width: rgbBuffer.width * 3, rowBytes: rgbBuffer.rowBytes)
-        vImagePiecewiseGamma_Planar8(&planarDestination, &planarDestination, [1, 0, 0], 1.25, [1, 0], 0, vImage_Flags(kvImageNoFlags))
+        guard vImagePiecewiseGamma_Planar8(&planarDestination, &planarDestination, [1, 0, 0], 1.25, [1, 0], 0, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
+            return nil
+        }
 
         planarDestination.width = rgbBuffer.width
-
 
         // Take out the image
         var cgImageFormat = vImage_CGImageFormat(
@@ -79,11 +92,14 @@ class CloudyEffectProcessor: AsciiEffectsProcessor {
                 decode: nil,
                 renderingIntent: .defaultIntent)
 
+        var error = kvImageNoError
         let cgImage = vImageCreateCGImageFromBuffer(&planarDestination, &cgImageFormat, nil, nil, vImage_Flags(kvImageNoFlags), &error)!
 
-        let backgroundImage = UIImage(cgImage: cgImage.takeRetainedValue())
+        guard error == kvImageNoError else {
+            return nil
+        }
 
-        free(rgbBuffer.data)
+        let backgroundImage = UIImage(cgImage: cgImage.takeRetainedValue())
 
         let dataPointer: UnsafeMutablePointer<UInt8> = scaledBuffer.data.bindMemory(to: UInt8.self, capacity: scaledBuffer.rowBytes * Int(scaledBuffer.height))
 
@@ -119,11 +135,11 @@ class CloudyEffectProcessor: AsciiEffectsProcessor {
                 drawingProcedure: { font, lineHeight, drawingRect in
                     var fittingRect = drawingRect
                     let imageSize = backgroundImage.size
-                    let factor = max(imageSize.width / drawingRect.size.width, imageSize.height / drawingRect.height);
-
+                    let factor = min(imageSize.width / drawingRect.size.width, imageSize.height / drawingRect.height);
                     fittingRect.size = CGSize(width: imageSize.width / factor, height: imageSize.height / factor)
 
                     backgroundImage.draw(in: fittingRect)
+
                     AsciiArtRenderer.drawAsAsciiArt(attributedString: attributedResult, font: font, lineHeight: lineHeight, drawingRect: drawingRect)
                 })
     }

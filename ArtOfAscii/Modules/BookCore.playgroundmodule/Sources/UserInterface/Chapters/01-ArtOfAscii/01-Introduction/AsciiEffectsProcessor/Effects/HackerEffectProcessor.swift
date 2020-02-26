@@ -23,13 +23,11 @@ class HackerEffectProcessor: AsciiEffectsProcessor {
         return fontSize
     }
 
-    func processYCbCrBuffer(lumaBuffer: inout vImage_Buffer, chromaBuffer: inout vImage_Buffer) {
-
+    func processYCbCrBuffer(lumaBuffer: inout vImage_Buffer, chromaBuffer: inout vImage_Buffer) -> vImage_Error {
+        return kvImageNoError
     }
 
     func processArgbBufferToAsciiArt(buffer sourceBuffer: inout vImage_Buffer) -> UIImage? {
-        var error = kvImageNoError
-
         var grayscaledBuffer = vImage_Buffer()
         guard vImageBuffer_Init(&grayscaledBuffer, sourceBuffer.height, sourceBuffer.width, 8, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
             return nil
@@ -68,7 +66,9 @@ class HackerEffectProcessor: AsciiEffectsProcessor {
             free(scaledBuffer.data)
         }
 
-        vImageScale_Planar8(&grayscaledBuffer, &scaledBuffer, nil, vImage_Flags(kvImageNoFlags))
+        guard vImageScale_Planar8(&grayscaledBuffer, &scaledBuffer, nil, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
+            return nil
+        }
 
         let dataPointer: UnsafeMutablePointer<UInt8> = scaledBuffer.data.bindMemory(to: UInt8.self, capacity: scaledBuffer.rowBytes * Int(scaledBuffer.height))
 

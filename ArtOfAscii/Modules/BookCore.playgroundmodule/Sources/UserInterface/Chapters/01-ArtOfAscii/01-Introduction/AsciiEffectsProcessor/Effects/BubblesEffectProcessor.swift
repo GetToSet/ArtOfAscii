@@ -25,13 +25,11 @@ class BubblesEffectProcessor: AsciiEffectsProcessor {
         return fontSize * characterAspectRatio
     }
 
-    func processYCbCrBuffer(lumaBuffer: inout vImage_Buffer, chromaBuffer: inout vImage_Buffer) {
-        vImagePiecewiseGamma_Planar8(&lumaBuffer, &lumaBuffer, [1, 0, 0], 1.0 / 2.0, [1, 0], 0, vImage_Flags(kvImageNoFlags))
+    func processYCbCrBuffer(lumaBuffer: inout vImage_Buffer, chromaBuffer: inout vImage_Buffer) -> vImage_Error {
+        return vImagePiecewiseGamma_Planar8(&lumaBuffer, &lumaBuffer, [1, 0, 0], 1.0 / 2.0, [1, 0], 0, vImage_Flags(kvImageNoFlags))
     }
 
     func processArgbBufferToAsciiArt(buffer sourceBuffer: inout vImage_Buffer) -> UIImage? {
-        var error = kvImageNoError
-
         let rowCount: Int = calculateRowCount(imageAspectRatio: CGFloat(sourceBuffer.width) / CGFloat(sourceBuffer.height))
 
         var scaledBuffer = vImage_Buffer()
@@ -42,7 +40,9 @@ class BubblesEffectProcessor: AsciiEffectsProcessor {
             free(scaledBuffer.data)
         }
 
-        vImageScale_ARGB8888(&sourceBuffer, &scaledBuffer, nil, vImage_Flags(kvImageNoFlags))
+        guard vImageScale_ARGB8888(&sourceBuffer, &scaledBuffer, nil, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
+            return nil
+        }
 
         let dataPointer: UnsafeMutablePointer<UInt8> = scaledBuffer.data.bindMemory(to: UInt8.self, capacity: scaledBuffer.rowBytes * Int(scaledBuffer.height))
 
