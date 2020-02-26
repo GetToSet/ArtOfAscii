@@ -27,6 +27,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>FiraCode-VF.ttf</string>
+		<string>Courier Prime.ttf</string>
+		<string>Courier Prime Bold.ttf</string>
+		<string>joystix monospace.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LiveViewTestAppLaunchScreen</string>

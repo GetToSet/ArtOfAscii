@@ -11,10 +11,6 @@ import Accelerate
 
 public class IntroductionLiveViewController: BaseViewController {
 
-    @IBOutlet private weak var sessionSetupResultLabel: UILabel!
-    @IBOutlet private weak var captureButton: ToolBarButtonView!
-    @IBOutlet private weak var cameraSwitchButton: ToolBarButtonView!
-
     private enum CameraOrientation {
         case front, back
     }
@@ -25,13 +21,17 @@ public class IntroductionLiveViewController: BaseViewController {
         case configurationFailed
     }
 
-    private var setupResult: SessionSetupResult = .success
+    @IBOutlet private weak var sessionSetupResultLabel: UILabel!
+    @IBOutlet private weak var captureButton: ToolBarButtonView!
+    @IBOutlet private weak var cameraSwitchButton: ToolBarButtonView!
 
+    private var setupResult: SessionSetupResult = .success
     private var photoAlbumAccess: Bool = true
 
     private let session = AVCaptureSession()
     private let sessionQueue = DispatchQueue(label: "SessionQueue", qos: .userInteractive, autoreleaseFrequency: .workItem)
     private let dataOutputQueue = DispatchQueue(label: "VideoDataQueue", qos: .userInteractive, autoreleaseFrequency: .workItem)
+    private let effectTypeAccessQueue = DispatchQueue(label: "EffectTypeAccessQueue", qos: .userInteractive, autoreleaseFrequency: .workItem)
 
     private let backCameras = AVCaptureDevice.DiscoverySession(
             deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera],
@@ -43,6 +43,7 @@ public class IntroductionLiveViewController: BaseViewController {
             position: AVCaptureDevice.Position.front).devices
 
     private var cameraOrientation: CameraOrientation = .back
+    private var currentEffectType = AsciiEffects.plain
 
     private lazy var info420vToARGB: vImage_YpCbCrToARGB? = {
         var info = vImage_YpCbCrToARGB()
@@ -68,15 +69,6 @@ public class IntroductionLiveViewController: BaseViewController {
     }()
 
     private var destinationBuffer = vImage_Buffer()
-
-    private var cgImageFormat = vImage_CGImageFormat(bitsPerComponent: 8,
-            bitsPerPixel: 32,
-            colorSpace: nil,
-            bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.noneSkipFirst.rawValue),
-            version: 0,
-            decode: nil,
-            renderingIntent: .defaultIntent)
-
     private var shouldRecreateDestinationBuffer = true
 
     deinit {
@@ -88,18 +80,20 @@ public class IntroductionLiveViewController: BaseViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        FontResourceProvider.FiraCode.register()
+        registerFonts()
 
         imagePickerController.enableCameraRollPicking = false
         sessionSetupResultLabel.isHidden = true
-        
+
         cameraSwitchButton.state = .disabled
         cameraSwitchButton.delegate = self
-        
+
         captureButton.state = .disabled
         captureButton.delegate = self
-        
+
         imagePickerController.sampleImageType = .effectsPreview
+
+        imagePickerController.selectFirstImage(animated: true)
     }
 
     public override func viewWillDisappear(_ animated: Bool) {
@@ -120,7 +114,11 @@ public class IntroductionLiveViewController: BaseViewController {
     }
 
     override func didPickNamedItem(name: String, pickerController: ImagePickerViewController) {
-        
+        if let effect = AsciiEffects(rawValue: name) {
+            effectTypeAccessQueue.async {
+                self.currentEffectType = effect
+            }
+        }
     }
 
     override func toolBarButtonTapped(buttonView: ToolBarButtonView) {
@@ -139,6 +137,12 @@ public class IntroductionLiveViewController: BaseViewController {
 
     public override func receive(_ message: PlaygroundValue) {
 
+    }
+
+    private func registerFonts() {
+        FontResourceProvider.FiraCode.register()
+        FontResourceProvider.CourierPrime.register()
+        FontResourceProvider.JoystixMonospace.register()
     }
 
 }
@@ -228,7 +232,6 @@ extension IntroductionLiveViewController {
                 self.setupResult = .configurationFailed
                 return
             }
-
             if self.session.outputs.isEmpty {
                 let videoDataOutput = AVCaptureVideoDataOutput()
                 if self.session.canAddOutput(videoDataOutput) {
@@ -248,7 +251,6 @@ extension IntroductionLiveViewController {
                     return
                 }
             }
-
             self.session.commitConfiguration()
         }
     }
@@ -258,12 +260,12 @@ extension IntroductionLiveViewController {
             switch self.setupResult {
             case .success:
                 self.session.startRunning()
-
                 DispatchQueue.main.async {
                     self.adjustVideoOrientation()
                     self.sessionSetupResultLabel.isHidden = true
                     self.cameraSwitchButton.state = .normal
                     self.captureButton.state = self.photoAlbumAccess ? .normal : .disabled
+                    self.cameraSwitchButton.state = self.frontCameras.count > 0 ? .normal : .disabled
                 }
             case .notAuthorized:
                 DispatchQueue.main.async {
@@ -284,9 +286,12 @@ extension IntroductionLiveViewController {
     private func stopSession() {
         sessionQueue.async {
             self.session.stopRunning()
+            DispatchQueue.main.async {
+                self.cameraSwitchButton.state = .disabled
+                self.captureButton.state = .disabled
+                self.showcaseImageView.image = nil
+            }
         }
-        self.cameraSwitchButton.state = .disabled
-        self.captureButton.state = .disabled
     }
 
     private func adjustVideoOrientation() {
@@ -317,7 +322,28 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
     }
 
     func processPixelBufferToAsciiArt(pixelBuffer: CVPixelBuffer) {
-        let processor: AsciiEffectsProcessor = PlainEffectProcessor()
+        // Use prevent concurrent access to current effect type
+        var currentEffect: AsciiEffects!
+        effectTypeAccessQueue.sync {
+            currentEffect = self.currentEffectType
+        }
+
+        let processor: AsciiEffectsProcessor
+
+        switch currentEffect {
+        case .plain:
+            processor = PlainEffectProcessor()
+        case .hacker:
+            processor = HackerEffectProcessor()
+        case .glitch:
+            processor = GlitchEffectProcessor()
+        case .bubbles:
+            processor = BubblesEffectProcessor()
+        case .cloudy:
+            processor = CloudyEffectProcessor()
+        default:
+            return
+        }
 
         let lumaBaseAddress = CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 0)
         let lumaWidth = CVPixelBufferGetWidthOfPlane(pixelBuffer, 0)
@@ -346,7 +372,7 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
             guard vImageBuffer_Init(&destinationBuffer,
                     lumaBuffer.height,
                     lumaBuffer.width,
-                    cgImageFormat.bitsPerPixel,
+                    32,
                     vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
                 return
             }

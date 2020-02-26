@@ -1,6 +1,6 @@
 //
 // Copyright © 2020 Bunny Wong
-// Created by Bunny Wong on 2020/2/20.
+// Created on 2020/2/20.
 //
 
 import UIKit

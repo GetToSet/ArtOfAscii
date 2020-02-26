@@ -7,18 +7,13 @@ import UIKit
 
 class ImagePickerCollectionViewCell: UICollectionViewCell {
 
-    enum ImagePickerCellState {
-        case selected
-        case normal
-    }
-
     @IBOutlet weak var shadowContainerView: UIView!
     @IBOutlet weak var contentContainerView: UIView!
     @IBOutlet weak var thumbnailButton: UIButton!
 
     weak var delegate: ImagePickerCollectionViewCellDelegate?
 
-    var state: ImagePickerCellState = .normal {
+    override var isSelected: Bool {
         didSet {
             updateAppearance()
         }
@@ -40,11 +35,10 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
     }
 
     private func updateAppearance() {
-        switch state {
-        case .normal:
-            contentContainerView.layer.borderColor = UIColor.white.cgColor
-        case .selected:
+        if self.isSelected {
             contentContainerView.layer.borderColor = UIColor.States.highlight.cgColor
+        } else {
+            contentContainerView.layer.borderColor = UIColor.white.cgColor
         }
     }
 

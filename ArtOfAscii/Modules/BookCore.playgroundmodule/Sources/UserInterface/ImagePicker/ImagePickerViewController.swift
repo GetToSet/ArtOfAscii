@@ -27,8 +27,6 @@ class ImagePickerViewController: UIViewController {
 
     var delegate: ImagePickerViewControllerDelegate?
 
-    private var rowForSelectedCell: Int?
-
     private var dataSource: ImagePickerDataSource {
         switch sampleImageType {
         case .sampleImage:
@@ -47,6 +45,13 @@ class ImagePickerViewController: UIViewController {
         imagePickerCollectionView.dataSource = self
     }
 
+    func selectFirstImage(animated: Bool) {
+        imagePickerCollectionView.selectItem(
+            at: IndexPath(row: 0, section: sectionFor(type: .sampleImage)!),
+            animated: animated,
+            scrollPosition: .centeredHorizontally)
+    }
+    
     private func sectionFor(type sectionType: SectionType) -> Int? {
         switch sectionType {
         case .cameraRoll:
@@ -65,12 +70,6 @@ class ImagePickerViewController: UIViewController {
             return .sampleImage
         }
         return nil
-    }
-
-    private func updateSelectionStates() {
-        UIView.performWithoutAnimation {
-            imagePickerCollectionView.reloadSections(IndexSet([sectionFor(type: .sampleImage)!]))
-        }
     }
 
 }
@@ -106,16 +105,8 @@ extension ImagePickerViewController: UICollectionViewDelegate, UICollectionViewD
         }
         switch section {
         case .cameraRoll:
-            if enableCameraRollPicking && indexPath.section == 0 {
-                cell.setImage(named: "image-picker/button-camera")
-                cell.state = .normal
-            }
+            cell.setImage(named: "image-picker/button-camera")
         case .sampleImage:
-            if indexPath.row == rowForSelectedCell {
-                cell.state = .selected
-            } else {
-                cell.state = .normal
-            }
             let imageThumbnailName = dataSource.items[indexPath.row].thumbnailName
             cell.setImage(named: imageThumbnailName)
         }
@@ -133,20 +124,16 @@ extension ImagePickerViewController: ImagePickerCollectionViewCellDelegate {
         }
         switch section {
         case .cameraRoll:
-            if enableCameraRollPicking && indexPath.section == 0 {
-                showImagePicker(popoverSourceView: cell)
-            }
+            showImagePicker(popoverSourceView: cell)
         case .sampleImage:
-            rowForSelectedCell = indexPath.row
+            imagePickerCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
 
             let item = dataSource.items[indexPath.row]
             if let imageName = item.imageName,
                 let image = UIImage(named: imageName) {
-                updateSelectionStates()
                 delegate?.didPickImage(image: image, pickerController: self)
             }
             if let itemName = item.itemName {
-                updateSelectionStates()
                 delegate?.didPickNamedItem(name: itemName, pickerController: self)
             }
         }
@@ -197,8 +184,6 @@ extension ImagePickerViewController: UIImagePickerControllerDelegate, UINavigati
 
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            rowForSelectedCell = nil
-            updateSelectionStates()
             delegate?.didPickImage(image: selectedImage, pickerController: self)
         }
         picker.dismiss(animated: true)

@@ -4,27 +4,33 @@
 <array>
 	<dict>
 		<key>item</key>
-		<string>desert.jpg</string>
+		<string>plain</string>
 		<key>thumbnail</key>
 		<string>desert-thumb.jpg</string>
 	</dict>
 	<dict>
 		<key>item</key>
-		<string>strawberries.jpg</string>
+		<string>hacker</string>
+		<key>thumbnail</key>
+		<string>desert-thumb.jpg</string>
+	</dict>
+	<dict>
+		<key>item</key>
+		<string>glitch</string>
+		<key>thumbnail</key>
+		<string>desert-thumb.jpg</string>
+	</dict>
+	<dict>
+		<key>item</key>
+		<string>bubbles</string>
 		<key>thumbnail</key>
 		<string>strawberries-thumb.jpg</string>
 	</dict>
 	<dict>
 		<key>item</key>
-		<string>cat.jpg</string>
+		<string>cloudy</string>
 		<key>thumbnail</key>
 		<string>cat-thumb.jpg</string>
-	</dict>
-	<dict>
-		<key>item</key>
-		<string>woman.jpg</string>
-		<key>thumbnail</key>
-		<string>woman-thumb.jpg</string>
 	</dict>
 </array>
 </plist>

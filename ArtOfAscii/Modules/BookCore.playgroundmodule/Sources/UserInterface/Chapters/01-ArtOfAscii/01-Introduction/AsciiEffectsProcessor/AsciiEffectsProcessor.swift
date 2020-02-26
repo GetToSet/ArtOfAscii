@@ -1,12 +1,12 @@
 //
 // Copyright © 2020 Bunny Wong
-// Created by Bunny Wong on 2020/2/23.
+// Created on 2020/2/23.
 //
 
 import UIKit
 import Accelerate
 
-enum AsciiEffects {
+enum AsciiEffects: String {
     case plain
     case hacker
     case glitch
@@ -18,15 +18,25 @@ protocol AsciiEffectsProcessor {
 
     var charactersPerRow: Int { get }
 
+    var characterAspectRatio: CGFloat { get }
+
+    var fontSize: CGFloat { get }
+
+    var font: UIFont { get }
+
+    var lineHeight: CGFloat { get }
+
     func processYCbCrBuffer(lumaBuffer: inout vImage_Buffer, chromaBuffer: inout vImage_Buffer)
+
     func processArgbBufferToAsciiArt(buffer sourceBuffer: inout vImage_Buffer) -> UIImage?
 
 }
 
 extension AsciiEffectsProcessor {
 
-    func calculateRowCount(canvasRatio: Double, characterRatio: Double) -> Int {
-        let scaledHeight = Double(charactersPerRow) / canvasRatio
+    func calculateRowCount(imageAspectRatio: CGFloat) -> Int {
+        let scaledHeight = CGFloat(charactersPerRow) / imageAspectRatio
+        let characterRatio = characterAspectRatio * fontSize / lineHeight
         return Int((scaledHeight * characterRatio).rounded())
     }
 

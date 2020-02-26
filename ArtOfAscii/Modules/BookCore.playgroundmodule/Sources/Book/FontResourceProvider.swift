@@ -1,15 +1,19 @@
 //
 // Copyright © 2020 Bunny Wong
-// Created by Bunny Wong on 2020/2/20.
+// Created on 2020/2/20.
 //
 
 import Foundation
 import CoreText
 
-public protocol Font {
+public struct FontResourceName {
+    let name: String
+    let extensionName: String
+}
 
-    static var resourceName: String { get }
-    static var resourceExtension: String { get }
+public protocol Font {
+    
+    static var resourceNames: [FontResourceName] { get }
     static var characterAspectRatio: Double { get }
 
     static func register()
@@ -17,12 +21,13 @@ public protocol Font {
 }
 
 public extension Font {
-
+    
     static func register() {
-        guard let fontURL = Bundle.main.url(forResource: resourceName, withExtension: resourceExtension) else {
-            return
+        for resourceName in resourceNames {
+            if let fontURL = Bundle.main.url(forResource: resourceName.name, withExtension: resourceName.extensionName) {
+                CTFontManagerRegisterFontsForURL(fontURL as CFURL, CTFontManagerScope.process, nil)
+            }
         }
-        CTFontManagerRegisterFontsForURL(fontURL as CFURL, CTFontManagerScope.process, nil)
     }
 
 }
@@ -37,19 +42,46 @@ public class FontResourceProvider {
         case medium = "FiraCode-Light_Medium"
         case regular = "FiraCode-Light_Regular"
 
-        public static var resourceName: String {
-            return "FiraCode-VF"
-        }
-
-        public static var resourceExtension: String {
-            return "ttf"
+        public static var resourceNames: [FontResourceName] {
+            return [FontResourceName(name: "FiraCode-VF", extensionName: "ttf")]
         }
 
         public static var characterAspectRatio: Double {
-            return 0.5860
+            return 0.586
+        }
+
+    }
+
+    public enum CourierPrime: String, Font {
+
+        case regular = "CourierPrime"
+        case bold = "CourierPrime-Bold"
+
+        public static var resourceNames: [FontResourceName] {
+            return [
+                FontResourceName(name: "Courier Prime", extensionName: "ttf"),
+                FontResourceName(name: "Courier Prime Bold", extensionName: "ttf")
+            ]
+        }
+
+        public static var characterAspectRatio: Double {
+            return 0.6
+        }
+
+    }
+
+    public enum JoystixMonospace: String, Font {
+
+        case regular = "JoystixMonospace-Regular"
+        
+        public static var resourceNames: [FontResourceName] {
+            return [FontResourceName(name: "joystix monospace", extensionName: "ttf")]
+        }
+
+        public static var characterAspectRatio: Double {
+            return 0.4
         }
 
     }
 
 }
-

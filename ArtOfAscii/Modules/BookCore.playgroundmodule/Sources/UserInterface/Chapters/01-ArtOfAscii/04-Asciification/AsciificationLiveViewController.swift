@@ -138,15 +138,19 @@ extension AsciificationLiveViewController {
         guard let imageToSave = showcaseImageView.image else {
             return
         }
-
         PHPhotoLibrary.requestAuthorization { status in
             switch status {
             case .authorized:
-                UIImageWriteToSavedPhotosAlbum(imageToSave, self, #selector(self.didSaveImage(image:didFinishSavingWithError:contextInfo:)), nil)
+                UIImageWriteToSavedPhotosAlbum(
+                    imageToSave,
+                    self,
+                    #selector(self.didSaveImage(image:didFinishSavingWithError:contextInfo:)),
+                    nil)
             default:
-                let alert = UIAlertController(title: "Sorry",
-                        message: "Unable to save your ASCII art because the permission is not granted.",
-                        preferredStyle: .alert)
+                let alert = UIAlertController(
+                    title: "Sorry",
+                    message: "Unable to save your ASCII art because the permission is not granted.",
+                    preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
                 self.present(alert, animated: true, completion: nil)
             }
