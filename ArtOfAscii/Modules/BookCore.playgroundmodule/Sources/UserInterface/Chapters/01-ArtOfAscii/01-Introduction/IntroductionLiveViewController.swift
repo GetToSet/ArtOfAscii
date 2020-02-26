@@ -42,7 +42,7 @@ public class IntroductionLiveViewController: BaseViewController {
             mediaType: AVMediaType.video,
             position: AVCaptureDevice.Position.front).devices
 
-    private var cameraOrientation: CameraOrientation = .back
+    private var cameraOrientation = CameraOrientation.back
     private var currentEffectType = AsciiEffects.plain
 
     private lazy var info420vToARGB: vImage_YpCbCrToARGB? = {
@@ -123,6 +123,13 @@ public class IntroductionLiveViewController: BaseViewController {
 
     override func toolBarButtonTapped(buttonView: ToolBarButtonView) {
         buttonView.state = .normal
+        switch buttonView {
+        case cameraSwitchButton:
+            cameraOrientation = cameraOrientation == .front ? .back : .front
+            reconfigureSession()
+        default:
+            break
+        }
     }
 
     public override func liveViewMessageConnectionOpened() {
@@ -191,7 +198,6 @@ extension IntroductionLiveViewController {
         guard setupResult == .success else {
             return
         }
-
         sessionQueue.async {
             self.session.beginConfiguration()
             defer {
@@ -252,6 +258,9 @@ extension IntroductionLiveViewController {
                 }
             }
             self.session.commitConfiguration()
+        }
+        DispatchQueue.main.async {
+            self.adjustVideoOrientation()
         }
     }
 

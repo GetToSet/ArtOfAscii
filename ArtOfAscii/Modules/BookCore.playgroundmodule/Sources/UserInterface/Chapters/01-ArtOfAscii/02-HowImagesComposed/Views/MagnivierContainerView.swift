@@ -8,6 +8,7 @@ import UIKit
 class MagnifierContainerView: UIView {
 
     @IBOutlet weak var magnifierView: MagnifierView!
+    @IBOutlet weak var magnifierWrapperView: UIView!
 
     weak var delegate: MagnifierContainerViewDelegate?
 
@@ -33,10 +34,14 @@ class MagnifierContainerView: UIView {
         super.awakeFromNib()
 
         self.backgroundColor = .clear
-        self.clipsToBounds = true
+        self.clipsToBounds = false
+        
+        magnifierWrapperView.layer.shadowColor = UIColor.black.cgColor
+        magnifierWrapperView.layer.shadowOpacity = 0.25
+        magnifierWrapperView.layer.shadowRadius = 8.0
 
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureAction))
-        magnifierView.addGestureRecognizer(panGestureRecognizer)
+        magnifierWrapperView.addGestureRecognizer(panGestureRecognizer)
     }
 
     override func layoutSubviews() {
@@ -48,7 +53,7 @@ class MagnifierContainerView: UIView {
 
     func resetMagnifierPosition(animated: Bool) {
         UIView.animate(withDuration: animated ? 0.2 : 0, animations: {
-            self.magnifierView.center = self.center
+            self.magnifierWrapperView.center = self.center
         }, completion: { _ in
             self.delegate?.magnifierCenterPositionChanged(point: self.center, containerView: self)
         })
@@ -56,9 +61,9 @@ class MagnifierContainerView: UIView {
 
     @objc private func panGestureAction(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: self)
-        let newCenter = CGPoint(x: magnifierView.center.x + translation.x, y: magnifierView.center.y + translation.y)
+        let newCenter = CGPoint(x: magnifierWrapperView.center.x + translation.x, y: magnifierWrapperView.center.y + translation.y)
         if self.bounds.contains(newCenter) {
-            magnifierView.center = newCenter
+            magnifierWrapperView.center = newCenter
             delegate?.magnifierCenterPositionChanged(point: newCenter, containerView: self)
         }
         sender.setTranslation(CGPoint.zero, in: self)

@@ -488,22 +488,34 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gIr-Sj-FWJ" customClass="MagnifierContainerView" customModule="BookCore">
                                                 <rect key="frame" x="8" y="8" width="746" height="940"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6U-qf-HWq" customClass="MagnifierView" customModule="BookCore">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUO-h4-gIW" userLabel="Shadow Container">
                                                         <rect key="frame" x="283" y="380" width="180" height="180"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6U-qf-HWq" customClass="MagnifierView" customModule="BookCore">
+                                                                <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="180" id="OMY-6E-P4y"/>
+                                                                    <constraint firstAttribute="height" constant="180" id="VF3-2S-w8f"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="180" id="OMY-6E-P4y"/>
-                                                            <constraint firstAttribute="height" constant="180" id="VF3-2S-w8f"/>
+                                                            <constraint firstAttribute="bottom" secondItem="G6U-qf-HWq" secondAttribute="bottom" id="0xT-K6-n5D"/>
+                                                            <constraint firstItem="G6U-qf-HWq" firstAttribute="top" secondItem="dUO-h4-gIW" secondAttribute="top" id="WwP-zs-Kim"/>
+                                                            <constraint firstItem="G6U-qf-HWq" firstAttribute="leading" secondItem="dUO-h4-gIW" secondAttribute="leading" id="ZrW-xE-GXr"/>
+                                                            <constraint firstAttribute="trailing" secondItem="G6U-qf-HWq" secondAttribute="trailing" id="qLt-Sl-k1z"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="G6U-qf-HWq" firstAttribute="centerX" secondItem="gIr-Sj-FWJ" secondAttribute="centerX" id="Cz2-yF-02B"/>
-                                                    <constraint firstItem="G6U-qf-HWq" firstAttribute="centerY" secondItem="gIr-Sj-FWJ" secondAttribute="centerY" id="wfk-6X-j4u"/>
+                                                    <constraint firstItem="dUO-h4-gIW" firstAttribute="centerY" secondItem="gIr-Sj-FWJ" secondAttribute="centerY" id="hrC-ku-deK"/>
+                                                    <constraint firstItem="dUO-h4-gIW" firstAttribute="centerX" secondItem="gIr-Sj-FWJ" secondAttribute="centerX" id="jJM-nW-BAh"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="magnifierView" destination="G6U-qf-HWq" id="bZq-Hs-qQg"/>
+                                                    <outlet property="magnifierWrapperView" destination="dUO-h4-gIW" id="Mrx-gr-gDr"/>
                                                 </connections>
                                             </view>
                                         </subviews>
@@ -515,7 +527,6 @@
                                             <constraint firstItem="dWc-gN-6xB" firstAttribute="leading" secondItem="s4T-su-e8Q" secondAttribute="leadingMargin" id="P6X-k7-rEm"/>
                                             <constraint firstAttribute="bottom" secondItem="dWc-gN-6xB" secondAttribute="bottom" id="POX-LN-n7v"/>
                                             <constraint firstItem="gIr-Sj-FWJ" firstAttribute="leading" secondItem="s4T-su-e8Q" secondAttribute="leadingMargin" id="V60-nH-7qq"/>
-                                            <constraint firstAttribute="width" constant="762" id="gMI-92-2eX"/>
                                             <constraint firstItem="dWc-gN-6xB" firstAttribute="top" secondItem="s4T-su-e8Q" secondAttribute="topMargin" id="tNn-RM-5VO"/>
                                         </constraints>
                                     </view>
