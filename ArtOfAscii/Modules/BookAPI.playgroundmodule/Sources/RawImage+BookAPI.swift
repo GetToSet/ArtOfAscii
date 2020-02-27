@@ -6,6 +6,8 @@
 import UIKit
 import Accelerate
 
+import BookCore
+
 public extension RawImage {
 
     func applyBrightnessLookup(_ mapping: [UInt8]) {

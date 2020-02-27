@@ -71,7 +71,7 @@ class AsciificationLiveViewController: BaseViewController, PhotoAlbumSavable {
                 updateShowcaseImage(image: image)
             }
         }
-        imageScaleButton.isHidden = !(shrinkButton.state == .selected && asciificationButton.state == .normal)
+        imageScaleButton.isHidden = !(shrinkButton.state == .selected && asciificationButton.state != .selected)
     }
 
     override func didPickImage(image: UIImage, pickerController: ImagePickerViewController) {
@@ -118,7 +118,7 @@ class AsciificationLiveViewController: BaseViewController, PhotoAlbumSavable {
             imageScaleButton.buttonState = .expand
             saveButton.state = asciificationButton.state == .selected ? .normal : .disabled
         case shrinkButton:
-            imageScaleButton.buttonState = .expand
+            imageScaleButton.buttonState = .shrink
         default:
             break
         }

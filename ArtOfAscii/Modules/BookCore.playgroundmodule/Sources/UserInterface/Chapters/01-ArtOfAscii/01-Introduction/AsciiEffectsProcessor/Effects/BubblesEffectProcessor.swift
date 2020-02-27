@@ -67,7 +67,7 @@ class BubblesEffectProcessor: AsciiEffectsProcessor {
             asciiResult.append(NSAttributedString(string: "\n"))
         }
 
-        return AsciiArtRenderer.renderAsciiArt(
+        return AsciiArtRendererInternal.renderAsciiArt(
                 font: font,
                 lineHeight: lineHeight,
                 background: UIColor.white,
@@ -75,7 +75,7 @@ class BubblesEffectProcessor: AsciiEffectsProcessor {
                 rows: rowCount,
                 characterAspectRatio: characterAspectRatio,
                 drawingProcedure: { font, lineHeight, drawingRect in
-                    AsciiArtRenderer.drawAsAsciiArt(attributedString: asciiResult, font: font, lineHeight: lineHeight, drawingRect: drawingRect)
+                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: asciiResult, font: font, lineHeight: lineHeight, drawingRect: drawingRect)
                 })
     }
 

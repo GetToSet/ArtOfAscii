@@ -125,7 +125,7 @@ class CloudyEffectProcessor: AsciiEffectsProcessor {
             }
         }
 
-        return AsciiArtRenderer.renderAsciiArt(
+        return AsciiArtRendererInternal.renderAsciiArt(
                 font: font,
                 lineHeight: lineHeight,
                 background: .black,
@@ -140,7 +140,7 @@ class CloudyEffectProcessor: AsciiEffectsProcessor {
 
                     backgroundImage.draw(in: fittingRect)
 
-                    AsciiArtRenderer.drawAsAsciiArt(attributedString: attributedResult, font: font, lineHeight: lineHeight, drawingRect: drawingRect)
+                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: attributedResult, font: font, lineHeight: lineHeight, drawingRect: drawingRect)
                 })
     }
 

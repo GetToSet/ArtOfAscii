@@ -29,6 +29,7 @@ public class AsciiArtRenderer {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .left
             paragraphStyle.lineSpacing = 0.0
+            paragraphStyle.minimumLineHeight = size
             paragraphStyle.maximumLineHeight = size
             paragraphStyle.lineBreakMode = .byClipping
             let attrs = [

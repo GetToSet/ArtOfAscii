@@ -5,7 +5,7 @@
 
 import UIKit
 
-public extension AsciiArtRenderer {
+class AsciiArtRendererInternal {
 
     typealias AsciiArtDrawingProcedure = (UIFont, CGFloat, CGRect) -> ()
 

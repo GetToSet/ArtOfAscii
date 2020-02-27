@@ -91,7 +91,7 @@ class PlainEffectProcessor: AsciiEffectsProcessor {
             NSAttributedString.Key.foregroundColor: UIColor.black
         ])
 
-        return AsciiArtRenderer.renderAsciiArt(
+        return AsciiArtRendererInternal.renderAsciiArt(
                 attributedString: attributedResult,
                 font: font,
                 lineHeight: lineHeight,

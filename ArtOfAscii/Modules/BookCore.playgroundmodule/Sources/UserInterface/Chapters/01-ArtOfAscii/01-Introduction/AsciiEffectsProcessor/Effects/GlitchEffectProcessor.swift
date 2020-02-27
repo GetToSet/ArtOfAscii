@@ -105,7 +105,7 @@ class GlitchEffectProcessor: AsciiEffectsProcessor {
         let glitchX = CGFloat(glitchLevels.randomElement()!)
         let glitchY = CGFloat(glitchLevels.randomElement()!)
 
-        return AsciiArtRenderer.renderAsciiArt(
+        return AsciiArtRendererInternal.renderAsciiArt(
                 font: font,
                 lineHeight: lineHeight,
                 background: UIColor.effectDarkGray,
@@ -115,9 +115,9 @@ class GlitchEffectProcessor: AsciiEffectsProcessor {
                 drawingProcedure: { font, lineHeight, drawingRect in
                     let magentaRect = drawingRect.offsetBy(dx: glitchX, dy: glitchY)
                     let cyanRect = drawingRect.offsetBy(dx: -glitchX, dy: -glitchY)
-                    AsciiArtRenderer.drawAsAsciiArt(attributedString: attributedResultMagenta, font: font, lineHeight: lineHeight, drawingRect: magentaRect)
-                    AsciiArtRenderer.drawAsAsciiArt(attributedString: attributedResultCyan, font: font, lineHeight: lineHeight, drawingRect: cyanRect)
-                    AsciiArtRenderer.drawAsAsciiArt(attributedString: attributedResultWhite, font: font, lineHeight: lineHeight, drawingRect: drawingRect)
+                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: attributedResultMagenta, font: font, lineHeight: lineHeight, drawingRect: magentaRect)
+                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: attributedResultCyan, font: font, lineHeight: lineHeight, drawingRect: cyanRect)
+                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: attributedResultWhite, font: font, lineHeight: lineHeight, drawingRect: drawingRect)
                 })
     }
 

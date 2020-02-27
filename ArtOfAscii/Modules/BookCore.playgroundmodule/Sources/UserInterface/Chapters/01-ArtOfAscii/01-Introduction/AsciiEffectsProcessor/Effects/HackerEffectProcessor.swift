@@ -93,7 +93,7 @@ class HackerEffectProcessor: AsciiEffectsProcessor {
             }
         }
 
-        return AsciiArtRenderer.renderAsciiArt(
+        return AsciiArtRendererInternal.renderAsciiArt(
                 attributedString: attributedResult,
                 font: font,
                 lineHeight: lineHeight,
