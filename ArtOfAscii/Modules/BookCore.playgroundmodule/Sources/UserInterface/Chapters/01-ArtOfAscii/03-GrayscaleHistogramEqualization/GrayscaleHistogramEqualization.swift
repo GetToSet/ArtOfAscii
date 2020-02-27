@@ -45,7 +45,8 @@ public class GrayscaleHistogramEqualization: BaseViewController {
 
     private func setHistogramViewHidden(_ hidden: Bool, animated: Bool) {
         UIView.animate(withDuration: animated ? 0.35 : 0) {
-            let animationTransform = hidden ? CGAffineTransform(translationX: 0, y: self.histogramView.bounds.size.height) : CGAffineTransform.identity
+            let animationTransform = hidden ?
+                    CGAffineTransform(translationX: 0, y: self.histogramView.bounds.size.height) : CGAffineTransform.identity
             self.histogramView.transform = animationTransform
             self.histogramView.alpha = hidden ? 0.0 : 1.0
         }

@@ -10,7 +10,7 @@ import PlaygroundSupport
 PlaygroundPage.current.needsIndefiniteExecution = true
 
 let assessmentHelper = AssessmentHelper()
-assessmentHelper.assessmentShowOnce({ true }, pass: nil);
+assessmentHelper.assessmentShowOnce({ true }, pass: nil)
 
 //#-end-hidden-code
 /*:
@@ -35,4 +35,3 @@ delightful.
 
 [Let's get started! 🏃‍♂️](@next)
 */
-

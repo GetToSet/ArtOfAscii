@@ -134,7 +134,7 @@ public class BaseViewController: UIViewController,
             }
             UIView.animate(withDuration: 0.25, delay: hidden ? 0.25 : 0, animations: {
                 self.loadingIndicatorView.alpha = hidden ? 0.0 : 1.0
-            }, completion: { (complete) in
+            }, completion: { _ in
                 self.loadingIndicatorView.isHidden = hidden
             })
         } else {

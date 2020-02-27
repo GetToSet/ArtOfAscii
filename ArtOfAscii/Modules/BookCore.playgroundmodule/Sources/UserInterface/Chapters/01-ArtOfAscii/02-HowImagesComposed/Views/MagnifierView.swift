@@ -72,5 +72,3 @@ class MagnifierView: UIView {
     }
 
 }
-
-

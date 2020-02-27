@@ -97,7 +97,11 @@ class HistogramView: UIView {
         brightnessHistogram = rawImage.calculateBrightnessHistogram()
     }
 
-    private func drawCumulativePixelFrequency(histogramVal: [UInt], color: UIColor, fractionStart: CGFloat, fractionEnd: CGFloat, context: CGContext) {
+    private func drawCumulativePixelFrequency(histogramVal: [UInt],
+                                              color: UIColor,
+                                              fractionStart: CGFloat,
+                                              fractionEnd: CGFloat,
+                                              context: CGContext) {
         var pixelCumulative: UInt = 0
         let pixelCumulativeVals: [CGFloat] = histogramVal.map {
             pixelCumulative += $0

@@ -52,18 +52,16 @@ public enum EventMessage {
     }
 
     public var playgroundValue: PlaygroundValue {
-        get {
-            return PlaygroundValue.dictionary(encodeToDictionary())
-        }
+        return PlaygroundValue.dictionary(encodeToDictionary())
     }
 
-    private func encodeToDictionary() -> Dictionary<String, PlaygroundValue> {
+    private func encodeToDictionary() -> [String: PlaygroundValue] {
         let encoder = JSONEncoder()
 
         var jsonData: Data?
         var imageData: Data?
-        var payloadToEncode: EventPayload? = nil
-        var payloadType: EventPayloadType? = nil
+        var payloadToEncode: EventPayload?
+        var payloadType: EventPayloadType?
 
         switch self {
         case .rgbFilterRequest(let red, let green, let blue, let image):
@@ -88,7 +86,7 @@ public enum EventMessage {
         }
         payloadType = payloadType ?? payloadToEncode!.payloadType
         var dict = [
-            "type": PlaygroundValue.string(payloadType!.rawValue),
+            "type": PlaygroundValue.string(payloadType!.rawValue)
         ]
         if let jsonData = jsonData {
             dict["data"] = PlaygroundValue.data(jsonData)
@@ -99,7 +97,7 @@ public enum EventMessage {
         return dict
     }
 
-    private static func decodeFromDictionary(_ dictionary: Dictionary<String, PlaygroundValue>) -> Self? {
+    private static func decodeFromDictionary(_ dictionary: [String: PlaygroundValue]) -> Self? {
         guard case .string(let typeStr) = dictionary["type"],
               let type = EventPayloadType(rawValue: typeStr) else {
             return nil
@@ -107,7 +105,7 @@ public enum EventMessage {
 
         let decoder = JSONDecoder()
 
-        var image: UIImage? = nil
+        var image: UIImage?
 
         if case .data(let imageData) = dictionary["image"] {
             image = UIImage(data: imageData)

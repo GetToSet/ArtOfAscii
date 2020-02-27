@@ -31,10 +31,9 @@ extension PhotoAlbumSavable where Self: UIViewController {
         switch PHPhotoLibrary.authorizationStatus() {
         case .authorized:
             self.photoAlbumAccess = true
-            break
         case .notDetermined:
             let semaphore = DispatchSemaphore(value: 0)
-            PHPhotoLibrary.requestAuthorization() { status in
+            PHPhotoLibrary.requestAuthorization { status in
                 if status == .authorized {
                     self.photoAlbumAccess = true
                 } else {

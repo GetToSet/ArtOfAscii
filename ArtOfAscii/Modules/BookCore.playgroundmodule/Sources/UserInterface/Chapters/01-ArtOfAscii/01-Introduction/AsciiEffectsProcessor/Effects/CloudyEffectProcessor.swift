@@ -49,7 +49,11 @@ class CloudyEffectProcessor: AsciiEffectsProcessor {
 
         // Blur the image
         var blurringTempBuffer = vImage_Buffer()
-        guard vImageBuffer_Init(&blurringTempBuffer, sourceBuffer.height, sourceBuffer.width, 32, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
+        guard vImageBuffer_Init(&blurringTempBuffer,
+                sourceBuffer.height,
+                sourceBuffer.width,
+                32,
+                vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
             return nil
         }
         defer {
@@ -75,8 +79,17 @@ class CloudyEffectProcessor: AsciiEffectsProcessor {
         }
 
         // Put three channel onto one line for gamma adjustment
-        var planarDestination = vImage_Buffer(data: rgbBuffer.data, height: rgbBuffer.height, width: rgbBuffer.width * 3, rowBytes: rgbBuffer.rowBytes)
-        guard vImagePiecewiseGamma_Planar8(&planarDestination, &planarDestination, [1, 0, 0], 1.25, [1, 0], 0, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
+        var planarDestination = vImage_Buffer(data: rgbBuffer.data,
+                height: rgbBuffer.height,
+                width: rgbBuffer.width * 3,
+                rowBytes: rgbBuffer.rowBytes)
+        guard vImagePiecewiseGamma_Planar8(&planarDestination,
+                &planarDestination,
+                [1, 0, 0],
+                1.25,
+                [1, 0],
+                0,
+                vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
             return nil
         }
 
@@ -101,7 +114,8 @@ class CloudyEffectProcessor: AsciiEffectsProcessor {
 
         let backgroundImage = UIImage(cgImage: cgImage.takeRetainedValue())
 
-        let dataPointer: UnsafeMutablePointer<UInt8> = scaledBuffer.data.bindMemory(to: UInt8.self, capacity: scaledBuffer.rowBytes * Int(scaledBuffer.height))
+        let dataPointer: UnsafeMutablePointer<UInt8> =
+                scaledBuffer.data.bindMemory(to: UInt8.self, capacity: scaledBuffer.rowBytes * Int(scaledBuffer.height))
 
         var randomStr = ""
         for _ in 0..<rowCount {
@@ -135,12 +149,15 @@ class CloudyEffectProcessor: AsciiEffectsProcessor {
                 drawingProcedure: { font, lineHeight, drawingRect in
                     var fittingRect = drawingRect
                     let imageSize = backgroundImage.size
-                    let factor = min(imageSize.width / drawingRect.size.width, imageSize.height / drawingRect.height);
+                    let factor = min(imageSize.width / drawingRect.size.width, imageSize.height / drawingRect.height)
                     fittingRect.size = CGSize(width: imageSize.width / factor, height: imageSize.height / factor)
 
                     backgroundImage.draw(in: fittingRect)
 
-                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: attributedResult, font: font, lineHeight: lineHeight, drawingRect: drawingRect)
+                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: attributedResult,
+                            font: font,
+                            lineHeight: lineHeight,
+                            drawingRect: drawingRect)
                 })
     }
 

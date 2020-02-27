@@ -1,0 +1,11 @@
+disabled_rules:
+  - identifier_name
+  - force_cast
+  - function_body_length
+  - function_parameter_count
+  - file_length
+
+line_length: 150
+nesting:
+  type_level:
+    warning: 2

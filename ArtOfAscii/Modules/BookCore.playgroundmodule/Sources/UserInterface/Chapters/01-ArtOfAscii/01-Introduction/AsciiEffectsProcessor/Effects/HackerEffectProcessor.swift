@@ -47,7 +47,13 @@ class HackerEffectProcessor: AsciiEffectsProcessor {
         ]
 
         // Apply a grayscale conversion
-        guard vImageMatrixMultiply_ARGB8888ToPlanar8(&sourceBuffer, &grayscaledBuffer, &coefficientsMatrix, divisor, nil, 0, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
+        guard vImageMatrixMultiply_ARGB8888ToPlanar8(&sourceBuffer,
+                &grayscaledBuffer,
+                &coefficientsMatrix,
+                divisor,
+                nil,
+                0,
+                vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
             return nil
         }
 
@@ -70,7 +76,8 @@ class HackerEffectProcessor: AsciiEffectsProcessor {
             return nil
         }
 
-        let dataPointer: UnsafeMutablePointer<UInt8> = scaledBuffer.data.bindMemory(to: UInt8.self, capacity: scaledBuffer.rowBytes * Int(scaledBuffer.height))
+        let dataPointer: UnsafeMutablePointer<UInt8> =
+                scaledBuffer.data.bindMemory(to: UInt8.self, capacity: scaledBuffer.rowBytes * Int(scaledBuffer.height))
 
         let randomStringTemplate = "01"
         var asciiResult = ""

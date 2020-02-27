@@ -35,7 +35,7 @@ class MagnifierContainerView: UIView {
 
         self.backgroundColor = .clear
         self.clipsToBounds = false
-        
+
         magnifierWrapperView.layer.shadowColor = UIColor.black.cgColor
         magnifierWrapperView.layer.shadowOpacity = 0.25
         magnifierWrapperView.layer.shadowRadius = 8.0

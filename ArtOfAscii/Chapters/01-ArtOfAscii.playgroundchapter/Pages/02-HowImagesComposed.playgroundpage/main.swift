@@ -28,10 +28,8 @@ func performCorrectnessCheck() {
 
              Continue to [Preprocess Images for ASCII Art](@next)
              """
-    );
+    )
 }
-
-
 //#-end-hidden-code
 /*:
 # Basics: How Images Composed
@@ -97,7 +95,7 @@ let eventListener = EventListener(proxy: remoteView) { message in
         guard let rawImage = RawImage(uiImage: image) else {
             return
         }
-        applyRGBFilter(redEnabled: redEnabled, greenEnabled: greenEnabled, blueEnabled: blueEnabled, rawImage: rawImage);
+        applyRGBFilter(redEnabled: redEnabled, greenEnabled: greenEnabled, blueEnabled: blueEnabled, rawImage: rawImage)
         let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
         if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
             remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)

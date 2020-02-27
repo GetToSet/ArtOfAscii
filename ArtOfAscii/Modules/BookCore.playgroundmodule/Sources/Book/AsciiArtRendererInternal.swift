@@ -7,20 +7,21 @@ import UIKit
 
 class AsciiArtRendererInternal {
 
-    typealias AsciiArtDrawingProcedure = (UIFont, CGFloat, CGRect) -> ()
+    typealias AsciiArtDrawingProcedure = (UIFont, CGFloat, CGRect) -> Void
 
     static func renderAsciiArt(font: UIFont,
-                                      lineHeight: CGFloat,
-                                      background: UIColor,
-                                      charactersPerRow: Int,
-                                      rows: Int,
-                                      characterAspectRatio: CGFloat,
-                                      drawingProcedure: AsciiArtDrawingProcedure) -> UIImage {
+                               lineHeight: CGFloat,
+                               background: UIColor,
+                               charactersPerRow: Int,
+                               rows: Int,
+                               characterAspectRatio: CGFloat,
+                               drawingProcedure: AsciiArtDrawingProcedure) -> UIImage {
         let characterWidth = font.pointSize * characterAspectRatio
         let characterHeight = lineHeight
         let drawingRect = CGRect(
                 origin: CGPoint(x: 0, y: 0),
-                size: CGSize(width: characterWidth * CGFloat(charactersPerRow), height: characterHeight * CGFloat(rows)))
+                size: CGSize(width: characterWidth * CGFloat(charactersPerRow),
+                        height: characterHeight * CGFloat(rows)))
 
         let renderer = UIGraphicsImageRenderer(size: drawingRect.size)
         let img = renderer.image { ctx in
@@ -32,19 +33,19 @@ class AsciiArtRendererInternal {
     }
 
     static func renderAsciiArt(attributedString: NSAttributedString,
-                                      font: UIFont,
-                                      lineHeight: CGFloat,
-                                      background: UIColor,
-                                      charactersPerRow: Int,
-                                      rows: Int,
-                                      characterAspectRatio: CGFloat) -> UIImage {
+                               font: UIFont,
+                               lineHeight: CGFloat,
+                               background: UIColor,
+                               charactersPerRow: Int,
+                               rows: Int,
+                               characterAspectRatio: CGFloat) -> UIImage {
         return renderAsciiArt(font: font,
                 lineHeight: lineHeight,
                 background: background,
                 charactersPerRow: charactersPerRow,
                 rows: rows,
                 characterAspectRatio: characterAspectRatio,
-                drawingProcedure: { font , lineHeight, drawingRect in
+                drawingProcedure: { font, lineHeight, drawingRect in
                     drawAsAsciiArt(attributedString: attributedString,
                             font: font,
                             lineHeight: lineHeight,
@@ -53,9 +54,9 @@ class AsciiArtRendererInternal {
     }
 
     static func drawAsAsciiArt(attributedString: NSAttributedString,
-                                      font: UIFont,
-                                      lineHeight: CGFloat,
-                                      drawingRect: CGRect) {
+                               font: UIFont,
+                               lineHeight: CGFloat,
+                               drawingRect: CGRect) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .left
         paragraphStyle.lineSpacing = 0
@@ -65,7 +66,7 @@ class AsciiArtRendererInternal {
 
         let attrs: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.font: font,
-            NSAttributedString.Key.paragraphStyle: paragraphStyle,
+            NSAttributedString.Key.paragraphStyle: paragraphStyle
         ]
 
         let stringToDraw = NSMutableAttributedString(attributedString: attributedString)

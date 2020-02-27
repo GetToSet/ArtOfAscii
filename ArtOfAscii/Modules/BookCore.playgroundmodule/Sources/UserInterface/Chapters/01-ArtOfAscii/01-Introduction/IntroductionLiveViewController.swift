@@ -44,7 +44,7 @@ public class IntroductionLiveViewController: BaseViewController, PhotoAlbumSavab
             position: AVCaptureDevice.Position.front).devices
 
     private var cameraOrientation = CameraOrientation.back
-    private var currentEffectType = AsciiEffects.plain
+    private var currentEffectType = AsciiEffectType.plain
 
     private lazy var info420vToARGB: vImage_YpCbCrToARGB? = {
         var info = vImage_YpCbCrToARGB()
@@ -73,9 +73,7 @@ public class IntroductionLiveViewController: BaseViewController, PhotoAlbumSavab
     private var shouldRecreateDestinationBuffer = true
 
     deinit {
-        if destinationBuffer.data != nil {
-            free(destinationBuffer.data)
-        }
+        free(destinationBuffer.data)
     }
 
     public override func viewDidLoad() {
@@ -117,7 +115,7 @@ public class IntroductionLiveViewController: BaseViewController, PhotoAlbumSavab
     }
 
     override func didPickNamedItem(name: String, pickerController: ImagePickerViewController) {
-        if let effect = AsciiEffects(rawValue: name) {
+        if let effect = AsciiEffectType(rawValue: name) {
             effectTypeAccessQueue.async {
                 self.currentEffectType = effect
             }
@@ -323,29 +321,29 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
         CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly)
     }
 
+    func effectProcessorFor(type effectType: AsciiEffectType) -> AsciiEffectsProcessor {
+        switch effectType {
+        case .plain:
+            return PlainEffectProcessor()
+        case .hacker:
+            return HackerEffectProcessor()
+        case .glitch:
+            return GlitchEffectProcessor()
+        case .bubbles:
+            return BubblesEffectProcessor()
+        case .cloudy:
+            return CloudyEffectProcessor()
+        }
+    }
+
     func processPixelBufferToAsciiArt(pixelBuffer: CVPixelBuffer) {
         // Use prevent concurrent access to current effect type
-        var currentEffect: AsciiEffects!
+        var currentEffect: AsciiEffectType!
         effectTypeAccessQueue.sync {
             currentEffect = self.currentEffectType
         }
 
-        let processor: AsciiEffectsProcessor
-
-        switch currentEffect {
-        case .plain:
-            processor = PlainEffectProcessor()
-        case .hacker:
-            processor = HackerEffectProcessor()
-        case .glitch:
-            processor = GlitchEffectProcessor()
-        case .bubbles:
-            processor = BubblesEffectProcessor()
-        case .cloudy:
-            processor = CloudyEffectProcessor()
-        default:
-            return
-        }
+        let processor = effectProcessorFor(type: currentEffect)
 
         let lumaBaseAddress = CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 0)
         let lumaWidth = CVPixelBufferGetWidthOfPlane(pixelBuffer, 0)
@@ -368,9 +366,7 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
                 rowBytes: chromaRowBytes)
 
         if destinationBuffer.data == nil || shouldRecreateDestinationBuffer {
-            if destinationBuffer.data != nil {
-                free(destinationBuffer.data)
-            }
+            free(destinationBuffer.data)
             guard vImageBuffer_Init(&destinationBuffer,
                     lumaBuffer.height,
                     lumaBuffer.width,
@@ -400,7 +396,7 @@ extension IntroductionLiveViewController: AVCaptureVideoDataOutputSampleBufferDe
         if cameraOrientation == .front {
             vImageHorizontalReflect_ARGB8888(&destinationBuffer, &destinationBuffer, vImage_Flags(kvImageNoFlags))
         }
-        
+
         // Second step processing — Apply filters to ARGB images & Draw ASCII arts from buffer
         if let image = processor.processArgbBufferToAsciiArt(buffer: &destinationBuffer) {
             DispatchQueue.main.async {

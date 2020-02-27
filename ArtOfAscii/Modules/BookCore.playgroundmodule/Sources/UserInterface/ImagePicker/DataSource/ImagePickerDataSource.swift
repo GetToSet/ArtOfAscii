@@ -11,9 +11,9 @@ class ImagePickerDataSource {
 
         var itemName: String?
         var imageName: String?
-        var thumbnailName:String
+        var thumbnailName: String
 
-        private enum CodingKeys : String, CodingKey {
+        private enum CodingKeys: String, CodingKey {
             case itemName = "item"
             case imageName = "full"
             case thumbnailName = "thumbnail"

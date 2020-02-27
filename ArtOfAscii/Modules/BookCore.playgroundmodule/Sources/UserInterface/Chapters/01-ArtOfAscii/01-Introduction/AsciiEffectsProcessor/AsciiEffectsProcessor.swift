@@ -6,7 +6,7 @@
 import UIKit
 import Accelerate
 
-enum AsciiEffects: String {
+enum AsciiEffectType: String {
     case plain
     case hacker
     case glitch

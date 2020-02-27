@@ -49,7 +49,13 @@ class GlitchEffectProcessor: AsciiEffectsProcessor {
         ]
 
         // Apply a grayscale conversion
-        guard vImageMatrixMultiply_ARGB8888ToPlanar8(&sourceBuffer, &grayscaledBuffer, &coefficientsMatrix, divisor, nil, 0, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
+        guard vImageMatrixMultiply_ARGB8888ToPlanar8(&sourceBuffer,
+                &grayscaledBuffer,
+                &coefficientsMatrix,
+                divisor,
+                nil,
+                0,
+                vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
             return nil
         }
 
@@ -73,7 +79,8 @@ class GlitchEffectProcessor: AsciiEffectsProcessor {
             return nil
         }
 
-        let dataPointer: UnsafeMutablePointer<UInt8> = scaledBuffer.data.bindMemory(to: UInt8.self, capacity: scaledBuffer.rowBytes * Int(scaledBuffer.height))
+        let dataPointer: UnsafeMutablePointer<UInt8> =
+                scaledBuffer.data.bindMemory(to: UInt8.self, capacity: scaledBuffer.rowBytes * Int(scaledBuffer.height))
 
         let maxBrightness = Double(characterMap.count - 1)
         var asciiResult: String = ""
@@ -115,9 +122,18 @@ class GlitchEffectProcessor: AsciiEffectsProcessor {
                 drawingProcedure: { font, lineHeight, drawingRect in
                     let magentaRect = drawingRect.offsetBy(dx: glitchX, dy: glitchY)
                     let cyanRect = drawingRect.offsetBy(dx: -glitchX, dy: -glitchY)
-                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: attributedResultMagenta, font: font, lineHeight: lineHeight, drawingRect: magentaRect)
-                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: attributedResultCyan, font: font, lineHeight: lineHeight, drawingRect: cyanRect)
-                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: attributedResultWhite, font: font, lineHeight: lineHeight, drawingRect: drawingRect)
+                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: attributedResultMagenta,
+                            font: font,
+                            lineHeight: lineHeight,
+                            drawingRect: magentaRect)
+                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: attributedResultCyan,
+                            font: font,
+                            lineHeight: lineHeight,
+                            drawingRect: cyanRect)
+                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: attributedResultWhite,
+                            font: font,
+                            lineHeight: lineHeight,
+                            drawingRect: drawingRect)
                 })
     }
 
@@ -126,15 +142,15 @@ class GlitchEffectProcessor: AsciiEffectsProcessor {
 private extension UIColor {
 
     static var effectCyan: UIColor {
-        UIColor(red:0.41, green:0.92, blue:0.91, alpha:1.0)
+        UIColor(red: 0.41, green: 0.92, blue: 0.91, alpha: 1.0)
     }
 
     static var effectMagenta: UIColor {
-        UIColor(red:0.96, green:0.34, blue:0.65, alpha:1.0)
+        UIColor(red: 0.96, green: 0.34, blue: 0.65, alpha: 1.0)
     }
 
     static var effectDarkGray: UIColor {
-        UIColor(red:0.15, green:0.03, blue:0.40, alpha:1.0)
+        UIColor(red: 0.15, green: 0.03, blue: 0.40, alpha: 1.0)
     }
 
 }

@@ -107,7 +107,6 @@ class AsciificationLiveViewController: BaseViewController, PhotoAlbumSavable {
         self.present(alert, animated: true, completion: nil)
     }
 
-
     override func toolBarButtonTapped(buttonView: ToolBarButtonView) {
         switch buttonView {
         case saveButton:

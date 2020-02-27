@@ -44,7 +44,8 @@ class BubblesEffectProcessor: AsciiEffectsProcessor {
             return nil
         }
 
-        let dataPointer: UnsafeMutablePointer<UInt8> = scaledBuffer.data.bindMemory(to: UInt8.self, capacity: scaledBuffer.rowBytes * Int(scaledBuffer.height))
+        let dataPointer: UnsafeMutablePointer<UInt8> =
+                scaledBuffer.data.bindMemory(to: UInt8.self, capacity: scaledBuffer.rowBytes * Int(scaledBuffer.height))
 
         let maxBrightness = Double(characterMap.count - 1)
         let asciiResult = NSMutableAttributedString()
@@ -75,7 +76,10 @@ class BubblesEffectProcessor: AsciiEffectsProcessor {
                 rows: rowCount,
                 characterAspectRatio: characterAspectRatio,
                 drawingProcedure: { font, lineHeight, drawingRect in
-                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: asciiResult, font: font, lineHeight: lineHeight, drawingRect: drawingRect)
+                    AsciiArtRendererInternal.drawAsAsciiArt(attributedString: asciiResult,
+                            font: font,
+                            lineHeight: lineHeight,
+                            drawingRect: drawingRect)
                 })
     }
 

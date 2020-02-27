@@ -49,7 +49,13 @@ class PlainEffectProcessor: AsciiEffectsProcessor {
         ]
 
         // Apply a grayscale conversion
-        guard vImageMatrixMultiply_ARGB8888ToPlanar8(&sourceBuffer, &grayscaledBuffer, &coefficientsMatrix, divisor, nil, 0, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
+        guard vImageMatrixMultiply_ARGB8888ToPlanar8(&sourceBuffer,
+                &grayscaledBuffer,
+                &coefficientsMatrix,
+                divisor,
+                nil,
+                0,
+                vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
             return nil
         }
 
@@ -71,8 +77,9 @@ class PlainEffectProcessor: AsciiEffectsProcessor {
         guard vImageScale_Planar8(&grayscaledBuffer, &scaledBuffer, nil, vImage_Flags(kvImageNoFlags)) == kvImageNoError else {
             return nil
         }
-        
-        let dataPointer: UnsafeMutablePointer<UInt8> = scaledBuffer.data.bindMemory(to: UInt8.self, capacity: scaledBuffer.rowBytes * Int(scaledBuffer.height))
+
+        let dataPointer: UnsafeMutablePointer<UInt8> =
+                scaledBuffer.data.bindMemory(to: UInt8.self, capacity: scaledBuffer.rowBytes * Int(scaledBuffer.height))
 
         let maxBrightness = Double(characterMap.count - 1)
         var asciiResult: String = ""

@@ -49,7 +49,7 @@ func performCorrectnessCheck() {
 
              Continue to [The “ASCIIfication” Magic](@next)
              """
-    );
+    )
 }
 
 //#-end-hidden-code
@@ -161,7 +161,7 @@ let eventListener = EventListener(proxy: remoteView) { message in
         guard let rawImage = RawImage(uiImage: image) else {
             return
         }
-        applyGrayscaleFilter(rawImage: rawImage);
+        applyGrayscaleFilter(rawImage: rawImage)
         let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
         if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
             remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)
@@ -170,7 +170,7 @@ let eventListener = EventListener(proxy: remoteView) { message in
         guard let rawImage = RawImage(uiImage: image) else {
             return
         }
-        applyHistogramEqualization(rawImage: rawImage);
+        applyHistogramEqualization(rawImage: rawImage)
         let destinationBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
         if let destCGImage = rawImage.cgImage(bitmapInfo: destinationBitmapInfo) {
             remoteView?.send(EventMessage.imageProcessingResponse(image: UIImage(cgImage: destCGImage)).playgroundValue)

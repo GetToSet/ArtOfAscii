@@ -25,7 +25,7 @@ class ImagePickerViewController: UIViewController {
         }
     }
 
-    var delegate: ImagePickerViewControllerDelegate?
+    weak var delegate: ImagePickerViewControllerDelegate?
 
     private var dataSource: ImagePickerDataSource {
         switch sampleImageType {
@@ -51,7 +51,7 @@ class ImagePickerViewController: UIViewController {
             animated: animated,
             scrollPosition: .centeredHorizontally)
     }
-    
+
     private func sectionFor(type sectionType: SectionType) -> Int? {
         switch sectionType {
         case .cameraRoll:

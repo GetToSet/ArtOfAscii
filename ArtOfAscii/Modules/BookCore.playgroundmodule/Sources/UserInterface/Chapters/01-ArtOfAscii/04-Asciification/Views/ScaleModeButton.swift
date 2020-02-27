@@ -12,12 +12,12 @@ class ScaleModeButton: UIButton {
     }
 
     var buttonState: ButtonState = .expand {
-        didSet{
+        didSet {
             updateAppearanceForSate()
             delegate?.didChangeButtonState(button: self)
         }
     }
-    var delegate: ScaleModeButtonDelegate?
+    weak var delegate: ScaleModeButtonDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()

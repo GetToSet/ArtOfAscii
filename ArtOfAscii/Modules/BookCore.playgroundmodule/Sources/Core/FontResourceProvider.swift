@@ -12,7 +12,7 @@ public struct FontResourceName {
 }
 
 public protocol Font {
-    
+
     static var resourceNames: [FontResourceName] { get }
     static var characterAspectRatio: Double { get }
 
@@ -21,7 +21,7 @@ public protocol Font {
 }
 
 public extension Font {
-    
+
     static func register() {
         for resourceName in resourceNames {
             if let fontURL = Bundle.main.url(forResource: resourceName.name, withExtension: resourceName.extensionName) {
@@ -73,7 +73,7 @@ public class FontResourceProvider {
     public enum JoystixMonospace: String, Font {
 
         case regular = "JoystixMonospace-Regular"
-        
+
         public static var resourceNames: [FontResourceName] {
             return [FontResourceName(name: "joystix monospace", extensionName: "ttf")]
         }
