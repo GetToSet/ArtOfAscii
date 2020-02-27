@@ -4,8 +4,6 @@
 <dict>
 	<key>Name</key>
 	<string>🎉 License &amp; Acknowledgements</string>
-	<key>LiveViewEdgeToEdge</key>
-	<true/>
 	<key>LiveViewMode</key>
 	<string>HiddenByDefault</string>
 </dict>
