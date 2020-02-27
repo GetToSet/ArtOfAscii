@@ -70,16 +70,16 @@ public class FontResourceProvider {
 
     }
 
-    public enum JoystixMonospace: String, Font {
-
-        case regular = "JoystixMonospace-Regular"
+    public enum Unscii16: String, Font {
 
         public static var resourceNames: [FontResourceName] {
-            return [FontResourceName(name: "joystix monospace", extensionName: "ttf")]
+            return [FontResourceName(name: "unscii-16", extensionName: "ttf")s]
         }
 
+        case regular = "unscii-16"
+
         public static var characterAspectRatio: Double {
-            return 0.82
+            return 0.5
         }
 
     }

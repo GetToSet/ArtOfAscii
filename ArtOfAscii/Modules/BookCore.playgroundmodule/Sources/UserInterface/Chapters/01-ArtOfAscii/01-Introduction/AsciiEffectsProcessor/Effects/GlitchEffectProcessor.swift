@@ -13,12 +13,12 @@ class GlitchEffectProcessor: AsciiEffectsProcessor {
 
     var charactersPerRow = 80
 
-    var characterAspectRatio = CGFloat(FontResourceProvider.JoystixMonospace.characterAspectRatio)
+    var characterAspectRatio = CGFloat(FontResourceProvider.Unscii16.characterAspectRatio)
 
     var fontSize: CGFloat = 14.0
 
     var font: UIFont {
-        return UIFont(name: FontResourceProvider.JoystixMonospace.regular.rawValue, size: fontSize)!
+        return UIFont(name: FontResourceProvider.Unscii16.regular.rawValue, size: fontSize)!
     }
 
     var lineHeight: CGFloat {
@@ -107,7 +107,7 @@ class GlitchEffectProcessor: AsciiEffectsProcessor {
             NSAttributedString.Key.foregroundColor: UIColor.effectCyan
         ])
 
-        let glitchLevels = [-1.75, -1.5, -1.25, -1, 0, 1, 1.25, 1.5, 1.75]
+        let glitchLevels = [-1.75, -1.5, -1.25, -1, 1, 1.25, 1.5, 1.75]
 
         let glitchX = CGFloat(glitchLevels.randomElement()!)
         let glitchY = CGFloat(glitchLevels.randomElement()!)

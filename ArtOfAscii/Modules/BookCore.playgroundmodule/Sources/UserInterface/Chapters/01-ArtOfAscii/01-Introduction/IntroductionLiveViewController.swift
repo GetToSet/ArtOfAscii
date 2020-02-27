@@ -158,7 +158,7 @@ public class IntroductionLiveViewController: BaseViewController, PhotoAlbumSavab
     private func registerFonts() {
         FontResourceProvider.FiraCode.register()
         FontResourceProvider.CourierPrime.register()
-        FontResourceProvider.JoystixMonospace.register()
+        FontResourceProvider.Unscii16.register()
     }
 
 }

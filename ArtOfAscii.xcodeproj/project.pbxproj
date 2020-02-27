@@ -17,6 +17,7 @@
 		5EBEC2F0205B399300975D3F /* LiveViewHost.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBEC2EF205B396500975D3F /* LiveViewHost.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EF2F97C2054B6E400191409 /* ManifestPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EF2F97E2054B6E400191409 /* ManifestPlist.strings */; };
 		5EF2F9B72054E6FB00191409 /* Chapters in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5EF2F9B62054E6F900191409 /* Chapters */; };
+		712C83412407DF15005F805E /* unscii-16.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 712C83402407DF15005F805E /* unscii-16.ttf */; };
 		712D0B962401502B00B41EF9 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 712D0B952401502A00B41EF9 /* logo.png */; };
 		712D0B982401599400B41EF9 /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 712D0B972401599400B41EF9 /* cover.png */; };
 		7150CFD924064A3600C5480F /* CloudyEffectProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150CFD824064A3600C5480F /* CloudyEffectProcessor.swift */; };
@@ -45,7 +46,6 @@
 		71AA4FCF24069A5500062C2C /* cloudy-thumb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71AA4FCA24069A5500062C2C /* cloudy-thumb.jpg */; };
 		71AA4FD024069A5500062C2C /* glitch-thumb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71AA4FCB24069A5500062C2C /* glitch-thumb.jpg */; };
 		71BA4ED823FE31BA00788A11 /* FiraCode-VF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71BA4ED723FE31BA00788A11 /* FiraCode-VF.ttf */; };
-		71DC6AF6240648C900B024CF /* joystix monospace.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71DC6AF5240648C900B024CF /* joystix monospace.ttf */; };
 		71DC6AF9240648D000B024CF /* Courier Prime.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71DC6AF7240648D000B024CF /* Courier Prime.ttf */; };
 		71DC6AFA240648D000B024CF /* Courier Prime Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71DC6AF8240648D000B024CF /* Courier Prime Bold.ttf */; };
 		71E066A42404F306009EEA75 /* GlitchEffectProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E066A32404F306009EEA75 /* GlitchEffectProcessor.swift */; };
@@ -188,6 +188,7 @@
 		5EF2F97D2054B6E400191409 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ManifestPlist.strings; sourceTree = "<group>"; };
 		5EF2F9AB2054BBF300191409 /* libBookCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBookCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF2F9B62054E6F900191409 /* Chapters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Chapters; sourceTree = "<group>"; };
+		712C83402407DF15005F805E /* unscii-16.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "unscii-16.ttf"; sourceTree = "<group>"; };
 		712D0B952401502A00B41EF9 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		712D0B972401599400B41EF9 /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
 		7150CFD824064A3600C5480F /* CloudyEffectProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudyEffectProcessor.swift; sourceTree = "<group>"; };
@@ -214,7 +215,6 @@
 		71AA4FCA24069A5500062C2C /* cloudy-thumb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cloudy-thumb.jpg"; sourceTree = "<group>"; };
 		71AA4FCB24069A5500062C2C /* glitch-thumb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "glitch-thumb.jpg"; sourceTree = "<group>"; };
 		71BA4ED723FE31BA00788A11 /* FiraCode-VF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraCode-VF.ttf"; sourceTree = "<group>"; };
-		71DC6AF5240648C900B024CF /* joystix monospace.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "joystix monospace.ttf"; sourceTree = "<group>"; };
 		71DC6AF7240648D000B024CF /* Courier Prime.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Courier Prime.ttf"; sourceTree = "<group>"; };
 		71DC6AF8240648D000B024CF /* Courier Prime Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Courier Prime Bold.ttf"; sourceTree = "<group>"; };
 		71E066A32404F306009EEA75 /* GlitchEffectProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlitchEffectProcessor.swift; sourceTree = "<group>"; };
@@ -440,9 +440,9 @@
 		71BA4ED223FE2E0200788A11 /* PublicResources */ = {
 			isa = PBXGroup;
 			children = (
+				712C83402407DF15005F805E /* unscii-16.ttf */,
 				71DC6AF7240648D000B024CF /* Courier Prime.ttf */,
 				71DC6AF8240648D000B024CF /* Courier Prime Bold.ttf */,
-				71DC6AF5240648C900B024CF /* joystix monospace.ttf */,
 				71BA4ED723FE31BA00788A11 /* FiraCode-VF.ttf */,
 			);
 			path = PublicResources;
@@ -788,6 +788,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				712C83412407DF15005F805E /* unscii-16.ttf in Resources */,
 				7174D3B823F7D0D100A09FFB /* cat.jpg in Resources */,
 				71BA4ED823FE31BA00788A11 /* FiraCode-VF.ttf in Resources */,
 				5EF2F97C2054B6E400191409 /* ManifestPlist.strings in Resources */,
@@ -802,7 +803,6 @@
 				712D0B982401599400B41EF9 /* cover.png in Resources */,
 				5E551EC52371FC3F00784365 /* Assets.xcassets in Resources */,
 				7174D3BA23F7D0D100A09FFB /* strawberries.jpg in Resources */,
-				71DC6AF6240648C900B024CF /* joystix monospace.ttf in Resources */,
 				7174D3B923F7D0D100A09FFB /* desert-thumb.jpg in Resources */,
 				716164FB24017FCF0096D141 /* background-v2.png in Resources */,
 				71DC6AFA240648D000B024CF /* Courier Prime Bold.ttf in Resources */,
