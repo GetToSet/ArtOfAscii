@@ -8,6 +8,7 @@ import UIKit
 import PlaygroundSupport
 
 import BookCore
+import BookAPI
 
 PlaygroundPage.current.needsIndefiniteExecution = true
 
@@ -27,8 +28,8 @@ a dedicated set of coefficients can be applied.
 ### 🔨Grayscale Filtering
 
 * Experiment:
-    * You'll build a filter to turn an image into grayscaled version.
-    * Try completing following code snippet. Run your code and tap the *Grayscale* button to verify whether it works.
+    * The following code turns an image into a grayscaled one.
+    * Try completing the code snippet. Run your code and tap the *Grayscale* button to verify whether it works.
 */
 //#-code-completion(everything, hide)
 //#-code-completion(literal, show, float, double, integer)
@@ -54,14 +55,14 @@ func applyGrayscaleFilter(rawImage: RawImage) {
 
 Images with low contrast may produce ASCII arts that are hard to recognize, as the following figure shows.
 
-（图）
+![Contrast Comparation](contrast-compare.jpg)
 
 **Histogram** is an effective tool for visualizing the distribution of tones in an image. The *X axis* represents *the
 brightness* while the *Y axis* represents *the number of pixels at a specific brightness value*.
 
-（图）
+![Histogram Examples](histogram-examples.jpg)
 
-### 🔬Demystification of Histograms
+### 🔬Demystifing Histograms
 
 * Experiment:
     * Choose an image and then tap 📊 to bring up the histogram. Tapping it again to show histograms for seperated red,
@@ -73,7 +74,7 @@ brightness* while the *Y axis* represents *the number of pixels at a specific br
 **Histogram Equalization** is a widely used technique to enhance the contrast of images by *redistributing tones to the
 whole brightness range*, spreading out pixels that has intense frequency.
 
-（图）
+![Histogram Equalization](equalization.jpg)
 
 ### 🔨Equalizing an Image
 

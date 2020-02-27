@@ -7,8 +7,8 @@
 import UIKit
 import PlaygroundSupport
 
-import BookAPI
 import BookCore
+import BookAPI
 
 PlaygroundPage.current.needsIndefiniteExecution = true
 
@@ -23,7 +23,7 @@ desired result, the font must be **monospaced**, which has fixed width for all c
 
 Here is a **character map** built with font “Fira Code”, by arranging characters to fit a gradient from white to black.
 
-（图）
+![Character Map](character-map.jpg)
 
 */
 //#-editable-code
@@ -78,7 +78,7 @@ func scaleImageForAsciification(rawImage: RawImage) -> RawImage? {
 //#-editable-code
 
 func applyAsciification(rawImage: RawImage) -> UIImage? {
-    let characterMap: [Character] = Array(characterMapStr)
+    let characterMap = [Character](characterMapStr)
     let maxMappedBrightness = Double(characterMap.count - 1)
     var asciificationResult: String = ""
 

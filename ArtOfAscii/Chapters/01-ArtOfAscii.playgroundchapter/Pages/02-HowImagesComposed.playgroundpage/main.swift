@@ -8,8 +8,25 @@ import UIKit
 import PlaygroundSupport
 
 import BookCore
+import BookAPI
 
 PlaygroundPage.current.needsIndefiniteExecution = true
+
+func performCorrectnessCheck(matrix: [Double]) {
+    if matrix == [
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1
+    ] {
+        PlaygroundPage.current.assessmentStatus = .pass(
+                message: """
+                         Congratulations, You've learnt how digital images composed.
+
+                         Continue to [Preprocess Images for ASCII Art](@next)
+                         """)
+    }
+}
 
 //#-end-hidden-code
 /*:
@@ -35,16 +52,11 @@ an extra **alpha** channel to describe the opacity of a color.
 
 ![RGB Color Model](rgb-model.png)
 
-## Filters
-
-**Filtering** is a general technique for image processing. A **digital image filter** resembles a mathematical function,
-which receives a raw image as a sequence of colors, performing a specific calculation and returns a new image.
-
-### 🔨Your First Image Filter
+### 🔨Decomposing an Image
 
 * Experiment:
-    * You'll build a simple filter which separates red, green or blue component out from the source image.
-    * Try completing following code snippet. Run your code and tap the *R, G and B* button to verify whether it works.
+    * The following code separates red, green and blue components from an image by multiplying it with a transform matrix.
+    * Try completing the code snippet. Run your code and tap the *R, G and B* button to verify whether it works.
 */
 
 //#-code-completion(everything, hide)
@@ -61,8 +73,8 @@ func applyRGBFilter(redEnabled: Bool,
     factorGreen = (greenEnabled ? 1 : 0)
     factorBlue = (blueEnabled ? 1 : 0)
 
-    // For most digital images, color components are arranged in the order of red, green, blue and alpha, pre pixel basis.
-    // For alpha channel, 1 stands for opaque while 0 stands for transparent.
+    // For most images, color components are arranged in the order of red, green, blue and alpha, per pixel basis.
+    // For alpha channel, larger values means more opaque
     var filterMatrix: [Double] = [
         <#T##Red##Double#>, 0, 0, 0,
         0, <#T##Green##Double#>, 0, 0,
@@ -70,15 +82,11 @@ func applyRGBFilter(redEnabled: Bool,
         0, 0, 0, <#T##Alpha##Double#>
     ]
     rawImage.multiplyByMatrix(matrix4x4: filterMatrix)
+    
+    performCorrectnessCheck(matrix: filterMatrix)
 }
 
 //#-end-editable-code
-/*:
-* Note:
-    This code snippet transforms an image by multiplying it with a transform matrix. If you're not familiar with linear
-    algebra, the following figure explains how this transform matrix works.
-    （图）
-*/
 //#-hidden-code
 let remoteView = remoteViewAsLiveViewProxy()
 let eventListener = EventListener(proxy: remoteView) { message in
