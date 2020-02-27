@@ -9,6 +9,9 @@ import PlaygroundSupport
 
 PlaygroundPage.current.needsIndefiniteExecution = true
 
+let assessmentHelper = AssessmentHelper()
+assessmentHelper.assessmentShowOnce({ true }, pass: nil);
+
 //#-end-hidden-code
 /*:
 # Art of ASCII — Introduction to Digital Image Processing
@@ -32,7 +35,4 @@ delightful.
 
 [Let's get started! 🏃‍♂️](@next)
 */
-//#-hidden-code
-PlaygroundPage.current.assessmentStatus = .pass(message: nil)
-//#-end-hidden-code
 

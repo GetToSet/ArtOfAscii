@@ -12,6 +12,8 @@ import BookAPI
 
 PlaygroundPage.current.needsIndefiniteExecution = true
 
+let assessmentHelper = AssessmentHelper()
+
 //#-end-hidden-code
 /*:
 # The “ASCIIfication” Magic
@@ -27,9 +29,7 @@ Here is a **character map** built with font “Fira Code”, by arranging charac
 
 */
 //#-editable-code
-
 let characterMapStr = "MWNXK0Okxdolc:;,'...   "
-
 //#-end-editable-code
 /*:
 ## Resampling
@@ -73,7 +73,7 @@ func scaleImageForAsciification(rawImage: RawImage) -> RawImage? {
 
 * Experiment:
     * Following code snippet generates an ASCII art by mapping pixels to characters according to their brightness level.
-    * Run this code and tap the *ASCIIfy* button to see experience the magic, Feel free to tune all these parameters.
+    * Run this code and tap the *ASCIIfy* button to see experience the magic, feel free to tune all these parameters!
 */
 //#-editable-code
 
@@ -126,6 +126,13 @@ let eventListener = EventListener(proxy: remoteView) { message in
         if let destImage = applyAsciification(rawImage: rawImage) {
             remoteView?.send(EventMessage.imageProcessingResponse(image: destImage).playgroundValue)
         }
+
+        assessmentHelper.assessmentShowOnce({ true },
+                pass: """
+                      Congratulations! You've just created a wonderful ASCII Art and learned a lot about image processing.
+
+                      Thanks for playing around! Let's stay tuned for WWDC20!
+                      """)
     default:
         break
     }

@@ -59,6 +59,7 @@
 		B99F62C10DF5FE5C2DFEB8ED /* HistogramToolBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F60791EAC8292C8B51B84 /* HistogramToolBarButtonView.swift */; };
 		B99F639B7680E4364A3F18F0 /* ToolBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F68271AC771FBF80CA432 /* ToolBarButtonView.swift */; };
 		B99F6400E1E57AF2E5AB4976 /* ImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6C77380C3A46808255C9 /* ImagePickerCollectionViewCell.swift */; };
+		B99F6442E80A97F3F2886E33 /* AssessmentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F613810CFF6CDF4819C61 /* AssessmentHelper.swift */; };
 		B99F649C83DCDA708FA85400 /* ScaleModeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F61BE43A6CBB41B9BFCD8 /* ScaleModeButton.swift */; };
 		B99F65A6F8520A258E17F0B0 /* AsciiEffectsProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6E60E7631B2E9BA0B4CB /* AsciiEffectsProcessor.swift */; };
 		B99F65EBA0B2B605EAF4B0D9 /* UIColor+StateColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F6CB6047723F571693553 /* UIColor+StateColors.swift */; };
@@ -222,6 +223,7 @@
 		B99F60791EAC8292C8B51B84 /* HistogramToolBarButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistogramToolBarButtonView.swift; sourceTree = "<group>"; };
 		B99F60BBADE4C030CE20A8A7 /* PlainEffectProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainEffectProcessor.swift; sourceTree = "<group>"; };
 		B99F61225990694C8BFFFE09 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
+		B99F613810CFF6CDF4819C61 /* AssessmentHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentHelper.swift; sourceTree = "<group>"; };
 		B99F6180FC417C8E454D3884 /* MagnivierContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnivierContainerView.swift; sourceTree = "<group>"; };
 		B99F61BE43A6CBB41B9BFCD8 /* ScaleModeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleModeButton.swift; sourceTree = "<group>"; };
 		B99F62ACBBE87D8546FAB866 /* EventListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 			isa = PBXGroup;
 			children = (
 				B99F62ACBBE87D8546FAB866 /* EventListener.swift */,
+				B99F613810CFF6CDF4819C61 /* AssessmentHelper.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -894,6 +897,7 @@
 				B99F698222E0FA36B49D9E8C /* AsciiArtRenderer+Internal.swift in Sources */,
 				B99F61A44EA28889402486FC /* ImagePickerDataSource.swift in Sources */,
 				B99F66914F6A7B926EF51DF9 /* PhotoAlbumSavable.swift in Sources */,
+				B99F6442E80A97F3F2886E33 /* AssessmentHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

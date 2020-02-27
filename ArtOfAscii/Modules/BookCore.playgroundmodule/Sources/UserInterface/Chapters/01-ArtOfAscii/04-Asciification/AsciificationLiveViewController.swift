@@ -58,11 +58,13 @@ class AsciificationLiveViewController: BaseViewController, PhotoAlbumSavable {
         } else if shrinkButton.state == .selected {
             if let imageToShrink = preprocessButton.state == .selected ? preprocessedImage : sourceImage {
                 let payload = EventMessage.shrinkingRequest(image: imageToShrink)
-                send(payload.playgroundValue)
+                send(payload.playgroundValue, showLoadingView: true)
             }
         } else if preprocessButton.state == .selected {
             if let preprocessedImage = preprocessedImage {
+                setLoadingIndicatorHidden(false, animated: true)
                 updateShowcaseImage(image: preprocessedImage)
+                setLoadingIndicatorHidden(true, animated: true)
             }
         } else {
             if let image = sourceImage {

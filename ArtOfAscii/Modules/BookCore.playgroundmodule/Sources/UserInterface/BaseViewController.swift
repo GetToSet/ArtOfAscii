@@ -123,7 +123,7 @@ public class BaseViewController: UIViewController,
         showcaseImageView.image = image
     }
 
-    private func setLoadingIndicatorHidden(_ hidden: Bool, animated: Bool) {
+    func setLoadingIndicatorHidden(_ hidden: Bool, animated: Bool) {
         if loadingIndicatorView.isHidden == hidden {
             return
         }
