@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>item</key>
+		<string>plain</string>
+		<key>thumbnail</key>
+		<string>plain-thumb.jpg</string>
+	</dict>
+	<dict>
+		<key>item</key>
+		<string>hacker</string>
+		<key>thumbnail</key>
+		<string>hacker-thumb.jpg</string>
+	</dict>
+	<dict>
+		<key>item</key>
+		<string>glitch</string>
+		<key>thumbnail</key>
+		<string>glitch-thumb.jpg</string>
+	</dict>
+	<dict>
+		<key>item</key>
+		<string>bubbles</string>
+		<key>thumbnail</key>
+		<string>bubbles-thumb.jpg</string>
+	</dict>
+	<dict>
+		<key>item</key>
+		<string>cloudy</string>
+		<key>thumbnail</key>
+		<string>cloudy-thumb.jpg</string>
+	</dict>
+</array>
+</plist>

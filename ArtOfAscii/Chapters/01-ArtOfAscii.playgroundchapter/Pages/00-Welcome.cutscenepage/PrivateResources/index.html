@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .background {
+        width: 100%;
+        height: 100vh;
+        background: url("./assets/background-v2.png");
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background">
+      <img
+        src="./assets/logo.png"
+        alt="Art of ASCII"
+        class="logo"
+        hidden="true"
+      />
+    </div>
+    <script src="./assets/jquery-3.4.1.min.js"></script>
+    <script>
+      $(function() {
+        $(".logo")
+          .delay(600)
+          .fadeIn(1500);
+      });
+    </script>
+  </body>
+</html>
