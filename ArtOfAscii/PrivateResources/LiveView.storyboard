@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad10_2" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -456,7 +455,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MSN-rQ-yzx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-219.25925925925924" y="786.66666666666663"/>
+            <point key="canvasLocation" x="-219" y="788"/>
         </scene>
         <!--imagePickerViewController-->
         <scene sceneID="GmK-cm-SKM">
@@ -753,7 +752,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ax5-QY-UtN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="C74-rF-v6n" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="587.40740740740739" y="111.66666666666666"/>
+            <point key="canvasLocation" x="588" y="112"/>
         </scene>
         <!--Grayscale Histogram Equalization-->
         <scene sceneID="rf0-JQ-tzt">
@@ -975,7 +974,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0dv-3h-hTj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1427" y="112"/>
+            <point key="canvasLocation" x="1427" y="113"/>
         </scene>
         <!--imagePickerViewController-->
         <scene sceneID="9TX-jm-oqt">
@@ -1077,15 +1076,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNX-4H-9SN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1427" y="508"/>
+            <point key="canvasLocation" x="587" y="508"/>
         </scene>
     </scenes>
     <resources>
         <image name="float-button/expand" width="48" height="48"/>
-        <image name="toolbar/button-aperture" width="48" height="48"/>
-        <image name="toolbar/button-asciification" width="48" height="48"/>
+        <image name="toolbar/button-aperture" width="96" height="96"/>
+        <image name="toolbar/button-asciification" width="96" height="96"/>
         <image name="toolbar/button-blue" width="48" height="48"/>
-        <image name="toolbar/button-camera-switch" width="48" height="48"/>
+        <image name="toolbar/button-camera-switch" width="96" height="96"/>
         <image name="toolbar/button-contrast" width="48" height="48"/>
         <image name="toolbar/button-grayscale" width="48" height="48"/>
         <image name="toolbar/button-green" width="48" height="48"/>

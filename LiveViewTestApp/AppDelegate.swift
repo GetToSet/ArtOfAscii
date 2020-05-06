@@ -13,12 +13,12 @@ import BookCore
 @UIApplicationMain
 class AppDelegate: LiveViewHost.AppDelegate {
 
-    override func setUpLiveView() -> PlaygroundLiveViewable {
-        return BookCore.instantiateLiveView(identifier: .asciification)
-    }
+  override func setUpLiveView() -> PlaygroundLiveViewable {
+    return BookCore.instantiateLiveView(identifier: .asciification)
+  }
 
-    override var liveViewConfiguration: LiveViewConfiguration {
-        return .sideBySide
-    }
+  override var liveViewConfiguration: LiveViewConfiguration {
+      return .fullScreen
+  }
 
 }

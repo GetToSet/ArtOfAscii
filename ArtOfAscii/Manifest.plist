@@ -15,7 +15,7 @@
 	<key>SwiftVersion</key>
 	<string>$(SWIFT_VERSION)</string>
 	<key>Name</key>
-	<string>PlaygroundBookName</string>
+	<string>Art of ASCII</string>
 	<key>Chapters</key>
 	<array>
 		<string>01-ArtOfAscii.playgroundchapter</string>
@@ -26,7 +26,7 @@
 		<string>BookAPI</string>
 	</array>
 	<key>UserModuleMode</key>
-	<string>Disabled</string>
+	<string>Full</string>
 	<key>ImageReference</key>
 	<string>cover.png</string>
 	<key>SupportsDarkMode</key>

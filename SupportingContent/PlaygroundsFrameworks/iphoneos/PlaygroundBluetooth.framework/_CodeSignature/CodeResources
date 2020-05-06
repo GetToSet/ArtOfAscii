@@ -6,7 +6,7 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		NmBVQAiIotG17kF+6LxRxau6SEo=
+		CbToxPz8szNNxdF1agULJZmvw70=
 		</data>
 		<key>Headers/PlaygroundBluetooth.h</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/PlaygroundBluetooth.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		0oHIaZBMVVnFf++X8QLsct0Sv1k=
+		PHGhh2lKhIzdv2+rx+jqIAv64Mk=
 		</data>
 		<key>Modules/PlaygroundBluetooth.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/PlaygroundBluetooth.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		0oHIaZBMVVnFf++X8QLsct0Sv1k=
+		PHGhh2lKhIzdv2+rx+jqIAv64Mk=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -47,7 +47,7 @@
 		</dict>
 		<key>version.plist</key>
 		<data>
-		LCFqh5ZsGWAn4S+Ki/A0y+yYhAE=
+		0wIaKa+yEUPsjMZ02befwgNsu6E=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -56,11 +56,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			NmBVQAiIotG17kF+6LxRxau6SEo=
+			CbToxPz8szNNxdF1agULJZmvw70=
 			</data>
 			<key>hash2</key>
 			<data>
-			aXdXgGx6fgVILdTV5Q+EjSJFduk77ApC11Btx25RUog=
+			wPU6AFM9vq/HAuG7McH+Fud0GIrtYQW23Id4arLLEY4=
 			</data>
 		</dict>
 		<key>Headers/PlaygroundBluetooth.h</key>
@@ -89,11 +89,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0oHIaZBMVVnFf++X8QLsct0Sv1k=
+			PHGhh2lKhIzdv2+rx+jqIAv64Mk=
 			</data>
 			<key>hash2</key>
 			<data>
-			jY5TPbOdfgnW+u1uAIYFPB/ylx89qoPrZzdwZOTeJUU=
+			KmDcyLlWaI5Y+tViI2B171VZUC1cObE25WurcOdhs/k=
 			</data>
 		</dict>
 		<key>Modules/PlaygroundBluetooth.swiftmodule/arm64.swiftdoc</key>
@@ -111,11 +111,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0oHIaZBMVVnFf++X8QLsct0Sv1k=
+			PHGhh2lKhIzdv2+rx+jqIAv64Mk=
 			</data>
 			<key>hash2</key>
 			<data>
-			jY5TPbOdfgnW+u1uAIYFPB/ylx89qoPrZzdwZOTeJUU=
+			KmDcyLlWaI5Y+tViI2B171VZUC1cObE25WurcOdhs/k=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -146,11 +146,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			LCFqh5ZsGWAn4S+Ki/A0y+yYhAE=
+			0wIaKa+yEUPsjMZ02befwgNsu6E=
 			</data>
 			<key>hash2</key>
 			<data>
-			IYyUNla55jjpVubYOPvOLidKjdw+u6FKdFsfrHmzrpI=
+			oI6j9m5JIg1hayD5/ixd823H2UTh8+obN8S/eooc6dE=
 			</data>
 		</dict>
 	</dict>

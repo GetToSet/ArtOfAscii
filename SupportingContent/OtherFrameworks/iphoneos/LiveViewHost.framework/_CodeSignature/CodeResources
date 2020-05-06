@@ -18,7 +18,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		HWFIZfzWSOSrYkuOKFOSQ20i2Q0=
+		1uIeTagPfjfeJh49rdNJDFsX/Xs=
 		</data>
 		<key>Modules/LiveViewHost.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Modules/LiveViewHost.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		tJ7HjgFcry+cr9Fv18JrwS0o/GU=
+		j7yLEZ+rtwY9ML+e9lwmvFkibhU=
 		</data>
 		<key>Modules/LiveViewHost.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -34,7 +34,7 @@
 		</data>
 		<key>Modules/LiveViewHost.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		tJ7HjgFcry+cr9Fv18JrwS0o/GU=
+		j7yLEZ+rtwY9ML+e9lwmvFkibhU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -42,7 +42,7 @@
 		</data>
 		<key>version.plist</key>
 		<data>
-		wfxgndma7msyTXWgrS8iU3vPXXw=
+		mhi0FjjKH4RfEgzMWZS51vb/1ms=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -95,11 +95,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			tJ7HjgFcry+cr9Fv18JrwS0o/GU=
+			j7yLEZ+rtwY9ML+e9lwmvFkibhU=
 			</data>
 			<key>hash2</key>
 			<data>
-			T6pRcnrQoxEqELG2dG3cls71EYVWOdySvDqR/y7d2r8=
+			/0RRNMY3o2YAZIwV82UHLk+ttGQuh3EXFdiCETTFInE=
 			</data>
 		</dict>
 		<key>Modules/LiveViewHost.swiftmodule/arm64.swiftdoc</key>
@@ -117,11 +117,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			tJ7HjgFcry+cr9Fv18JrwS0o/GU=
+			j7yLEZ+rtwY9ML+e9lwmvFkibhU=
 			</data>
 			<key>hash2</key>
 			<data>
-			T6pRcnrQoxEqELG2dG3cls71EYVWOdySvDqR/y7d2r8=
+			/0RRNMY3o2YAZIwV82UHLk+ttGQuh3EXFdiCETTFInE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -139,11 +139,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			wfxgndma7msyTXWgrS8iU3vPXXw=
+			mhi0FjjKH4RfEgzMWZS51vb/1ms=
 			</data>
 			<key>hash2</key>
 			<data>
-			8Z/WLLc2RoI99Pi/IPA6sMYZuXdJpfRhV6Bmb2c/YMM=
+			4j97bRoF9XPIfjPs3oSmmGcAlwbk0N4adM0OS3A/HQk=
 			</data>
 		</dict>
 	</dict>

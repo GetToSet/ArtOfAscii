@@ -10,7 +10,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		cTVbkyrFFs9db6pA+lSfE9KXOig=
+		vFPgA7mEjJuknO9wxnzV4z7zpzw=
 		</data>
 		<key>Modules/PlaygroundSupport.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>Modules/PlaygroundSupport.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		5Hptx4llZgm0YK08Xcnb/V/gRzY=
+		B5M4wo0r3fmT53zWvEtEAYNjGHk=
 		</data>
 		<key>Modules/PlaygroundSupport.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Modules/PlaygroundSupport.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		5Hptx4llZgm0YK08Xcnb/V/gRzY=
+		B5M4wo0r3fmT53zWvEtEAYNjGHk=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -34,7 +34,7 @@
 		</data>
 		<key>version.plist</key>
 		<data>
-		wfxgndma7msyTXWgrS8iU3vPXXw=
+		mhi0FjjKH4RfEgzMWZS51vb/1ms=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -65,11 +65,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5Hptx4llZgm0YK08Xcnb/V/gRzY=
+			B5M4wo0r3fmT53zWvEtEAYNjGHk=
 			</data>
 			<key>hash2</key>
 			<data>
-			l9/akNZkJM05TIwNa+0Y8XerYd7Enq8U45uUtOGZV9s=
+			BF9qncwbliozQzsQ7LnrLOHedog7jgpJsBwMWgHnaT4=
 			</data>
 		</dict>
 		<key>Modules/PlaygroundSupport.swiftmodule/arm64.swiftdoc</key>
@@ -87,11 +87,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5Hptx4llZgm0YK08Xcnb/V/gRzY=
+			B5M4wo0r3fmT53zWvEtEAYNjGHk=
 			</data>
 			<key>hash2</key>
 			<data>
-			l9/akNZkJM05TIwNa+0Y8XerYd7Enq8U45uUtOGZV9s=
+			BF9qncwbliozQzsQ7LnrLOHedog7jgpJsBwMWgHnaT4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -109,11 +109,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			wfxgndma7msyTXWgrS8iU3vPXXw=
+			mhi0FjjKH4RfEgzMWZS51vb/1ms=
 			</data>
 			<key>hash2</key>
 			<data>
-			8Z/WLLc2RoI99Pi/IPA6sMYZuXdJpfRhV6Bmb2c/YMM=
+			4j97bRoF9XPIfjPs3oSmmGcAlwbk0N4adM0OS3A/HQk=
 			</data>
 		</dict>
 	</dict>

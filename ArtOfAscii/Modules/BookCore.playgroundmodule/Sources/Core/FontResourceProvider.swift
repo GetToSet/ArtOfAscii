@@ -73,7 +73,7 @@ public class FontResourceProvider {
     public enum Unscii16: String, Font {
 
         public static var resourceNames: [FontResourceName] {
-            return [FontResourceName(name: "unscii-16", extensionName: "ttf")s]
+            return [FontResourceName(name: "unscii-16", extensionName: "ttf")]
         }
 
         case regular = "unscii-16"

@@ -6,11 +6,11 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		5aOK3ARLM0DdrRFUX7IL34uyVWQ=
+		LWxcoqZzQ3LPWIKQWKIL4Dmrtd0=
 		</data>
 		<key>Resources/version.plist</key>
 		<data>
-		wfxgndma7msyTXWgrS8iU3vPXXw=
+		mhi0FjjKH4RfEgzMWZS51vb/1ms=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -47,7 +47,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			WMBNmm5HwmRUikue2UAI+2pG+2hXlq1SJj+ZevXhY/I=
+			MI2WG2fBqJLk3i/MA7lkmJl0YsJMyOXwQq0xnCNfqew=
 			</data>
 		</dict>
 		<key>Modules/LiveViewHost.swiftmodule/x86_64.swiftdoc</key>
@@ -61,7 +61,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			WMBNmm5HwmRUikue2UAI+2pG+2hXlq1SJj+ZevXhY/I=
+			MI2WG2fBqJLk3i/MA7lkmJl0YsJMyOXwQq0xnCNfqew=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -75,14 +75,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			g9npuJ+UU4lDBUzP42e+yijMblRDFxBcek2FWR0h6X8=
+			T+kPUBHr9yb1Qymto2nlT0UpOjLeca+3JXl1el/XfHI=
 			</data>
 		</dict>
 		<key>Resources/version.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8Z/WLLc2RoI99Pi/IPA6sMYZuXdJpfRhV6Bmb2c/YMM=
+			4j97bRoF9XPIfjPs3oSmmGcAlwbk0N4adM0OS3A/HQk=
 			</data>
 		</dict>
 	</dict>

@@ -36,6 +36,26 @@ APPLY_RULES_IN_COPY_FILES = YES
 // The PlaygroundBook target requires that it build resources for all target devices, not just the active target device.
 ENABLE_ONLY_ACTIVE_RESOURCES = NO
 
+// Ensure that the strings files are copied consistently whether targeting a Mac or an iPad.
+STRINGS_FILE_OUTPUT_ENCODING = binary
+
+// Ensure that xibs, storyboards, asset catalogs, etc. are compiled consistently whether targeting a Mac or an iPad.
+PLAYGROUND_BOOK_COMPILE_MACCATALYST_RESOURCES_LIKE_IOS = YES
+
+RESOURCES_PLATFORM_NAME[sdk=macosx*] = $(__RESOURCES_PLATFORM_NAME_macosx_$(IS_MACCATALYST))
+    __RESOURCES_PLATFORM_NAME_macosx_NO = macosx
+    __RESOURCES_PLATFORM_NAME_macosx_ = macosx
+    __RESOURCES_PLATFORM_NAME_macosx_YES = $(__RESOURCES_PLATFORM_NAME_macosx_YES_$(PLAYGROUND_BOOK_COMPILE_MACCATALYST_RESOURCES_LIKE_IOS))
+        __RESOURCES_PLATFORM_NAME_macosx_YES_YES = iphoneos
+        __RESOURCES_PLATFORM_NAME_macosx_YES_NO = macosx
+
+RESOURCES_UI_FRAMEWORK_FAMILY[sdk=macosx*] = $(__RESOURCES_UI_FRAMEWORK_FAMILY_macosx_$(IS_MACCATALYST))
+    __RESOURCES_UI_FRAMEWORK_FAMILY_macosx_NO =
+    __RESOURCES_UI_FRAMEWORK_FAMILY_macosx_ =
+    __RESOURCES_UI_FRAMEWORK_FAMILY_macosx_YES = $(__RESOURCES_UI_FRAMEWORK_FAMILY_macosx_YES_$(PLAYGROUND_BOOK_COMPILE_MACCATALYST_RESOURCES_LIKE_IOS))
+        __RESOURCES_UI_FRAMEWORK_FAMILY_macosx_YES_YES =
+        __RESOURCES_UI_FRAMEWORK_FAMILY_macosx_YES_NO = uikit
+
 // Wrap DEPLOYMENT_TARGET_SETTING_NAME in a way that allows customization for platforms which can't use the default value.
 __PLAYGROUND_BOOK_DEPLOYMENT_TARGET_SETTING_NAME = $(__PLAYGROUND_BOOK_DEPLOYMENT_TARGET_SETTING_NAME_$(__PLAYGROUND_BOOK_DEPLOYMENT_TARGET_SETTING_NAME_IMPL))
     // For platforms which don't need custom behavior, use DEPLOYMENT_TARGET_SETTING_NAME.

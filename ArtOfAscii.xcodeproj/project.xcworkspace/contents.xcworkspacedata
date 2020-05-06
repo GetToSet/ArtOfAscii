@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Users/bunnywong/Desktop/Playground/Swift_Playgrounds_Author_Template_for_Xcode_11.1_for_Swift_Playgrounds_3.3/Template/ArtOfAscii.xcodeproj">
    </FileRef>
 </Workspace>

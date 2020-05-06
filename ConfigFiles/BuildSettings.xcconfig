@@ -18,7 +18,7 @@ PLAYGROUND_BOOK_FILE_NAME = Art of ASCII
 PLAYGROUND_BOOK_CONTENT_IDENTIFIER = $(BUNDLE_IDENTIFIER_PREFIX).$(PLAYGROUND_BOOK_FILE_NAME:rfc1034identifier)
 
 // This is the ContentVersion of the playground book.
-PLAYGROUND_BOOK_CONTENT_VERSION = 0.0.1
+PLAYGROUND_BOOK_CONTENT_VERSION = 0.0.2
 
 // Additionally, include some base build settings which this project requires but which shouldn't generally be edited.
 // Do *not* remove this #include; if you do, the project will fail to build.

@@ -21,9 +21,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 # Acknowledgements
 
-## Swift Playgrounds Author Template for Xcode 11.1
+## Swift Playgrounds Author Template for Xcode 11.1, Swift Playgrounds 3.3
 
-Copyright © 2019 Apple Inc.
+Copyright © 2020 Apple Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -71,7 +71,7 @@ Background vector created by [freepik - www.freepik.com](https://www.freepik.com
 
 ## Icons
 
-A handful of icons in this Playground Book are created by [Icons8](https://icons8.com/).
+Some icons in this Playground Book are created by [Icons8](https://icons8.com/).
 
 ## Fonts
 
@@ -166,5 +166,4 @@ This license becomes null and void if any of the above conditions are not met.
 
 DISCLAIMER
 THE FONT SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE.
-
 */
