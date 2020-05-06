@@ -16,22 +16,22 @@ assessmentHelper.assessmentShowOnce({ true }, pass: nil)
 /*:
 # Art of ASCII — Introduction to Digital Image Processing
 
-## What is an ASCII Art?
+## ASCII Arts?
 
 **ASCII (American Standard Code for Information Interchange)** is a standard for electronic communication, which
-contains 128 characters.
+contains 128 characters including letters, numbers and some control characters.
 
 **ASCII arts** are artworks created with ASCII characters, which can be seen in many places where only textual data can
-be transmitted, for example, within a terminal.
+be transmitted, for example, within a computer terminal.
 
 * Experiment:
-    Head to the panel beside, and *tap the **run** button*, have fun experiencing the ASCII effects I've created.
+    *Tap the **run** button* on the side panel. Have fun experiencing ASCII effects I've created.
 
-## What We'll Learn by Generating ASCII Arts?
+## What Will We Learn by Generating ASCII Arts?
 
-Examining how to generate ASCII Arts is a great way to explore the world of image processing. You'll be introduced with
-**the RGB color model**, **histograms and equalization techniques** with piratical experiments, which can be a fun and
-delightful.
+Examining how to generate ASCII Arts is a great way to explore image processing. You'll be introduced with
+**the RGB color model, histograms and equalization techniques** with some piratical experiments, which are fun to play
+with.
 
 [Let's get started! 🏃‍♂️](@next)
 */

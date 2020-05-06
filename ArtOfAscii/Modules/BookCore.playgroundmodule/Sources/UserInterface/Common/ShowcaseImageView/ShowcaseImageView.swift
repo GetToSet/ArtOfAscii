@@ -29,33 +29,33 @@ class ShowcaseImageView: UIImageView {
         guard let image = image else {
             return nil
         }
-        switch self.contentMode {
+        switch contentMode {
         case .scaleAspectFit:
-            let boundsRatio = self.bounds.size.width / self.bounds.size.height
+            let boundsRatio = bounds.size.width / bounds.size.height
             let imageRatio = image.size.width / image.size.height
 
-            var drawingRect: CGRect = self.bounds
+            var drawingRect = bounds
             if boundsRatio > imageRatio {
                 drawingRect.size.width = drawingRect.size.height * imageRatio
-                drawingRect.origin.x = (self.bounds.size.width - drawingRect.size.width) / 2
+                drawingRect.origin.x = (bounds.size.width - drawingRect.size.width) / 2
             } else {
                 drawingRect.size.height = drawingRect.size.width / imageRatio
-                drawingRect.origin.y = (self.bounds.size.height - drawingRect.size.height) / 2
+                drawingRect.origin.y = (bounds.size.height - drawingRect.size.height) / 2
             }
             return drawingRect
         case .center:
-            var drawingRect: CGRect = self.bounds
-            if image.size.width < self.bounds.size.width {
+            var drawingRect = bounds
+            if image.size.width < bounds.size.width {
                 drawingRect.size.width = image.size.width
-                drawingRect.origin.x = (self.bounds.size.width - drawingRect.size.width) / 2
+                drawingRect.origin.x = (bounds.size.width - drawingRect.size.width) / 2
             }
-            if image.size.height < self.bounds.size.height {
+            if image.size.height < bounds.size.height {
                 drawingRect.size.height = image.size.height
-                drawingRect.origin.y = (self.bounds.size.height - drawingRect.size.height) / 2
+                drawingRect.origin.y = (bounds.size.height - drawingRect.size.height) / 2
             }
             return drawingRect
         default:
-            return nil
+            fatalError("Content mode \(contentMode) is not supported, please choose .scaleAspectFit or .center")
         }
     }
 
@@ -65,8 +65,8 @@ class ShowcaseImageView: UIImageView {
     }
 
     func pointInImageFor(point: CGPoint) -> CGPoint? {
-        guard let imageSize = self.image?.size,
-              let drawingRect = self.drawingRect else {
+        guard let imageSize = image?.size,
+              let drawingRect = drawingRect else {
             return nil
         }
 
@@ -80,7 +80,7 @@ class ShowcaseImageView: UIImageView {
     }
 
     func makeRoundedCorner() {
-        guard let drawingRect = self.drawingRect else {
+        guard let drawingRect = drawingRect else {
             return
         }
         let path = UIBezierPath(roundedRect: drawingRect, cornerRadius: cornerRadius)

@@ -8,7 +8,6 @@ import UIKit
 import PlaygroundSupport
 
 import BookCore
-import BookAPI
 
 PlaygroundPage.current.needsIndefiniteExecution = true
 

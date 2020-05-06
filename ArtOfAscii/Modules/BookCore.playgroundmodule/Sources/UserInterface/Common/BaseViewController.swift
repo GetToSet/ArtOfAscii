@@ -7,11 +7,7 @@ import UIKit
 import Photos
 import PlaygroundSupport
 
-public class BaseViewController: UIViewController,
-        PlaygroundLiveViewSafeAreaContainer,
-        ImagePickerViewControllerDelegate,
-        ToolBarButtonViewDelegate,
-        PlaygroundLiveViewMessageHandler {
+public class BaseViewController: UIViewController, PlaygroundLiveViewSafeAreaContainer, PlaygroundLiveViewMessageHandler {
 
     @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var showcaseImageContainerView: UIView!
@@ -44,79 +40,16 @@ public class BaseViewController: UIViewController,
 
     public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else {
-            assertionFailure("Segue had no identifier")
-            return
+            fatalError("Segue had no identifier")
         }
         switch identifier {
         case "embedImagePicker":
             let pickerController = segue.destination as! ImagePickerViewController
-            self.imagePickerController = pickerController
+            imagePickerController = pickerController
             pickerController.delegate = self
         default:
             fatalError("Unrecognized storyboard identifier")
         }
-    }
-
-    private func setupLogoImageView() {
-        let logoImageView = UIImageView()
-        logoImageView.image = UIImage(named: "logo")
-        logoImageView.contentMode = .scaleAspectFit
-
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        self.showcaseImageContainerView.insertSubview(logoImageView, belowSubview: showcaseImageView)
-
-        logoImageView.centerXAnchor.constraint(equalTo: showcaseImageContainerView.centerXAnchor).isActive = true
-        logoImageView.centerYAnchor.constraint(equalTo: showcaseImageContainerView.centerYAnchor).isActive = true
-        logoImageView.widthAnchor.constraint(equalToConstant: 420).isActive = true
-        logoImageView.heightAnchor.constraint(equalTo: showcaseImageContainerView.heightAnchor).isActive = true
-    }
-
-    private func setupToolBarBlurView() {
-        let blurEffect = UIBlurEffect(style: .dark)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.insertSubview(blurView, aboveSubview: self.backgroundImageView)
-
-        blurView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        blurView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        blurView.topAnchor.constraint(equalTo: self.toolBarContainerView.topAnchor, constant: -12).isActive = true
-        blurView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-    }
-
-    private func setupProcessingIndicator() {
-        let indicatorBackgroundView = UIView()
-
-        indicatorBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        indicatorBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-
-        self.showcaseImageContainerView.addSubview(indicatorBackgroundView)
-
-        indicatorBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        indicatorBackgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        indicatorBackgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        indicatorBackgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-
-        let indicatorContainerView = UIView()
-
-        indicatorContainerView.backgroundColor = .clear
-        indicatorContainerView.translatesAutoresizingMaskIntoConstraints = false
-        indicatorBackgroundView.addSubview(indicatorContainerView)
-
-        indicatorContainerView.topAnchor.constraint(equalTo: indicatorBackgroundView.topAnchor).isActive = true
-        indicatorContainerView.leadingAnchor.constraint(equalTo: indicatorBackgroundView.leadingAnchor).isActive = true
-        indicatorContainerView.trailingAnchor.constraint(equalTo: indicatorBackgroundView.trailingAnchor).isActive = true
-        indicatorContainerView.bottomAnchor.constraint(equalTo: showcaseImageContainerView.bottomAnchor).isActive = true
-
-        let progressIndicator = UIActivityIndicatorView(style: .whiteLarge)
-        progressIndicator.translatesAutoresizingMaskIntoConstraints = false
-        indicatorContainerView.addSubview(progressIndicator)
-        progressIndicator.centerXAnchor.constraint(equalTo: indicatorContainerView.centerXAnchor).isActive = true
-        progressIndicator.centerYAnchor.constraint(equalTo: indicatorContainerView.centerYAnchor).isActive = true
-
-        progressIndicator.startAnimating()
-
-        self.loadingIndicatorView = indicatorBackgroundView
     }
 
     func updateShowcaseImage(image: UIImage) {
@@ -149,17 +82,66 @@ public class BaseViewController: UIViewController,
         send(message)
     }
 
-    func didPickImage(image: UIImage, pickerController: ImagePickerViewController) {
-        sourceImage = image
-        updateShowcaseImage(image: image)
+    private func setupLogoImageView() {
+        let logoImageView = UIImageView()
+        logoImageView.image = UIImage(named: "logo")
+        logoImageView.contentMode = .scaleAspectFit
+
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        showcaseImageContainerView.insertSubview(logoImageView, belowSubview: showcaseImageView)
+
+        logoImageView.centerXAnchor.constraint(equalTo: showcaseImageContainerView.centerXAnchor).isActive = true
+        logoImageView.centerYAnchor.constraint(equalTo: showcaseImageContainerView.centerYAnchor).isActive = true
+        logoImageView.widthAnchor.constraint(equalToConstant: 420).isActive = true
+        logoImageView.heightAnchor.constraint(equalTo: showcaseImageContainerView.heightAnchor).isActive = true
     }
 
-    func didPickNamedItem(name: String, pickerController: ImagePickerViewController) {
+    private func setupToolBarBlurView() {
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurView = UIVisualEffectView(effect: blurEffect)
 
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(blurView, aboveSubview: backgroundImageView)
+
+        blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        blurView.topAnchor.constraint(equalTo: toolBarContainerView.topAnchor, constant: -12).isActive = true
+        blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
-    func toolBarButtonTapped(buttonView: ToolBarButtonView) {
+    private func setupProcessingIndicator() {
+        let indicatorBackgroundView = UIView()
 
+        indicatorBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        indicatorBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+
+        showcaseImageContainerView.addSubview(indicatorBackgroundView)
+
+        indicatorBackgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        indicatorBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        indicatorBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        indicatorBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+        let indicatorContainerView = UIView()
+
+        indicatorContainerView.backgroundColor = .clear
+        indicatorContainerView.translatesAutoresizingMaskIntoConstraints = false
+        indicatorBackgroundView.addSubview(indicatorContainerView)
+
+        indicatorContainerView.topAnchor.constraint(equalTo: indicatorBackgroundView.topAnchor).isActive = true
+        indicatorContainerView.leadingAnchor.constraint(equalTo: indicatorBackgroundView.leadingAnchor).isActive = true
+        indicatorContainerView.trailingAnchor.constraint(equalTo: indicatorBackgroundView.trailingAnchor).isActive = true
+        indicatorContainerView.bottomAnchor.constraint(equalTo: showcaseImageContainerView.bottomAnchor).isActive = true
+
+        let progressIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+        progressIndicator.translatesAutoresizingMaskIntoConstraints = false
+        indicatorContainerView.addSubview(progressIndicator)
+        progressIndicator.centerXAnchor.constraint(equalTo: indicatorContainerView.centerXAnchor).isActive = true
+        progressIndicator.centerYAnchor.constraint(equalTo: indicatorContainerView.centerYAnchor).isActive = true
+
+        progressIndicator.startAnimating()
+
+        loadingIndicatorView = indicatorBackgroundView
     }
 
     public func liveViewMessageConnectionOpened() {
@@ -179,11 +161,32 @@ public class BaseViewController: UIViewController,
         case .imageProcessingResponse(let image):
             setLoadingIndicatorHidden(true, animated: true)
             if let image = image {
-                self.updateShowcaseImage(image: image)
+                updateShowcaseImage(image: image)
             }
         default:
             break
         }
+    }
+
+}
+
+extension BaseViewController: ImagePickerViewControllerDelegate {
+
+    func didPickImage(image: UIImage, pickerController: ImagePickerViewController) {
+        sourceImage = image
+        updateShowcaseImage(image: image)
+    }
+
+    func didPickNamedItem(name: String, pickerController: ImagePickerViewController) {
+
+    }
+
+}
+
+extension BaseViewController: ToolBarButtonViewDelegate {
+
+    func toolBarButtonTapped(buttonView: ToolBarButtonView) {
+
     }
 
 }

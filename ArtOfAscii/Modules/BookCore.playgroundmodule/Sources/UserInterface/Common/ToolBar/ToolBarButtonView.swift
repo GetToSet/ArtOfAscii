@@ -20,27 +20,27 @@ class ToolBarButtonView: UIView {
 
     var state: ToolBarButtonState = .normal {
         didSet {
-            updateAppearance()
+            updateAppearanceForState()
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.backgroundColor = .clear
-        self.clipsToBounds = false
+        backgroundColor = .clear
+        clipsToBounds = false
 
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-
-        button.layer.cornerRadius = self.bounds.size.width / 2.0
+        button.layer.cornerRadius = bounds.size.width / 2.0
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 3.0
         button.clipsToBounds = true
 
-        updateAppearance()
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+
+        updateAppearanceForState()
     }
 
-    func updateAppearance() {
+    func updateAppearanceForState() {
         switch state {
         case .selected:
             button.isEnabled = true
@@ -68,7 +68,7 @@ class ToolBarButtonView: UIView {
 
 }
 
-protocol ToolBarButtonViewDelegate: AnyObject {
+@objc protocol ToolBarButtonViewDelegate: AnyObject {
 
     func toolBarButtonTapped(buttonView: ToolBarButtonView)
 

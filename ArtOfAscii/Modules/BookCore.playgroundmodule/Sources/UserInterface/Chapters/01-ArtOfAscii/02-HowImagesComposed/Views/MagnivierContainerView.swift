@@ -71,7 +71,7 @@ class MagnifierContainerView: UIView {
 
 }
 
-protocol MagnifierContainerViewDelegate: AnyObject {
+@objc protocol MagnifierContainerViewDelegate: AnyObject {
 
     func magnifierCenterPositionChanged(point: CGPoint, containerView: MagnifierContainerView)
 

@@ -6,7 +6,7 @@
 import UIKit
 import PlaygroundSupport
 
-private enum EventPayloadType: String {
+private enum MessagePayloadType: String {
 
     case rgbFilterRequest
     case grayscaleFilterRequest
@@ -19,13 +19,13 @@ private enum EventPayloadType: String {
 
 private protocol EventPayload {
 
-    var payloadType: EventPayloadType { get }
+    var type: MessagePayloadType { get }
 
 }
 
 private struct RGBFilterRequest: EventPayload, Codable {
 
-    var payloadType: EventPayloadType {
+    var type: MessagePayloadType {
         return .rgbFilterRequest
     }
 
@@ -60,13 +60,13 @@ public enum EventMessage {
 
         var jsonData: Data?
         var imageData: Data?
-        var payloadToEncode: EventPayload?
-        var payloadType: EventPayloadType?
+        var payloadType: MessagePayloadType?
 
         switch self {
         case .rgbFilterRequest(let red, let green, let blue, let image):
-            payloadToEncode = RGBFilterRequest(redEnabled: red, greenEnabled: green, blueEnabled: blue)
-            jsonData = try? encoder.encode(payloadToEncode as! RGBFilterRequest)
+            let payloadToEncode = RGBFilterRequest(redEnabled: red, greenEnabled: green, blueEnabled: blue)
+            payloadType = payloadToEncode.type
+            jsonData = try? encoder.encode(payloadToEncode)
             imageData = image?.jpegData(compressionQuality: 1.0)
         case .grayscaleFilterRequest(let image):
             payloadType = .grayscaleFilterRequest
@@ -84,7 +84,6 @@ public enum EventMessage {
             payloadType = .imageProcessingResponse
             imageData = image?.jpegData(compressionQuality: 1.0)
         }
-        payloadType = payloadType ?? payloadToEncode!.payloadType
         var dict = [
             "type": PlaygroundValue.string(payloadType!.rawValue)
         ]
@@ -99,12 +98,11 @@ public enum EventMessage {
 
     private static func decodeFromDictionary(_ dictionary: [String: PlaygroundValue]) -> Self? {
         guard case .string(let typeStr) = dictionary["type"],
-              let type = EventPayloadType(rawValue: typeStr) else {
+              let type = MessagePayloadType(rawValue: typeStr) else {
             return nil
         }
 
         let decoder = JSONDecoder()
-
         var image: UIImage?
 
         if case .data(let imageData) = dictionary["image"] {

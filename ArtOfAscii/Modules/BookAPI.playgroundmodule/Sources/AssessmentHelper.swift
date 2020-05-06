@@ -17,10 +17,7 @@ public class AssessmentHelper {
     }
 
     public func assessmentShowOnce(_ assessmentFunc: AssessmentFunc, pass passMessage: String?) {
-        guard !assessmentStatusShown else {
-            return
-        }
-        if assessmentFunc() == true {
+        if !assessmentStatusShown && assessmentFunc() == true {
             assessmentStatusShown = true
             PlaygroundPage.current.assessmentStatus = .pass(message: passMessage)
         }

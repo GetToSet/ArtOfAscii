@@ -7,7 +7,7 @@ whitelist_rules:
   - fatal_error_message
 #  - force_cast
   - force_try
-  - force_unwrapping
+#  - force_unwrapping
 #  - implicitly_unwrapped_optional
   - legacy_cggeometry_functions
   - legacy_constant
@@ -31,7 +31,7 @@ excluded:
 colon:
   apply_to_dictionaries: false
 
-indentation: 2
+indentation: 4
 
 custom_rules:
   no_objcMembers:

@@ -14,7 +14,7 @@ import BookCore
 class AppDelegate: LiveViewHost.AppDelegate {
 
   override func setUpLiveView() -> PlaygroundLiveViewable {
-    return BookCore.instantiateLiveView(identifier: .asciification)
+    return BookCore.instantiateLiveView(identifier: .introduction)
   }
 
   override var liveViewConfiguration: LiveViewConfiguration {

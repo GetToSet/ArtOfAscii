@@ -27,7 +27,7 @@ class ImagePickerViewController: UIViewController {
 
     weak var delegate: ImagePickerViewControllerDelegate?
 
-    private var dataSource: ImagePickerDataSource {
+    private var dataSource: ImagePickerDataSource! {
         switch sampleImageType {
         case .sampleImage:
             return ImagePickerDataSource.sampleImages
@@ -47,9 +47,9 @@ class ImagePickerViewController: UIViewController {
 
     func selectFirstImage(animated: Bool) {
         imagePickerCollectionView.selectItem(
-            at: IndexPath(row: 0, section: sectionFor(type: .sampleImage)!),
-            animated: animated,
-            scrollPosition: .centeredHorizontally)
+                at: IndexPath(row: 0, section: sectionFor(type: .sampleImage)!),
+                animated: animated,
+                scrollPosition: .centeredHorizontally)
     }
 
     private func sectionFor(type sectionType: SectionType) -> Int? {
@@ -107,8 +107,9 @@ extension ImagePickerViewController: UICollectionViewDelegate, UICollectionViewD
         case .cameraRoll:
             cell.setImage(named: "image-picker/button-camera")
         case .sampleImage:
-            let imageThumbnailName = dataSource.items[indexPath.row].thumbnailName
-            cell.setImage(named: imageThumbnailName)
+            if let imageThumbnailName = dataSource.items[indexPath.row].thumbnailName {
+                cell.setImage(named: imageThumbnailName)
+            }
         }
         return cell
     }
@@ -130,7 +131,7 @@ extension ImagePickerViewController: ImagePickerCollectionViewCellDelegate {
 
             let item = dataSource.items[indexPath.row]
             if let imageName = item.imageName,
-                let image = UIImage(named: imageName) {
+               let image = UIImage(named: imageName) {
                 delegate?.didPickImage(image: image, pickerController: self)
             }
             if let itemName = item.itemName {
@@ -191,7 +192,7 @@ extension ImagePickerViewController: UIImagePickerControllerDelegate, UINavigati
 
 }
 
-protocol ImagePickerViewControllerDelegate: AnyObject {
+@objc protocol ImagePickerViewControllerDelegate: AnyObject {
 
     func didPickImage(image: UIImage, pickerController: ImagePickerViewController)
     func didPickNamedItem(name: String, pickerController: ImagePickerViewController)

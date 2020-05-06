@@ -23,8 +23,8 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
 
         shadowContainerView.layer.cornerRadius = 4.0
-        contentContainerView.layer.cornerRadius = 4.0
 
+        contentContainerView.layer.cornerRadius = 4.0
         contentContainerView.layer.borderWidth = 3.0
 
         updateAppearance()
@@ -35,11 +35,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
     }
 
     private func updateAppearance() {
-        if self.isSelected {
-            contentContainerView.layer.borderColor = UIColor.States.highlight.cgColor
-        } else {
-            contentContainerView.layer.borderColor = UIColor.white.cgColor
-        }
+        contentContainerView.layer.borderColor = isSelected ? UIColor.States.highlight.cgColor : UIColor.white.cgColor
     }
 
     @IBAction func thumbnailButtonTapped(_ sender: UIButton) {

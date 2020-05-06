@@ -9,7 +9,7 @@ class HistogramToolBarButtonView: ToolBarButtonView {
 
     var isRgbMode: Bool = false {
         didSet {
-            updateAppearance()
+            updateAppearanceForState()
         }
     }
 
@@ -35,8 +35,8 @@ class HistogramToolBarButtonView: ToolBarButtonView {
         self.delegate?.toolBarButtonTapped(buttonView: self)
     }
 
-    override func updateAppearance() {
-        super.updateAppearance()
+    override func updateAppearanceForState() {
+        super.updateAppearanceForState()
         if isRgbMode {
             self.button.setImage(UIImage(named: "toolbar/button-histogram-rgb"), for: .normal)
         } else {

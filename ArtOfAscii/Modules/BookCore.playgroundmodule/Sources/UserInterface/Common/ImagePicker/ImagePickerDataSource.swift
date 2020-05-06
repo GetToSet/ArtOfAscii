@@ -11,7 +11,7 @@ class ImagePickerDataSource {
 
         var itemName: String?
         var imageName: String?
-        var thumbnailName: String
+        var thumbnailName: String?
 
         private enum CodingKeys: String, CodingKey {
             case itemName = "item"
@@ -21,20 +21,19 @@ class ImagePickerDataSource {
 
     }
 
-    static var sampleImages = ImagePickerDataSource(imageListPath: Bundle.main.path(forResource: "sampleImageList", ofType: "plist"))
-    static var effectsPreview = ImagePickerDataSource(imageListPath: Bundle.main.path(forResource: "effectsPreviewList", ofType: "plist"))
+    static let sampleImages = ImagePickerDataSource(imageListPath: Bundle.main.path(forResource: "sampleImageList", ofType: "plist"))
+    static let effectsPreview = ImagePickerDataSource(imageListPath: Bundle.main.path(forResource: "effectsPreviewList", ofType: "plist"))
 
     let items: [PickerImage]
 
-    private init(imageListPath: String?) {
+    private init?(imageListPath: String?) {
         let decoder = PropertyListDecoder()
         guard let path = imageListPath,
             let plistData = FileManager.default.contents(atPath: path),
             let imageNames = try? decoder.decode([PickerImage].self, from: plistData) else {
-            self.items = []
-            return
+            return nil
         }
-        self.items = imageNames
+        items = imageNames
     }
 
 }

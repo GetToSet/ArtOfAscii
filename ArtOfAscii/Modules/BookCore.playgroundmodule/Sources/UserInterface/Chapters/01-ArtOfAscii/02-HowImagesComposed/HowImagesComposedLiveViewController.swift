@@ -36,7 +36,7 @@ public class HowImagesComposedViewController: BaseViewController {
     }
 
     private func requestImageFiltering() {
-        guard let sourceImage = self.sourceImage else {
+        guard let sourceImage = sourceImage else {
             return
         }
         let payload = EventMessage.rgbFilterRequest(
@@ -49,7 +49,7 @@ public class HowImagesComposedViewController: BaseViewController {
     }
 
     private func updateMagnificationCenter(centerInImageView: CGPoint) {
-        if let centerInImage = self.showcaseImageView.pointInImageFor(point: centerInImageView) {
+        if let centerInImage = showcaseImageView.pointInImageFor(point: centerInImageView) {
             magnifierContainerView.magnificationCenter = centerInImage
         }
     }
@@ -104,7 +104,7 @@ public class HowImagesComposedViewController: BaseViewController {
 extension HowImagesComposedViewController: MagnifierContainerViewDelegate {
 
     func magnifierCenterPositionChanged(point: CGPoint, containerView: MagnifierContainerView) {
-        let centerInImageView = self.showcaseImageView.convert(point, from: containerView)
+        let centerInImageView = showcaseImageView.convert(point, from: containerView)
         updateMagnificationCenter(centerInImageView: centerInImageView)
     }
 
